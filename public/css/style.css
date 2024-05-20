@@ -487,3 +487,22 @@
 #content{
     border-radius: 16px 16px 0px 0px;
 }
+.camera{
+    width: 4vh;
+}
+.sub{
+    background-color: #D9D9D9;
+}
+.sub {
+    display: flex;
+    align-items: center;
+}
+.icon {
+    background-color: var(--primary);
+    width: 40px;
+    padding: 5px;
+    margin-right: 20px;
+}
+.text {
+    color: black;
+}

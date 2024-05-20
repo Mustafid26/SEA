@@ -44,7 +44,7 @@ class KelasController extends Controller
         $kelas = Kelas::with('materi.kontenMateri')->find($id);
         return view('kelas.show', compact('kelas'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
