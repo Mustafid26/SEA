@@ -16,22 +16,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Kelas::create([
-            'nama_kelas' => 'Bu Ipah'
+            'nama_kelas' => 'Bu Ipah',
+            'detail_kelas' => 'Industri Sampah'
         ]);
         Kelas::create([
-            'nama_kelas' => 'Bu Peri'
+            'nama_kelas' => 'Bu Peri',
+            'detail_kelas' => 'Perlindungan Diri'
         ]);
         Kelas::create([
-            'nama_kelas' => 'Bu Asih'
+            'nama_kelas' => 'Bu Asih',
+            'detail_kelas' => 'Anak Sehat Ibu Hebat'
         ]);
         Kelas::create([
-            'nama_kelas' => 'Bu Septi'
+            'nama_kelas' => 'Bu Septi',
+            'detail_kelas' => 'Sehat Pangan Sarat Gizi'
         ]);
         Kelas::create([
-            'nama_kelas' => 'Bu Cahya'
+            'nama_kelas' => 'Bu Cahya',
+            'detail_kelas' => 'Canggih dan Berdaya'
         ]);
         Kelas::create([
-            'nama_kelas' => 'Bu Edi'
+            'nama_kelas' => 'Bu Edi',
+            'detail_kelas' => 'Ekonomi Digital'
         ]);
         Materi::create([
             'kelas_id' => 1,

@@ -57,53 +57,46 @@
     <!-- Spinner End --> --}}
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><img src="img/SEA.png" alt="" srcset=""></h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/" class="nav-item nav-link {{ ($active === 'beranda') ? 'active' : ' ' }}">Beranda</a>
-                <a href="about.html" class="nav-item nav-link">Tentang</a>
-                <a href="/kelas" class="nav-item nav-link {{ ($active === 'kelas') ? 'active' : ' ' }}">Kelas</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Team Kami</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">Mitra</a>
-                    </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="" class="nav-item btn btn-primary py-4 px-lg-5">Login<i class="fa fa-arrow-right ms-3"></i></a>
+    <nav class="navbar-top">
+        <img src="img/SEA.png" alt="Logo" class="logo">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="/" class="{{ ($active === 'beranda') ? 'active' : '' }}">BERANDA</a>
+                <a href="/about" class="{{ ($active === 'tentang') ? 'active' : '' }}">TENTANG</a>
+                <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">KELAS</a>
+                <a href="#" class="dropdown">PAGES</a>
+                <a href="/contact" class="{{ ($active === 'contact') ? 'active' : '' }}">CONTACT</a>
             </div>
+            <button class="login-button">Login <i class="fa fa-arrow-right"></i></button>
         </div>
+    </nav>
+
+    <nav class="bottom-bar">
+        <a href="/" class="{{ ($active === 'beranda') ? 'active' : '' }}">
+            <i class="fa fa-home"></i>
+            BERANDA
+        </a>
+        <a href="/about" class="{{ ($active === 'tentang') ? 'active' : '' }}">
+            <i class="fa fa-circle-question"></i>
+            TENTANG
+        </a>
+        <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">
+            <i class="fa fa-chalkboard-user"></i>
+            KELAS
+        </a>
+        <a href="/notifikasi" class="{{ ($active === 'notifikasi') ? 'active' : '' }}">
+            <i class="fa fa-bell"></i>
+            Notifikasi
+        </a>
+        <a href="/profil" class="{{ ($active === 'profil') ? 'active' : '' }}">
+            <i class="fa fa-right-to-bracket"></i>
+            Login
+        </a>
     </nav>
     <!-- Navbar End -->
 
     {{-- content --}}
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4">
-                <h4 class="d-flex justify-content-center wowfadeInUp"><strong>Kelas</strong></h4>
-                @yield('button')
-                @yield('kosong')
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div id="sidebar">
-                        @yield('sidebar')
-                    </div>
-                </div>
-                <div class="col-lg-9 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div id="content">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @yield('kelas');
     {{-- end content --}}
 
     <!-- JavaScript -->
