@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('kelas')
+@section('konten')
 <div class="container mt-5">
     <div class="header">
       <div class="profile">
@@ -14,7 +14,7 @@
   
     <h5>Pilih Pelatihan</h5>
     @foreach($kelas as $k)
-    <a href="http://">
+    <a href="{{ url('/kelas/' . $k->id . '/materi') }}">
         <div class="card-custom shadow-lg">
         <img src="img/{{$k->image}}" alt="Bu Peri">
         <div>

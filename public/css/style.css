@@ -588,3 +588,20 @@
     display: block;
     font-size: 1.2em;
 }
+.card {
+    border: none;
+}
+  
+.card-img-top {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+  
+.card-title {
+    font-weight: bold;
+}
+  
+.list-group-item {
+    border: none;
+    border-radius: 0;
+}

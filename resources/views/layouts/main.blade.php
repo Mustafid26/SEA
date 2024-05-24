@@ -96,7 +96,9 @@
     <!-- Navbar End -->
 
     {{-- content --}}
-    @yield('kelas');
+    <div class="container">
+        @yield('konten')
+    </div>
     {{-- end content --}}
 
     <!-- JavaScript -->

@@ -13,7 +13,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::with('materi.kontenMateri')->get();
+        $kelas = Kelas::all();
         return view('kelas', [
             'active' => "kelas",
             'kelas' => $kelas
@@ -41,8 +41,13 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        $kelas = Kelas::with('materi.kontenMateri')->find($id);
-        return view('kelas.show', compact('kelas'));
+        $kelas = Kelas::findOrFail($id);
+        $materi = $kelas->materi;
+        return view('materi', [
+            'materi' => $materi,
+            'kelas' => $kelas,
+            'active' => "kelas"
+        ]);
     }
     
     /**
