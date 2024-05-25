@@ -10,8 +10,8 @@
     <title>Login</title>
     <style>
       body {
-        background-color: #219c9088;
         height: 75vh;
+        background-color: #219c9088;
       }
       .mobile-img {
         margin-top: 50px;
@@ -66,7 +66,7 @@
   </head>
   <body>
     <div class="desktop">
-      <section class="vh-100" style="background-color: #219c9088;">
+      <section class="vh-100">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -78,9 +78,7 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-      
                       <form>
-      
                         <div class="d-flex align-items-center mb-3 pb-1">
                           <i class="fas fa-cubes fa-2x me-3" style="color: #219c9088;"></i>
                           <span class="h1 fw-bold mb-0"><img class="img-fluid" src="SEA.png" alt="" srcset="" /></span>
@@ -89,17 +87,17 @@
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Login Untuk Lanjut</h5>
       
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                          <label class="form-label" for="form2Example17">Email address</label>
+                          <input type="username" id="form2Example17" class="form-control form-control-lg" />
+                          <label class="form-label" for="form2Example17">Nama Pengguna</label>
                         </div>
       
                         <div data-mdb-input-init class="form-outline mb-4">
                           <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                          <label class="form-label" for="form2Example27">Password</label>
+                          <label class="form-label" for="form2Example27">Kata Sandi</label>
                         </div>
       
-                        <div class="pt-1 mb-4" style="background-color: #219c9088;">
-                          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block" type="button">Login</button>
+                        <div class="pt-1 mb-4">
+                          <a href="#" class="btn btn-login">Masuk</a>
                         </div>
       
                         <a class="small text-muted" href="#!">Forgot password?</a>
@@ -127,29 +125,23 @@
         <h5 class="mobile-text">Silahkan Login Untuk Lanjut</h5>
       </div>
       <div class="d-flex justify-content-center mt-4" style="height:100%;">
-        <div class="card text-center">
+        <div class="card">
           <div class="card-body">
-            <p class="card-text d-flex justify-content-center">
-              <input
-                type="username"
-                class="form-control"
-                id="floatingInput"
-                placeholder="Nama Pengguna"
-                fdprocessedid="8ie8ic"
-                control-id="ControlID-1"
-              />
-            </p>
-            <p class="card-text d-flex justify-content-center">
-              <input
-                type="password"
-                class="form-control"
-                id="floatingInput"
-                placeholder="Kata Sandi"
-                fdprocessedid="8ie8ic"
-                control-id="ControlID-1"
-              />
-            </p>
-            <a href="#" class="btn btn-login">Masuk</a>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="username" id="form2Example17" class="form-control form-control-lg" />
+              <label class="form-label" for="form2Example17">Nama Pengguna</label>
+            </div>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="password" id="form2Example27" class="form-control form-control-lg" />
+              <label class="form-label" for="form2Example27">Kata Sandi</label>
+            </div>
+
+            <div class="pt-1 mb-4 text-center">
+              <a href="#" class="btn btn-login">Masuk</a>
+            </div>
+            <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088;">Don't have an account? <a href="#!"
+                style="color: #219c9088;">Register here</a></p>
           </div>
         </div>
       </div>
