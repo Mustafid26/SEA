@@ -16,15 +16,15 @@
     @foreach($kelas as $k)
     <a href="{{ url('/kelas/' . $k->id . '/materi') }}">
         <div class="card-custom shadow-lg">
-        <img src="img/{{$k->image}}">
-        <div>
-            <h6>{{$k->nama_kelas}}</h6>
-            <p>{{$k->detail_kelas}}</p>
-        </div>
-        <div class="progress-circle">
-            <span>93%</span>
-            <small>Progres Anda</small>
-        </div>
+          <img src="img/{{$k->image}}">
+          <div>
+              <h6>{{$k->nama_kelas}}</h6>
+              <p>{{$k->detail_kelas}}</p>
+          </div>
+          <div class="progress-circle">
+              <span>93%</span>
+              <small>Progres Anda</small>
+          </div>
         </div>
     </a>
     @endforeach
