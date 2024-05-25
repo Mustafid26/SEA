@@ -11,7 +11,7 @@
             <div class="list-group">
                 @foreach($materi as $m)
                 <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                    {{$m->judul_materi}}
+                    <i class="fa fa-lock"></i> {{$m->judul_materi}}
                     <i class="fa-solid fa-caret-down"></i>
                 </a>
                 @endforeach
