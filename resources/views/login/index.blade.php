@@ -79,9 +79,10 @@
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
                       <form>
+                        @csrf
                         <div class="d-flex align-items-center mb-3 pb-1">
                           <i class="fas fa-cubes fa-2x me-3" style="color: #219c9088;"></i>
-                          <span class="h1 fw-bold mb-0"><img class="img-fluid" src="SEA.png" alt="" srcset="" /></span>
+                          <span class="h1 fw-bold mb-0"><img class="img-fluid" src="{{ asset('img/SEA-Login.png')}}" alt="" srcset="" /></span>
                         </div>
       
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Login Untuk Lanjut</h5>
@@ -100,13 +101,10 @@
                           <a href="#" class="btn btn-login">Masuk</a>
                         </div>
       
-                        <a class="small text-muted" href="#!">Forgot password?</a>
+                        <a class="small text-muted" href="#!">Lupa Kata Sandi?</a>
                         <p class="mb-5 pb-lg-2" style="color: #219c9088;">Don't have an account? <a href="#!"
                             style="color: #219c9088;">Register here</a></p>
-                        <a href="#!" class="small text-muted">Terms of use.</a>
-                        <a href="#!" class="small text-muted">Privacy policy</a>
                       </form>
-      
                     </div>
                   </div>
                 </div>
@@ -118,7 +116,7 @@
     </div>
     <div class="mobile">
       <div class="container d-flex justify-content-center">
-        <img class="img-fluid mobile-img" src="SEA.png" alt="" srcset="" />
+        <img class="img-fluid mobile-img" src="{{ asset('img/SEA-Login.png')}}" alt="" srcset="" />
       </div>
       <div class="container text mt-4">
         <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>
@@ -127,21 +125,24 @@
       <div class="d-flex justify-content-center mt-4" style="height:100%;">
         <div class="card">
           <div class="card-body">
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="username" id="form2Example17" class="form-control form-control-lg" />
-              <label class="form-label" for="form2Example17">Nama Pengguna</label>
-            </div>
-
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="password" id="form2Example27" class="form-control form-control-lg" />
-              <label class="form-label" for="form2Example27">Kata Sandi</label>
-            </div>
-
-            <div class="pt-1 mb-4 text-center">
-              <a href="#" class="btn btn-login">Masuk</a>
-            </div>
-            <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088;">Don't have an account? <a href="#!"
-                style="color: #219c9088;">Register here</a></p>
+            <form action="">
+              @csrf
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="username" id="username" class="form-control form-control-lg" />
+                <label class="form-label" for="username">Nama Pengguna</label>
+              </div>
+  
+              <div data-mdb-input-init class="form-outline">
+                <input type="password" id="password" class="form-control form-control-lg" />
+                <label class="form-label" for="password">Kata Sandi</label>
+              </div>
+              <a class="small text-muted" href="#!">Lupa Kata Sandi?</a>
+              <div class="pt-1 mb-4 text-center">
+                <a href="#" class="btn btn-login">Masuk</a>
+              </div>
+              <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088;">Don't have an account? 
+              <a href="#!"style="color: #219c9088;">Register here</a></p>
+            </form>
           </div>
         </div>
       </div>

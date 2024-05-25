@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -22,4 +23,4 @@ Route::get('/', function () {
 });
 Route::get('/kelas', [KelasController::class, 'index']);
 Route::get('/kelas/{id}/materi', [KelasController::class, 'show']);
-
+Route::get('/login', [LoginController::class, 'index']);
