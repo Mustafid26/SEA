@@ -8,10 +8,10 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ asset('img/favicon.ico')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,22 +25,23 @@
     <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ asset('lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <script src="{{ asset('lib/wow/wow.min.js')}}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js')}}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
     <style>
         body {
             font-family: 'Maven Pro';
@@ -58,16 +59,15 @@
 
     <!-- Navbar Start -->
     <nav class="navbar-top">
-        <img src="img/SEA.png" alt="Logo" class="logo">
+        <img src="{{ asset('img/SEA.png')}}" alt="Logo" class="logo">
         <div class="nav-container">
             <div class="nav-links">
                 <a href="/" class="{{ ($active === 'beranda') ? 'active' : '' }}">BERANDA</a>
                 <a href="/about" class="{{ ($active === 'tentang') ? 'active' : '' }}">TENTANG</a>
                 <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">KELAS</a>
-                <a href="#" class="dropdown">PAGES</a>
-                <a href="/contact" class="{{ ($active === 'contact') ? 'active' : '' }}">CONTACT</a>
+                <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">ARTIKEL</a>
             </div>
-            <button class="login-button">Login <i class="fa fa-arrow-right"></i></button>
+            <a href="/login" class="login-button"> Login <i class="fa fa-arrow-right"></i></a>
         </div>
     </nav>
 
@@ -84,11 +84,11 @@
             <i class="fa fa-chalkboard-user"></i>
             KELAS
         </a>
-        <a href="/notifikasi" class="{{ ($active === 'notifikasi') ? 'active' : '' }}">
-            <i class="fa fa-bell"></i>
-            Notifikasi
+        <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">
+            <i class="fa fa-newspaper"></i>
+            Artikel
         </a>
-        <a href="/profil" class="{{ ($active === 'profil') ? 'active' : '' }}">
+        <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }}">
             <i class="fa fa-right-to-bracket"></i>
             Login
         </a>
@@ -103,6 +103,6 @@
 
     <!-- JavaScript -->
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>

@@ -22,3 +22,4 @@ Route::get('/', function () {
 });
 Route::get('/kelas', [KelasController::class, 'index']);
 Route::get('/kelas/{id}/materi', [KelasController::class, 'show']);
+
