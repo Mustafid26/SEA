@@ -551,7 +551,7 @@
     }
 }
 .header {
-    background-color: #219C90;
+    background-color: var(--primary);
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -585,9 +585,9 @@
     color: var(--primary);
 }
 .card-custom img {
-    width:60px;
+    widtH: 350px;
     margin-right: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .card-custom:hover {
     cursor: pointer;
