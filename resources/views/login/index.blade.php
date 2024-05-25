@@ -9,16 +9,16 @@
     />
     <title>Login</title>
     <style>
-      html,
       body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
         background-color: #219c9088;
+        height: 75vh;
       }
-      .container img {
+      .mobile-img {
         margin-top: 50px;
         width: 300px;
+      }
+      .mobile{
+        height:100%;
       }
       .card {
         border-radius: 26px 25px 0px 0px;
@@ -34,8 +34,11 @@
         width: 100%;
       }
       @media (min-width: 1024px) {
-        .container h5 {
+        .mobile-text {
           margin-left: 200px;
+        }
+        .mobile{
+          display: none;
         }
       }
       @media (max-width: 1024px) {
@@ -44,49 +47,110 @@
           margin: 0;
           box-sizing: border-box;
         }
+        .desktop{
+          display: none;
+        }
+        body {
+          height: 75vh;
+        }
       }
       .btn-login {
         background-color: #219c90;
         color: white;
         width: 50%;
       }
-      .btn-login:hover{
+      .btn-login:hover {
         color: white;
       }
     </style>
   </head>
   <body>
-    <div class="container d-flex justify-content-center">
-      <img class="img-fluid" src="SEA.png" alt="" srcset="" />
+    <div class="desktop">
+      <section class="vh-100" style="background-color: #219c9088;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                      alt="login form" class="img-fluid h-100" style="border-radius: 1rem 0 0 1rem;" />
+                  </div>
+                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+      
+                      <form>
+      
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                          <i class="fas fa-cubes fa-2x me-3" style="color: #219c9088;"></i>
+                          <span class="h1 fw-bold mb-0"><img class="img-fluid" src="SEA.png" alt="" srcset="" /></span>
+                        </div>
+      
+                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Login Untuk Lanjut</h5>
+      
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                          <label class="form-label" for="form2Example17">Email address</label>
+                        </div>
+      
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                          <label class="form-label" for="form2Example27">Password</label>
+                        </div>
+      
+                        <div class="pt-1 mb-4" style="background-color: #219c9088;">
+                          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block" type="button">Login</button>
+                        </div>
+      
+                        <a class="small text-muted" href="#!">Forgot password?</a>
+                        <p class="mb-5 pb-lg-2" style="color: #219c9088;">Don't have an account? <a href="#!"
+                            style="color: #219c9088;">Register here</a></p>
+                        <a href="#!" class="small text-muted">Terms of use.</a>
+                        <a href="#!" class="small text-muted">Privacy policy</a>
+                      </form>
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="container text mt-4">
-      <h5><strong>Selamat Datang</strong></h5>
-      <h5>Silahkan Login Untuk Lanjut</h5>
-    </div>
-    <div class="d-flex justify-content-center mt-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <p class="card-text d-flex justify-content-center">
-            <input
-              type="username"
-              class="form-control"
-              id="floatingInput"
-              placeholder="Nama Pengguna"
-              fdprocessedid="8ie8ic"
-              control-id="ControlID-1"
-            />
-          </p>
-          <p class="card-text d-flex justify-content-center">
-            <input
-              type="password"
-              class="form-control"
-              id="floatingInput"
-              placeholder="Kata Sandi"
-              fdprocessedid="8ie8ic"
-              control-id="ControlID-1"
-            />
-          </p>
-          <a href="#" class="btn btn-login">Masuk</a>
+    <div class="mobile">
+      <div class="container d-flex justify-content-center">
+        <img class="img-fluid mobile-img" src="SEA.png" alt="" srcset="" />
+      </div>
+      <div class="container text mt-4">
+        <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>
+        <h5 class="mobile-text">Silahkan Login Untuk Lanjut</h5>
+      </div>
+      <div class="d-flex justify-content-center mt-4" style="height:100%;">
+        <div class="card text-center">
+          <div class="card-body">
+            <p class="card-text d-flex justify-content-center">
+              <input
+                type="username"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Nama Pengguna"
+                fdprocessedid="8ie8ic"
+                control-id="ControlID-1"
+              />
+            </p>
+            <p class="card-text d-flex justify-content-center">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Kata Sandi"
+                fdprocessedid="8ie8ic"
+                control-id="ControlID-1"
+              />
+            </p>
+            <a href="#" class="btn btn-login">Masuk</a>
+          </div>
         </div>
       </div>
     </div>
