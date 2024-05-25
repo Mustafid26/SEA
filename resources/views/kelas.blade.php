@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('konten')
-<div class="container mt-5">
+<div class="container mt-5" style="margin-bottom: 5rem;"> 
     <div class="header">
       <div class="profile">
         <img src="https://via.placeholder.com/50" alt="Profile Picture">
@@ -16,7 +16,7 @@
     @foreach($kelas as $k)
     <a href="{{ url('/kelas/' . $k->id . '/materi') }}">
         <div class="card-custom shadow-lg">
-        <img src="img/{{$k->image}}" class="img-fluid">
+        <img src="img/{{$k->image}}">
         <div>
             <h6>{{$k->nama_kelas}}</h6>
             <p>{{$k->detail_kelas}}</p>

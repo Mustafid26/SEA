@@ -585,9 +585,16 @@
     color: var(--primary);
 }
 .card-custom img {
-    widtH: 350px;
+    width: 350px;
     margin-right: 20px;
     margin-left: 10px;
+}
+@media (max-width: 990px){
+    .card-custom img {
+        width: 100px;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
 }
 .card-custom:hover {
     cursor: pointer;
