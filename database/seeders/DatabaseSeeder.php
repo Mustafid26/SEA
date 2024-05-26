@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Materi;
+use App\Models\Artikel;
 use Illuminate\Database\Seeder;
 
 
@@ -17,27 +19,33 @@ class DatabaseSeeder extends Seeder
     {
         Kelas::create([
             'nama_kelas' => 'Bu Ipah',
-            'detail_kelas' => 'Industri Sampah'
+            'detail_kelas' => 'Industri Sampah',
+            'image' => 'Bu Ipah.png'
         ]);
         Kelas::create([
             'nama_kelas' => 'Bu Peri',
-            'detail_kelas' => 'Perlindungan Diri'
+            'detail_kelas' => 'Perlindungan Diri',
+            'image' => 'Bu Ipah.png'
         ]);
         Kelas::create([
             'nama_kelas' => 'Bu Asih',
-            'detail_kelas' => 'Anak Sehat Ibu Hebat'
+            'detail_kelas' => 'Anak Sehat Ibu Hebat',
+            'image' => 'Bu Asih.png'
         ]);
         Kelas::create([
             'nama_kelas' => 'Bu Septi',
-            'detail_kelas' => 'Sehat Pangan Sarat Gizi'
+            'detail_kelas' => 'Sehat Pangan Sarat Gizi',
+            'image' => 'Bu Septi.png'
         ]);
         Kelas::create([
             'nama_kelas' => 'Bu Cahya',
-            'detail_kelas' => 'Canggih dan Berdaya'
+            'detail_kelas' => 'Canggih dan Berdaya',
+            'image' => 'Bu Cahya.png'
         ]);
         Kelas::create([
             'nama_kelas' => 'Bu Edi',
-            'detail_kelas' => 'Ekonomi Digital'
+            'detail_kelas' => 'Ekonomi Digital',
+            'image' => 'Bu Edi.png'
         ]);
         Materi::create([
             'kelas_id' => 1,
@@ -65,5 +73,9 @@ class DatabaseSeeder extends Seeder
             'kelas_id' => 6,
             'judul_materi' => 'Materi 6'
         ]);
+        User::factory(5)->create([
+            'password' => 'user'
+        ]);
+        Artikel::factory(20)->create();
     }
 }
