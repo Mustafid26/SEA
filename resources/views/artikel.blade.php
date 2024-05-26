@@ -8,7 +8,7 @@
     @foreach($artikel as $a)
     <div class="card article-card shadow-sm" style="border-radius: 20px;">
         <div class="d-flex justify-content-center">
-            <img src="img/Bu Ipah.png" />
+            <img src="img/dummy.png" />
         </div>
         <div class="card-body">
             <h2 class="article-card-title">

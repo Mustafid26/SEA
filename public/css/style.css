@@ -645,8 +645,14 @@ body{
     padding-bottom: 60px; /* Add some space at the bottom for the button */
 }
 .article-card img {
-    width: 50%;
+    width: 500px;
     height: auto;
+    border-radius: 20px;
+}
+@media (max-width: 1024px) {
+    .article-card img {
+        width: 100%;
+    }
 }
 .article-card-title {
     font-size: 1.25rem;
