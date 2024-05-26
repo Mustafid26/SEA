@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('konten')
-<div class="mt-4">
+<div class="p-2 mt-4">
     <h1>Artikel</h1>
     <p>20 artikel</p>
 
     @foreach($artikel as $a)
     <div class="card article-card shadow-sm" style="border-radius: 20px;">
         <div class="d-flex justify-content-center">
-            <img src="img/dummy.png" />
+            <img src="{{ asset('img/dummy.png')}}" />
         </div>
         <div class="card-body">
             <h2 class="article-card-title">

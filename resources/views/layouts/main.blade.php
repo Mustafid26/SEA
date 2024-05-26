@@ -86,11 +86,11 @@
         </a>
         <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">
             <i class="fa fa-newspaper"></i>
-            Artikel
+            ARTIKEL
         </a>
         <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }}">
             <i class="fa fa-right-to-bracket"></i>
-            Login
+            LOGIN
         </a>
     </nav>
     <!-- Navbar End -->
