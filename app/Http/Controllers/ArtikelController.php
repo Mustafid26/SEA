@@ -10,9 +10,11 @@ class ArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::paginate(10);
+        $jumlahartikel = Artikel::count();
         return view('artikel', [
             'artikel' => $artikel,
-            'active' => 'artikel'
+            'active' => 'artikel',
+            'jumlahartikel' => $jumlahartikel
         ]);
     }
     public function show(Artikel $artikel)

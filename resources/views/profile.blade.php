@@ -148,7 +148,7 @@
                         <img src="" alt="Edit Icon" />
                     </div>
                 </div>
-                <h4>Max Verstappen</h4>
+                <h4>{{$user->name}}</h4>
             </div>
             <div class="profile-options">
                 <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
@@ -166,11 +166,15 @@
                     <span class="text-profile"><i class="fa fa-solid fa-phone fa-2xl icon-profile" style="color: #219c90;"></i>Hubungi Kami</span>
                 </button>
             </div>
-            <a href="" class="btn-logout">
-            <div class="logout-button text-center">
-                <button class="btn" style="color:white;">Keluar</button>
-            </div>
-            </a>
+            <form method="POST" action="{{ route('logout')}}">    
+              @csrf        
+              <a href="{{ route('logout') }}" onclick="event.preventDefault();
+              this.closest('form').submit();" class="btn-logout">
+                <div class="logout-button text-center">
+                    <button class="btn" style="color:white;">Keluar</button>
+                </div>
+              </a>
+            </form>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>

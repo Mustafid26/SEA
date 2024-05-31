@@ -6,7 +6,7 @@
       <div class="profile">
         <img src="{{ asset('img/Bu Ipah Profile.png')}}" alt="Profile Picture" class="img-fluid">
         <div>
-          <h5>Halo, Anne</h5>
+          <h5>Halo, {{$user->name}}</h5>
           <p>1000 Poin</p>
         </div>
       </div>

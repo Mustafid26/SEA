@@ -3,7 +3,7 @@
 @section('konten')
 <div class="p-2 mt-4">
     <h1>Artikel</h1>
-    <p>20 artikel</p>
+    <p>{{$jumlahartikel}} Artikel</p>
 
     @foreach($artikel as $a)
     <div class="card article-card shadow-sm" style="border-radius: 20px;">

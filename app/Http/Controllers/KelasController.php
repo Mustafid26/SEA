@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Kelas;
 use App\Models\Materi;
 use Illuminate\Http\Request;
@@ -13,10 +14,12 @@ class KelasController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $kelas = Kelas::all();
         return view('kelas', [
             'active' => "kelas",
-            'kelas' => $kelas
+            'kelas' => $kelas,
+            'user' => $user
         ]);
     }
 
