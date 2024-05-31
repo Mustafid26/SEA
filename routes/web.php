@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -24,6 +25,16 @@ Route::get('/', function () {
 });
 Route::get('/kelas', [KelasController::class, 'index']);
 Route::get('/kelas/{id}/materi', [KelasController::class, 'show']);
-Route::get('/login', [LoginController::class, 'index']);
 Route::get('/artikel', [ArtikelController::class, 'index']);
 Route::get('/artikel/{artikel:slug}', [ArtikelController::class, 'show'])->name('artikel.show');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+Route::get('/profile', [ProfileController::class, 'index']);

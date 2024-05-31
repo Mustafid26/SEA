@@ -570,6 +570,7 @@ body{
 .profile img {
     border-radius: 50%;
     margin-right: 10px;
+    width: 50px;
 }
 .card-custom {
     display: flex;
@@ -643,6 +644,7 @@ body{
     margin-bottom: 20px;
     position: relative;
     padding-bottom: 60px; /* Add some space at the bottom for the button */
+    
 }
 .article-card img {
     width: 500px;

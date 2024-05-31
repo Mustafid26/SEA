@@ -10,8 +10,9 @@
 
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
+   
     <!-- Favicon -->
-    <link href="{{ asset('img/favicon.ico')}}" rel="icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/SEA-Login.png') }}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,10 +89,17 @@
             <i class="fa fa-newspaper"></i>
             ARTIKEL
         </a>
+        @auth
+        <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }}">
+            <i class="fa fa-solid fa-user"></i>
+            PROFILE
+        </a>
+        @else
         <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }}">
             <i class="fa fa-right-to-bracket"></i>
             LOGIN
         </a>
+        @endauth
     </nav>
     <!-- Navbar End -->
 

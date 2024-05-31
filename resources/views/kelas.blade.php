@@ -4,7 +4,7 @@
 <div class="container mt-5" style="margin-bottom: 5rem;"> 
     <div class="header">
       <div class="profile">
-        <img src="https://via.placeholder.com/50" alt="Profile Picture">
+        <img src="{{ asset('img/Bu Ipah Profile.png')}}" alt="Profile Picture" class="img-fluid">
         <div>
           <h5>Halo, Anne</h5>
           <p>1000 Poin</p>
