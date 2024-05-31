@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile Page</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
@@ -38,18 +35,23 @@
 
       .profile-picture img {
         border-radius: 50%;
-        width: 50%;
+        width: 250px;
       }
 
-      .edit-icon {
+      .edit-icon button {
         position: absolute;
         bottom: 0;
-        right: 0;
-        background-color: white;
+        margin-left: 50px;
+        background-color: #D6D6D6;
         border-radius: 50%;
         padding: 3px;
+        align-items: center;
+        transition: transform 0.5 ease;
       }
-
+      .edit-icon button:hover {
+        background-color: #b8b8b8;
+        transform: scale(1.2);
+      }
       .profile-info h4 {
         margin-top: 10px;
       }
@@ -64,6 +66,7 @@
 
       .profile-options .btn {
         margin-bottom: 10px;
+        width: 100%;
       }
       .logout-button {
         margin-top: 20px;
@@ -75,6 +78,7 @@
         border-radius: 15px 15px 15px 15px;
         padding: 25px;
         background-color: #54bab825;
+        display: block;
       }
       .text-profile{
         color: #219c90;
@@ -103,7 +107,13 @@
                 <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">KELAS</a>
                 <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">ARTIKEL</a>
             </div>
+            @auth
+            <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }} login-button">
+                PROFILE
+            </a>
+            @else
             <a href="/login" class="login-button"> Login <i class="fa fa-arrow-right"></i></a>
+            @endauth
         </div>
     </nav>
 
@@ -139,16 +149,54 @@
     <div class="container">
         <div class="profile-container">
             <div class="profile-header align-items-center">
-                <a href="#" class="back-arrow" style="color: #219c90;"><i class="fa-solid fa-angle-left" style="color: #219c90;"></i> Profil</a>
+                <h3 style="color: #219c90;">Profil</h3>
             </div>
             <div class="profile-info text-center">
                 <div class="profile-picture">
-                    <img src="{{ asset('img/Bu Ipah Profile.png')}}" alt="Profile Picture" />
+                    @if (Auth::user()->profile_photo_path)
+                        <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo">
+                    @else
+                        <img src="{{ asset('img/Profile.png')}}" alt="Profile Picture" />
+                    @endif
                     <div class="edit-icon">
-                        <img src="" alt="Edit Icon" />
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <img src="{{ asset('img/pencil.png')}}" alt="Edit Icon" style=" width: 30px;"/>
+                      </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Silahkan Upload Gambar</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="{{ route('profile.upload') }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <div class="input-group mb-3">
+                                <input type="file" class="form-control" id="inputGroupFile02" name="profile_photo">
+                                <label class="input-group-text" for="inputGroupFile02">Unggah Gambar</label>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </form>
+                        </div>
+                      </div>
                     </div>
                 </div>
                 <h4>{{$user->name}}</h4>
+                @if (Auth::user()->profile_photo_path)
+                  <form action="{{ route('profile.delete') }}" method="POST" style="margin-top: 20px;">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit">Hapus Gambar</button>
+                  </form>
+                @endif
             </div>
             <div class="profile-options">
                 <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
@@ -158,11 +206,11 @@
                     </div>
                 </button>
                 <a href="/dashboard" style="text-decoration: none;">
-                    <button class="btn-profile btn btn-outline-secondary btn-block text-left">
+                    <button class="btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                             <span class="text-profile"><i class="fa fa-solid fa-gear fa-2xl icon-profile" style="color: #219c90;"></i>Pengaturan</span>
                     </button>
                 </a>
-                <button class=" btn-profile btn btn-outline-secondary btn-block text-left"">
+                <button class=" btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                     <span class="text-profile"><i class="fa fa-solid fa-phone fa-2xl icon-profile" style="color: #219c90;"></i>Hubungi Kami</span>
                 </button>
             </div>
@@ -178,5 +226,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   </body>
 </html>

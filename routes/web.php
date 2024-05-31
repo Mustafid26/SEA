@@ -38,3 +38,5 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('profile.upload');
+Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete');

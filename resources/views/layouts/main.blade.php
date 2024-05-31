@@ -68,7 +68,13 @@
                 <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">KELAS</a>
                 <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">ARTIKEL</a>
             </div>
+            @auth
+            <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }} login-button">
+                PROFILE
+            </a>
+            @else
             <a href="/login" class="login-button"> Login <i class="fa fa-arrow-right"></i></a>
+            @endauth
         </div>
     </nav>
 

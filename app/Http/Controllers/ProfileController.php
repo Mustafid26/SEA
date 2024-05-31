@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -35,6 +36,23 @@ class ProfileController extends Controller
     {
         //
     }
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // Simpan file ke storage/app/public/profile_photos
+        $path = $request->file('profile_photo')->store('profile_photos', 'public');
+
+        // Update user profile photo path
+        $user->profile_photo_path = $path;
+        $user->save();
+
+        return back()->with('success', 'Profile photo updated successfully!');
+    }
 
     /**
      * Display the specified resource.
@@ -63,8 +81,19 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function delete(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        if ($user->profile_photo_path) {
+            // Hapus file dari storage
+            Storage::disk('public')->delete($user->profile_photo_path);
+
+            // Update profile_photo_path menjadi null
+            $user->profile_photo_path = null;
+            $user->save();
+        }
+
+        return back()->with('success', 'Profile photo deleted successfully!');
     }
 }

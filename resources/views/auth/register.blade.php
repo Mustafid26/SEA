@@ -13,60 +13,65 @@
     <title>Login</title>
     <style>
         body {
-          height: 75vh;
-          background-color: #219c9088;
-         
-          
-        }
-        .mobile-img {
-          margin-top: 50px;
-          width: 300px;
+        background-color: #219c9088;
+        height: 100vh;
+      }
+      .mobile-img {
+        margin-top: 100px;
+        width: 300px;
+      }
+      .mobile{
+        height: 100%;
+      }
+      .card {
+        border-radius: 26px 25px 0px 0px;
+        -webkit-border-radius: 26px 25px 0px 0px;
+        -moz-border-radius: 26px 25px 0px 0px;
+        margin: 0;
+        width: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .card input {
+        width: 100%;
+      }
+      @media (min-width: 1024px) {
+        .mobile-text {
+          margin-left: 200px;
         }
         .mobile{
-          height:100%;
+          display: none;
         }
+      }
+      @media (max-width: 1024px) {
         .card {
-          border-radius: 26px 25px 0px 0px;
-          -webkit-border-radius: 26px 25px 0px 0px;
-          -moz-border-radius: 26px 25px 0px 0px;
-          margin: 0;
-          width: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-        .card input {
           width: 100%;
+          margin: 0;
+          box-sizing: border-box;
+          height: 100vh;
         }
-        @media (min-width: 1024px) {
-          .mobile-text {
-            margin-left: 200px;
-          }
-          .mobile{
-            display: none;
-          }
+        .btn-login{
+          margin-top: 7vh;
         }
-        @media (max-width: 1024px) {
-          .card {
-            width: 100%;
-            margin: 0;
-            box-sizing: border-box;
-          }
-          .desktop{
-            display: none;
-          }
-          body {
-            height: 75vh;
-          }
+        .desktop{
+          display: none;
         }
-        .btn-login {
-          background-color: #219c90;
-          color: white;
-          width: 50%;
+        .container-mobile {
+          margin-top: 10vh;
         }
-        .btn-login:hover {
-          color: white;
+        body {
+          overflow-y: hidden;
         }
+      }
+      .btn-login {
+        background-color: #219c90;
+        color: white;
+        width: 50%;
+      }
+      .btn-login:hover {
+        color: white;
+      }
       </style>
   </head>
   <body>
@@ -163,11 +168,11 @@
                 <input type="password" id="password_confirmation" class="form-control form-control-lg" name="password_confirmation" required  />
               </div>
               
-              <div class="pt-1 mb-4">
+              <div class="pt-1 mb-4 text-center">
                 <button class="btn btn-login">{{ __('Register') }}</button>
              </div>
             
-             <p class="mb-5 pb-lg-2" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
+             <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
                  style="color: black; font-weight: normal;">Klik Di sini</a></p>
             </form>
           </div>
