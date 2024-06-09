@@ -14,14 +14,13 @@
     <style>
       body {
         background-color: #219c9088;
-        height: 100vh;
       }
       .mobile-img {
         margin-top: 100px;
         width: 300px;
       }
       .mobile{
-        height: 100%;
+        height:100%;
       }
       .card {
         border-radius: 26px 25px 0px 0px;
@@ -49,7 +48,6 @@
           width: 100%;
           margin: 0;
           box-sizing: border-box;
-          height: 100vh;
         }
         .btn-login{
           margin-top: 7vh;
@@ -60,11 +58,12 @@
         .container-mobile {
           margin-top: 10vh;
         }
+        body {
+          height: 75vh;
+          
+        }
         .form-outline{
           margin-top: 50px;
-        }
-        body {
-          overflow-y: hidden;
         }
       }
       .btn-login {
@@ -78,6 +77,9 @@
     </style>
   </head>
   <body>
+    
+
+    
     <div class="desktop">
       <section class="vh-100">
         <div class="container py-5 h-100">

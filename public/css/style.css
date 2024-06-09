@@ -5,6 +5,8 @@
     --dark: #181d38;
     --kuning: #F6DB9D;
 }
+
+
 body{
     padding-bottom: 100px;
 }
@@ -570,7 +572,6 @@ body{
 .profile img {
     border-radius: 50%;
     margin-right: 10px;
-    width: 50px;
 }
 .card-custom {
     display: flex;
@@ -643,25 +644,16 @@ body{
     border: none;
     margin-bottom: 20px;
     position: relative;
-    
+    padding-bottom: 60px; /* Add some space at the bottom for the button */
 }
 .article-card img {
-    width: 100%;
-    height: 500px;
+    width: 500px;
+    height: auto;
     border-radius: 20px;
-}
-.mobile-artikel{
-    display: none;
 }
 @media (max-width: 1024px) {
     .article-card img {
         width: 100%;
-    }
-    .desktop-artikel{
-        display: none;
-    }
-    .mobile-artikel{
-        display: block;
     }
 }
 .article-card-title {
@@ -703,43 +695,4 @@ body{
     .fab{
         transform: translateY(-65px);
     }
-} 
-  .wrapper a{
-    display: block;
-    width: 200px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 18px;
-    font-family: sans-serif;
-    text-decoration: none;
-    color: #333;
-    border: 2px solid #333;
-    letter-spacing: 2px;
-    text-align: center;
-    position: relative;
-    transition: all .35s;
-  }
-  
-  .wrapper a span{
-    position: relative;
-    z-index: 2;
-  }
-  
-  .wrapper a:after{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: var(--primary);
-    transition: all .35s;
-  }
-  
-  .wrapper a:hover{
-    color: #fff;
-  }
-  
-  .wrapper a:hover:after{
-    width: 100%;
-  }
+}

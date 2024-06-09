@@ -9,7 +9,7 @@ class ArtikelController extends Controller
 {
     public function index()
     {
-        $artikel = Artikel::paginate(10);
+        $artikel = Artikel::orderBy('created_at', 'desc')->paginate(10);
         $jumlahartikel = Artikel::count();
         return view('artikel', [
             'artikel' => $artikel,

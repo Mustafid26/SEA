@@ -69,11 +69,14 @@
                 <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">ARTIKEL</a>
             </div>
             @auth
-            <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }} login-button">
+            <a href="/profile/{{ Auth::user()->id }}" class="{{ ($active === 'profile') ? 'active' : '' }} login-button">
                 PROFILE
-            </a>
+            </a>    
             @else
-            <a href="/login" class="login-button"> Login <i class="fa fa-arrow-right"></i></a>
+            <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }} login-button">
+                <i class="fa fa-arrow-right"></i>
+                Login
+            </a>
             @endauth
         </div>
     </nav>
@@ -93,17 +96,18 @@
         </a>
         <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">
             <i class="fa fa-newspaper"></i>
-            ARTIKEL
+            Artikel
         </a>
+ 
         @auth
-        <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }}">
-            <i class="fa fa-solid fa-user"></i>
-            PROFILE
+        <a href="/profile/{{ Auth::user()->id }}" class="{{ ($active === 'login') ? 'active' : '' }}"> 
+            <i class="fa fa-solid fa-user "></i>
+            Profile
         </a>
         @else
         <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }}">
             <i class="fa fa-right-to-bracket"></i>
-            LOGIN
+            Login
         </a>
         @endauth
     </nav>

@@ -13,68 +13,66 @@
     <title>Login</title>
     <style>
         body {
-        background-color: #219c9088;
-        height: 100vh;
-      }
-      .mobile-img {
-        margin-top: 100px;
-        width: 300px;
-      }
-      .mobile{
-        height: 100%;
-      }
-      .card {
-        border-radius: 26px 25px 0px 0px;
-        -webkit-border-radius: 26px 25px 0px 0px;
-        -moz-border-radius: 26px 25px 0px 0px;
-        margin: 0;
-        width: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .card input {
-        width: 100%;
-      }
-      @media (min-width: 1024px) {
-        .mobile-text {
-          margin-left: 200px;
+          height: 75vh;
+          background-color: #219c9088;
+         
+          
+        }
+        .mobile-img {
+          margin-top: 50px;
+          width: 300px;
         }
         .mobile{
-          display: none;
+          height:100%;
         }
-      }
-      @media (max-width: 1024px) {
         .card {
-          width: 100%;
+          border-radius: 26px 25px 0px 0px;
+          -webkit-border-radius: 26px 25px 0px 0px;
+          -moz-border-radius: 26px 25px 0px 0px;
           margin: 0;
-          box-sizing: border-box;
-          height: 100vh;
+          width: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
-        .btn-login{
-          margin-top: 7vh;
+        .card input {
+          width: 100%;
         }
-        .desktop{
-          display: none;
+        @media (min-width: 1024px) {
+          .mobile-text {
+            margin-left: 200px;
+          }
+          .mobile{
+            display: none;
+          }
         }
-        .container-mobile {
-          margin-top: 10vh;
+        @media (max-width: 1024px) {
+          .card {
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+          }
+          .desktop{
+            display: none;
+          }
+          body {
+            height: 75vh;
+          }
         }
-        body {
-          overflow-y: hidden;
+        .btn-login {
+          background-color: #219c90;
+          color: white;
+          width: 50%;
         }
-      }
-      .btn-login {
-        background-color: #219c90;
-        color: white;
-        width: 50%;
-      }
-      .btn-login:hover {
-        color: white;
-      }
+        .btn-login:hover {
+          color: white;
+        }
       </style>
   </head>
   <body>
+    
+
+    
     <div class="desktop">
       <section class="vh-100">
         <div class="container py-5 h-100">
@@ -152,12 +150,12 @@
                 <label class="form-label" for="name" value="{{ __('name') }}" >Nama Pengguna</label>
                 <input type="username" id="name" class="form-control form-control-lg" name="name" :value="old('name')" required autofocus autocomplete="username" />
               </div>
-
+  
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" for="nik" value="{{ __('nik') }}">NIK</label>
                 <input type="number" id="nik" class="form-control form-control-lg" name="nik" required autocomplete="current-nik" />
               </div>
-  
+
               <div data-mdb-input-init class="form-outline">
                 <label class="form-label" for="password" value="{{ __('password') }}">Kata Sandi</label>
                 <input type="password" id="password" class="form-control form-control-lg" name="password" required autocomplete="current-password" />
@@ -167,12 +165,13 @@
                 <label class="form-label" for="password_confirmation" value="{{ __('Password') }}"> Konfirmasi Kata Sandi</label>
                 <input type="password" id="password_confirmation" class="form-control form-control-lg" name="password_confirmation" required  />
               </div>
-              
-              <div class="pt-1 mb-4 text-center">
+
+             
+              <div class="pt-1 mb-4">
                 <button class="btn btn-login">{{ __('Register') }}</button>
              </div>
             
-             <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
+             <p class="mb-5 pb-lg-2" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
                  style="color: black; font-weight: normal;">Klik Di sini</a></p>
             </form>
           </div>

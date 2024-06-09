@@ -1,4 +1,4 @@
-~<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nik') ->unique();
+            $table->string('usertype')->default(0);
+            $table->string('role')->default('user');
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

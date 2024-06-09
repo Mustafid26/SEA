@@ -108,7 +108,7 @@
                 <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">ARTIKEL</a>
             </div>
             @auth
-            <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }} login-button">
+            <a href="/profile/{{ Auth::user()->id }}" class="{{ ($active === 'profile') ? 'active' : '' }} login-button">
                 PROFILE
             </a>
             @else
@@ -205,7 +205,7 @@
                         <span class="badge-pill"><img src="{{ asset('img/coin.png')}} " alt="" srcset=""> 1000 Poin</span>
                     </div>
                 </button>
-                <a href="/dashboard" style="text-decoration: none;">
+                <a href="/user/profile" style="text-decoration: none;">
                     <button class="btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                             <span class="text-profile"><i class="fa fa-solid fa-gear fa-2xl icon-profile" style="color: #219c90;"></i>Pengaturan</span>
                     </button>

@@ -3,7 +3,7 @@
 @section('konten')
 <div class="container">
     <div class="card mt-5">
-        <img src="{{ asset("img/dummy.png")}}" class="card-img-top">
+        <img src="path-to-image.jpg" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h5>
             <p class="card-text"><small class="text-muted">24 Siswa</small></p>

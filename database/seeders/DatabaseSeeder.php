@@ -73,9 +73,6 @@ class DatabaseSeeder extends Seeder
             'kelas_id' => 6,
             'judul_materi' => 'Materi 6'
         ]);
-        User::factory(5)->create([
-            'password' => 'user'
-        ]);
         Artikel::factory(20)->create();
     }
 }

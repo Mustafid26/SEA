@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
 @section('konten')
-<div class="p-4 containermt-5 article-content">
+<div class="container mt-5 article-content" style="margin-bottom: 5rem;">
     <h2 class="article-title">{{$artikel->title}}</h2>
-    <p class="article-meta">{{$artikel->author->name}}<br>{{$artikel->created_at->diffForHumans()}}</p>
+    <p class="article-meta">Dibuat Oleh {{$artikel->author->name}}<br>{{$artikel->created_at->diffForHumans()}}</p>
     
-    <div class="article-image d-flex justify-content-center">
-        <img src="{{ asset('img/dummy.png')}}" alt="Artikel Image" class="img-fluid">
+    <div class="article-image">
+        <img src="{{ asset('storage/' . $artikel->image) }}" alt="Artikel Image">
     </div>
 
     <article class="my-5">

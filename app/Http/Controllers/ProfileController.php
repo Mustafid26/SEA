@@ -12,12 +12,14 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        $user = Auth::user();
-        return view ('profile', [
-            'active' => 'profile',
-            'user' => $user
+        // Find the user with the given ID
+       $user = User::find($id);
+
+        return view('profile', [
+            'user' => $user,
+            'active' => 'Login'
         ]);
     }
 
