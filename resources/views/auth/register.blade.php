@@ -133,7 +133,7 @@
         </div>
       </section>
     </div>
-    <div class="mobile">
+    <div class="mobile vh-100">
       <div class="container d-flex justify-content-center">
         <img class="img-fluid mobile-img" src="{{ asset('img/SEA-Login.png')}}" alt="logoSEA" srcset="" />
       </div>
@@ -141,7 +141,7 @@
         <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>
         <h5 class="mobile-text">Silahkan Login Untuk Lanjut</h5>
       </div>
-      <div class="d-flex justify-content-center mt-4" >
+      <div class="d-flex justify-content-center mt-4 h-100">
         <div class="card">
           <div class="card-body">
             <form method="POST" action="{{ route('register') }}">
@@ -167,11 +167,11 @@
               </div>
 
              
-              <div class="pt-1 mb-4">
+              <div class="pt-1 mb-4 text-center">
                 <button class="btn btn-login">{{ __('Register') }}</button>
              </div>
             
-             <p class="mb-5 pb-lg-2" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
+             <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
                  style="color: black; font-weight: normal;">Klik Di sini</a></p>
             </form>
           </div>

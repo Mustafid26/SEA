@@ -4,7 +4,11 @@
 <div class="container mt-5" style="margin-bottom: 5rem;"> 
     <div class="header">
       <div class="profile">
-        <img src="https://via.placeholder.com/50" alt="Profile Picture">
+        @if (Auth::user()->profile_photo_path)
+          <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" style="width: 50px;" alt="Profile Picture">
+        @else
+          <img src="{{ asset('img/Profile.png')}}" style="width: 50px;" alt="Profile Picture" />
+        @endif
         <div>
           <h5>Halo, Anne</h5>
           <p>1000 Poin</p>

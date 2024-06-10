@@ -19,9 +19,6 @@
         margin-top: 100px;
         width: 300px;
       }
-      .mobile{
-        height:100%;
-      }
       .card {
         border-radius: 26px 25px 0px 0px;
         -webkit-border-radius: 26px 25px 0px 0px;
@@ -47,6 +44,7 @@
         .card {
           width: 100%;
           margin: 0;
+          height: 100%;
           box-sizing: border-box;
         }
         .btn-login{
@@ -60,7 +58,7 @@
         }
         body {
           height: 75vh;
-          
+          overflow-y: hidden;
         }
         .form-outline{
           margin-top: 50px;
@@ -135,7 +133,7 @@
         </div>
       </section>
     </div>
-    <div class="mobile">
+    <div class="mobile vh-100">
       <div class="container d-flex justify-content-center">
         <img class="img-fluid mobile-img" src="{{ asset('img/SEA-Login.png')}}" alt="logoSEA" srcset="" />
       </div>
@@ -143,7 +141,7 @@
         <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>
         <h5 class="mobile-text">Silahkan Login Untuk Lanjut</h5>
       </div>
-      <div class="d-flex justify-content-center mt-4">
+      <div class="d-flex justify-content-center mt-4 h-100">
         <div class="card">
           <div class="card-body">
             <form method="POST" action="{{ route('login') }}">

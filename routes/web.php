@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ArtikelController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PretestController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
 
 
 /*
@@ -48,7 +50,7 @@ route::get('/search_artikel', [AdminController::class,'search_artikel']);
 
 
 Route::get('/kelas', [KelasController::class, 'index'])->middleware('auth','verified');
-Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->middleware('auth','verified');
+Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth','verified');
 Route::get('/artikel', [ArtikelController::class, 'index']);
 Route::get('/artikel/{artikel:slug}', [ArtikelController::class, 'show'])->name('artikel.show');
 
@@ -56,6 +58,14 @@ Route::get('/artikel/{artikel:slug}', [ArtikelController::class, 'show'])->name(
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('index')->middleware('auth','verified');
 Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('profile.upload')->middleware('auth','verified');
 Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete')->middleware('auth','verified');
+
+Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
+    Route::get('/materi/{materi}/pretest', [PretestController::class, 'show'])->name('pretest.show');
+    Route::post('/materi/{materi}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
+});
+
+Route::get('/materi-after', [MateriController::class, 'after'])->name('materi.after');
+
 
 Route::middleware([
     'auth:sanctum',
