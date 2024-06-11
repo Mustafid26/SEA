@@ -18,7 +18,7 @@ class PretestController extends Controller
                                     ->exists();
 
         if ($pretestTaken) {
-            return redirect()->route('materi.show', $materi->id)->with('message', 'You have already taken this pretest.');
+            session()->flash('sweetalert', 'Kamu Sebelumnya Sudah Menyelesaikan Pretest.');
         }
 
         $questions = Question::where('materi_id', $materi->id)->get();
@@ -46,6 +46,6 @@ class PretestController extends Controller
             'is_passed' => $isPassed
         ]);
 
-        return redirect()->route('materi.show', $materi->id)->with('message', 'Pretest submitted successfully.');
+        return redirect()->route('materi.show', $materi->id)->with('sweetalert', 'Pretest Anda Terkirim.');
     }
 }
