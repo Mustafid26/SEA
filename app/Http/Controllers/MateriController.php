@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class MateriController extends Controller
 {
-    public function after()
+    public function after($id)
     {
-        return view('materi-after');
+        $materi = Materi::find($id);
+        return view('materi-after', [
+            'active' => "kelas",
+            'materi' => $materi
+        ]);
     }
 }

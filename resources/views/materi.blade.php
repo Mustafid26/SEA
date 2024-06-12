@@ -30,8 +30,9 @@
                             <div id="drop-content" class="drop-content">
                             @if ($m->pretestTakenByUser(auth()->id()))
                                 <span style="color:white" href="#"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
-                                <a class="dropdown-item text-white" href="#">Konten 1</a>
-                                <a class="dropdown-item text-white" href="#">Konten 2</a>
+                                <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">Konten 1</a>
+                                <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">Konten 1</a>
+
                             @else
                                 <a class="dropdown-item text-white" href="{{ route('pretest.show', $m->id) }}"><strong>Pretest</strong></a>
                                 <a class="dropdown-item text-white" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i> Konten 1</a>

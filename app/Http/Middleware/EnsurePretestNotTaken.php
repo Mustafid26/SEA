@@ -17,7 +17,7 @@ class EnsurePretestNotTaken
                                     ->exists();
 
         if ($pretestTaken) {
-            return redirect()->route('materi.show', $materiId)->with('message', 'You have already taken this pretest.');
+            return redirect()->route('materi.show', $materiId)->with('sweetalert', 'You have already taken this pretest.');
         }
 
         return $next($request);

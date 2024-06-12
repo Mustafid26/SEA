@@ -49,7 +49,7 @@ route::get('/delete_artikel/{id}', [AdminController::class,'delete_artikel']);
 route::get('/search_artikel', [AdminController::class,'search_artikel']);
 
 
-Route::get('/kelas', [KelasController::class, 'index'])->middleware('auth','verified');
+Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth','verified');
 Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth','verified');
 Route::get('/artikel', [ArtikelController::class, 'index']);
 Route::get('/artikel/{artikel:slug}', [ArtikelController::class, 'show'])->name('artikel.show');
@@ -64,7 +64,9 @@ Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
     Route::post('/materi/{materi}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });
 
-Route::get('/materi-after', [MateriController::class, 'after'])->name('materi.after');
+Route::middleware(['auth', 'pretest.completed'])->group(function () {
+    Route::get('/materi/{id}/after', [MateriController::class, 'after'])->name('materi.after');
+});
 
 
 Route::middleware([
