@@ -34,9 +34,13 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="icon icon-box-success">
-                                <span class="mdi mdi-arrow-top-right icon-item"><a href=""></a></span>
-                            </div>
+                            <a href="{{url('/show_kelas')}}">
+                                <div class="icon icon-box-success">
+                                    <span class="mdi mdi-arrow-top-right icon-item">
+                                        
+                                    </span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <h6 class="text-muted font-weight-normal">Total Kelas</h6>

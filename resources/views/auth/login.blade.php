@@ -56,6 +56,10 @@
         .container-mobile {
           margin-top: 10vh;
         }
+        body {
+          height: 75vh;
+          overflow-y: hidden;
+        }
         .form-outline{
           margin-top: 50px;
         }

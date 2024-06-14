@@ -6,27 +6,29 @@
     @include('admin.css')
 
     <style>
-    .div_center {
-        text-align: center;
-        padding-top: 50px;
-    }
-
-    .h1coy {
-        font-size: 30px;
-        margin-bottom: 30px;
-    }
-
-
-    .input_color {
-        color: black;
-    }
-
-    label {
-        display: inline-block;
-        width: 200px;
-        margin-right: 20px;
-    }
-    </style>
+        .content-wrapper {
+            overflow-x: auto !important;
+            background-color: rgb(0,0,0);
+        }
+        .div_center {
+            text-align: center;
+            padding-top: 50px;
+        }
+    
+        .h1coy {
+            font-size: 30px;
+            text-align: center;
+        }
+    
+        
+        tr{
+            color:black;
+        }
+        trix-toolbar [data-trix-button-group="file-tools"] 
+        {
+        display: none;
+        }
+        </style>
 </head>
 
 <body>
@@ -43,36 +45,41 @@
                 <div class="content-wrapper">
                     @if(session()-> has('message'))
 
-                    <div class=" alert alert-success">
+                    <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                         {{session()->get('message')}}
                     </div>
                     @endif
-                    <div class="div_center">
                         <h1 class="h1coy">Add User</h1>
                         <form action="{{url('add_user')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <label>Nama User</label>
-                            <input type="text" name="nama" id="" class="input_color" placeholder="Masukkan Nama"
-                                required><br><br>
 
-                            <label>NIK</label>
-                            <input type="number" name="nik" id="" class="input_color" placeholder="Masukkan NIK"
-                                required><br><br>
+                            <div class="mb-3">
+                                <label for="name" nameclass="form-label">Nama User</label>
+                                <input style="background-color: white !important; color: black!important;" type="text" class="form-control" id="name" name="name" placeholder="Masukan Judul" required value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nik" class="form-label">NIK</label>
+                                <input type="number" style="background-color: white !important; color: black!important;" class="form-control" id="nik" name="nik" placeholder="Masukkan Nik" required value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="text" style="background-color: white !important; color: black!important;" class="form-control" id="password" name="password" placeholder="Masukkan Password" required value="">
+                            </div>
 
-                            <label>Password</label>
-                            <input type="text" name="password" id="" class="input_color" placeholder="Masukkan Password"
-                                required><br><br>
 
-                            <label>Role User</label>
-                            <select name="role" id="" class="input_color" style="width: 200px;" required>
-                                <option value="" selected="">Tambahkan Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                            </select><br><br>
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Role User</label><br>
+                                <select name="role" id="" class="input_color" style="width: 200px;" required>
+                                    <option value="" selected="">Tambahkan Role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+                            </div>
+                            
                             <input type="submit" class="btn btn-primary" value="Add User">
                         </form>
-                    </div>
+                    
                 </div>
             </div>
             <!-- main-panel ends -->

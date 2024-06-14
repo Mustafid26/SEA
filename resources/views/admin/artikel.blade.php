@@ -63,16 +63,16 @@
                         <h1 class="h1coy">Add Artikel</h1>
                         <div class="mb-3">
                             <label for="title" nameclass="form-label">Judul Artikel</label>
-                            <input style="background-color: white !important" type="text" class="form-control" id="title" name="title" placeholder="Masukan Judul" required value="">
+                            <input style="background-color: white !important; color: black !important;" type="text" class="form-control" id="title" name="title" placeholder="Masukan Judul" required value="">
                         </div>
                         <div class="mb-3">
                             <label for="slug" class="form-label">Slug</label>
-                            <input type="text" style="background-color: white !important" class="form-control" id="slug" name="slug" placeholder="masukkan-slug" required value="">
+                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="slug" name="slug" placeholder="masukkan-slug" required value="">
                         </div>
                         <div class="mb-3">
                             <label for="image" nameclass="form-label">Upload Gambar</label>
                             <img src="" class="img-fluid img-preview mb-3 col-sm-5" alt="">
-                            <input type="file" style="background-color: white !important; color: black;" name="image" id="image" class="form-control" id="inputGroupFile02" onchange="previewImage()">
+                            <input type="file" style="background-color: white !important;" name="image" id="image" class="form-control" id="inputGroupFile02" onchange="previewImage()">
                         </div>
                         <div class="mb-3">
                             <label for="body" class="form-label">Body</label>

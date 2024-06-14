@@ -21,26 +21,34 @@
                     <h3 class="card-title">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
                     <h5>Deskripsi Singkat</h5>
                     <p class="card-text">{{$kelas->deskripsi}}</p>
-                    <div class="list-group">
-                        @foreach($materi as $m)    
+                    <div class="list-group">   
                         <div class="drop">
                             <button class="drop-btn btn-primary" onclick="toggledrop()">
-                                {{$m->judul_materi}}
+                                Materi
                             </button>
                             <div id="drop-content" class="drop-content">
-                            @if ($m->pretestTakenByUser(auth()->id()))
-                                <span style="color:white" href="#"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
-                                <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">Konten 1</a>
-                                <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">Konten 1</a>
-
-                            @else
-                                <a class="dropdown-item text-white" href="{{ route('pretest.show', $m->id) }}"><strong>Pretest</strong></a>
-                                <a class="dropdown-item text-white" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i> Konten 1</a>
-                                <a class="dropdown-item text-white" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i> Konten  2</a>
-                            @endif
+                                <!-- Pengecekan dan tampilan status pretest -->
+                                @if ($pretestCompleted)
+                                    <span style="color:white"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
+                                @else
+                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
+                                @endif
+                            
+                                <!-- Daftar materi -->
+                                @foreach($materi as $m)
+                                    @if ($pretestCompleted)
+                                        <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a>
+                                    @else
+                                        @if ($m->pretestTakenByUser(auth()->id()))
+                                            <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a>
+                                        @else
+                                            <a class="dropdown-item text-white" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i>{{ $m->judul_materi }}</a>
+                                        @endif
+                                    @endif
+                                @endforeach
                             </div>
+                                                                                                      
                         </div>     
-                        @endforeach
                     </div>
                 </div>
             </div>

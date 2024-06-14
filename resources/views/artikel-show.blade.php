@@ -6,7 +6,7 @@
     <p class="article-meta">Dibuat Oleh {{$artikel->author->name}}<br>{{$artikel->created_at->diffForHumans()}}</p>
     
     <div class="article-image">
-        <img src="{{ asset('storage/' . $artikel->image) }}" alt="Artikel Image">
+        <img src="{{ asset('storage/' . $artikel->image) }}" alt="Artikel Image" style="max-width: 100%" >
     </div>
 
     <article class="my-5">

@@ -8,7 +8,7 @@
     @foreach($artikel->sortByDesc('created_at') as $a)
     <div class="card article-card shadow-sm" style="border-radius: 20px;">
         <div class="d-flex justify-content-center">
-            <img src="{{ asset('storage/' . $a->image) }}" />
+            <img src="{{ asset('storage/' . $a->image) }}" loading="lazy"/>
         </div>
         <div class="card-body">
             <h2 class="article-card-title">

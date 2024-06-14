@@ -55,23 +55,28 @@
                         <thead>
                             <tr>
                               <th scope="col">#</th>
-                              <th scope="col">Nama</th>
-                              <th scope="col">NIK</th>
-                              <th scope="col">Role</th>
+                              <th scope="col">Nama Kelas</th>
+                              <th scope="col">Detail Kelas</th>
+                              <th scope="col">Deskripsi Kelas</th>
+                              <th scope="col">Gambar</th>
                               <th scope="col">Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($user as $a)
+                            @foreach ($kelas as $k)
                             <tr class="content">
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $a->name}}</td>
-                                <td>{{ $a->nik }}</td>
-                                <td>{{ $a->role }}</td>
+                                <td>{{ $k->nama_kelas}}</td>
+                                <td>{{ $k->detail_kelas }}</td>
+                                <td>{{ $k->deskripsi }}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('update_user',$a->id)}}" role="button">Edit</a>
+                                    <img style="max-width: 100%;" src="{{ asset('storage/'. $k->image) }}"
+                                    alt="gambar kelas" loading="lazy">
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{url('update_kelas',$k->id)}}" role="button">Edit</a>
                                     <a onclick="confirmation(event)" class="btn btn-danger"
-                                        href="{{url('delete_artikel',$a->id)}}">
+                                        href="{{url('delete_kelas',$k->id)}}">
                                         Delete
                                     </a>
                                 </td>

@@ -43,10 +43,13 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $materi = $kelas->materi;
+        $userId = auth()->id();
+        $pretestCompleted = Materi::first()->pretestTakenByUser($userId);
         return view('materi', [
             'materi' => $materi,
             'kelas' => $kelas,
-            'active' => "kelas"
+            'active' => "kelas",
+            'pretestCompleted' => $pretestCompleted,
         ]);
     }
     

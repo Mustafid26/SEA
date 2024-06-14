@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
@@ -59,25 +59,20 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('add_kelas')}}" method="post" class="mb-5" enctype="multipart/form-data">                
+                    <form action="{{url('add_materi')}}" method="post" class="mb-5" enctype="multipart/form-data">
                         @csrf
-                        <h1 class="h1coy">Add Kelas</h1>
+                        <h1 class="h1coy">Add Materi</h1>
                         <div class="mb-3">
-                            <label for="nama_kelas" nameclass="form-label">Nama Kelas</label>
-                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="nama_kelas" name="nama_kelas" placeholder="Masukkan Nama Kelas" required value="">
+                            <label for="nama_kelas" nameclass="form-label">Pilih Kelas</label>
+                            <select name="kelas_id" id="kelas_id" class="form-control">
+                                @foreach($kelas as $k)
+                                <option value="{{$k->id}}">{{$k->nama_kelas}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="detail_kelas" class="form-label">Detail Kelas</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="detail_kelas" name="detail_kelas" placeholder="Masukkan Detail Kelas " required value="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Kelas " required value="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" nameclass="form-label">Upload Gambar</label>
-                            <img src="" class="img-fluid img-preview mb-3 col-sm-5" alt="" style="max-width: 20%">
-                            <input type="file" style="background-color: white !important; " name="image" id="image" class="form-control" id="inputGroupFile02" onchange="previewImage()">
+                            <label for="detail_kelas" class="form-label">Judul Materi</label>
+                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="judul_materi" name="judul_materi" placeholder="Masukkan Judul Materi" required value="">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

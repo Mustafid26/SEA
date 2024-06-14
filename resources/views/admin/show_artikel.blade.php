@@ -73,7 +73,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-warning" href="{{url('update_artikel',$a->id)}}" role="button">Edit</a>
-                                    <a onclick="return confirm('Apakah Kamu Yakin Mau Hapus Ini?')" class="btn btn-danger"
+                                    <a onclick="confirmation(event)" class="btn btn-danger"
                                         href="{{url('delete_artikel',$a->id)}}">
                                         Delete
                                     </a>
