@@ -76,7 +76,7 @@
             @else
             <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }} login-button">
                 <i class="fa fa-arrow-right"></i>
-                Login
+                LOGIN
             </a>
             @endauth
         </div>
@@ -97,18 +97,18 @@
         </a>
         <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">
             <i class="fa fa-newspaper"></i>
-            Artikel
+            ARTIKEL
         </a>
  
         @auth
         <a href="/profile/{{ Auth::user()->id }}" class="{{ ($active === 'login') ? 'active' : '' }}"> 
             <i class="fa fa-solid fa-user "></i>
-            Profile
+            PROFILE
         </a>
         @else
         <a href="/login" class="{{ ($active === 'login') ? 'active' : '' }}">
             <i class="fa fa-right-to-bracket"></i>
-            Login
+            LOGIN
         </a>
         @endauth
     </nav>

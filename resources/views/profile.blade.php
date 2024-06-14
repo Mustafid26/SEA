@@ -7,7 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
     <style>
+      body{
+        font-family: 'Maven Pro';
+      }
       .profile-container {
         margin-top: 20px;
       }
@@ -135,7 +139,7 @@
             ARTIKEL
         </a>
         @auth
-        <a href="/profile" class="{{ ($active === 'profile') ? 'active' : '' }}">
+        <a href="#" class="{{ ($active === 'profile') ? 'active' : '' }}">
             <i class="fa fa-solid fa-user"></i>
             PROFILE
         </a>
@@ -189,7 +193,7 @@
                       </div>
                     </div>
                 </div>
-                <h4>{{$user->name}}</h4>
+                <h4><strong>{{$user->name}}</strong></h4>
                 @if (Auth::user()->profile_photo_path)
                   <form action="{{ route('profile.delete') }}" method="POST" style="margin-top: 20px;">
                     @csrf
