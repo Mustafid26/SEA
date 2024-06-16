@@ -2,7 +2,7 @@
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a class="sidebar-brand brand-logo" style="text-decoration: none; color: white;" href="/redirect">SEA</a>
         <a class="sidebar-brand brand-logo-mini" href="/redirect"><img style="width: 50px; height: auto;"
-                src="admin/assets/images/SEA.png" alt="logo" /></a>
+                src="{{asset ('admin/assets/images/SEA.png')}}" alt="logo" /></a>
     </div>
     <ul class="nav">
       <li class="nav-item nav-category">

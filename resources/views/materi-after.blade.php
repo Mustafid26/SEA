@@ -19,7 +19,9 @@
           lingkungan termasuk kejahatan siber (cyber crime) sebagai upaya
           perlindungan diri dan mengurangi resiko menjadi korban kejahatan.
         </p>
-        <a href="#" class="button">View Materi</a>
+        @if(isset($konten) && $konten->konten)
+        <a href="{{ url('/download/'.$konten->id) }}" class="button">Download Materi</a>
+        @endif
       </div>
     </div>
 </div>
