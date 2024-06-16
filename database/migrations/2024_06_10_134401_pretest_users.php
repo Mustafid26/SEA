@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('pretest_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('materi_id')->constrained('materi')->onDelete('cascade');
+            $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
             $table->boolean('is_passed')->default(false);
             $table->timestamps();
         });

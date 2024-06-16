@@ -57,20 +57,21 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('update_kelas_2',$kelas->id)}}" method="post" class="mb-5">
+                    <form action="{{url('update_kelas_2',$kelas->id)}}" method="post" enctype="multipart/form-data" class="mb-5">
                         
                         @csrf
+                        
                         <div class="mb-3">
                             <label for="nama_kelas" nameclass="form-label">Nama Kelas</label>
-                            <input type="text" class="form-control " id="nama_kelas" nama="nama_kelas" placeholder="Masukkan Nama Kelas" required value="{{$kelas->nama_kelas}}">
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="nama_kelas" placeholder="Masukkan Nama Kelas" required value="{{$kelas->nama_kelas}}">
                         </div>
                         <div class="mb-3">
                             <label for="detail_kelas" class="form-label">Detail Kelas</label>
-                            <input type="text" class="form-control" id="detail_kelas" name="detail_kelas" placeholder="Masukkan Detail" required value="{{$kelas->detail_kelas}}">
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="detail_kelas" placeholder="Masukkan Detail" required value="{{$kelas->detail_kelas}}">
                         </div>
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Detail" required value="{{$kelas->deskripsi}}">
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="deskripsi" placeholder="Masukkan Deskripsi" required value="{{$kelas->deskripsi}}">
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Foto Terkini</label><br>
@@ -78,8 +79,8 @@
                             alt="foto terkini">
                         </div>
                         <div class="mb-3">
-                            <label for="name" nameclass="form-label">Update Gambar</label>
-                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <label for="image" class="form-label">Update Gambar</label>
+                            <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image">
                         </div>
                         
 

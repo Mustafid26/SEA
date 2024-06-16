@@ -1,6 +1,15 @@
 @extends('layouts.main')
 
 @section('konten')
+@if(session('sweetalert'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Notifikasi',
+        text: '{{ session('sweetalert') }}'
+    });
+</script>
+@endif
 <div class="container mt-5" style="margin-bottom: 5rem;"> 
     <div class="header">
       <div class="profile">

@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Artikel::factory(20)->create();
         Question::create([
-            'materi_id' => 1,
+            'kelas_id' => 1,
             'question' => 'Apa yang harus dilakukan ketika terjadi ancaman Cyber Bullying?',
             'option1' => 'Lapor ke polisi',
             'option2' => 'Ajak berkelahi',

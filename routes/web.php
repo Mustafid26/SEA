@@ -66,6 +66,12 @@ route::post('/update_materi_2/{id}', [AdminController::class,'update_materi_2'])
 route::get('/delete_materi/{id}', [AdminController::class,'delete_materi']);
 route::get('/search_materi', [AdminController::class,'search_materi']);
 
+route::post('/add_konten', [AdminController::class,'add_konten']);
+route::get('/view_konten/{id}', [AdminController::class,'view_konten']);
+
+route::post('/add_pretest', [AdminController::class,'add_pretest']);
+route::get('/view_pretest/{id}', [AdminController::class,'view_pretest']);
+
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth','verified');
 Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth','verified');
@@ -78,8 +84,8 @@ Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('prof
 Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete')->middleware('auth','verified');
 
 Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
-    Route::get('/materi/{materi}/pretest', [PretestController::class, 'show'])->name('pretest.show');
-    Route::post('/materi/{materi}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
+    Route::get('/kelas/{kelas}', [PretestController::class, 'show'])->middleware('pretest.not.taken')->name('pretest.show');
+    Route::post('/kelas/{kelas}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });
 
 Route::middleware(['auth', 'pretest.completed'])->group(function () {

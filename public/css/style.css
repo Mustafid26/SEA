@@ -617,7 +617,7 @@ body{
     position: relative;
 }
 .video-container::before {
-    content: "▶";
+    /* content: "▶"; */
     color: white;
     font-size: 40px;
     position: absolute;

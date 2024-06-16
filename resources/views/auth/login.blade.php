@@ -56,10 +56,6 @@
         .container-mobile {
           margin-top: 10vh;
         }
-        body {
-          height: 75vh;
-          overflow-y: hidden;
-        }
         .form-outline{
           margin-top: 50px;
         }
@@ -133,7 +129,7 @@
         </div>
       </section>
     </div>
-    <div class="mobile vh-100">
+    <div class="mobile h-100">
       <div class="container d-flex justify-content-center">
         <img class="img-fluid mobile-img" src="{{ asset('img/SEA-Login.png')}}" alt="logoSEA" srcset="" />
       </div>
@@ -141,8 +137,8 @@
         <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>
         <h5 class="mobile-text">Silahkan Login Untuk Lanjut</h5>
       </div>
-      <div class="d-flex justify-content-center mt-4 h-100">
-        <div class="card">
+      <div class="d-flex justify-content-center mt-4">
+        <div class="card vh-100">
           <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
               @csrf

@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Models\Artikel;
 use App\Models\Kelas;
 use App\Models\Materi;
+use App\Models\KontenMateri;
+use App\Models\Question;
+use App\Models\PretestUser;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -70,9 +73,9 @@ class AdminController extends Controller
     public function update_user_2(Request $request,$id)
     {
         $data=User::find($id);
-        $data-> name=$request->nama;
-        $data-> nik=$request->nik;
-        $data-> role=$request->role;
+        $data->name=$request->name;
+        $data->nik=$request->nik;
+        $data->role=$request->role;
         if($request->role=='admin')
         {
             $data -> usertype = $request-> usertype = 1;
@@ -93,6 +96,8 @@ class AdminController extends Controller
         $user = user::where('name', 'LIKE', "%$search_text%")->GET();
         return view('admin.show_user', compact('user'));
     }
+    
+   
 
     //artikel
     
@@ -117,7 +122,7 @@ class AdminController extends Controller
         $artikel ->user_id = auth()->user()->id;
 
         $validated = $request->validate([
-            'image' => 'image|file|max:1024'
+            'image' => 'image|file|max:10240'
         ]);
        
         $image=$request->image;
@@ -164,13 +169,17 @@ class AdminController extends Controller
         
     
         
+        $validated = $request->validate([
+            'image' => 'image|file|max:10240'
+        ]);
+       
         $image=$request->image;
-        if($image)
+        if($request->file('image'))
         {
-        $imagename=time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('pp_artikel', $imagename);
-        $data-> profile_photo_path=$imagename;
+            $imagePath = $validated['image'] = $request->file('image')->store('pp_artikel', 'public');
+            $artikel->image = $imagePath;
         }
+        
         
         
         $artikel->save();
@@ -181,7 +190,7 @@ class AdminController extends Controller
     public function search_artikel(Request $request)
     {
         $search_text = $request->search_user;
-        $user = user::where('name', 'LIKE', "%$search_text%")->GET();
+        $artikel = Artikel::where('title', 'LIKE', "%$search_text%")->GET();
         return view('admin.show_artikel', compact('artikel'));
     }
 
@@ -248,20 +257,20 @@ class AdminController extends Controller
     public function update_kelas_2(Request $request,$id)
     {
         $kelas=Kelas::find($id);
-        $kelas-> nama_kelas=$request->nama_kelas;
-        $kelas-> detail_kelas=$request->detail_kelas;
+        $kelas->nama_kelas=$request->nama_kelas;
+        $kelas->detail_kelas=$request->detail_kelas;
         
-        $validated = $request->validate([
-            'image' => 'image|file|max:1024'
-        ]);
-       
-        $image=$request->image;
-        if($request->file('image'))
-        {
-            $imagePath = $validated['image'] = $request->file('image')->store('pp_artikel', 'public');
-            $kelas->image = $imagePath;
-        }
+            $validated = $request->validate([
+                'image' => 'image|file|max:10240'
+            ]);
         
+            $image=$request->image;
+            if($request->file('image'))
+            {
+                $imagePath = $validated['image'] = $request->file('image')->store('photo_kelas', 'public');
+                $kelas->image = $imagePath;
+            }
+            
         $kelas->save();
         Alert::success('Success', 'Artikel Updated successfully');
         return redirect()->back();
@@ -280,6 +289,7 @@ class AdminController extends Controller
         if (auth::id()) {
             $materi=Materi::all();
             $kelas=Kelas::all();
+            
             return view('admin.materi', compact('materi','kelas')); 
         } 
         else {
@@ -293,18 +303,6 @@ class AdminController extends Controller
         $materi= new Materi;
         $materi->kelas_id=$request->kelas_id;
         $materi-> judul_materi=$request->judul_materi;
-
-        // $validated = $request->validate([
-        //     'image' => 'image|file|max:1024'
-        // ]);
-       
-        // $image=$request->image;
-        // if($request->file('image'))
-        // {
-        //     $imagePath = $validated['image'] = $request->file('image')->store('photo_kelas', 'public');
-        //     $kelas->image = $imagePath;
-        // }
-        
         $materi->save();
         Alert::success('Success', 'Materi added successfully');
         return redirect()->back();
@@ -313,7 +311,8 @@ class AdminController extends Controller
     {
        if (auth::id()){
             $materi=Materi::all();
-            return view('admin.show_materi', compact('materi'));
+            $kelas=Kelas::all();
+            return view('admin.show_materi', compact('materi','kelas'));
         }
         else{
             return redirect('login');
@@ -338,17 +337,6 @@ class AdminController extends Controller
         $materi=Materi::find($id);
         $materi-> judul_materi=$request->judul_materi;
         
-        // $validated = $request->validate([
-        //     'image' => 'image|file|max:1024'
-        // ]);
-       
-        // $image=$request->image;
-        // if($request->file('image'))
-        // {
-        //     $imagePath = $validated['image'] = $request->file('image')->store('pp_artikel', 'public');
-        //     $kelas->image = $imagePath;
-        // }
-        
         $materi->save();
         Alert::success('Success', 'Materi Updated successfully');
         return redirect()->back();
@@ -360,4 +348,88 @@ class AdminController extends Controller
         $materi = Materi::where('judul_materi', 'LIKE', "%$search_text%")->GET();
         return view('admin.show_materi', compact('materi'));
     }
+    
+    public function view_konten($id)
+    {
+        if (auth::id()) {
+            $konten=KontenMateri::all();
+            $materi=Materi::find($id);
+            $kelas=Kelas::all();
+            
+            return view('admin.konten', compact('konten','materi','kelas')); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
+    public function add_konten (Request $request)
+    {
+        
+        $konten = new KontenMateri;
+        $konten->materi_id = $request->materi_id;
+
+        if ($request->selection == 'add_konten') {
+            $validated = $request->validate([
+                'konten' => 'required|mimes:ppt,pptx|max:10000' // Validate PowerPoint file
+            ]);
+
+            if ($request->file('konten')) {
+                $powerpointPath = $request->file('konten')->store('powerpoint_files', 'public');
+                $konten->konten = $powerpointPath;
+            }
+        } elseif ($request->selection == 'add_pretest') {
+            $pretest = new Question;
+            $pretest->materi_id = $request->materi_id;
+            
+            $pretest->question = $request->question;
+            $pretest->option1 = $request->option1;
+            $pretest->option2 = $request->option2;
+            $pretest->option3 = $request->option3;
+            $pretest->option4 = $request->option4;
+            $pretest->correct_answer = $request->correct_answer;
+            $pretest->save();
+            Alert::success('Success', 'Soal added successfully');
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors('Please select an option.');
+        }
+
+        $konten->save();
+        Alert::success('Success', 'Konten added successfully');
+        return redirect()->back();
+    }
+    
+    public function view_pretest($id)
+    {
+        if (auth::id()) {
+            $konten=KontenMateri::all();
+            $materi=Materi::find($id);
+            $kelas=Kelas::all();
+            
+            return view('admin.pretest', compact('konten','materi','kelas')); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
+    // public function add_pretest (Request $request)
+    // {
+        
+    //     $pretest= new Question;
+    //     $pretest->materi_id=$request->materi_id;
+    //     $pretest->question=$request->question;
+    //     $pretest->option1=$request->option1;
+    //     $pretest->option2=$request->option2;
+    //     $pretest->option3=$request->option3;
+    //     $pretest->option4=$request->option4;
+    //     $pretest->correct_answer=$request->correct_answer;
+
+        
+    //     $pretest->save();
+    //     Alert::success('Success', 'Konten added successfully');
+    //     return redirect()->back();
+    // }
+    
 }

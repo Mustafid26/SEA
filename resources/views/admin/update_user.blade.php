@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
-
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     @include('admin.css')
-
     <style>
+    .content-wrapper {
+        overflow-x: auto !important;
+        background-color: rgb(89, 89, 89);
+    }
     .div_center {
         text-align: center;
         padding-top: 50px;
@@ -14,20 +17,30 @@
 
     .h1coy {
         font-size: 30px;
-        margin-bottom: 30px;
-    }
-
-    .label {
-        margin-right: 20px;
+        text-align: center;
     }
 
     .input_color {
         color: black;
     }
 
-    label {
-        display: inline-block;
-        width: 200px;
+    .center {
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        margin-top: 50px;
+        border: 4px solid gray;
+        background-color: white;
+    }
+    tr{
+        color:white;
+    }
+    .content:hover{
+        background-color: rgb(129, 103, 103);
+    }
+    trix-toolbar [data-trix-button-group="file-tools"] 
+    {
+    display: none;
     }
     </style>
 </head>
@@ -44,29 +57,28 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="div_center">
-                        <h1 class="h1coy">Update User</h1>
-                        <form action="{{url('update_user_2',$data->id)}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <label class="label">Nama User</label>
-                            <input type="text" name="nama" id="" class=" input_color" placeholder="" required
-                                value="{{$data->name}}"><br><br>
-
-                            <label class="label">NIK</label>
-                            <input type="text" name="nik" id="" class="input_color" placeholder="" required
-                                value="{{$data->nik}}"><br><br>
-
-
-                            <label class="label">Role</label>
-                            <select name="role" id="" class="input_color" style="width: 200px;" required>
+                    <form action="{{url('update_user_2',$data->id)}}" method="post" class="mb-5">
+                        
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" nameclass="form-label">Nama</label>
+                            <input type="text" class="form-control " id="name" name="name" placeholder="" required value="{{$data->name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nik" class="form-label">NIK</label>
+                            <input type="text" class="form-control" id="nik" name="nik" placeholder="" required value="{{$data->nik}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="slug" class="form-label">Role</label>
+                            <select name="role" id="" class="input_color" style="width: 200px;" required value="{{$data->role}}">
                                 <option value="" selected="">Tambahkan Role</option>
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
                             </select><br><br>
-
-                            <input type="submit" class="btn btn-primary" value="Add Update">
-                        </form>
-                    </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
             <!-- main-panel ends -->
@@ -76,6 +88,35 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
+    <script>
+    function confirmation(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+        swal({
+                title: "Are you sure to delete this user?",
+                text: "You will not be able to revert this!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willCancel) => {
+                if (willCancel) {
+
+
+
+                    window.location.href = urlToRedirect;
+
+                }
+
+
+            });
+
+
+    }
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 
 </html>

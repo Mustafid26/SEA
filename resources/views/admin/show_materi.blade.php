@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
     @include('admin.css')
@@ -55,28 +55,30 @@
                         <thead>
                             <tr>
                               <th scope="col">#</th>
-                              <th scope="col">Nama</th>
-                              <th scope="col">NIK</th>
-                              <th scope="col">Role</th>
+                              <th scope="col">Judul_materi</th>
+                              <th scope="col">Nama Kelas</th>
+                              <th scope="col">Gambar</th>
                               <th scope="col">Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($user as $a)
+                            @foreach ($materi as $m)
                             <tr class="content">
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $a->name}}</td>
-                                <td>{{ $a->nik }}</td>
-                                <td>{{ $a->role }}</td>
+                                <td>{{ $m->judul_materi }}</td>
+                                <td>{{ $m->kelas->nama_kelas }}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="{{url('update_user',$a->id)}}" role="button">Edit</a>
-                                    <a onclick="confirmation(event)" class="btn btn-danger"
-                                        href="{{url('delete_user',$a->id)}}">
-                                        Delete
-                                    </a>
+                                    <img style="max-width: 100%;" src="{{ asset('storage/'. $m->kelas->image) }}"
+                                    alt="gambar kelas" loading="lazy">
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" href="{{ url('view_konten', $m->id) }}" role="button">Add</a>
+                                    <a class="btn btn-warning" href="{{ url('update_kelas', $m->id) }}" role="button">Edit</a>
+                                    <a onclick="confirmation(event)" class="btn btn-danger" href="{{ url('delete_materi', $m->id) }}">Delete</a>
                                 </td>
                             </tr>
-                            @endforeach
+                        @endforeach
+                        
                           </tbody>
                     </table>
                 </div>

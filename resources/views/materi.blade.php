@@ -37,13 +37,10 @@
                                 <!-- Daftar materi -->
                                 @foreach($materi as $m)
                                     @if ($pretestCompleted)
-                                        <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a>
+                                        <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a> 
+                                  
                                     @else
-                                        @if ($m->pretestTakenByUser(auth()->id()))
-                                            <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a>
-                                        @else
-                                            <a class="dropdown-item text-white" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i>{{ $m->judul_materi }}</a>
-                                        @endif
+                                        <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                     @endif
                                 @endforeach
                             </div>
@@ -68,24 +65,25 @@
             <div class="card-body">
                 <h5 class="card-title">Materi</h5>
                 <div class="card-body d-flex justify-content-center">
-                @foreach($materi as $m)
                     <div class="dropdown w-100">
                         <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{$m->judul_materi}}
+                            Materi
                         </button>
                         <ul class="dropdown-menu w-100">
-                            @if ($m->pretestTakenByUser(auth()->id()))
-                                <li><a class="dropdown-item text-muted" href="#"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></a></li>
-                                <li><a class="dropdown-item" href="#">Konten 1</a></li>
-                                <li><a class="dropdown-item" href="#">Konten 2</a></li>
+                            @if ($pretestCompleted)
+                                    <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
                             @else
-                                <li><a class="dropdown-item" href="{{ route('pretest.show', $m->id) }}"><strong>Pretest</strong></a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i> Konten 1</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-lock" style="margin-right: 5px;"></i> Konten  2</a></li>
+                                    <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
                             @endif
+                            
+                                <!-- Daftar materi -->
+                            @foreach($materi as $m)
+                                @if ($pretestCompleted)
+                                        <a class="dropdown-item " href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a> 
+                                @endif
+                            @endforeach
                         </ul>
                     </div>              
-                @endforeach
                 </div>
             </div>
         </div>
@@ -103,5 +101,23 @@
           button.classList.add("active");
         }
       }
+</script>
+<script>
+    $(document).ready(function() {
+        // Menggunakan event handler untuk menangani klik pada link
+        $('.lock').click(function(e) {
+            e.preventDefault(); // Mencegah perilaku default dari link
+            
+            // Menggunakan SweetAlert2 untuk menampilkan pesan
+            Swal.fire({
+                icon: 'info',
+                title: 'Notifikasi',
+                text: 'Anda harus menyelesaikan pretest dahulu',
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            });
+        });
+    });
 </script>
 @endsection

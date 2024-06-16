@@ -64,14 +64,14 @@
                         <h1 class="h1coy">Add Materi</h1>
                         <div class="mb-3">
                             <label for="nama_kelas" nameclass="form-label">Pilih Kelas</label>
-                            <select name="kelas_id" id="kelas_id" class="form-control">
+                            <select name="kelas_id" id="kelas_id" class="form-control" style="background-color: white !important; color: black !important;">
                                 @foreach($kelas as $k)
                                 <option value="{{$k->id}}">{{$k->nama_kelas}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="detail_kelas" class="form-label">Judul Materi</label>
+                            <label for="judul_materi" class="form-label">Judul Materi</label>
                             <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="judul_materi" name="judul_materi" placeholder="Masukkan Judul Materi" required value="">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

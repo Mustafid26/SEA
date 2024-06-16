@@ -24,13 +24,5 @@ class Materi extends Model
     {
         return $this->hasMany(Question::class);
     }
-    public function pretestUsers()
-    {
-        return $this->hasMany(PretestUser::class);
-    }
-    public function pretestTakenByUser($userId)
-    {
-        return $this->pretestUsers()->where('user_id', $userId)->exists();
-    }
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Materi;
+use App\Models\PretestUser;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -44,7 +45,9 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
         $materi = $kelas->materi;
         $userId = auth()->id();
-        $pretestCompleted = Materi::first()->pretestTakenByUser($userId);
+        $pretestCompleted = PretestUser::where('user_id', $userId)
+                                       ->where('kelas_id', $kelas->id)
+                                       ->exists();
         return view('materi', [
             'materi' => $materi,
             'kelas' => $kelas,

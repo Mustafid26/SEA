@@ -3,10 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Kelas;
 use App\Models\PretestUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class PretestCompleted
 {
@@ -15,19 +16,17 @@ class PretestCompleted
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        $materiId = $request->route('id');
         $userId = Auth::id();
-        // Cek apakah pengguna sudah menyelesaikan pretest untuk materi tertentu
-        $pretestCompleted = PretestUser::where('user_id', $userId)
-            ->where('materi_id', $materiId)
+        $kelasId = $request->kelas_id;
+        $pretestUserExists = PretestUser::where('user_id', $userId)
+            ->where('kelas_id', $kelasId)
             ->exists();
-        if ($pretestCompleted) {
-            return $next($request);
-        }
 
-        // Jika belum, redirect atau lakukan tindakan lain
-        return redirect()->route('kelas');
+        if (!$pretestUserExists) {
+            return redirect()->route('kelas');
+        }
+        return $next($request);
     }
 }

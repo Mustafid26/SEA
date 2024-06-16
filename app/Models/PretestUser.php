@@ -12,15 +12,15 @@ class PretestUser extends Model
 
     protected $fillable = [
         'user_id',
-        'materi_id',
+        'kelas_id',
         'is_passed',
     ];
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function materi()
+    public function kelas()
     {
-        return $this->belongsTo(Materi::class);
+        return $this->belongsTo(Materi::class, 'kelas_id');
     }
 }

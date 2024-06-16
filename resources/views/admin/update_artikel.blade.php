@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
@@ -57,24 +57,29 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('update_artikel_2',$artikel->id)}}" method="post" class="mb-5">
+                    <form action="{{url('update_artikel_2',$artikel->id)}}" method="post" class="mb-5" enctype="multipart/form-data">
                         
                         @csrf
                         <div class="mb-3">
                             <label for="title" nameclass="form-label">Judul Artikel</label>
-                            <input type="text" class="form-control " id="title" name="title" placeholder="Web Programming" required value="">
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control " id="title" name="title" placeholder="Masukkan Judul" required value="{{$artikel->title}}">
                         </div>
                         <div class="mb-3">
                             <label for="slug" class="form-label">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="web-programming" required value="">
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="slug" name="slug" placeholder="Masukkan Slug" required value="{{$artikel->slug}}">
                         </div>
                         <div class="mb-3">
-                            <label for="name" nameclass="form-label">Upload Gambar</label>
-                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <label for="" class="form-label">Foto Terkini</label><br>
+                            <img style="margin: auto;" width="30%" src="{{asset('storage/' . $artikel->image)}}"
+                            alt="foto terkini">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Upload Gambar</label>
+                            <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image"
                         </div>
                         <div class="mb-3">
                             <label for="category" class="form-label">Body</label>
-                            <input id="body" type="hidden" name="body" value="">
+                            <input id="body" type="hidden" name="body" value="{{$artikel->body}}">
                             <trix-editor input="body"></trix-editor>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

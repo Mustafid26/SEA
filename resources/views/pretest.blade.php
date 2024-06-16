@@ -60,12 +60,12 @@
             <div class="progress-bar" role="progressbar" style="width: 7%;" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="card-body">
-            <form action="{{ route('pretest.submit', ['materi' => $materi->id]) }}" method="POST">
+            <form action="{{ route('pretest.submit', ['kelas' => $kelas->id]) }}" method="POST">
                 @csrf
-                <input type="hidden" name="materi_id" value="{{ $materi->id }}">
+                <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
                 @foreach ($questions as $question)
                 <div class="mb-4">
-                    <h5 class="card-title">{{ $question->question }}</h5>
+                    <h5 class="card-title" style="color:white;">{{ $question->question }}</h5>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" id="option1-{{ $question->id }}" value="{{ $question->option1 }}">
                         <label class="form-check-label" for="option1-{{ $question->id }}">
