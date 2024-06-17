@@ -24,7 +24,7 @@
                     <div class="list-group">   
                         <div class="drop">
                             <button class="drop-btn btn-primary" onclick="toggledrop()">
-                                Materi
+                                <i class="fa fa-solid fa-book"></i> Materi Belajar
                             </button>
                             <div id="drop-content" class="drop-content">
                                 <!-- Pengecekan dan tampilan status pretest -->

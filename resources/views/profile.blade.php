@@ -39,7 +39,7 @@
 
       .profile-picture img {
         border-radius: 50%;
-        width: 250px;
+
       }
 
       .edit-icon button {
@@ -153,9 +153,9 @@
             <div class="profile-info text-center">
                 <div class="profile-picture">
                     @if (Auth::user()->profile_photo_path)
-                        <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo">
+                        <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo" style="  width: 250px;height: 250px;">
                     @else
-                        <img src="{{ asset('img/Profile.png')}}" alt="Profile Picture" />
+                        <img src="{{ asset('img/Profile.png')}}" alt="Profile Picture" style="width: 250px;height: 250px;"/>
                     @endif
                     <div class="edit-icon">
                       <!-- Button trigger modal -->
