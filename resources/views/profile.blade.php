@@ -148,7 +148,7 @@
     <div class="container">
         <div class="profile-container">
             <div class="profile-header align-items-center">
-                <h3 style="color: #219c90;">Profil</h3>
+                <h3 style="color: #219c90;"><strong>Profil</strong></h3>
             </div>
             <div class="profile-info text-center">
                 <div class="profile-picture">

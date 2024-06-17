@@ -22,11 +22,12 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'], function () {
-    [
+Route::get('/', function () {
+    return view('home', [
         'active' => 'beranda'
-    ];
+    ]);
 });
+
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth','verified');
