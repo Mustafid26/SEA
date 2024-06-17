@@ -31,10 +31,13 @@
                                 @if ($pretestCompleted)
                                     <span style="color:white"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
                                 @else
-                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
+                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
                                 @endif
                             
                                 <!-- Daftar materi -->
+                                @if ($materi->isEmpty())
+                                <span class="dropdown-item text-white">Belum ada materi</span>
+                                @else
                                 @foreach($materi as $m)
                                     @if ($pretestCompleted)
                                     <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
@@ -46,6 +49,7 @@
                                         <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                     @endif
                                 @endforeach
+                                @endif
                             </div>
                                                                                                       
                         </div>     
@@ -80,15 +84,21 @@
                             @endif
                             
                                 <!-- Daftar materi -->
-                            @foreach($materi as $m)
-                                @if ($pretestCompleted)
-                                <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                    <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
-                                </form>
+                                @if ($materi->isEmpty())
+                                <span class="dropdown-item">Belum ada materi</span>
+                                @else
+                                @foreach($materi as $m)
+                                    @if ($pretestCompleted)
+                                    <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                        <button type="submit" class="dropdown-item ">{{ $m->judul_materi }}</button>
+                                    </form>
+                                    @else
+                                        <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                    @endif
+                                @endforeach
                                 @endif
-                            @endforeach
                         </ul>
                     </div>              
                 </div>
@@ -126,5 +136,23 @@
             });
         });
     });
+</script>
+<script>
+    function checkQuestions(event) {
+        event.preventDefault(); // Prevent default link behavior
+        // Ajax request to check if questions are available
+        // Assuming $questions is passed from your backend to the view
+
+        @if ($questions->isEmpty())
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Belum ada pertanyaan yang tersedia untuk pretest ini.'
+            });
+        @else
+            // Redirect to the pretest page
+            window.location.href = event.target.href;
+        @endif
+    }
 </script>
 @endsection

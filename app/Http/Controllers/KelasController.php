@@ -45,6 +45,7 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
         $materi = $kelas->materi;
         $userId = auth()->id();
+        $questions = $kelas->questions; 
         $pretestCompleted = PretestUser::where('user_id', $userId)
                                        ->where('kelas_id', $kelas->id)
                                        ->exists();
@@ -53,6 +54,7 @@ class KelasController extends Controller
             'kelas' => $kelas,
             'active' => "kelas",
             'pretestCompleted' => $pretestCompleted,
+            'questions' => $questions
         ]);
     }
     

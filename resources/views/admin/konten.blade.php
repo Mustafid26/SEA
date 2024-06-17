@@ -59,7 +59,7 @@
                     <form action="{{ url('add_konten') }}" method="post" class="mb-5" enctype="multipart/form-data" id="main-form">                
                         @csrf
                         <h1 class="h1coy">Add Konten</h1>
-                        <input type="hidden" name="materi_id" value="{{ $materi->id }}">
+                        <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
                         <div class="mb-3">
                             <label for="judul_materi" class="form-label">Judul Materi</label>
                             <input style="background-color: white !important; color: black !important;" type="text" class="form-control" id="judul_materi" name="judul_materi" placeholder="Masukkan Nama Kelas" required value="{{ $materi->judul_materi }}" readonly>
@@ -120,8 +120,12 @@
             } else if (selection === 'add_pretest') {
                 formContainer.innerHTML = `
                     <div class="mb-3">
+                        <label for="kelas" class="form-label">Menambah Pretest Pada Kelas</label>
+                        <input type="text" style="background-color: white !important; color:black !important;" class="form-control" placeholder="{{$kelas->nama_kelas}}" disabled>
+                    </div>
+                    <div class="mb-3">
                         <label for="question" class="form-label">Question</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="question" id="question" class="form-control" required>
+                        <input type="text" style="background-color: white !important; color:black !important;" name="question" id="question" class="form-control" required">
                     </div>
                     <div class="mb-3">
                         <label for="option1" class="form-label">Option 1</label>

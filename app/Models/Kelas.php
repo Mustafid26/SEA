@@ -27,5 +27,9 @@ class Kelas extends Model
     {
         return $this->pretestUsers()->where('user_id', $userId)->exists();
     }
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }
 

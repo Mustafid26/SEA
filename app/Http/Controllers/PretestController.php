@@ -13,6 +13,7 @@ class PretestController extends Controller
     public function show(Kelas $kelas)
     {
         $user = Auth::user();
+        $correctAnswers = 0;
         $pretestTaken = PretestUser::where('kelas_id', $kelas->id)
                                     ->where('user_id', $user->id)
                                     ->where('is_passed', true)
@@ -33,20 +34,27 @@ class PretestController extends Controller
         $kelasId = $kelas->id;
         $totalQuestions = count($request->input('answers'));
 
-        foreach ($request->input('answers') as $pretestId => $answer) {
-            $pretest = Question::find($pretestId);
-            if ($pretest->correct_option == $answer) {
-                $correctAnswers++;
+        foreach ($request->input('answers') as $questionId => $answer) {
+            $question = Question::find($questionId);
+            if ($question) {
+                if ($question->correct_answer == $answer) {
+                    $correctAnswers++;
+                }
             }
         }
         $isPassed = true;
-
+        $score = ($correctAnswers / $totalQuestions) * 100;
         PretestUser::create([
             'user_id' => $user->id,
             'kelas_id' => $kelasId,
-            'is_passed' => $isPassed
+            'isPassed' => $isPassed,
+            'score' => $score
         ]);
 
-        return redirect()->route('materi.show', $kelas->id)->with('sweetalert', 'Pretest Anda Terkirim.');
+        return redirect()->route('materi.show', $kelas->id)->with([
+            'sweetalert' => 'Pretest Anda Terkirim. Nilai Anda : ' . $score,
+            'score' => $score
+        ]);
+
     }
 }

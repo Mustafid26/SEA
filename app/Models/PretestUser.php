@@ -10,11 +10,7 @@ class PretestUser extends Model
     use HasFactory;
     protected $table = 'pretest_users';
 
-    protected $fillable = [
-        'user_id',
-        'kelas_id',
-        'is_passed',
-    ];
+    protected $guarded = ['id'];
     public function user()
     {
         return $this->belongsTo(User::class);

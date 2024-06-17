@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-
-    // Relasi many-to-one antara Question dan Materi
-    public function materi()
+    public function kelas()
     {
-        return $this->belongsTo(Materi::class);
+        return $this->belongsTo(Kelas::class);
     }
 }

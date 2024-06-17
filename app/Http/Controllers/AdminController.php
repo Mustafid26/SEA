@@ -354,7 +354,7 @@ class AdminController extends Controller
         if (auth::id()) {
             $konten=KontenMateri::all();
             $materi=Materi::find($id);
-            $kelas=Kelas::all();
+            $kelas = Kelas::findOrFail($id);
             
             return view('admin.konten', compact('konten','materi','kelas')); 
         } 
@@ -367,7 +367,9 @@ class AdminController extends Controller
     {
         
         $konten = new KontenMateri;
+        $kelas = new Kelas;
         $konten->materi_id = $request->materi_id;
+        $konten->kelas_id = $request->kelas_id;
 
         if ($request->selection == 'add_konten') {
             $validated = $request->validate([
@@ -380,7 +382,7 @@ class AdminController extends Controller
             }
         } elseif ($request->selection == 'add_pretest') {
             $pretest = new Question;
-            $pretest->materi_id = $request->materi_id;
+            $pretest->kelas_id = $request->kelas_id;
             
             $pretest->question = $request->question;
             $pretest->option1 = $request->option1;

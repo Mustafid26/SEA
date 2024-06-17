@@ -29,7 +29,8 @@
             font-size: 1.2rem;
         }
         .progress {
-            height: 5px;
+            height: 20px;
+            margin-bottom: 20px;
         }
         .progress-bar {
             background-color: #FFBF00;
@@ -39,8 +40,6 @@
             border: none;
             border-radius: 10px;
             color: white;
-            display: block;
-            margin: 20px auto 0;
             width: 100%;
         }
         .btn-custom:hover {
@@ -48,6 +47,9 @@
         }
         .form-check-label {
             color: white;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -57,14 +59,15 @@
             Pretest
         </div>
         <div class="progress mb-3">
-            <div class="progress-bar" role="progressbar" style="width: 7%;" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="card-body">
-            <form action="{{ route('pretest.submit', ['kelas' => $kelas->id]) }}" method="POST">
+            <form id="quizForm" action="{{ route('pretest.submit', ['kelas' => $kelas->id]) }}" method="POST">
                 @csrf
                 <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                @foreach ($questions as $question)
-                <div class="mb-4">
+                @php $totalQuestions = count($questions); @endphp
+                @foreach ($questions as $key => $question)
+                <div class="question @if($key > 0) hidden @endif">
                     <h5 class="card-title" style="color:white;">{{ $question->question }}</h5>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" id="option1-{{ $question->id }}" value="{{ $question->option1 }}">
@@ -92,11 +95,54 @@
                     </div>
                 </div>
                 @endforeach
-                <button class="btn btn-custom" type="submit">Lanjut</button>
+                @if ($totalQuestions > 1)
+                <button class="btn btn-custom" type="button" id="nextBtn">Next</button>
+                <button class="btn btn-custom hidden" type="submit" id="submitBtn">Submit</button>
+                @else
+                <button class="btn btn-custom" type="submit">Submit</button>
+                @endif
             </form>            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var currentQuestion = 0;
+            var questions = $('.question');
+            var totalQuestions = questions.length;
+            var progressBar = $('.progress-bar');
+
+            showQuestion(currentQuestion);
+            updateProgress(currentQuestion + 1, totalQuestions);
+
+            $('#nextBtn').click(function(e) {
+                e.preventDefault();
+                if (currentQuestion < totalQuestions - 1) {
+                    hideQuestion(currentQuestion);
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                    updateProgress(currentQuestion + 1, totalQuestions);
+                    if (currentQuestion === totalQuestions - 1) {
+                        $('#nextBtn').addClass('hidden');
+                        $('#submitBtn').removeClass('hidden');
+                    }
+                }
+            });
+
+            function showQuestion(index) {
+                $(questions[index]).removeClass('hidden');
+            }
+
+            function hideQuestion(index) {
+                $(questions[index]).addClass('hidden');
+            }
+
+            function updateProgress(current, total) {
+                var progress = Math.round((current / total) * 100);
+                progressBar.css('width', progress + '%').attr('aria-valuenow', progress);
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
