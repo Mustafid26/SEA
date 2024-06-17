@@ -65,7 +65,6 @@
         <div class="nav-container">
             <div class="nav-links">
                 <a href="/" class="{{ ($active === 'beranda') ? 'active' : '' }}">BERANDA</a>
-                <a href="/about" class="{{ ($active === 'tentang') ? 'active' : '' }}">TENTANG</a>
                 <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">KELAS</a>
                 <a href="/artikel" class="{{ ($active === 'artikel') ? 'active' : '' }}">ARTIKEL</a>
             </div>
@@ -86,10 +85,6 @@
         <a href="/" class="{{ ($active === 'beranda') ? 'active' : '' }}">
             <i class="fa fa-home"></i>
             BERANDA
-        </a>
-        <a href="/about" class="{{ ($active === 'tentang') ? 'active' : '' }}">
-            <i class="fa fa-circle-question"></i>
-            TENTANG
         </a>
         <a href="/kelas" class="{{ ($active === 'kelas') ? 'active' : '' }}">
             <i class="fa fa-chalkboard-user"></i>
