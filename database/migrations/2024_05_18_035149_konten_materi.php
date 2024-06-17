@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('materi_id');
             $table->text('konten');
+            $table->text('desc');
             $table->timestamps();
 
             // Foreign key constraint

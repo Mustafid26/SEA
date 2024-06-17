@@ -37,8 +37,11 @@
                                 <!-- Daftar materi -->
                                 @foreach($materi as $m)
                                     @if ($pretestCompleted)
-                                        <a class="dropdown-item text-white" href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a> 
-                                  
+                                    <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                        <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
+                                    </form>
                                     @else
                                         <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                     @endif
@@ -79,7 +82,11 @@
                                 <!-- Daftar materi -->
                             @foreach($materi as $m)
                                 @if ($pretestCompleted)
-                                        <a class="dropdown-item " href="{{ route('materi.after', ['id' => $m->id]) }}">{{ $m->judul_materi }}</a> 
+                                <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                    <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
+                                </form>
                                 @endif
                             @endforeach
                         </ul>

@@ -14,4 +14,8 @@ class KontenMateri extends Model
     {
         return $this->belongsTo(Materi::class);
     }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

@@ -89,7 +89,7 @@ Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
 });
 
 Route::middleware(['auth', 'pretest.completed'])->group(function () {
-    Route::get('/materi/{id}/after', [MateriController::class, 'after'])->name('materi.after');
+    Route::post('/materi/{id}/after/{kelas_id}', [MateriController::class, 'after'])->name('materi.after');
 });
 Route::get('/download/{id}', [MateriController::class, 'downloadFile'])->name('download.file');
 Route::middleware([

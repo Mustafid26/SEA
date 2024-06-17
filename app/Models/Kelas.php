@@ -15,6 +15,10 @@ class Kelas extends Model
     {
         return $this->hasMany(Materi::class);
     }
+    public function kontenMateri()
+    {
+        return $this->hasMany(KontenMateri::class);
+    }
     public function pretestUsers()
     {
         return $this->hasMany(PretestUser::class);

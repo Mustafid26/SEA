@@ -15,7 +15,6 @@ class Materi extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
-
     public function kontenMateri()
     {
         return $this->hasMany(KontenMateri::class);
