@@ -48,16 +48,46 @@
         body {
             font-family: 'Maven Pro';
         }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner-container {
+            position: relative;
+        }
+        .spinner-border {
+            width: 5rem;
+            height: 5rem;
+        }
+        .spinner-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4rem;
+            height: 4rem;
+        }
     </style>
 </head>
 <body>
-    {{-- <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
+    {{-- preload --}}
+    <div id="preloader">
+        <div class="spinner-container">
+            <div class="spinner-border" role="status" style="color: #54BAB9 !important">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <img src="{{ asset('img/SEAPreload.png') }}" alt="Loading" class="spinner-image">
         </div>
     </div>
-    <!-- Spinner End --> --}}
+    {{-- preload --}}
 
     <!-- Navbar Start -->
     <nav class="navbar-top">
@@ -117,6 +147,11 @@
 
     <!-- JavaScript -->
     <!-- Template Javascript -->
+    <script>
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.display = 'none';
+        });
+    </script>
     <script src="{{ asset('js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>

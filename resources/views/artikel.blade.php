@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('konten')
-<div class="mt-4">
+<div class="mt-4 fadeinUp">
     <h1>Artikel</h1>
     <p>{{$jumlahartikel}} Artikel</p>
 
@@ -23,4 +23,22 @@
         {{ $artikel->links() }}
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    let observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fadeinUp");
+          observer.unobserve(entry.target); // Remove observer after animation
+        }
+      });
+    });
+  
+    let fadeInElements = document.querySelectorAll('.container');
+    fadeInElements.forEach(element => {
+      observer.observe(element);
+    });
+  });
+  
+</script>
 @endsection

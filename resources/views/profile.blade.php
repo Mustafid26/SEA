@@ -99,9 +99,47 @@
       .btn-logout:hover{
         color: white;
       }
+      #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner-container {
+            position: relative;
+        }
+        .spinner-border {
+            width: 5rem;
+            height: 5rem;
+        }
+        .spinner-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4rem;
+            height: 4rem;
+        }
     </style>
   </head>
   <body>
+    {{-- preload --}}
+    <div id="preloader">
+        <div class="spinner-container">
+            <div class="spinner-border" role="status" style="color: #54BAB9 !important">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <img src="{{ asset('img/SEAPreload.png') }}" alt="Loading" class="spinner-image">
+        </div>
+    </div>
+    {{-- preload --}}
+  
     <nav class="navbar-top">
         <img src="{{ asset('img/SEA.png')}}" alt="Logo" class="logo">
         <div class="nav-container">
@@ -198,12 +236,14 @@
                 @endif
             </div>
             <div class="profile-options">
-                <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
-                    <div class="d-flex justify-content-between">
-                        <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile" style="color: #219c90;"></i>Hadiah</span>
-                        <span class="badge-pill"><img src="{{ asset('img/coin.png')}} " alt="" srcset=""> 1000 Poin</span>
-                    </div>
-                </button>
+                <a href="http://" style="text-decoration: none;">
+                  <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
+                      <div class="d-flex justify-content-between">
+                          <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile" style="color: #219c90;"></i>Hadiah</span>
+                          <span class="badge-pill"><img src="{{ asset('img/coin.png')}} " alt="" srcset=""> 1000 Poin</span>
+                      </div>
+                  </button>
+                </a>
                 <a href="/user/profile" style="text-decoration: none;">
                     <button class="btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                             <span class="text-profile"><i class="fa fa-solid fa-gear fa-2xl icon-profile" style="color: #219c90;"></i>Pengaturan</span>
@@ -224,6 +264,11 @@
             </form>
         </div>
     </div>
+    <script>
+          window.addEventListener('load', function() {
+              document.getElementById('preloader').style.display = 'none';
+      });
+    </script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

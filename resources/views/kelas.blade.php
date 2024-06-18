@@ -10,7 +10,7 @@
     });
 </script>
 @endif
-<div class="container mt-5" style="margin-bottom: 5rem;"> 
+<div class="container mt-5 fadeinUp" style="margin-bottom: 5rem;"> 
     <div class="header">
       <div class="profile">
         @if (Auth::user()->profile_photo_path)
@@ -38,4 +38,22 @@
     </a>
     @endforeach
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  let observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("fadeinUp");
+        observer.unobserve(entry.target); // Remove observer after animation
+      }
+    });
+  });
+
+  let fadeInElements = document.querySelectorAll('.container');
+  fadeInElements.forEach(element => {
+    observer.observe(element);
+  });
+});
+
+</script>
 @endsection
