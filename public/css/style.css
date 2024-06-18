@@ -601,6 +601,7 @@ body{
 }
 .container-child {
     width: auto;
+    height: 80vh;
     margin: 20px;
     border-radius: 15px;
     overflow: hidden;
@@ -661,8 +662,7 @@ body{
       opacity: 1;
       transform: translateY(0);
     }
-  }
-  
+}
   .fadeinUp {
     opacity: 0;
     animation: fadeUp 1s forwards;

@@ -27,21 +27,17 @@
         color: #333;
         margin-right: 10px;
       }
-
       .profile-info {
         margin-top: 20px;
       }
-
       .profile-picture {
         position: relative;
         display: inline-block;
       }
-
       .profile-picture img {
         border-radius: 50%;
 
       }
-
       .edit-icon button {
         position: absolute;
         bottom: 0;
@@ -110,22 +106,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-        .spinner-container {
-            position: relative;
-        }
-        .spinner-border {
-            width: 5rem;
-            height: 5rem;
-        }
-        .spinner-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4rem;
-            height: 4rem;
-        }
+      }
+      .spinner-container {
+          position: relative;
+      }
+      .spinner-border {
+          width: 5rem;
+          height: 5rem;
+      }
+      .spinner-image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 4rem;
+          height: 4rem;
+      }
     </style>
   </head>
   <body>
