@@ -22,10 +22,10 @@ class PretestCompleted
         $kelasId = $request->route('kelas_id');
         $pretestUserExists = PretestUser::where('user_id', $userId)
             ->where('kelas_id', $kelasId)
-            ->where('is_passed', true)
             ->exists();
         if (!$pretestUserExists) {
-            return redirect('kelas');
+            // Redirect to the class page if the pretest user does not exist
+            return redirect()->route('kelas');
         }
         return $next($request);
     }
