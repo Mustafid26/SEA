@@ -7,6 +7,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\PostestController;
 use App\Http\Controllers\PretestController;
 use App\Http\Controllers\ProfileController;
 
@@ -85,10 +86,14 @@ Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('prof
 Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete')->middleware('auth','verified');
 
 Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
-    Route::get('/kelas/{kelas}', [PretestController::class, 'show'])->middleware('pretest.not.taken')->name('pretest.show');
+    Route::get('/kelas/{kelas}', [PretestController::class, 'show'])->name('pretest.show');
     Route::post('/kelas/{kelas}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/kelas/{kelas}/postest', [PostestController::class, 'show'])->name('postest.show');
+    Route::post('/kelas/{kelas}/postest', [PostestController::class, 'submit'])->name('postest.submit');
+});
 Route::middleware(['auth', 'pretest.completed'])->group(function () {
     Route::post('/materi/{id}/after/{kelas_id}', [MateriController::class, 'after'])->name('materi.after');
 });

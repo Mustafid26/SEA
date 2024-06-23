@@ -31,5 +31,9 @@ class Kelas extends Model
     {
         return $this->hasMany(Question::class);
     }
+    public function questions_postest()
+    {
+        return $this->hasMany(QuestionPostest::class);
+    }
 }
 

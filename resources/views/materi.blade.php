@@ -45,8 +45,10 @@
                                         <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
                                         <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
                                     </form>
+                                    <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                     @else
                                         <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                        <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                     @endif
                                 @endforeach
                                 @endif
@@ -82,23 +84,24 @@
                             @else
                                     <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
                             @endif
-                            
-                                <!-- Daftar materi -->
-                                @if ($materi->isEmpty())
-                                <span class="dropdown-item">Belum ada materi</span>
+                            <!-- Daftar materi -->
+                            @if ($materi->isEmpty())
+                            <span class="dropdown-item">Belum ada materi</span>
+                            @else
+                            @foreach($materi as $m)
+                                @if ($pretestCompleted)
+                                <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                    <button type="submit" class="dropdown-item ">{{ $m->judul_materi }}</button>
+                                </form>
+                                <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                 @else
-                                @foreach($materi as $m)
-                                    @if ($pretestCompleted)
-                                    <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                        <button type="submit" class="dropdown-item ">{{ $m->judul_materi }}</button>
-                                    </form>
-                                    @else
-                                        <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
-                                    @endif
-                                @endforeach
+                                    <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                    <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                 @endif
+                            @endforeach
+                            @endif
                         </ul>
                     </div>              
                 </div>
@@ -139,9 +142,7 @@
 </script>
 <script>
     function checkQuestions(event) {
-        event.preventDefault(); // Prevent default link behavior
-        // Ajax request to check if questions are available
-        // Assuming $questions is passed from your backend to the view
+        event.preventDefault(); 
 
         @if ($questions->isEmpty())
             Swal.fire({
@@ -150,7 +151,21 @@
                 text: 'Belum ada pertanyaan yang tersedia untuk pretest ini.'
             });
         @else
-            // Redirect to the pretest page
+            window.location.href = event.target.href;
+        @endif
+    }
+</script>
+<script>
+    function checkQuestionsPost(event) {
+        event.preventDefault(); 
+    
+        @if ($questions_postest->isEmpty())
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Belum ada pertanyaan yang tersedia untuk postest ini.'
+            });
+        @else
             window.location.href = event.target.href;
         @endif
     }

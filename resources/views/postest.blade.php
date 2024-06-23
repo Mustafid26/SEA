@@ -57,17 +57,17 @@
 <body>
     <div class="card">
         <div class="card-header text-center">
-            Pretest
+            Postest
         </div>
         <div class="progress mb-3">
             <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="card-body">
-            <form id="quizForm" action="{{ route('pretest.submit', ['kelas' => $kelas->id]) }}" method="POST">
+            <form id="quizForm" action="{{ route('postest.submit', ['kelas' => $kelas->id]) }}" method="POST">
                 @csrf
                 <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                @php $totalQuestions = count($questions); @endphp
-                @foreach ($questions as $key => $question)
+                @php $totalQuestions = count($questions_postest); @endphp
+                @foreach ($questions_postest as $key => $question)
                 <div class="question @if($key > 0) hidden @endif">
                     <h5 class="card-title" style="color:white;">{{ $question->question }}</h5>
                     <div class="form-check">

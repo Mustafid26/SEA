@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Models\Question;
-use App\Models\PretestUser;
+use App\Models\PostestUser;
 use Illuminate\Http\Request;
+use App\Models\QuestionPostest;
 use Illuminate\Support\Facades\Auth;
 
-class PretestController extends Controller
+class PostestController extends Controller
 {
     public function show(Kelas $kelas)
     {
         $user = Auth::user();
         $correctAnswers = 0;
-        $pretestTaken = PretestUser::where('kelas_id', $kelas->id)
+        $postestTaken = PostestUser::where('kelas_id', $kelas->id)
                                     ->where('user_id', $user->id)
                                     ->exists();
 
-        if ($pretestTaken) {
-            session()->flash('sweetalert', 'Kamu Sebelumnya Sudah Menyelesaikan Pretest.');
-        }
+        // if ($pretestTaken) {
+        //     session()->flash('sweetalert', 'Kamu Sebelumnya Sudah Menyelesaikan Postest.');
+        // }
 
-        $questions = Question::where('kelas_id', $kelas->id)->get();
-        return view('pretest', compact('questions', 'kelas'));
+        $questions_postest = QuestionPostest::where('kelas_id', $kelas->id)->get();
+        return view('postest', compact('questions_postest', 'kelas'));
     }   
 
     public function submit(Request $request, Kelas $kelas)
@@ -34,22 +34,22 @@ class PretestController extends Controller
         $totalQuestions = count($request->input('answers'));
 
         foreach ($request->input('answers') as $questionId => $answer) {
-            $question = Question::find($questionId);
-            if ($question) {
-                if ($question->correct_answer == $answer) {
+            $questions_postest = QuestionPostest::find($questionId);
+            if ($questions_postest) {
+                if ($questions_postest->correct_answer == $answer) {
                     $correctAnswers++;
                 }
             }
         }
         $score = ($correctAnswers / $totalQuestions) * 100;
-        PretestUser::create([
+        PostestUser::create([
             'user_id' => $user->id,
             'kelas_id' => $kelasId,
             'score' => $score
         ]);
 
         return redirect()->route('materi.show', $kelas->id)->with([
-            'sweetalert' => 'Pretest Anda Terkirim. Nilai Anda : ' . $score,
+            'sweetalert' => 'Postest Anda Terkirim. Nilai Anda : ' . $score,
             'score' => $score
         ]);
 
