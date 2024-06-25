@@ -34,45 +34,52 @@ Route::get('/', function () {
 Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth','verified');
 
 
-route::post('/add_user', [AdminController::class,'add_user']);
-route::get('/view_user', [AdminController::class,'view_user']);
-route::get('/show_user', [AdminController::class,'show_user']);
-route::get('/update_user/{id}', [AdminController::class,'update_user']);
-route::post('/update_user_2/{id}', [AdminController::class,'update_user_2']);
-route::get('/delete_user/{id}', [AdminController::class,'delete_user']);
-route::get('/search_user', [AdminController::class,'search_user']);
+Route::post('/add_user', [AdminController::class,'add_user']);
+Route::get('/view_user', [AdminController::class,'view_user']);
+Route::get('/show_user', [AdminController::class,'show_user']);
+Route::get('/update_user/{id}', [AdminController::class,'update_user']);
+Route::post('/update_user_2/{id}', [AdminController::class,'update_user_2']);
+Route::get('/delete_user/{id}', [AdminController::class,'delete_user']);
+Route::get('/search_user', [AdminController::class,'search_user']);
 
-route::post('/add_artikel', [AdminController::class,'add_artikel']);
-route::get('/view_artikel', [AdminController::class,'view_artikel']);
-route::get('/show_artikel', [AdminController::class,'show_artikel']);
-route::get('/update_artikel/{id}', [AdminController::class,'update_artikel']);
-route::post('/update_artikel_2/{id}', [AdminController::class,'update_artikel_2']);
-route::get('/delete_artikel/{id}', [AdminController::class,'delete_artikel']);
-route::get('/search_artikel', [AdminController::class,'search_artikel']);
+Route::post('/add_artikel', [AdminController::class,'add_artikel']);
+Route::get('/view_artikel', [AdminController::class,'view_artikel']);
+Route::get('/show_artikel', [AdminController::class,'show_artikel']);
+Route::get('/update_artikel/{id}', [AdminController::class,'update_artikel']);
+Route::post('/update_artikel_2/{id}', [AdminController::class,'update_artikel_2']);
+Route::get('/delete_artikel/{id}', [AdminController::class,'delete_artikel']);
+Route::get('/search_artikel', [AdminController::class,'search_artikel']);
 
-route::post('/add_kelas', [AdminController::class,'add_kelas']);
-route::get('/view_kelas', [AdminController::class,'view_kelas']);
-route::get('/show_kelas', [AdminController::class,'show_kelas']);
-route::get('/update_kelas/{id}', [AdminController::class,'update_kelas']);
-route::post('/update_kelas_2/{id}', [AdminController::class,'update_kelas_2']);
-route::get('/delete_kelas/{id}', [AdminController::class,'delete_kelas']);
-route::get('/search_kelas', [AdminController::class,'search_kelas']);
+Route::post('/add_kelas', [AdminController::class,'add_kelas']);
+Route::get('/view_kelas', [AdminController::class,'view_kelas']);
+Route::get('/show_kelas', [AdminController::class,'show_kelas']);
+Route::get('/update_kelas/{id}', [AdminController::class,'update_kelas']);
+Route::post('/update_kelas_2/{id}', [AdminController::class,'update_kelas_2']);
+Route::get('/delete_kelas/{id}', [AdminController::class,'delete_kelas']);
+Route::get('/search_kelas', [AdminController::class,'search_kelas']);
 
-route::post('/add_materi', [AdminController::class,'add_materi']);
-route::get('/view_materi', [AdminController::class,'view_materi']);
-route::get('/show_materi', [AdminController::class,'show_materi']);
+Route::post('/add_materi', [AdminController::class,'add_materi']);
+Route::get('/view_materi', [AdminController::class,'view_materi']);
+Route::get('/show_materi', [AdminController::class,'show_materi']);
+Route::get('/update_materi/{id}', [AdminController::class,'update_materi']);
+Route::post('/update_materi_2/{id}', [AdminController::class,'update_materi_2']);
+Route::get('/delete_materi/{id}', [AdminController::class,'delete_materi']);
+Route::get('/search_materi', [AdminController::class,'search_materi']);
 
-route::get('/show_konten/{id}', [AdminController::class,'show_konten']);
-route::get('/update_materi/{id}', [AdminController::class,'update_materi']);
-route::post('/update_materi_2/{id}', [AdminController::class,'update_materi_2']);
-route::get('/delete_materi/{id}', [AdminController::class,'delete_materi']);
-route::get('/search_materi', [AdminController::class,'search_materi']);
+Route::post('/add_konten', [AdminController::class,'add_konten']);
+Route::get('/view_konten/{id}', [AdminController::class,'view_konten']);
+Route::get('/show_konten', [AdminController::class,'show_konten']);
+Route::get('/update_konten/{id}', [AdminController::class,'update_konten']);
+Route::post('/update_konten_2/{id}', [AdminController::class,'update_konten_2']);
+Route::get('/delete_konten/{id}', [AdminController::class,'delete_konten']);
+Route::get('/search_konten', [AdminController::class,'search_konten']);
 
-route::post('/add_konten', [AdminController::class,'add_konten']);
-route::get('/view_konten/{id}', [AdminController::class,'view_konten']);
 
-route::post('/add_pretest', [AdminController::class,'add_pretest']);
-route::get('/view_pretest/{id}', [AdminController::class,'view_pretest']);
+Route::get('/show_pretest/{id}', [AdminController::class,'show_pretest']);
+Route::get('/update_pretest/{id}', [AdminController::class,'update_pretest']);
+Route::post('/update_pretest_2/{id}', [AdminController::class,'update_pretest_2']);
+Route::get('/delete_pretest/{id}', [AdminController::class,'delete_pretest']);
+Route::get('/search_pretest', [AdminController::class,'search_pretest']);
 
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth','verified');

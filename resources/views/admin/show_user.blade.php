@@ -5,37 +5,40 @@
 <head>
     @include('admin.css')
     <style>
-    .content-wrapper {
-        overflow-x: auto !important;
-    }
-    .div_center {
-        text-align: center;
-        padding-top: 50px;
-    }
+        .content-wrapper {
+            overflow-x: auto !important;
+        }
 
-    .h1coy {
-        font-size: 30px;
-        text-align: center;
-    }
+        .div_center {
+            text-align: center;
+            padding-top: 50px;
+        }
 
-    .input_color {
-        color: black;
-    }
+        .h1coy {
+            font-size: 30px;
+            text-align: center;
+        }
 
-    .center {
-        margin: auto;
-        width: 50%;
-        text-align: center;
-        margin-top: 50px;
-        border: 4px solid gray;
-        background-color: white;
-    }
-    tr{
-        color:white;
-    }
-    .content:hover{
-        background-color: rgb(129, 103, 103);
-    }
+        .input_color {
+            color: black;
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            margin-top: 50px;
+            border: 4px solid gray;
+            background-color: white;
+        }
+
+        tr {
+            color: white;
+        }
+
+        .content:hover {
+            background-color: rgb(129, 103, 103);
+        }
     </style>
 </head>
 
@@ -54,30 +57,33 @@
                     <table class="table">
                         <thead>
                             <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Nama</th>
-                              <th scope="col">NIK</th>
-                              <th scope="col">Role</th>
-                              <th scope="col">Aksi</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Aksi</th>
                             </tr>
-                          </thead>
-                          <tbody>
+                        </thead>
+                        <tbody>
                             @foreach ($user as $a)
-                            <tr class="content">
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $a->name}}</td>
-                                <td>{{ $a->nik }}</td>
-                                <td>{{ $a->role }}</td>
-                                <td>
-                                    <a class="btn btn-warning" href="{{url('update_user',$a->id)}}" role="button">Edit</a>
-                                    <a onclick="confirmation(event)" class="btn btn-danger"
-                                        href="{{url('delete_user',$a->id)}}">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr class="content">
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $a->name }}</td>
+                                    <td>{{ $a->nik }}</td>
+                                    <td>{{ $a->role }}</td>
+                                    <td>{{ $a->password }}</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="{{ url('update_user', $a->id) }}"
+                                            role="button">Edit</a>
+                                        <a onclick="confirmation(event)" class="btn btn-danger"
+                                            href="{{ url('delete_user', $a->id) }}">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
-                          </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -89,31 +95,31 @@
     <!-- plugins:js -->
     @include('admin.js')
     <script>
-    function confirmation(ev) {
-        ev.preventDefault();
-        var urlToRedirect = ev.currentTarget.getAttribute('href');
-        console.log(urlToRedirect);
-        swal({
-                title: "Are you sure to delete this user?",
-                text: "You will not be able to revert this!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willCancel) => {
-                if (willCancel) {
+        function confirmation(ev) {
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal({
+                    title: "Are you sure to delete this user?",
+                    text: "You will not be able to revert this!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willCancel) => {
+                    if (willCancel) {
 
 
 
-                    window.location.href = urlToRedirect;
+                        window.location.href = urlToRedirect;
 
-                }
-
-
-            });
+                    }
 
 
-    }
+                });
+
+
+        }
     </script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>

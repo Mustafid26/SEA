@@ -5,37 +5,40 @@
 <head>
     @include('admin.css')
     <style>
-    .content-wrapper {
-        overflow-x: auto !important;
-    }
-    .div_center {
-        text-align: center;
-        padding-top: 50px;
-    }
+        .content-wrapper {
+            overflow-x: auto !important;
+        }
 
-    .h1coy {
-        font-size: 30px;
-        text-align: center;
-    }
+        .div_center {
+            text-align: center;
+            padding-top: 50px;
+        }
 
-    .input_color {
-        color: black;
-    }
+        .h1coy {
+            font-size: 30px;
+            text-align: center;
+        }
 
-    .center {
-        margin: auto;
-        width: 50%;
-        text-align: center;
-        margin-top: 50px;
-        border: 4px solid gray;
-        background-color: white;
-    }
-    tr{
-        color:white;
-    }
-    .content:hover{
-        background-color: rgb(129, 103, 103);
-    }
+        .input_color {
+            color: black;
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            margin-top: 50px;
+            border: 4px solid gray;
+            background-color: white;
+        }
+
+        tr {
+            color: white;
+        }
+
+        .content:hover {
+            background-color: rgb(129, 103, 103);
+        }
     </style>
 </head>
 
@@ -54,32 +57,41 @@
                     <table class="table">
                         <thead>
                             <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Judul_materi</th>
-                              <th scope="col">Nama Kelas</th>
-                              <th scope="col">Gambar</th>
-                              <th scope="col">Aksi</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Judul_materi</th>
+                                <th scope="col">Nama Kelas</th>
+                                <th scope="col">Gambar</th>
+                                <th scope="col">Jumlah Soal Pretest</th>
+                                <th scope="col">Aksi</th>
                             </tr>
-                          </thead>
-                          <tbody>
+                        </thead>
+                        <tbody>
                             @foreach ($materi as $m)
-                            <tr class="content">
-                                <th>{{ $loop->iteration }}</th>
-                                <td>{{ $m->judul_materi }}</td>
-                                <td>{{ $m->kelas->nama_kelas }}</td>
-                                <td>
-                                    <img style="max-width: 100%;" src="{{ asset('storage/'. $m->kelas->image) }}"
-                                    alt="gambar kelas" loading="lazy">
-                                </td>
-                                <td>
-                                    <a class="btn btn-success" href="{{ url('view_konten', $m->id) }}" role="button">Add</a>
-                                    <a class="btn btn-warning" href="{{ url('update_kelas', $m->id) }}" role="button">Edit</a>
-                                    <a onclick="confirmation(event)" class="btn btn-danger" href="{{ url('delete_materi', $m->id) }}">Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        
-                          </tbody>
+                                <tr class="content">
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $m->judul_materi }}</td>
+                                    <td>{{ $m->kelas->nama_kelas }}</td>
+                                    <td>
+                                        <img style="max-width: 100%;" src="{{ asset('storage/' . $m->kelas->image) }}"
+                                            alt="gambar kelas" loading="lazy">
+                                    </td>
+                                    <td>
+                                        {{ $m->total_pretest ?? '0' }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success" href="{{ url('view_konten', $m->id) }}"
+                                            role="button">Add Konten</a>
+                                        <a class="btn btn-primary" href="{{ url('show_pretest', $m->id) }}"
+                                            role="button">Lihat Soal Pretest</a>
+                                        <a class="btn btn-warning" href="{{ url('update_materi', $m->id) }}"
+                                            role="button">Edit Materi</a>
+                                        <a onclick="confirmation(event)" class="btn btn-danger"
+                                            href="{{ url('delete_materi', $m->id) }}">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -91,32 +103,33 @@
     <!-- plugins:js -->
     @include('admin.js')
     <script>
-    function confirmation(ev) {
-        ev.preventDefault();
-        var urlToRedirect = ev.currentTarget.getAttribute('href');
-        console.log(urlToRedirect);
-        swal({
-                title: "Are you sure to delete this user?",
-                text: "You will not be able to revert this!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willCancel) => {
-                if (willCancel) {
+        function confirmation(ev) {
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal({
+                    title: "Are you sure to delete this Materi?",
+                    text: "You will not be able to revert this!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willCancel) => {
+                    if (willCancel) {
 
 
 
-                    window.location.href = urlToRedirect;
+                        window.location.href = urlToRedirect;
 
-                }
-
-
-            });
+                    }
 
 
-    }
+                });
+
+
+        }
     </script>
+
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

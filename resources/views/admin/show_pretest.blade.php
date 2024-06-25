@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
     @include('admin.css')
@@ -58,32 +58,26 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Judul Artikel</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">Gambar</th>
+                                <th scope="col">Kelas</th>
+                                <th scope="col">Pertanyaan</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($artikel as $a)
+                            @foreach ($pretest as $p)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $a->title }}</td>
-                                    <td>{{ $a->slug }}</td>
+                                    <td>{{ $p->kelas->nama_kelas }}</td>
+                                    <td>{{ $p->question }}</td>
                                     <td>
-                                        <img style="width: 300px; height: 150px;"
-                                            src="{{ asset('storage/' . $a->image) }}" alt="gambar artikel">
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning" href="{{ url('update_artikel', $a->id) }}"
-                                            role="button">Edit</a>
+                                        <a class="btn btn-warning" href="{{ url('update_pretest', $p->id) }}"
+                                            role="button">Edit Soal</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_artikel', $a->id) }}">
-                                            Delete
-                                        </a>
+                                            href="{{ url('delete_pretest', $p->id) }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -101,7 +95,7 @@
             var urlToRedirect = ev.currentTarget.getAttribute('href');
             console.log(urlToRedirect);
             swal({
-                    title: "Are you sure to delete this artikel?",
+                    title: "Are you sure to delete this Soal?",
                     text: "You will not be able to revert this!",
                     icon: "warning",
                     buttons: true,
@@ -122,6 +116,9 @@
 
         }
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

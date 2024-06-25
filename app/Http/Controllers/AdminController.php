@@ -99,6 +99,25 @@ class AdminController extends Controller
     
    
 
+    public function nilai_user()
+    {
+       if (auth::id()){
+            $nilai=PretestUser::all();   
+            return view('admin.show_nilai', compact('nilai'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function delete_riwayat($id)
+    {
+        $nilai=PretestUser::find($id);
+        $nilai->delete();
+        Alert::success('Success', 'Riwayat deleted successfully');
+        return redirect()->back();
+    }
+    
     //artikel
     
     public function view_artikel()
@@ -312,6 +331,10 @@ class AdminController extends Controller
        if (auth::id()){
             $materi=Materi::all();
             $kelas=Kelas::all();
+            foreach ($materi as $m) {
+                $m->total_pretest = Question::where('kelas_id', $m->kelas_id)->count();
+            }
+            
             return view('admin.show_materi', compact('materi','kelas'));
         }
         else{
@@ -354,9 +377,9 @@ class AdminController extends Controller
         if (auth::id()) {
             $konten=KontenMateri::all();
             $materi=Materi::find($id);
-            $kelas = Kelas::findOrFail($id);
+          
             
-            return view('admin.konten', compact('konten','materi','kelas')); 
+            return view('admin.konten', compact('konten','materi')); 
         } 
         else {
             return redirect('login');
@@ -375,11 +398,25 @@ class AdminController extends Controller
             $validated = $request->validate([
                 'konten' => 'required|mimes:ppt,pptx|max:10000' // Validate PowerPoint file
             ]);
-
+            
             if ($request->file('konten')) {
-                $powerpointPath = $request->file('konten')->store('powerpoint_files', 'public');
-                $konten->konten = $powerpointPath;
+                // Dapatkan nama asli file
+                $originalName = $request->file('konten')->getClientOriginalName();
+                
+                // Menyimpan file dengan nama asli ke folder 'powerpoint_files' di storage 'public'
+                $filePath = $originalName;
+                $request->file('konten')->storeAs('powerpoint_files', $originalName, 'public');
+                
+                // Menyimpan path file ke dalam atribut 'konten'
+                $konten->konten = $filePath;
             }
+
+            $trixContent = $request->desc;
+            $cleanedContent = strip_tags($trixContent);
+            $konten->desc = $cleanedContent;
+            // Menyimpan deskripsi dari request
+            
+            
         } elseif ($request->selection == 'add_pretest') {
             $pretest = new Question;
             $pretest->kelas_id = $request->kelas_id;
@@ -401,37 +438,114 @@ class AdminController extends Controller
         Alert::success('Success', 'Konten added successfully');
         return redirect()->back();
     }
+
+
+    public function show_konten()
+    {
+       if (auth::id()){
+            $konten=KontenMateri::all();
+            $konten = KontenMateri::with(['kelas', 'materi'])->get();
+            foreach ($konten as $k) {
+                $k->total_pretest = Question::where('kelas_id', $k->kelas_id)->count();
+            }
+            return view('admin.show_konten', compact('konten'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function update_konten($id)
+    {
+        $konten=KontenMateri::find($id);
+        return view('admin.update_konten', compact('konten'));
+        
+    }
+    public function delete_konten($id)
+    {
+        $konten=KontenMateri::find($id);
+        $konten->delete();
+        Alert::success('Success', 'Materi deleted successfully');
+        return redirect()->back();
+    }
     
-    public function view_pretest($id)
+    public function update_konten_2(Request $request,$id)
+    {
+        $konten=KontenMateri::find($id);
+ 
+        $validated = $request->validate([
+            'konten' => 'required|mimes:ppt,pptx|max:10000' // Validate PowerPoint file
+        ]);
+        
+        if ($request->file('konten')) {
+            // Dapatkan nama asli file
+            $originalName = $request->file('konten')->getClientOriginalName();
+            
+            // Menyimpan file dengan nama asli ke folder 'powerpoint_files' di storage 'public'
+            $filePath = $originalName;
+            $request->file('konten')->storeAs('powerpoint_files', $originalName, 'public');
+            
+            // Menyimpan path file ke dalam atribut 'konten'
+            $konten->konten = $filePath;
+        }
+
+        $trixContent = $request->desc;
+        $cleanedContent = strip_tags($trixContent);
+        $konten->desc = $cleanedContent;
+        
+        $konten->save();
+        Alert::success('Success', 'Materi Updated successfully');
+        return redirect()->back();
+    }
+
+    public function show_pretest($id)
     {
         if (auth::id()) {
-            $konten=KontenMateri::all();
+            $pretest=Question::all();
             $materi=Materi::find($id);
             $kelas=Kelas::all();
             
-            return view('admin.pretest', compact('konten','materi','kelas')); 
+            return view('admin.show_pretest', compact('pretest','materi','kelas')); 
         } 
         else {
             return redirect('login');
         }
         
     }
-    // public function add_pretest (Request $request)
-    // {
+    public function update_pretest($id)
+    {
+        $pretest=Question::find($id);
+        return view('admin.update_pretest', compact('pretest'));
         
-    //     $pretest= new Question;
-    //     $pretest->materi_id=$request->materi_id;
-    //     $pretest->question=$request->question;
-    //     $pretest->option1=$request->option1;
-    //     $pretest->option2=$request->option2;
-    //     $pretest->option3=$request->option3;
-    //     $pretest->option4=$request->option4;
-    //     $pretest->correct_answer=$request->correct_answer;
-
-        
-    //     $pretest->save();
-    //     Alert::success('Success', 'Konten added successfully');
-    //     return redirect()->back();
-    // }
+    }
+    public function delete_pretest($id)
+    {
+        $pretest=Question::find($id);
+        $pretest->delete();
+        Alert::success('Success', 'Soal deleted successfully');
+        return redirect()->back();
+    }
     
+    public function update_pretest_2(Request $request,$id)
+    {
+            $pretest=Question::find($id);
+            $pretest->kelas_id = $request->kelas_id;
+            
+            $pretest->question = $request->question;
+            $pretest->option1 = $request->option1;
+            $pretest->option2 = $request->option2;
+            $pretest->option3 = $request->option3;
+            $pretest->option4 = $request->option4;
+            $pretest->correct_answer = $request->correct_answer;
+            $pretest->save();
+        Alert::success('Success', 'Soal Updated successfully');
+        return redirect()->back();
+    }
+
+    public function search_pretest(Request $request)
+    {
+        $search_text = $request->search_soal;
+        $pretest = Question::where('question', 'LIKE', "%$search_text%")->GET();
+        return view('admin.show_pretest', compact('pretest'));
+    }
 }
