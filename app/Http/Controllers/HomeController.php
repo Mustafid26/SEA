@@ -34,5 +34,15 @@ class HomeController extends Controller
         }
     }
 
+    public function comingsoon()
+    {
+        if (auth::id()) {
+            return view('comingsoon'); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
     
 }

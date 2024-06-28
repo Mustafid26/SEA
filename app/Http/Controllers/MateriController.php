@@ -33,14 +33,13 @@ class MateriController extends Controller
         $konten = KontenMateri::find($id); 
         $filename = $konten->konten;
         // Misalnya file disimpan di dalam direktori storage/app/public
-        $file = storage_path("app/public/{$filename}");
-
+        $filePath = "public/powerpoint_files/{$filename}";
         // Memeriksa apakah file ada
-        if (!Storage::disk('public')->exists($filename)) {
+        if (!Storage::exists($filePath)) {
             abort(404, 'File not found');
         }
 
         // Mengembalikan response untuk mengunduh file
-        return response()->download($file);
+        return Storage::download($filePath);
     }
 }

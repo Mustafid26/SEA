@@ -32,6 +32,7 @@ Route::get('/', function () {
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth','verified');
+Route::get('/comingsoon', [HomeController::class, 'comingsoon'])->middleware('auth','verified');
 
 
 Route::post('/add_user', [AdminController::class,'add_user']);
@@ -41,6 +42,9 @@ Route::get('/update_user/{id}', [AdminController::class,'update_user']);
 Route::post('/update_user_2/{id}', [AdminController::class,'update_user_2']);
 Route::get('/delete_user/{id}', [AdminController::class,'delete_user']);
 Route::get('/search_user', [AdminController::class,'search_user']);
+
+Route::get('/nilai_user', [AdminController::class,'nilai_user']);
+Route::get('/delete_riwayat', [AdminController::class,'delete_riwayat']);
 
 Route::post('/add_artikel', [AdminController::class,'add_artikel']);
 Route::get('/view_artikel', [AdminController::class,'view_artikel']);
@@ -80,6 +84,12 @@ Route::get('/update_pretest/{id}', [AdminController::class,'update_pretest']);
 Route::post('/update_pretest_2/{id}', [AdminController::class,'update_pretest_2']);
 Route::get('/delete_pretest/{id}', [AdminController::class,'delete_pretest']);
 Route::get('/search_pretest', [AdminController::class,'search_pretest']);
+
+Route::get('/show_postest/{id}', [AdminController::class,'show_postest']);
+Route::get('/update_postest/{id}', [AdminController::class,'update_postest']);
+Route::post('/update_postest_2/{id}', [AdminController::class,'update_postest_2']);
+Route::get('/delete_postest/{id}', [AdminController::class,'delete_postest']);
+Route::get('/search_postest', [AdminController::class,'search_postest']);
 
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth','verified');

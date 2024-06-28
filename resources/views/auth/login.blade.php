@@ -117,8 +117,8 @@
                            <button class="btn btn-login">{{ __('Log in') }}</button>
                         </div>
                     
-                        <p class="mb-5 pb-lg-2" style="color: #219c9088; font-weight: bold;">Don't have an account? <a href="{{route('register')}}"
-                          style="color: black; font-weight: normal;">Register here</a></p>
+                        <p class="mb-5 pb-lg-2" style="color: #219c9088; font-weight: bold;">Belum Punya Akun?  <a href="{{route('register')}}"
+                          style="color: black; font-weight: normal;">Daftar disini</a></p>
                       </form>
                     </div>
                   </div>
@@ -154,8 +154,8 @@
               <div class="pt-1 mb-4 text-center">
                 <button class="btn btn-login">{{ __('Log in') }}</button>
               </div>
-              <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088; font-weight: bold;">Don't have an account? 
-              <a href="{{route('register')}}"style="color: black; font-weight: normal;">Register here</a></p>
+              <p class="mb-5 pb-lg-2 text-center" style="color: #219c9088; font-weight: bold;">Belum Punya Akun? 
+              <a href="{{route('register')}}"style="color: black; font-weight: normal;">Daftar disini</a></p>
             </form>
           </div>
         </div>

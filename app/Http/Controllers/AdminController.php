@@ -8,7 +8,10 @@ use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\KontenMateri;
 use App\Models\Question;
+use App\Models\QuestionPostest;
 use App\Models\PretestUser;
+use App\Models\PostestUser;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -85,6 +88,9 @@ class AdminController extends Controller
             $data -> usertype = $request-> usertype = 0;
         }
         
+        if($request->filled('password')) {
+            $data->password = Hash::make($request->input('password'));
+        }
         $data->save();
         Alert::success('Success', 'User Updated successfully');
         return redirect()->back();
@@ -103,7 +109,8 @@ class AdminController extends Controller
     {
        if (auth::id()){
             $nilai=PretestUser::all();   
-            return view('admin.show_nilai', compact('nilai'));
+            $nilai1=PostestUser::all();   
+            return view('admin.show_nilai', compact('nilai','nilai1'));
         }
         else{
             return redirect('login');
@@ -333,6 +340,7 @@ class AdminController extends Controller
             $kelas=Kelas::all();
             foreach ($materi as $m) {
                 $m->total_pretest = Question::where('kelas_id', $m->kelas_id)->count();
+                $m->total_postest = QuestionPostest::where('kelas_id', $m->kelas_id)->count();
             }
             
             return view('admin.show_materi', compact('materi','kelas'));
@@ -430,7 +438,21 @@ class AdminController extends Controller
             $pretest->save();
             Alert::success('Success', 'Soal added successfully');
             return redirect()->back();
-        } else {
+            
+        } elseif ($request->selection == 'add_postest') {
+            $postest = new QuestionPostest;
+            $postest->kelas_id = $request->kelas_id;
+            
+            $postest->question = $request->question;
+            $postest->option1 = $request->option1;
+            $postest->option2 = $request->option2;
+            $postest->option3 = $request->option3;
+            $postest->option4 = $request->option4;
+            $postest->correct_answer = $request->correct_answer;
+            $postest->save();
+            Alert::success('Success', 'Soal added successfully');
+            return redirect()->back();
+        }else {
             return redirect()->back()->withErrors('Please select an option.');
         }
 
@@ -547,5 +569,55 @@ class AdminController extends Controller
         $search_text = $request->search_soal;
         $pretest = Question::where('question', 'LIKE', "%$search_text%")->GET();
         return view('admin.show_pretest', compact('pretest'));
+    }
+    public function show_postest($id)
+    {
+        if (auth::id()) {
+            $postest=QuestionPostest::all();
+            $materi=Materi::find($id);
+            $kelas=Kelas::all();
+            
+            return view('admin.show_postest', compact('postest','materi','kelas')); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
+    public function update_postest($id)
+    {
+        $postest=QuestionPostest::find($id);
+        return view('admin.update_postest', compact('postest'));
+        
+    }
+    public function delete_postest($id)
+    {
+        $postest=QuestionPostest::find($id);
+        $postest->delete();
+        Alert::success('Success', 'Soal deleted successfully');
+        return redirect()->back();
+    }
+    
+    public function update_postest_2(Request $request,$id)
+    {
+            $postest=QuestionPostest::find($id);
+            $postest->kelas_id = $request->kelas_id;
+            
+            $postest->question = $request->question;
+            $postest->option1 = $request->option1;
+            $postest->option2 = $request->option2;
+            $postest->option3 = $request->option3;
+            $postest->option4 = $request->option4;
+            $postest->correct_answer = $request->correct_answer;
+            $postest->save();
+        Alert::success('Success', 'Soal Updated successfully');
+        return redirect()->back();
+    }
+
+    public function search_postest(Request $request)
+    {
+        $search_text = $request->search_soal;
+        $postest = QuestionPostest::where('question', 'LIKE', "%$search_text%")->GET();
+        return view('admin.show_postest', compact('postest'));
     }
 }

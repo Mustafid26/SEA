@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
     @include('admin.css')
@@ -58,29 +58,26 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">NIK</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">Kelas</th>
+                                <th scope="col">Pertanyaan</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $a)
+                            @foreach ($postest as $p)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $a->name }}</td>
-                                    <td>{{ $a->nik }}</td>
-                                    <td>{{ $a->role }}</td>
+                                    <td>{{ $p->kelas->nama_kelas }}</td>
+                                    <td>{{ $p->question }}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{ url('update_user', $a->id) }}"
-                                            role="button">Edit</a>
+                                        <a class="btn btn-warning" href="{{ url('update_postest', $p->id) }}"
+                                            role="button">Edit Soal</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_user', $a->id) }}">
-                                            Delete
-                                        </a>
+                                            href="{{ url('delete_pretest', $p->id) }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -98,7 +95,7 @@
             var urlToRedirect = ev.currentTarget.getAttribute('href');
             console.log(urlToRedirect);
             swal({
-                    title: "Are you sure to delete this user?",
+                    title: "Are you sure to delete this Soal?",
                     text: "You will not be able to revert this!",
                     icon: "warning",
                     buttons: true,
@@ -119,6 +116,9 @@
 
         }
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

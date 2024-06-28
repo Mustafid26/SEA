@@ -95,10 +95,10 @@
                                     <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
                                     <button type="submit" class="dropdown-item ">{{ $m->judul_materi }}</button>
                                 </form>
-                                <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
+                                <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                 @else
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
-                                    <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
+                                    <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                 @endif
                             @endforeach
                             @endif

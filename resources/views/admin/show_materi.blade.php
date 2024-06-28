@@ -62,6 +62,7 @@
                                 <th scope="col">Nama Kelas</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Jumlah Soal Pretest</th>
+                                <th scope="col">Jumlah Soal Postest</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -79,10 +80,14 @@
                                         {{ $m->total_pretest ?? '0' }}
                                     </td>
                                     <td>
+                                        {{ $m->total_postest ?? '0' }}
+                                    </td>
+                                    <td>
                                         <a class="btn btn-success" href="{{ url('view_konten', $m->id) }}"
                                             role="button">Add Konten</a>
-                                        <a class="btn btn-primary" href="{{ url('show_pretest', $m->id) }}"
-                                            role="button">Lihat Soal Pretest</a>
+                                        <a class="btn btn-primary" href="#"
+                                            onclick="soalConfirmation(event, '{{ $m->id }}')"
+                                            role="button">Lihat Soal</a>
                                         <a class="btn btn-warning" href="{{ url('update_materi', $m->id) }}"
                                             role="button">Edit Materi</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
@@ -129,7 +134,47 @@
 
         }
     </script>
+    <script>
+        function soalConfirmation(event, id) {
+            event.preventDefault();
+            var urlToRedirect = event.currentTarget.getAttribute('href');
 
+            swal({
+                title: "What do you want to see?",
+                buttons: {
+                    show_pretest: {
+                        text: "Soal Pretest",
+                        value: "show_pretest",
+                        className: "btn-success"
+                    },
+                    show_postest: {
+                        text: "Soal Postest",
+                        value: "show_postest",
+                        className: "btn-info"
+                    },
+                    cancel: {
+                        text: "Cancel",
+                        value: "cancel",
+                        visible: true,
+                        className: "btn-secondary",
+                        closeModal: true,
+                    }
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "show_pretest":
+                        window.location.href = `{{ url('show_pretest', $m->id) }}`;
+                        break;
+                    case "show_postest":
+                        window.location.href = `{{ url('show_postest', $m->id) }}`;
+                        break;
+                    case "cancel":
+                        // Do nothing
+                        break;
+                }
+            });
+        }
+    </script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

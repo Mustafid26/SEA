@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
+<title>Admin SEA</title>
 
 <head>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
@@ -81,6 +81,7 @@
                                 <option value="">Select an option</option>
                                 <option value="add_konten">Add Konten</option>
                                 <option value="add_pretest">Add Pretest</option>
+                                <option value="add_postest">Add Postest</option>
                             </select>
                         </div>
                         <div id="form-container">
@@ -133,34 +134,100 @@
                 submitBtn.style.display = 'block';
             } else if (selection === 'add_pretest') {
                 formContainer.innerHTML = `
-                    <div class="mb-3">
-                        <label for="kelas" class="form-label">Menambah Pretest Pada Kelas</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" class="form-control" placeholder="{{ $materi->kelas->nama_kelas }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="question" class="form-label">Question</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="question" id="question" class="form-control" required">
-                    </div>
-                    <div class="mb-3">
-                        <label for="option1" class="form-label">Option 1</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="option1" id="option1" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="option2" class="form-label">Option 2</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="option2" id="option2" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="option3" class="form-label">Option 3</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="option3" id="option3" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="option4" class="form-label">Option 4</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="option4" id="option4" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="correct_answer" class="form-label">Correct Answer</label>
-                        <input type="text" style="background-color: white !important; color:black !important;" name="correct_answer" id="correct_answer" class="form-control" required>
-                    </div>
+                    <table class="table">
+                        <tr>
+                            <td><label for="kelas" class="form-label">Menambah Pretest Pada Kelas</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" class="form-control" placeholder="{{ $materi->kelas->nama_kelas }}" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="question" class="form-label">Question</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="question" id="question" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option1" class="form-label">Option 1</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option1" id="option1" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option2" class="form-label">Option 2</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option2" id="option2" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option3" class="form-label">Option 3</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option3" id="option3" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option4" class="form-label">Option 4</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option4" id="option4" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="correct_answer" class="form-label">Correct Answer</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="correct_answer" id="correct_answer" class="form-control" required>
+                            </td>
+                        </tr>
+                    </table>
+
+                `;
+                submitBtn.style.display = 'block';
+
+            } else if (selection === 'add_postest') {
+                formContainer.innerHTML = `
+                    <table class="table">
+                        <tr>
+                            <td><label for="kelas" class="form-label">Menambah Pos0test Pada Kelas</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" class="form-control" placeholder="{{ $materi->kelas->nama_kelas }}" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="question" class="form-label">Question</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="question" id="question" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option1" class="form-label">Option 1</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option1" id="option1" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option2" class="form-label">Option 2</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option2" id="option2" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option3" class="form-label">Option 3</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option3" id="option3" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="option4" class="form-label">Option 4</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="option4" id="option4" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="correct_answer" class="form-label">Correct Answer</label></td>
+                            <td>
+                                <input type="text" style="background-color: white !important; color:black !important;" name="correct_answer" id="correct_answer" class="form-control" required>
+                            </td>
+                        </tr>
+                    </table>
                 `;
                 submitBtn.style.display = 'block';
             }

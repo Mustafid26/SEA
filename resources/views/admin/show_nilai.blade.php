@@ -60,6 +60,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama User</th>
                                 <th scope="col">Nilai Pretest</th>
+                                <th scope="col">Nilai Postest</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -69,6 +70,7 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $n->user->name }}</td>
                                     <td>{{ $n->score }}</td>
+                                    <td>{{ $nilai1->score }}</td>
                                     <td>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
                                             href="{{ url('delete_riwayat', $n->id) }}">Delete</a>
