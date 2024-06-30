@@ -13,9 +13,11 @@
                 @else
                     <p>Belum ada konten</p>
                 @endif
-                @if (isset($konten) && $konten->konten)
-                    <a href="{{ url('/download/' . $konten->id) }}" class="button">Download Materi</a>
-                @endif
+                <section class="mt-5"> 
+                    @if (isset($konten) && $konten->konten)
+                        <a href="{{ url('/download/' . $konten->id) }}" class="button">Download Materi</a>
+                    @endif
+                </section>
             </div>
         </div>
     </div>

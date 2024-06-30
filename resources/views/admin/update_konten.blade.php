@@ -76,13 +76,12 @@
                         <div class="mb-3">
                             <label for="konten" class="form-label">Update PPT</label>
                             <input style="background-color: white !important; color: black !important;" type="file"
-                                class="form-control" name="konten" accept=".ppt,.pptx">
+                                class="form-control" name="konten" accept=".ppt,.pptx,.pdf">
                         </div>
                         <div class="mb-3">
-                            <label for="desc" class="form-label">Deskripsi</label>
-                            <input style="background-color: white !important; color: black !important;" type="text"
-                                class="form-control" id="desc" name="desc" placeholder="Masukkan Deskripsi"
-                                required value="{{ $konten->desc }}">
+                            <label for="desc" class="form-label">Masukkan Deskripsi</label>
+                            <input id="desc" type="hidden" name="desc" value="{{ $konten->desc }}">
+                            <trix-editor input="desc"></trix-editor>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>

@@ -617,7 +617,7 @@ class AdminController extends Controller
         $konten=KontenMateri::find($id);
  
         $validated = $request->validate([
-            'konten' => 'required|mimes:ppt,pptx|max:10000' // Validate PowerPoint file
+            'konten' => 'required|mimes:ppt,pptx,pdf|max:10000' // Validate PowerPoint file
         ]);
         
         if ($request->file('konten')) {
