@@ -403,7 +403,7 @@ class AdminController extends Controller
         $kelas->detail_kelas=$request->detail_kelas;
         if ($request->file('image')) {
             // Delete the old image file from storage
-            if ($kelasgfrt5->image) {
+            if ($kelas->image) {
                 Storage::disk('public')->delete($kelas->image);
             }
 
@@ -616,6 +616,9 @@ class AdminController extends Controller
         ]);
         
         if ($request->file('konten')) {
+            if($konten->konten){
+                Storage::disk('public')->delete($konten->konten);
+            }
             // Dapatkan nama asli file
             $originalName = $request->file('konten')->getClientOriginalName();
             
