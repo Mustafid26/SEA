@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('konten')
-<div class="container mt-5 article-content" style="margin-bottom: 5rem;">
+<div class="container mt-5 article-content" style="margin-bottom: 10rem;">
     <h2 class="article-title">{{$artikel->title}}</h2>
     <p class="article-meta">Dibuat Oleh {{$artikel->author->name}}<br>{{$artikel->created_at->diffForHumans()}}</p>
     

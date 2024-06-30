@@ -71,7 +71,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="deskripsi" placeholder="Masukkan Deskripsi" required value="{{$kelas->deskripsi}}">
+                            <input id="body" type="hidden" name="deskripsi" value="{{$kelas->deskripsi}}">
+                            <trix-editor input="body"></trix-editor>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Foto Terkini</label><br>

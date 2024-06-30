@@ -8,7 +8,7 @@
     <style>
     .content-wrapper {
         overflow-x: auto !important;
-        background-color: rgb(0,0,0);
+        background-color: rgb(89, 89, 89);
     }
     .div_center {
         text-align: center;
@@ -72,7 +72,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Kelas " required value="">
+                            <input id="body" type="hidden" name="deskripsi" value="">
+                            <trix-editor input="body"></trix-editor>
                         </div>
                         <div class="mb-3">
                             <label for="image" nameclass="form-label">Upload Gambar</label>

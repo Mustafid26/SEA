@@ -522,6 +522,7 @@ class AdminController extends Controller
         $kelas = new Kelas;
         $konten->materi_id = $request->materi_id;
         $konten->kelas_id = $request->kelas_id;
+        $konten->desc = $request->desc;
 
         if ($request->selection == 'add_konten') {
             $validated = $request->validate([
@@ -539,13 +540,7 @@ class AdminController extends Controller
                 // Menyimpan path file ke dalam atribut 'konten'
                 $konten->konten = $filePath;
             }
-
-            $trixContent = $request->desc;
-            $cleanedContent = strip_tags($trixContent);
-            $konten->desc = $cleanedContent;
             // Menyimpan deskripsi dari request
-            
-            
         } elseif ($request->selection == 'add_pretest') {
             $pretest = new Question;
             $pretest->kelas_id = $request->kelas_id;
@@ -615,7 +610,7 @@ class AdminController extends Controller
     public function update_konten_2(Request $request,$id)
     {
         $konten=KontenMateri::find($id);
- 
+        $konten->desc = $request->desc;
         $validated = $request->validate([
             'konten' => 'required|mimes:ppt,pptx,pdf|max:10000' // Validate PowerPoint file
         ]);
@@ -631,10 +626,6 @@ class AdminController extends Controller
             // Menyimpan path file ke dalam atribut 'konten'
             $konten->konten = $filePath;
         }
-
-        $trixContent = $request->desc;
-        $cleanedContent = strip_tags($trixContent);
-        $konten->desc = $cleanedContent;
         
         $konten->save();
         Alert::success('Success', 'Materi Updated successfully');

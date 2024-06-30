@@ -8,7 +8,7 @@
     <style>
     .content-wrapper {
         overflow-x: auto !important;
-        background-color: rgb(138, 137, 137);
+        background-color: rgb(89, 89, 89);
     }
     .div_center {
         text-align: center;
