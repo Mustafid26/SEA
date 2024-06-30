@@ -124,6 +124,8 @@ Route::middleware(['auth', 'pretest.completed'])->group(function () {
 });
 
 Route::get('/download/{id}', [MateriController::class, 'downloadFile'])->name('download.file');
+
+Route::get('/view/{id}', [MateriController::class, 'view']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

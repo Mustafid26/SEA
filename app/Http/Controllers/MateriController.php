@@ -42,4 +42,10 @@ class MateriController extends Controller
         // Mengembalikan response untuk mengunduh file
         return Storage::download($filePath);
     }
+    public function view($id)
+    {
+        $konten = KontenMateri::find($id); 
+        // dd($konten);
+        return view('view_materi', compact('konten'));
+    }
 }

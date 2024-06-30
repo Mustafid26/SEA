@@ -15,7 +15,10 @@
                 @endif
                 <section class="mt-5"> 
                     @if (isset($konten) && $konten->konten)
-                        <a href="{{ url('/download/' . $konten->id) }}" class="button">Download Materi</a>
+                        <a href="{{ url('/download/' . $konten->id) }}" class="button" target="_blank">Download Materi</a>
+                        @if (pathinfo($konten->konten, PATHINFO_EXTENSION) === 'pdf')
+                            <a href="{{ url('/view', $konten->id) }}" class="button" target="_blank">View Materi</a>
+                        @endif
                     @endif
                 </section>
             </div>
