@@ -525,7 +525,7 @@ class AdminController extends Controller
 
         if ($request->selection == 'add_konten') {
             $validated = $request->validate([
-                'konten' => 'required|mimes:ppt,pptx,pdf|max:10000' // Validate PowerPoint file
+                'konten' => 'required|mimes:ppt,pptx,pdf|max:10000'
             ]);
             
             if ($request->file('konten')) {

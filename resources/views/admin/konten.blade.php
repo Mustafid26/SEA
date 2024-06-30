@@ -123,7 +123,7 @@
                 formContainer.innerHTML = `
                     <div class="mb-3">
                         <label materi" class="form-label">Upload Konten (PowerPoint)</label>
-                        <input type="file" style="background-color: white !important; color:black !important;" name="konten" id="konten" class="form-control" accept=".ppt,.pptx">
+                        <input type="file" style="background-color: white !important; color:black !important;" name="konten" id="konten" class="form-control" accept=".ppt,.pptx,.pdf">
                     </div>
                     <div class="mb-3">
                         <label for="desc" class="form-label">Masukkan Deskripsi</label>
