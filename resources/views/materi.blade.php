@@ -27,36 +27,35 @@
                                 <i class="fa fa-solid fa-book"></i> Materi Belajar
                             </button>
                             <div id="drop-content" class="drop-content">
-                                <!-- Pengecekan dan tampilan status pretest -->
-                                @if (Auth::user()->usertype != 0)
-                                    @if ($pretestCompleted)
-                                        <span style="color:white"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
-                                    @else
-                                        <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
-                                    @endif
+                                <!-- Pengecekan dan tampilan status pretest -->      
+                                @if ($pretestCompleted)
+                                    <span style="color:white"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
+                                @else
+                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
                                 @endif
+                      
                             
                                 <!-- Daftar materi -->
                                 @if ($materi->isEmpty())
                                     <span class="dropdown-item text-white">Belum ada materi</span>
                                 @else
-                                    @foreach($materi as $m)
-                                        @if ($pretestCompleted)
-                                            <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                                <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
-                                            </form>
-                                            @if (Auth::user()->usertype != 0)
-                                                <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
-                                            @endif
-                                        @else
-                                            <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
-                                            @if (Auth::user()->usertype != 0)
-                                                <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
-                                            @endif
+                                @foreach($materi as $m)
+                                    @if ($pretestCompleted)
+                                    <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                        <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
+                                    </form>
+                                    @if (Auth::user()->usertype != 0)
+                                        <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
+                                    @endif
+                                    @else
+                                        <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                        @if (Auth::user()->usertype != 0)
+                                        <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                         @endif
-                                    @endforeach
+                                    @endif
+                                @endforeach
                                 @endif
                             </div>                                                  
                         </div>     
@@ -84,10 +83,12 @@
                             Materi
                         </button>
                         <ul class="dropdown-menu w-100">
-                            @if ($pretestCompleted)
-                                    <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
-                            @else
-                                    <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
+                            @if (Auth::user()->usertype != 0)
+                                @if ($pretestCompleted)
+                                        <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
+                                @else
+                                        <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
+                                @endif
                             @endif
                             <!-- Daftar materi -->
                             @if ($materi->isEmpty())
@@ -98,12 +99,16 @@
                                 <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                    <button type="submit" class="dropdown-item ">{{ $m->judul_materi }}</button>
+                                    <button type="submit" class="dropdown-item">{{ $m->judul_materi }}</button>
                                 </form>
-                                <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
+                                @if (Auth::user()->usertype != 0)
+                                    <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
+                                @endif
                                 @else
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                    @if (Auth::user()->usertype != 0)
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
+                                    @endif
                                 @endif
                             @endforeach
                             @endif

@@ -55,10 +55,10 @@ class DatabaseSeeder extends Seeder
             'deskripsi' => 'Pelatihan Bu Edi adalah sebuah pelatihan bagi perempuan tentang teknik-teknik yang efektif untuk meningkatkan UMKM di e-commerce',
             'image' => 'photo_kelas/Bu Edi.png'
         ]);
-        // Materi::create([
-        //     'kelas_id' => 1,
-        //     'judul_materi' => 'Materi 1'
-        // ]);
+        Materi::create([
+            'kelas_id' => 1,
+            'judul_materi' => 'Materi 1'
+        ]);
         // Materi::create([
         //     'kelas_id' => 2,
         //     'judul_materi' => 'Materi 2'
@@ -82,15 +82,15 @@ class DatabaseSeeder extends Seeder
         //     'judul_materi' => 'Materi 6'
         // ]);
         // Artikel::factory(20)->create();
-        // Question::create([
-        //     'kelas_id' => 1,
-        //     'question' => 'Apa yang harus dilakukan ketika terjadi ancaman Cyber Bullying?',
-        //     'option1' => 'Lapor ke polisi',
-        //     'option2' => 'Ajak berkelahi',
-        //     'option3' => 'Lacak akun pelaku',
-        //     'option4' => 'Report di aplikasi',
-        //     'correct_answer' => 'Lapor ke polisi'
-        // ]);
+        Question::create([
+            'kelas_id' => 1,
+            'question' => 'Apa yang harus dilakukan ketika terjadi ancaman Cyber Bullying?',
+            'option1' => 'Lapor ke polisi',
+            'option2' => 'Ajak berkelahi',
+            'option3' => 'Lacak akun pelaku',
+            'option4' => 'Report di aplikasi',
+            'correct_answer' => 'Lapor ke polisi'
+        ]);
         Foto::create([
             'id' => 1,
             'title' => 'RW 34',

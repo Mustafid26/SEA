@@ -10,6 +10,7 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PostestController;
 use App\Http\Controllers\PretestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NonSekariController;
 
 
 /*
@@ -121,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'pretest.completed'])->group(function () {
     Route::post('/materi/{id}/after/{kelas_id}', [MateriController::class, 'after'])->name('materi.after');
 });
+
 Route::get('/download/{id}', [MateriController::class, 'downloadFile'])->name('download.file');
 Route::middleware([
     'auth:sanctum',
