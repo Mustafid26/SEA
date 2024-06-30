@@ -39,11 +39,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+
 
     <script src="{{ asset('lib/wow/wow.min.js')}}"></script>
     <script src="{{ asset('lib/easing/easing.min.js')}}"></script>
     <script src="{{ asset('lib/waypoints/waypoints.min.js')}}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
     <style>
         body {
             font-family: 'Maven Pro';
@@ -140,9 +142,9 @@
     <!-- Navbar End -->
 
     {{-- content --}}
-    <div class="container">
-        @yield('konten')
-    </div>
+
+     @yield('konten')
+
     {{-- end content --}}
 
     <!-- JavaScript -->
@@ -152,6 +154,7 @@
             document.getElementById('preloader').style.display = 'none';
         });
     </script>
-    <script src="{{ asset('js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
+
 </body>

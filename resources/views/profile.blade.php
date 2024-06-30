@@ -266,7 +266,7 @@
                     <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
                         <div class="d-flex justify-content-between">
                             <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
-                                    style="color: #219c90;"></i>Hadiah</span>
+                                    style="color: #219c90;"></i>Sekari Point</span>
                             <span class="badge-pill"><img src="{{ asset('img/coin.png') }} " alt=""
                                     srcset=""> 1000 Poin</span>
                         </div>
