@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Artikel;
 use App\Models\Kelas;
+use App\Models\Foto;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -13,9 +14,10 @@ class HomeController extends Controller
     
     public function index()
     {
-        return view('layouts.main' , [
-            'active' => 'Login'
-        ]);
+        $photos = Foto::all();
+        return view('home' , compact('photos'), [
+            'active' => 'beranda'
+        ]) ;
     }
     
     public function redirect()
@@ -27,9 +29,9 @@ class HomeController extends Controller
             $total_user=user::all()->count();
             return view('admin.home', compact('total_artikel', 'total_kelas', 'total_user'));
         } else {
-            
-            return view('layouts.main' , [
-                'active' => 'Login'
+            $photos = Foto::all();
+            return view('home' , compact('photos'), [
+                'active' => 'beranda'
             ]) ;
         }
     }

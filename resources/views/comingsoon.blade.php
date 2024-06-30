@@ -39,19 +39,14 @@
 </head>
 
 <body class="font-Noto-Sans">
-
-
     <!-- Header -->
-    <header class="w-full bg-[url('img/leaves.jpg')] bg-cover bg-bottom">
-        <div class="w-full min-h-screen md:w-1/2 bg-gradient-to-b from-gray-900/90 to-gray-900/95 p-10 flex">
+    <header class="w-full bg-cover bg-bottom" style="background-color: #8cdedd">
+        <div class="w-full min-h-screen md:w-1/2 p-10 flex">
             <div class="w-full text-center my-auto">
-                <h1 class="font-bold text-5xl font-Comforter-Brush text-amber-500 mb-10 md:text-right">Sekari Edu
-                    Academy</h1>
+                <img src="{{asset('img/SEA.png')}}" alt="" srcset="">
                 <h6
-                    class="font-Montserrat font-bold uppercase text-4xl md:text-5xl lg:text-6xl mb-14 md:-mr-20 text-white md:text-right">
-                    Coming <span class="text-white/70 md:-mr-20">soon</span></h6>
-
-
+                    class="font-Montserrat font-bold uppercase text-4xl md:text-5xl lg:text-6xl mb-14 md:-mr-20 text-black md:text-right">
+                    Coming <span class="text-black/70 md:-mr-20">soon</span></h6>
                 <!-- Count down -->
                 <div class="w-full text-left flex mb-10">
                     <ul class="w-full flex place-content-center md:place-content-end gap-5 mx-auto text-gray-50">
@@ -83,7 +78,7 @@
                 </div>
 
                 <!-- Content -->
-                <p class="text-base mb-10 text-gray-200 md:text-right">Fitur sedang dalam tahap pengembangan
+                <p class="text-base mb-10 text-black md:text-right ">Fitur sedang dalam tahap pengembangan
                     <br> untuk informasi lebih lanjut silahkan hubungi kami
                 </p>
                 </p>

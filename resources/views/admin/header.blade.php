@@ -120,6 +120,6 @@
     </div>
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
         data-toggle="offcanvas">
-        <span class="mdi mdi-format-line-spacing"></span>
+        <span class="mdi mdi-format-line-spacing" style="color: white;"></span>
     </button>
 </nav>

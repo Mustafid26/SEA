@@ -5,11 +5,6 @@
     --dark: #181d38;
     --kuning: #F6DB9D;
 }
-
-
-body{
-    padding-bottom: 100px;
-}
 .fw-medium {
     font-weight: 600 !important;
 }
@@ -540,6 +535,12 @@ body{
     .card-desktop{
         display: none !important;
     }
+    .logo_kelas{
+        max-width: 100% !important;
+    }
+}
+.logo_kelas{
+    max-width: 10%;
 }
 .card-class {
     width: 350px;
@@ -609,12 +610,23 @@ body{
 }
 .video-container {
     width: 100%;
-    height: 180px;
-    background-color: #2f7164;
+    height: 350px;
+    background: #f7eacc;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+}
+@media (max-width: 1024px) {
+    .video-container {
+        width: 100%;
+        height: 180px;
+        background: #f7eacc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
 }
 .video-container::before {
     /* content: "▶"; */

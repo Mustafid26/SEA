@@ -45,6 +45,8 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/view_user') }}">Add User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/show_user') }}">Show User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/nilai_user') }}">Nilai User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/view_foto') }}">Add Foto Beranda</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/show_foto') }}">Show Foto Beranda</a></li>
                 </ul>
             </div>
         </li>

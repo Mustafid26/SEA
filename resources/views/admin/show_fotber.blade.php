@@ -58,24 +58,27 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">NIK</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">Judul Foto</th>
+                                <th scope="col">Deskripsi Foto</th>
+                                <th scope="col">Gambar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $a)
+                            @foreach ($foto as $f)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $a->name }}</td>
-                                    <td>{{ $a->nik }}</td>
-                                    <td>{{ $a->role }}</td>
+                                    <td>{{ $f->title }}</td>
+                                    <td>{{ $f->desc }}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{ url('update_user', $a->id) }}"
+                                        <img style="max-width: 100%;" src="{{ asset('storage/' . $f->image) }}"
+                                            alt="gambar kelas" loading="lazy">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning" href="{{ url('update_foto', $f->id) }}"
                                             role="button">Edit</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_user', $a->id) }}">
+                                            href="{{ url('delete_foto', $f->id) }}">
                                             Delete
                                         </a>
                                     </td>
@@ -98,7 +101,7 @@
             var urlToRedirect = ev.currentTarget.getAttribute('href');
             console.log(urlToRedirect);
             swal({
-                    title: "Are you sure to delete this user?",
+                    title: "Are you sure to delete this foto?",
                     text: "You will not be able to revert this!",
                     icon: "warning",
                     buttons: true,

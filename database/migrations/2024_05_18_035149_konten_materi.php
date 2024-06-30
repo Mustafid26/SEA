@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('materi_id');
             $table->unsignedBigInteger('kelas_id');
             $table->text('konten');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->timestamps();
 
             // Foreign key constraint

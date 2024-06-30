@@ -23,7 +23,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [HomeController::class, 'index'],function () {
     return view('home', [
         'active' => 'beranda'
     ]);
@@ -34,6 +34,13 @@ Route::get('/', function () {
 Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth','verified');
 Route::get('/comingsoon', [HomeController::class, 'comingsoon'])->middleware('auth','verified');
 
+
+Route::post('/add_foto', [AdminController::class,'add_foto']);
+Route::get('/view_foto', [AdminController::class,'view_foto']);
+Route::get('/show_foto', [AdminController::class,'show_foto']);
+Route::get('/update_foto/{id}', [AdminController::class,'update_foto']);
+Route::post('/update_foto_2/{id}', [AdminController::class,'update_foto_2']);
+Route::get('/delete_foto/{id}', [AdminController::class,'delete_foto']);
 
 Route::post('/add_user', [AdminController::class,'add_user']);
 Route::get('/view_user', [AdminController::class,'view_user']);

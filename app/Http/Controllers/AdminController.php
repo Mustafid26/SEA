@@ -11,12 +11,116 @@ use App\Models\Question;
 use App\Models\QuestionPostest;
 use App\Models\PretestUser;
 use App\Models\PostestUser;
+use App\Models\Foto;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
+    public function view_foto()
+    {
+        if (auth::id()) {
+            $foto=Foto::all();
+            return view('admin.fotber', compact('foto')); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
+    
+    public function add_foto (Request $request)
+    {
+        $foto= new Foto;
+        $foto-> title=$request->title;
+        $foto-> desc=$request->desc;
+        $validated = $request->validate([
+            'image' => 'image|file|max:10240'
+        ]);
+       
+        $image=$request->image;
+        if($request->file('image'))
+        {
+            $imagePath = $validated['image'] = $request->file('image')->store('foto_beranda', 'public');
+            $foto->image = $imagePath;
+        }
+        
+        $foto->save();
+        Alert::success('Success', 'Foto added successfully');
+        return redirect()->back();
+    }
+
+    
+    public function show_foto()
+    {
+       if (auth::id()){
+            $foto=Foto::all();   
+            return view('admin.show_fotber', compact('foto'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+    public function update_foto($id)
+    {
+        $foto=Foto::find($id);
+        return view('admin.update_fotber', compact('foto'));
+        
+    }
+    public function delete_foto($id)
+    {
+        $foto=Foto::find($id);
+        $foto->delete();
+        Alert::success('Success', 'Foto deleted successfully');
+        return redirect()->back();
+    }
+    public function update_foto_2(Request $request, $id)
+    {
+        // Find the existing photo record
+        $foto = Foto::find($id);
+
+        // Update the title and description
+        $foto->title = $request->title;
+        $foto->desc = $request->desc;
+
+        // Validate the new image file
+        $validated = $request->validate([
+            'image' => 'image|file|max:10240'
+        ]);
+
+        // Check if a new image file is uploaded
+        $validated = $request->validate([
+            'image' => 'image|file|max:10240'
+        ]);
+       
+        if ($request->file('image')) {
+            // Delete the old image file from storage
+            if ($foto->image) {
+                Storage::disk('public')->delete($foto->image);
+            }
+
+            $originalName = $request->image->getClientOriginalName();
+            
+            $imagePath = $originalName;
+            
+            // Store the new image file
+            $imagePath = $validated['image'] = $request->file('image')->storeAs('foto_beranda', $originalName, 'public');
+
+            // Update the image path in the database
+            $foto->image = $imagePath;
+        }
+
+        // Save the updated photo record
+        $foto->save();
+
+        // Display success message and redirect back
+        Alert::success('Success', 'Foto Updated successfully');
+        return redirect()->back();
+    }
+
+    
     public function view_user()
     {
         if (auth::id()) {
@@ -199,13 +303,22 @@ class AdminController extends Controller
             'image' => 'image|file|max:10240'
         ]);
        
-        $image=$request->image;
-        if($request->file('image'))
-        {
-            $imagePath = $validated['image'] = $request->file('image')->store('pp_artikel', 'public');
+        if ($request->file('image')) {
+            // Delete the old image file from storage
+            if ($artikel->image) {
+                Storage::disk('public')->delete($artikel->image);
+            }
+
+            $originalName = $request->image->getClientOriginalName();
+            
+            $imagePath = $originalName;
+            
+            // Store the new image file
+            $imagePath = $validated['image'] = $request->file('image')->storeAs('pp_artikel', $originalName, 'public');
+
+            // Update the image path in the database
             $artikel->image = $imagePath;
         }
-        
         
         
         $artikel->save();
@@ -285,17 +398,22 @@ class AdminController extends Controller
         $kelas=Kelas::find($id);
         $kelas->nama_kelas=$request->nama_kelas;
         $kelas->detail_kelas=$request->detail_kelas;
-        
-            $validated = $request->validate([
-                'image' => 'image|file|max:10240'
-            ]);
-        
-            $image=$request->image;
-            if($request->file('image'))
-            {
-                $imagePath = $validated['image'] = $request->file('image')->store('photo_kelas', 'public');
-                $kelas->image = $imagePath;
+        if ($request->file('image')) {
+            // Delete the old image file from storage
+            if ($kelasgfrt5->image) {
+                Storage::disk('public')->delete($kelas->image);
             }
+
+            $originalName = $request->image->getClientOriginalName();
+            
+            $imagePath = $originalName;
+            
+            // Store the new image file
+            $imagePath = $validated['image'] = $request->file('image')->storeAs('photo_kelas', $originalName, 'public');
+
+            // Update the image path in the database
+            $kelas->image = $imagePath;
+        }
             
         $kelas->save();
         Alert::success('Success', 'Artikel Updated successfully');

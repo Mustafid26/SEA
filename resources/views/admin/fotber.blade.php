@@ -59,26 +59,25 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('add_kelas')}}" method="post" class="mb-5" enctype="multipart/form-data">                
+                    <form action="{{url('add_foto')}}" method="post" class="mb-5" enctype="multipart/form-data">                
                         @csrf
-                        <h1 class="h1coy">Add Kelas</h1>
+                        <h1 class="h1coy">Add Foto Beranda</h1>
                         <div class="mb-3">
-                            <label for="nama_kelas" nameclass="form-label">Nama Kelas</label>
-                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="nama_kelas" name="nama_kelas" placeholder="Masukkan Nama Kelas" required value="">
+                            <label for="title" nameclass="form-label">Judul</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="title" name="title" placeholder="Masukkan Judul" required value="">
                         </div>
+
                         <div class="mb-3">
-                            <label for="detail_kelas" class="form-label">Detail Kelas</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="detail_kelas" name="detail_kelas" placeholder="Masukkan Detail Kelas " required value="">
+                            <label for="desc" class="form-label">Deskripsi</label>
+                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="desc" name="desc" placeholder="Masukkan Deskripsi Foto" required value="">
                         </div>
-                        <div class="mb-3">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Kelas " required value="">
-                        </div>
+
                         <div class="mb-3">
                             <label for="image" nameclass="form-label">Upload Gambar</label>
                             <img src="" class="img-fluid img-preview mb-3 col-sm-5" alt="" style="max-width: 20%">
                             <input type="file" style="background-color: white !important; " name="image" id="image" class="form-control" id="inputGroupFile02" onchange="previewImage()">
                         </div>
+                        
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

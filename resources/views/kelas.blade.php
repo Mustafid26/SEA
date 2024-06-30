@@ -10,7 +10,7 @@
     });
 </script>
 @endif
-<div class="container mt-5 fadeinUp" style="margin-bottom: 5rem;"> 
+<div class="container mt-5 fadeinUp" style="margin-bottom: 10rem;"> 
     <div class="header">
       <div class="profile">
         @if (Auth::user()->profile_photo_path)
@@ -29,7 +29,7 @@
     @foreach($kelas as $k)
     <a href="{{ url('/kelas/' . $k->id . '/materi') }}">
         <div class="card-custom shadow-lg">
-          <img style="max-width: 10%;" src="{{ asset('storage/' . $k->image) }}">
+          <img src="{{ asset('storage/' . $k->image) }}" class="logo_kelas">
           <div>
               <h6>{{$k->nama_kelas}}</h6>
               <p>{{$k->detail_kelas}}</p>

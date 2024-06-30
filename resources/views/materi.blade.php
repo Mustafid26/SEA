@@ -11,7 +11,7 @@
     });
 </script>
 @endif
-<div class="container">
+<div class="container" style="margin-bottom: 10rem; padding-right: 0px !important;">
     <div class="d-flex mt-5">
         <!-- Card Mobile -->
         <div class="card-mobile"    >

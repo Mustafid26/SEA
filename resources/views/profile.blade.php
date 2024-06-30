@@ -14,6 +14,7 @@
     <style>
         body {
             font-family: 'Maven Pro';
+            padding-bottom : 100px;
         }
 
         .profile-container {
@@ -143,6 +144,27 @@
             width: 4rem;
             height: 4rem;
         }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .countdown div {
+            color: black;
+        }
+
+        .countdown .time {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .countdown .label {
+            font-size: 1rem;
+            margin-top: 5px;
+        }
     </style>
 </head>
 
@@ -262,7 +284,7 @@
                 @endif
             </div>
             <div class="profile-options">
-                <a href="{{url('/comingsoon')}}" style="text-decoration: none;">
+                {{-- <a href="{{url('/comingsoon')}}" style="text-decoration: none;">
                     <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
                         <div class="d-flex justify-content-between">
                             <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
@@ -271,7 +293,47 @@
                                     srcset=""> 1000 Poin</span>
                         </div>
                     </button>
-                </a>
+                </a> --}}
+                <button class="btn-profile btn-coin btn btn-outline-secondary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    <div class="d-flex justify-content-between">
+                        <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
+                                style="color: #219c90;"></i>Sekari Point</span>
+                        <span class="badge-pill"><img src="{{ asset('img/coin.png') }} " alt=""
+                                srcset=""> 1000 Poin</span>
+                    </div>
+                </button>
+                  
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">COMING SOON</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="countdown" class="countdown">
+                                    <div>
+                                        <div class="time" id="days">00</div>
+                                        <div class="label">DAYS</div>
+                                    </div>
+                                    <div>
+                                        <div class="time" id="hours">00</div>
+                                        <div class="label">HOURS</div>
+                                    </div>
+                                    <div>
+                                        <div class="time" id="minutes">00</div>
+                                        <div class="label">MINUTES</div>
+                                    </div>
+                                    <div>
+                                        <div class="time" id="seconds">00</div>
+                                        <div class="label">SECONDS</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <a href="/user/profile" style="text-decoration: none;">
                     <button class="btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                         <span class="text-profile"><i class="fa fa-solid fa-gear fa-2xl icon-profile"
@@ -309,6 +371,34 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+            const targetDate = new Date('August 5, 2024 00:00:00').getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown').innerHTML = 'The date has passed!';
+                }
+            }
+
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
     </script>
 </body>
 
