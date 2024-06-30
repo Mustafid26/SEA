@@ -88,6 +88,7 @@
                                 <option value="" selected="">Tambahkan Role</option>
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
+                                <option value="sekari">Sekari</option>
                             </select><br><br>
                         </div>
 

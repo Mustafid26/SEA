@@ -14,7 +14,7 @@
 <div class="container" style="margin-bottom: 10rem; padding-right: 0px !important;">
     <div class="d-flex mt-5">
         <!-- Card Mobile -->
-        <div class="card-mobile"    >
+        <div class="card-mobile">
             <div class="card card-class me-3" style="flex: 1;">
                 <img src="{{asset("/img/kelas.png")}}" class="card-img-top img-class">
                 <div class="card-body">
@@ -28,32 +28,37 @@
                             </button>
                             <div id="drop-content" class="drop-content">
                                 <!-- Pengecekan dan tampilan status pretest -->
-                                @if ($pretestCompleted)
-                                    <span style="color:white"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
-                                @else
-                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
+                                @if (Auth::user()->usertype != 0)
+                                    @if ($pretestCompleted)
+                                        <span style="color:white"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
+                                    @else
+                                        <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
+                                    @endif
                                 @endif
                             
                                 <!-- Daftar materi -->
                                 @if ($materi->isEmpty())
-                                <span class="dropdown-item text-white">Belum ada materi</span>
+                                    <span class="dropdown-item text-white">Belum ada materi</span>
                                 @else
-                                @foreach($materi as $m)
-                                    @if ($pretestCompleted)
-                                    <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                        <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
-                                    </form>
-                                    <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
-                                    @else
-                                        <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
-                                        <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
-                                    @endif
-                                @endforeach
+                                    @foreach($materi as $m)
+                                        @if ($pretestCompleted)
+                                            <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                                <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
+                                            </form>
+                                            @if (Auth::user()->usertype != 0)
+                                                <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
+                                            @endif
+                                        @else
+                                            <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                            @if (Auth::user()->usertype != 0)
+                                                <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
+                                            @endif
+                                        @endif
+                                    @endforeach
                                 @endif
-                            </div>
-                                                                                                      
+                            </div>                                                  
                         </div>     
                     </div>
                 </div>

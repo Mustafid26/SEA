@@ -187,6 +187,9 @@ class AdminController extends Controller
         {
             $data -> usertype = $request-> usertype = 1;
         }
+        else if($request->role == 'sekari'){
+            $data -> usertype = $request-> usertype = 2;
+        }
         else
         {
             $data -> usertype = $request-> usertype = 0;
