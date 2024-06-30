@@ -4,7 +4,7 @@
     <div class="container-parent vh-100" style="margin-bottom: 10rem;">
         <div class="container-child">
             <div class="video-container">
-                <img src="{{asset('img/SEA.png')}}" alt="" class="img-fluid p-2">
+                <img src="{{asset('img/SEA.png')}}" alt="" class="img-fluid p-2" style="max-width: 50%;">
             </div>
             <div class="content-materi-after">
                 <h2>{{ $materi->judul_materi }}</h2>
