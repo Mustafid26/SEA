@@ -11,7 +11,7 @@
     });
 </script>
 @endif
-<div class="container" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:10rem;">
+<div class="container fadeinUp" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:10rem;">
     <div class="d-flex mt-5">
         <!-- Card Mobile -->
         <div class="card-mobile">
