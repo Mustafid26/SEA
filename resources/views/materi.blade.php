@@ -11,17 +11,17 @@
     });
 </script>
 @endif
-<div class="container" style="margin-bottom: 10rem; padding-right: 0px !important;">
+<div class="container" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:10rem;">
     <div class="d-flex mt-5">
         <!-- Card Mobile -->
         <div class="card-mobile">
             <div class="card card-class me-3" style="flex: 1;">
-                <img src="{{asset("/img/kelas.png")}}" class="card-img-top img-class">
+                <img src="{{asset("/img/SEKARI.png")}}" class="card-img-top img-class p-5">
                 <div class="card-body">
-                    <h3 class="card-title">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
+                    <h3 class="card-title mb-4">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
                     <h5>Deskripsi Singkat</h5>
                     <p class="card-text">{{$kelas->deskripsi}}</p>
-                    <div class="list-group">   
+                    <div class="list-group mt-4">   
                         <div class="drop">
                             <button class="drop-btn btn-primary" onclick="toggledrop()">
                                 <i class="fa fa-solid fa-book"></i> Materi Belajar
@@ -63,11 +63,11 @@
                 </div>
             </div>
         </div>
-        <!-- Card Desktop -->
     </div>
+    <!-- Card Desktop -->
     <div class="mt-5 card-desktop">
         <div class="card card-class me-3" style="flex: 1;">
-            <img src="{{asset("/img/kelas.png")}}" class="card-img-top img-class">
+            <img src="{{asset("/img/SEKARI.png")}}" class="card-img-top img-class p-5">
             <div class="card-body">
                 <h3 class="card-title">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
                 <h5>Deskripsi Singkat</h5>
@@ -80,15 +80,13 @@
                 <div class="card-body d-flex justify-content-center">
                     <div class="dropdown w-100">
                         <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Materi
+                            <i class="fa fa-solid fa-book"></i> Klik Disini
                         </button>
                         <ul class="dropdown-menu w-100">
-                            @if (Auth::user()->usertype != 0)
-                                @if ($pretestCompleted)
-                                        <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
-                                @else
-                                        <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
-                                @endif
+                            @if ($pretestCompleted)
+                                    <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
+                            @else
+                                    <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
                             @endif
                             <!-- Daftar materi -->
                             @if ($materi->isEmpty())
