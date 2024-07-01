@@ -215,9 +215,8 @@ class AdminController extends Controller
     public function nilai_user()
     {
        if (auth::id()){
-            $nilai=PretestUser::all();   
-            $nilai1=PostestUser::all();   
-            return view('admin.show_nilai', compact('nilai','nilai1'));
+            $nilai = PretestUser::with(['postestUser','kelas', 'user'])->get();
+            return view('admin.show_nilai', compact('nilai'));
         }
         else{
             return redirect('login');
