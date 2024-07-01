@@ -299,7 +299,7 @@
                         <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
                                 style="color: #219c90;"></i>Sekari Point</span>
                         <span class="badge-pill"><img src="{{ asset('img/coin.png') }} " alt=""
-                                srcset=""> 1000 Poin</span>
+                                srcset=""> {{ Auth::user()->points }} Poin</span>
                     </div>
                 </button>
                   

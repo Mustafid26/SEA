@@ -50,9 +50,9 @@
                                         <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                     @endif
                                     @else
-                                        <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                        <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                         @if (Auth::user()->usertype != 0)
-                                        <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
+                                        <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                         @endif
                                     @endif
                                 @endforeach

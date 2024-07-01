@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('nik') ->unique();
             $table->string('usertype')->default(0);
+            $table->integer('points')->default(0);
             $table->string('role')->default('user');
             $table->string('password');
             $table->rememberToken();

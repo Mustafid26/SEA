@@ -20,7 +20,7 @@
         @endif
         <div>
           <h5>Halo, {{Auth::user()->name}}</h5>
-          <span><img src="{{ asset('img/coin.png')}} " alt="" srcset="">1000 Poin</span>
+          <span><img src="{{ asset('img/coin.png')}} " alt="" srcset="">{{ Auth::user()->points }} Poin</span>
         </div>
       </div>
     </div>
