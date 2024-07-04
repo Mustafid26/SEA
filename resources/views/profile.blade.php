@@ -175,7 +175,7 @@
             <div class="spinner-border" role="status" style="color: #54BAB9 !important">
                 <span class="sr-only">Loading...</span>
             </div>
-            <img src="{{ asset('img/SEAPreload.png') }}" alt="Loading" class="spinner-image">
+            <img src="{{ asset('img/SEAPreload.webp') }}" alt="Loading" class="spinner-image">
         </div>
     </div>
     {{-- preload --}}

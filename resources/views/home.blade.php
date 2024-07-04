@@ -4,7 +4,7 @@
 <div id="carouselExampleCaptions" class="carousel slide carousel-desktop">
 	<div class="carousel-inner">
 	  <div class="carousel-item active">
-		<img src="{{asset('img/fullteam.jpg')}}" class="d-block w-100" alt="...">
+		<img src="{{asset('img/fullteam.webp')}}" class="d-block w-100" alt="...">
 		<div class="carousel-caption d-none d-md-block">
 		  <h5 style="color:white;">Tim PPK Ormawa HMTI</h5>
 		  <p>Some representative placeholder content for the first slide.</p>
@@ -14,7 +14,7 @@
 </div>
 <div class="container-sea text-center mt-5 fadeinUp">
 	<div class="content-wrapper">
-	  <img src="{{ asset('img/SEA.png') }}" alt="SEA Logo" class="logo-home mb-5" />
+	  <img src="{{ asset('img/SEA.webp') }}" alt="SEA Logo" class="logo-home mb-5" />
 	  <div class="text-content">
 		<h3 class="title">Apa Itu SEA?</h3>
 		<p class="intro">Hai, SEKARI!</p>

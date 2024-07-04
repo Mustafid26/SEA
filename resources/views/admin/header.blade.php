@@ -1,7 +1,7 @@
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
         <a class="navbar-brand brand-logo-mini" href="/redirect">
-            <img src="{{ asset('admin/assets/images/SEA.png') }}" alt="logo" style="width: 50px; height: auto;" />
+            <img src="{{ asset('admin/assets/images/SEA.webp') }}" alt="logo" style="width: 50px; height: auto;" />
         </a>
     </div>
 

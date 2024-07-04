@@ -86,14 +86,14 @@
             <div class="spinner-border" role="status" style="color: #54BAB9 !important">
                 <span class="sr-only">Loading...</span>
             </div>
-            <img src="{{ asset('img/SEAPreload.png') }}" alt="Loading" class="spinner-image">
+            <img src="{{ asset('img/SEAPreload.webp') }}" alt="Loading" class="spinner-image">
         </div>
     </div>
     {{-- preload --}}
 
     <!-- Navbar Start -->
     <nav class="navbar-top">
-        <img src="{{ asset('img/SEA.png')}}" alt="Logo" class="logo">
+        <img src="{{ asset('img/SEA.webp')}}" alt="Logo" class="logo">
         <div class="nav-container">
             <div class="nav-links">
                 <a href="/" class="{{ ($active === 'beranda') ? 'active' : '' }}">BERANDA</a>
