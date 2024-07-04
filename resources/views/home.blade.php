@@ -1,20 +1,36 @@
 @extends('layouts.main')
 
 @section('konten')
-<div class="container text-center mt-5 fadeinUp">
-	<img src="{{ asset('img/SEA.png') }}" alt="SEA Logo" class="logo w-100">
-	<div class="card mt-4">
-		<div class="card-header bg-teal text-white">
-			<h3 style="color: white;">Apa Itu SEA?</h3>
+<div id="carouselExampleCaptions" class="carousel slide carousel-desktop">
+	<div class="carousel-inner">
+	  <div class="carousel-item active">
+		<img src="{{asset('img/fullteam.jpg')}}" class="d-block w-100" alt="...">
+		<div class="carousel-caption d-none d-md-block">
+		  <h5 style="color:white;">Tim PPK Ormawa HMTI</h5>
+		  <p>Some representative placeholder content for the first slide.</p>
 		</div>
-		<div class="card-body">
-			<p>Hai, SEKARI!</p>
-			<p>SEA adalah sebuah platform aplikasi berbasis website pendukung SEKARI, yang digunakan untuk mengunduh
-				materi, mengerjakan pretest dan postest. Serta bisa mendapatkan sekari points untuk ditukarkan berbagai hadiah khusus siswa SEKARI</p>
-		</div>
+	  </div>
 	</div>
 </div>
-<section id="slider" class="pt-5">
+<div class="container-sea text-center mt-5 fadeinUp">
+	<div class="content-wrapper">
+	  <img src="{{ asset('img/SEA.png') }}" alt="SEA Logo" class="logo-home mb-5" />
+	  <div class="text-content">
+		<h3 class="title">Apa Itu SEA?</h3>
+		<p class="intro">Hai, SEKARI!</p>
+		<p>
+		  SEA adalah sebuah platform aplikasi berbasis website pendukung
+		  SEKARI, yang digunakan untuk mengunduh materi, mengerjakan pretest
+		  dan postest. Serta bisa mendapatkan sekari points untuk ditukarkan
+		  berbagai hadiah khusus siswa SEKARI.
+		</p>
+		<div class="button-group">
+		  <a href="/kelas" class="btn btn-primary">Yukk Cobain Sekarang!</a>
+		</div>
+	  </div>
+	</div>
+</div>
+<section id="slider" class="pt-5 mt-5" style="background-color: rgb(212, 212, 212);">
 	<div class="container">
 		<h1 class="text-center"><b>Dokumentasi</b></h1>
 		<div class="slider">
