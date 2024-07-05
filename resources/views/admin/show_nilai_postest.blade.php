@@ -72,7 +72,7 @@
                                     <td>{{ $n->kelas->kelas->nama_kelas}}</td>
                                     <td>{{ $n->score ?? 'Nilai belum ada' }}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{ url('update_nilai_pretest', $n->id) }}"
+                                        <a class="btn btn-warning" href="{{ url('update_nilai_postest', $n->id) }}"
                                             role="button">Edit</a>
                                     </td>
                                 </tr>
@@ -89,6 +89,33 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
+    <script>
+        function confirmation(ev) {
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal({
+                    title: "Are you sure to delete this Riwayat?",
+                    text: "You will not be able to revert this!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willCancel) => {
+                    if (willCancel) {
+
+
+
+                        window.location.href = urlToRedirect;
+
+                    }
+
+
+                });
+
+
+        }
+    </script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

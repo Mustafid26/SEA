@@ -3,10 +3,12 @@
 <title>Admin SEA</title>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     @include('admin.css')
     <style>
         .content-wrapper {
             overflow-x: auto !important;
+            background-color: rgb(0, 0, 0);
         }
 
         .div_center {
@@ -39,6 +41,10 @@
         .content:hover {
             background-color: rgb(129, 103, 103);
         }
+
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
     </style>
 </head>
 
@@ -54,32 +60,17 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nama User</th>
-                                <th scope="col">Kelas</th>
-                                <th scope="col">Nilai Pretest</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($nilai as $n)
-                                <tr class="content">
-                                    <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $n->user->name }}</td>
-                                    <td>{{ $n->kelas->kelas->nama_kelas}}</td>
-                                    <td>{{ $n->score ?? 'Nilai belum ada' }}</td>
-                                    <td>
-                                        <a class="btn btn-warning" href="{{ url('update_nilai_pretest', $n->id) }}"
-                                            role="button">Edit</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
+                    <form action="{{ url('update_nilai_postest_2', $data->id) }}" method="post"
+                        class="mb-5">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="score" nameclass="form-label">Nilai Postest</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text"
+                                class="form-control" id="" name="score"
+                                placeholder="Masukkan Nilai Baru" required value="{{ $data->score }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
             <!-- main-panel ends -->
@@ -89,6 +80,8 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
+
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

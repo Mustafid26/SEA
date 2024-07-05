@@ -57,8 +57,22 @@ Route::post('/update_user_2/{id}', [AdminController::class,'update_user_2']);
 Route::get('/delete_user/{id}', [AdminController::class,'delete_user']);
 Route::get('/search_user', [AdminController::class,'search_user']);
 
+Route::get('/update_points/{id}', [AdminController::class,'update_points']);
+Route::post('/update_points_2/{id}', [AdminController::class,'update_points_2']);
+
 Route::get('/nilai_user', [AdminController::class,'nilai_user']);
-Route::get('/delete_riwayat', [AdminController::class,'delete_riwayat']);
+Route::get('/update_nilai_pretest/{id}', [AdminController::class,'update_nilai_pretest']);
+Route::post('/update_nilai_pretest_2/{id}', [AdminController::class,'update_nilai_pretest_2']);
+
+Route::get('/nilai_postest_user', [AdminController::class,'nilai_postest_user']);
+Route::get('/update_nilai_postest/{id}', [AdminController::class,'update_nilai_postest']);
+Route::post('/update_nilai_postest_2/{id}', [AdminController::class,'update_nilai_postest_2']);
+
+Route::get('/pretest_user', [AdminController::class,'pretest_user']);
+Route::get('/delete_pretest_user/{id}', [AdminController::class,'delete_pretest_user']);
+
+Route::get('/postest_user', [AdminController::class,'postest_user']);
+Route::get('/delete_postest_user/{id}', [AdminController::class,'delete_postest_user']);
 
 Route::post('/add_artikel', [AdminController::class,'add_artikel']);
 Route::get('/view_artikel', [AdminController::class,'view_artikel']);
@@ -116,7 +130,7 @@ Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('index')-
 Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('profile.upload')->middleware('auth','verified');
 Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete')->middleware('auth','verified');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
     Route::get('/kelas/{kelas}', [PretestController::class, 'show'])->name('pretest.show');
     Route::post('/kelas/{kelas}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });

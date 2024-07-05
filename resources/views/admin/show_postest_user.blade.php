@@ -60,20 +60,18 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama User</th>
                                 <th scope="col">Kelas</th>
-                                <th scope="col">Nilai Pretest</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($nilai as $n)
+                            @foreach ($userpost as $p)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $n->user->name }}</td>
-                                    <td>{{ $n->kelas->kelas->nama_kelas}}</td>
-                                    <td>{{ $n->score ?? 'Nilai belum ada' }}</td>
+                                    <td>{{ $p->user->name }}</td>
+                                    <td>{{ $p->kelas->kelas->nama_kelas}}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{ url('update_nilai_pretest', $n->id) }}"
-                                            role="button">Edit</a>
+                                        <a onclick="confirmation(event)" class="btn btn-danger"
+                                            href="{{ url('delete_postest_user', $p->id) }}">Delete Postest</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -89,6 +87,34 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
+    <script>
+        function confirmation(ev) {
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal({
+                    title: "Are you sure to delete this Riwayat?",
+                    text: "You will not be able to revert this!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willCancel) => {
+                    if (willCancel) {
+
+
+
+                        window.location.href = urlToRedirect;
+
+                    }
+
+
+                });
+
+
+        }
+    </script>
+
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

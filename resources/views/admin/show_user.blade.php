@@ -61,6 +61,7 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">NIK</th>
                                 <th scope="col">Role</th>
+                                <th scope="col">Points</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -71,9 +72,10 @@
                                     <td>{{ $a->name }}</td>
                                     <td>{{ $a->nik }}</td>
                                     <td>{{ $a->role }}</td>
+                                    <td>{{ $a->points }}</td>
                                     <td>
                                         <a class="btn btn-warning" href="{{ url('update_user', $a->id) }}"
-                                            role="button">Edit</a>
+                                            role="button">Edit User</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
                                             href="{{ url('delete_user', $a->id) }}">
                                             Delete

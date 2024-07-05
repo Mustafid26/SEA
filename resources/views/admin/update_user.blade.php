@@ -86,12 +86,15 @@
                             <select name="role" id="" class="input_color" style="width: 200px;" required
                                 value="{{ $data->role }}">
                                 <option value="" selected="">Tambahkan Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                                <option value="sekari">Sekari</option>
+                                <option value="admin" {{ old('role', $data->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user" {{ old('role', $data->role) == 'user' ? 'selected' : '' }}>User</option>
+                                <option value="sekari" {{ old('role', $data->role) == 'sekari' ? 'selected' : '' }}>Sekari</option>
                             </select><br><br>
                         </div>
-
+                        <label for="points" class="form-label">Points</label>
+                        <input type="text" style="background-color: white !important; color: black !important;"
+                            class="form-control" id="points" name="points" value="{{ old('points', $data->points) }}"
+                            placeholder="Enter new points if you want to change it">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

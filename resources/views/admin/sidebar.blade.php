@@ -44,7 +44,10 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/view_user') }}">Add User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/show_user') }}">Show User</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('/nilai_user') }}">Nilai User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/nilai_user') }}">Nilai Pretest User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/nilai_postest_user') }}">Nilai Postest User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/pretest_user') }}">Pretest User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/postest_user') }}">Postest User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/view_foto') }}">Add Foto Beranda</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/show_foto') }}">Show Foto Beranda</a></li>
                 </ul>

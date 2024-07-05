@@ -177,12 +177,14 @@ class AdminController extends Controller
         Alert::success('Success', 'User deleted successfully');
         return redirect()->back();
     }
+    
     public function update_user_2(Request $request,$id)
     {
         $data=User::find($id);
         $data->name=$request->name;
         $data->nik=$request->nik;
         $data->role=$request->role;
+        $data->points=$request->points;
         if($request->role=='admin')
         {
             $data -> usertype = $request-> usertype = 1;
@@ -222,17 +224,92 @@ class AdminController extends Controller
             return redirect('login');
         }
     }
+    
+    public function update_nilai_pretest($id)
+    {
+        $data=PretestUser::find($id);
+        return view('admin.update_nilai_pretest', compact('data'));
+        
+    }
 
-    public function delete_riwayat($id)
+    public function update_nilai_pretest_2(Request $request,$id)
+    {
+        $data=PretestUser::find($id);
+        $data->score=$request->score;
+        $data->save();
+        Alert::success('Success', 'Nilai Pretest Updated successfully');
+        return redirect()->back();
+    }
+
+    public function nilai_postest_user()
+    {
+       if (auth::id()){
+            $nilai = PostestUser::with(['kelas', 'user'])->get();
+            return view('admin.show_nilai_postest', compact('nilai'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function update_nilai_postest($id)
+    {
+        $data=PostestUser::find($id);
+        return view('admin.update_nilai_postest', compact('data'));
+        
+    }
+
+    public function update_nilai_postest_2(Request $request,$id)
+    {
+        $data=PostestUser::find($id);
+        $data->score=$request->score;
+        $data->save();
+        Alert::success('Success', 'Nilai Postest Updated successfully');
+        return redirect()->back();
+    }
+
+
+    //pretest_user
+    public function pretest_user()
+    {
+       if (auth::id()){
+            $userp = PretestUser::with(['postestUser','kelas', 'user'])->get();
+            return view('admin.show_pretest_user', compact('userp'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function delete_pretest_user($id)
     {
         $nilai=PretestUser::find($id);
         $nilai->delete();
         Alert::success('Success', 'Riwayat deleted successfully');
         return redirect()->back();
     }
-    
+
+    //postest_user
+    public function postest_user()
+    {
+       if (auth::id()){
+            $userpost = PostestUser::with(['kelas', 'user'])->get();
+            return view('admin.show_postest_user', compact('userpost'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function delete_postest_user($id)
+    {
+        $nilai=PostestUser::find($id);
+        $nilai->delete();
+        Alert::success('Success', 'Riwayat deleted successfully');
+        return redirect()->back();
+    }
+
     //artikel
-    
     public function view_artikel()
     {
         if (auth::id()) {
