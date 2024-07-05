@@ -116,7 +116,7 @@ Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('index')-
 Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('profile.upload')->middleware('auth','verified');
 Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete')->middleware('auth','verified');
 
-Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/kelas/{kelas}', [PretestController::class, 'show'])->name('pretest.show');
     Route::post('/kelas/{kelas}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });

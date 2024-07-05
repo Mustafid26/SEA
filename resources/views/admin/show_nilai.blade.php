@@ -71,8 +71,8 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $n->user->name }}</td>
                                     <td>{{ $n->kelas->kelas->nama_kelas}}</td>
-                                    <td>{{ $n->score }}</td>
-                                    <td>{{ $n->postestUser->score }}</td>
+                                    <td>{{ $n->score ?? 'Nilai belum ada' }}</td>
+                                    <td>{{ $n->postestUser->score ?? 'Nilai belum ada' }}</td>
                                     <td>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
                                             href="{{ url('delete_riwayat', $n->id) }}">Delete</a>
