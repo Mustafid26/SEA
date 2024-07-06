@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\PretestUser;
 use Illuminate\Http\Request;
@@ -36,6 +37,15 @@ class PretestController extends Controller
         foreach ($request->input('answers') as $questionId => $answer) {
             $question = Question::find($questionId);
             if ($question) {
+                // Simpan jawaban ke dalam tabel answers
+                Answer::create([
+                    'user_id' => $user->id,
+                    'question_id' => $questionId,
+                    'kelas_id' => $kelasId,
+                    'answer' => $answer,
+                    'is_correct' => $question->correct_answer == $answer,
+                ]);
+    
                 if ($question->correct_answer == $answer) {
                     $correctAnswers++;
                 }

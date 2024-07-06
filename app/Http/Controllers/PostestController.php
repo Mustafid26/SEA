@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\PostestUser;
 use Illuminate\Http\Request;
+use App\Models\AnswerPostest;
 use App\Models\QuestionPostest;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,9 +37,19 @@ class PostestController extends Controller
         foreach ($request->input('answers') as $questionId => $answer) {
             $questions_postest = QuestionPostest::find($questionId);
             if ($questions_postest) {
-                if ($questions_postest->correct_answer == $answer) {
+                $isCorrect = $questions_postest->correct_answer == $answer;
+                if ($isCorrect) {
                     $correctAnswers++;
                 }
+    
+                // Simpan jawaban ke dalam tabel answers_postest
+                AnswerPostest::create([
+                    'user_id' => $user->id,
+                    'question_id' => $questionId,
+                    'kelas_id' => $kelasId,
+                    'answer' => $answer,
+                    'is_correct' => $isCorrect,
+                ]);
             }
         }
         $score = ($correctAnswers / $totalQuestions) * 100;

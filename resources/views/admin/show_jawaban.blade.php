@@ -59,32 +59,17 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">NIK</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Points</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col">Soal</th>
+                                <th scope="col">Jawaban</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $a)
+                            @foreach ($answers as $a)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $a->name }}</td>
-                                    <td>{{ $a->nik }}</td>
-                                    <td>{{ $a->role }}</td>
-                                    <td>{{ $a->points }}</td>
-                                    <td>
-                                        <a class="btn btn-warning" href="{{ url('update_user', $a->id) }}"
-                                            role="button">Edit User</a>
-                                        <a class="btn btn-primary" href="{{ url('show_jawaban', $a->id) }}"
-                                                role="button">Lihat Jawaban Pretest</a>
-                                        <a class="btn btn-primary" href="{{ url('show_jawaban_postest', $a->id) }}"
-                                                role="button">Lihat Jawaban Postest</a>
-                                        <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_user', $a->id) }}">
-                                            Delete
-                                        </a>
-                                    </td>
+                                    <td>{{ $a->user->name }}</td>
+                                    <td>{{ $a->question->question}}</td>
+                                    <td>{{ $a->answer }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -98,33 +83,33 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
-    <script>
-        function confirmation(ev) {
-            ev.preventDefault();
-            var urlToRedirect = ev.currentTarget.getAttribute('href');
-            console.log(urlToRedirect);
-            swal({
-                    title: "Are you sure to delete this user?",
-                    text: "You will not be able to revert this!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willCancel) => {
-                    if (willCancel) {
+        <script>
+            function confirmation(ev) {
+                ev.preventDefault();
+                var urlToRedirect = ev.currentTarget.getAttribute('href');
+                console.log(urlToRedirect);
+                swal({
+                        title: "Are you sure to delete this user?",
+                        text: "You will not be able to revert this!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willCancel) => {
+                        if (willCancel) {
 
 
 
-                        window.location.href = urlToRedirect;
+                            window.location.href = urlToRedirect;
 
-                    }
-
-
-                });
+                        }
 
 
-        }
-    </script>
+                    });
+
+
+            }
+        </script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 

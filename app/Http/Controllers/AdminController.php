@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Artikel;
-use App\Models\Kelas;
-use App\Models\Materi;
-use App\Models\KontenMateri;
-use App\Models\Question;
-use App\Models\QuestionPostest;
-use App\Models\PretestUser;
-use App\Models\PostestUser;
 use App\Models\Foto;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Kelas;
+use App\Models\Answer;
+use App\Models\Materi;
+use App\Models\Artikel;
+use App\Models\Question;
+use App\Models\PostestUser;
+use App\Models\PretestUser;
+use App\Models\KontenMateri;
+use Illuminate\Http\Request;
+use App\Models\AnswerPostest;
+use App\Models\QuestionPostest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
@@ -213,7 +215,6 @@ class AdminController extends Controller
     }
     
    
-
     public function nilai_user()
     {
        if (auth::id()){
@@ -224,6 +225,7 @@ class AdminController extends Controller
             return redirect('login');
         }
     }
+    
     
     public function update_nilai_pretest($id)
     {
@@ -307,6 +309,24 @@ class AdminController extends Controller
         $nilai->delete();
         Alert::success('Success', 'Riwayat deleted successfully');
         return redirect()->back();
+    }
+
+    public function show_jawaban($id)
+    {
+        $answers = Answer::with(['user', 'question'])
+            ->where('user_id', $id)
+            ->get();
+
+        return view('admin.show_jawaban', compact('answers'));
+    }
+
+    public function show_jawaban_postest($id)
+    {
+        $answers = AnswerPostest::with(['user', 'question'])
+            ->where('user_id', $id)
+            ->get();
+
+        return view('admin.show_jawaban_postest', compact('answers'));
     }
 
     //artikel

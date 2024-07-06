@@ -232,7 +232,7 @@
                 <div class="profile-picture">
                     @if (Auth::user()->profile_photo_path)
                         <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo"
-                            style="  width: 250px;height: 250px;">
+                            style="width: 250px;height: 250px;">
                     @else
                         <img src="{{ asset('img/Profile.png') }}" alt="Profile Picture"
                             style="width: 250px;height: 250px;" />

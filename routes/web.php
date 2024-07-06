@@ -64,6 +64,9 @@ Route::get('/nilai_user', [AdminController::class,'nilai_user']);
 Route::get('/update_nilai_pretest/{id}', [AdminController::class,'update_nilai_pretest']);
 Route::post('/update_nilai_pretest_2/{id}', [AdminController::class,'update_nilai_pretest_2']);
 
+Route::get('show_jawaban/{id}', [AdminController::class, 'show_jawaban']);
+Route::get('show_jawaban_postest/{id}', [AdminController::class, 'show_jawaban_postest']);
+
 Route::get('/nilai_postest_user', [AdminController::class,'nilai_postest_user']);
 Route::get('/update_nilai_postest/{id}', [AdminController::class,'update_nilai_postest']);
 Route::post('/update_nilai_postest_2/{id}', [AdminController::class,'update_nilai_postest_2']);
