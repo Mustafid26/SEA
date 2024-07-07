@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('nama_lengkap');
             $table->string('nik') ->unique();
+            $table->string('rombel') ->nullable();
+            $table->string('ID_Sekari') ->nullable();
             $table->string('usertype')->default(0);
             $table->integer('points')->default(0);
             $table->string('role')->default('user');

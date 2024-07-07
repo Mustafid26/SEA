@@ -102,6 +102,11 @@
                           <input type="username" id="name" class="form-control form-control-lg" name="name" :value="old('name')" required autofocus autocomplete="username" />
                         </div>
       
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label class="form-label" for="name" value="{{ __('nama_lengkap') }}" >Nama Lengkap</label>
+                          <input type="username" id="name" class="form-control form-control-lg" name="nama_lengkap" :value="old('nama_lengkap')" required autofocus autocomplete="username" />
+                        </div>
+      
 			                  <div data-mdb-input-init class="form-outline mb-4">
                           <label class="form-label" for="nik" value="{{ __('nik') }}">NIK</label>
                           <input type="number" id="nik" class="form-control form-control-lg" name="nik" required autocomplete="current-nik" />
@@ -149,6 +154,11 @@
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" for="name" value="{{ __('name') }}" >Nama Pengguna</label>
                 <input type="username" id="name" class="form-control form-control-lg" name="name" :value="old('name')" required autofocus autocomplete="username" />
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="name" value="{{ __('nama_lengkap') }}" >Nama Lengkap</label>
+                <input type="username" id="name" class="form-control form-control-lg" name="nama_lengkap" :value="old('nama_lengkap')" required autofocus autocomplete="username" />
               </div>
   
               <div data-mdb-input-init class="form-outline mb-4">

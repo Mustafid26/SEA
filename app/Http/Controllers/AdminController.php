@@ -183,7 +183,9 @@ class AdminController extends Controller
     public function update_user_2(Request $request,$id)
     {
         $data=User::find($id);
+        $data->ID_Sekari=$request->ID_Sekari;
         $data->name=$request->name;
+        $data->rombel=$request->rombel;
         $data->nik=$request->nik;
         $data->role=$request->role;
         $data->points=$request->points;

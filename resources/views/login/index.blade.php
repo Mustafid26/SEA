@@ -110,7 +110,7 @@
                         </div>
       
                         <a class="small text-muted" href="#!">Lupa Kata Sandi?</a>
-                        <p class="mb-5 pb-lg-2" style="color: #219c9088;">Don't have an account? <a href="#!"
+                        <p class="mb-5 pb-lg-2" style="color: #219c9088;">Belum Punya Akun? <a href="#!"
                             style="color: #219c9088;">Register here</a></p>
                       </form>
                     </div>

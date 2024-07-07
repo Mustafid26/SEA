@@ -64,10 +64,28 @@
 
                         @csrf
                         <div class="mb-3">
+                            <label for="name" nameclass="form-label">ID Sekari</label>
+                            <input type="text" style="background-color: white !important; color: black !important;"
+                                class="form-control " id="ID_Sekari" name="ID_Sekari" placeholder="" required
+                                value="{{ $data->ID_Sekari }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" nameclass="form-label">Nama Lengkap</label>
+                            <input type="text" style="background-color: white !important; color: black !important;"
+                                class="form-control " id="name" name="name" placeholder="" required
+                                value="{{ $data->nama_lengkap }}">
+                        </div>
+                        <div class="mb-3">
                             <label for="name" nameclass="form-label">Nama</label>
                             <input type="text" style="background-color: white !important; color: black !important;"
                                 class="form-control " id="name" name="name" placeholder="" required
                                 value="{{ $data->name }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" nameclass="form-label">Rombel</label>
+                            <input type="text" style="background-color: white !important; color: black !important;"
+                                class="form-control " id="rombel" name="rombel" placeholder="" required
+                                value="{{ $data->rombel }}">
                         </div>
                         <div class="mb-3">
                             <label for="nik" class="form-label">NIK</label>

@@ -58,7 +58,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama User</th>
+                                <th scope="col">ID Sekari</th>
+                                <th scope="col">Nama Lengkap</th>
+                                <th scope="col">Nama Pengguna</th>
+                                <th scope="col">Rombel</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -67,7 +70,10 @@
                             @foreach ($userp as $p)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $p->user->ID_Sekari }}</td>
+                                    <td>{{ $p->user->nama_lengkap }}</td>
                                     <td>{{ $p->user->name }}</td>
+                                    <td>{{ $p->user->rombel }}</td>
                                     <td>{{ $p->kelas->kelas->nama_kelas}}</td>
                                     <td>
                                         <a onclick="confirmation(event)" class="btn btn-danger"

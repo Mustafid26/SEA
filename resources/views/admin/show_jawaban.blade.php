@@ -58,7 +58,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama</th>
+                                <th scope="col">Nama Lengkap</th>
+                                <th scope="col">Nama Pengguna</th>
                                 <th scope="col">Soal</th>
                                 <th scope="col">Jawaban</th>
                             </tr>
@@ -67,6 +68,7 @@
                             @foreach ($answers as $a)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $a->user->nama_lengkap }}</td>
                                     <td>{{ $a->user->name }}</td>
                                     <td>{{ $a->question->question}}</td>
                                     <td>{{ $a->answer }}</td>

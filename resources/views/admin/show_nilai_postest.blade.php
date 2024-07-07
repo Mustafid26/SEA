@@ -58,8 +58,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama User</th>
-                                <th scope="col">Kelas</th>
+                                <th scope="col">ID Sekari</th>
+                                <th scope="col">Nama Lengkap</th>
+                                <th scope="col">Nama Pengguna</th>
+                                <th scope="col">Rombel</th>
                                 <th scope="col">Nilai Pretest</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -68,7 +70,10 @@
                             @foreach ($nilai as $n)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $n->user->ID_Sekari }}</td>
+                                    <td>{{ $n->user->nama_lengkap }}</td>
                                     <td>{{ $n->user->name }}</td>
+                                    <td>{{ $n->user->rombel }}</td>
                                     <td>{{ $n->kelas->kelas->nama_kelas}}</td>
                                     <td>{{ $n->score ?? 'Nilai belum ada' }}</td>
                                     <td>

@@ -274,7 +274,7 @@
                         </div>
                     </div>
                 </div>
-                <h4><strong>{{ $user->name }}</strong></h4>
+                <h4><strong>{{ $user->nama_lengkap }}</strong></h4>
                 @if (Auth::user()->profile_photo_path)
                     <form action="{{ route('profile.delete') }}" method="POST" style="margin-top: 20px;">
                         @csrf
