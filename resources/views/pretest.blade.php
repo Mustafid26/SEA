@@ -59,6 +59,9 @@
         <div class="card-header text-center">
             Pretest
         </div>
+        <div class="timer">
+            Waktu Tersisa: <span id="time">02:30</span>
+        </div>
         <div class="progress mb-3">
             <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
@@ -95,6 +98,7 @@
                         </label>
                     </div>
                 </div>
+                <input type="hidden" name="questions[]" value="{{ $question->id }}">
                 @endforeach
                 @if ($totalQuestions > 1)
                 <button class="btn btn-custom mt-4" type="button" id="nextBtn">Next</button>
@@ -107,14 +111,17 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
             var currentQuestion = 0;
             var questions = $('.question');
             var totalQuestions = questions.length;
             var progressBar = $('.progress-bar');
+            var timerDuration = 150; // Timer in seconds (2.5 minutes)
+            var timerInterval;
 
             showQuestion(currentQuestion);
             updateProgress(currentQuestion + 1, totalQuestions);
+            startTimer(timerDuration);
 
             $('#nextBtn').click(function(e) {
                 e.preventDefault();
@@ -141,6 +148,24 @@
             function updateProgress(current, total) {
                 var progress = Math.round((current / total) * 100);
                 progressBar.css('width', progress + '%').attr('aria-valuenow', progress);
+            }
+
+            function startTimer(duration) {
+                var timer = duration, minutes, seconds;
+                timerInterval = setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    $('#time').text(minutes + ":" + seconds);
+
+                    if (--timer < 0) {
+                        clearInterval(timerInterval);
+                        $('#quizForm').submit();
+                    }
+                }, 1000);
             }
         });
     </script>

@@ -234,7 +234,7 @@
                         <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo"
                             style="width: 250px;height: 250px;">
                     @else
-                        <img src="{{ asset('img/Profile.png') }}" alt="Profile Picture"
+                        <img src="{{ asset('img/profile.png') }}" alt="Profile Picture"
                             style="width: 250px;height: 250px;" />
                     @endif
                     <div class="edit-icon">
@@ -274,7 +274,9 @@
                         </div>
                     </div>
                 </div>
+                <h4><strong>{{ $user->ID_Sekari }}</strong></h4>
                 <h4><strong>{{ $user->nama_lengkap }}</strong></h4>
+                <h4><strong>{{ $user->rombel }}</strong></h4>
                 @if (Auth::user()->profile_photo_path)
                     <form action="{{ route('profile.delete') }}" method="POST" style="margin-top: 20px;">
                         @csrf
@@ -294,6 +296,7 @@
                         </div>
                     </button>
                 </a> --}}
+                @if (Auth::user()->usertype != 0)
                 <button class="btn-profile btn-coin btn btn-outline-secondary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                     <div class="d-flex justify-content-between">
                         <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
@@ -302,6 +305,7 @@
                                 srcset=""> {{ Auth::user()->points }} Poin</span>
                     </div>
                 </button>
+                @endif
                   
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -315,19 +319,19 @@
                                 <div id="countdown" class="countdown">
                                     <div>
                                         <div class="time" id="days">00</div>
-                                        <div class="label">DAYS</div>
+                                        <div class="label">HARI</div>
                                     </div>
                                     <div>
                                         <div class="time" id="hours">00</div>
-                                        <div class="label">HOURS</div>
+                                        <div class="label">JAM</div>
                                     </div>
                                     <div>
                                         <div class="time" id="minutes">00</div>
-                                        <div class="label">MINUTES</div>
+                                        <div class="label">MENIT</div>
                                     </div>
                                     <div>
                                         <div class="time" id="seconds">00</div>
-                                        <div class="label">SECONDS</div>
+                                        <div class="label">DETIK</div>
                                     </div>
                                 </div>
                             </div>
@@ -374,7 +378,7 @@
     </script>
     <script>
        document.addEventListener('DOMContentLoaded', function () {
-            const targetDate = new Date('August 5, 2024 00:00:00').getTime();
+            const targetDate = new Date('September 30, 2024 00:00:00').getTime();
 
             function updateCountdown() {
                 const now = new Date().getTime();

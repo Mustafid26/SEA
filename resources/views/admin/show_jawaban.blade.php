@@ -61,7 +61,8 @@
                                 <th scope="col">Nama Lengkap</th>
                                 <th scope="col">Nama Pengguna</th>
                                 <th scope="col">Soal</th>
-                                <th scope="col">Jawaban</th>
+                                <th scope="col">Jawaban Peserta</th>
+                                <th scope="col">Jawaban Benar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +73,7 @@
                                     <td>{{ $a->user->name }}</td>
                                     <td>{{ $a->question->question}}</td>
                                     <td>{{ $a->answer }}</td>
+                                    <td>{{ $a->question->correct_answer }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

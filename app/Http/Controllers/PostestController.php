@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\PostestUser;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\AnswerPostest;
 use App\Models\QuestionPostest;
@@ -32,7 +33,13 @@ class PostestController extends Controller
         $user = Auth::user();
         $correctAnswers = 0;
         $kelasId = $kelas->id;
-        $totalQuestions = count($request->input('answers'));
+
+        $questionIds = $request->input('questions', []);
+        $totalQuestions = count($questionIds);
+
+
+        $answers = Arr::wrap($request->input('answers', []));
+
 
         foreach ($request->input('answers') as $questionId => $answer) {
             $questions_postest = QuestionPostest::find($questionId);
@@ -52,7 +59,11 @@ class PostestController extends Controller
                 ]);
             }
         }
-        $score = ($correctAnswers / $totalQuestions) * 100;
+        if ($totalQuestions > 0) {
+            $score = ($correctAnswers / $totalQuestions) * 100;
+        } else {
+            $score = 0;
+        }
         $points = $this->calculatePoints($score);
         $user->points += $points;
         $user->save();

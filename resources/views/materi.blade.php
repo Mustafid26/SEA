@@ -46,14 +46,11 @@
                                         <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
                                         <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
                                     </form>
-                                    @if (Auth::user()->usertype != 0)
                                         <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
-                                    @endif
+                               
                                     @else
                                         <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
-                                        @if (Auth::user()->usertype != 0)
                                         <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
-                                        @endif
                                     @endif
                                 @endforeach
                                 @endif
@@ -71,7 +68,7 @@
             <div class="card-body">
                 <h3 class="card-title">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
                 <h5>Deskripsi Singkat</h5>
-                <p class="card-text">{{$kelas->deskripsi}}</p>
+                <p class="card-text">{!! $kelas->deskripsi!!}</p>
             </div>
         </div>
         <div class="card card-samping" style="flex: 1;">
@@ -99,14 +96,12 @@
                                     <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
                                     <button type="submit" class="dropdown-item">{{ $m->judul_materi }}</button>
                                 </form>
-                                @if (Auth::user()->usertype != 0)
+                   
                                     <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
-                                @endif
+                      
                                 @else
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
-                                    @if (Auth::user()->usertype != 0)
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
-                                    @endif
                                 @endif
                             @endforeach
                             @endif

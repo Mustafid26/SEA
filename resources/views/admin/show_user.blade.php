@@ -86,10 +86,11 @@
                                                 role="button">Lihat Jawaban Pretest</a>
                                         <a class="btn btn-primary" href="{{ url('show_jawaban_postest', $a->id) }}"
                                                 role="button">Lihat Jawaban Postest</a>
-                                        <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_user', $a->id) }}">
-                                            Delete
-                                        </a>
+                                        @if($a->usertype != 1)
+                                            <a onclick="confirmation(event)" class="btn btn-danger" href="{{ url('delete_user', $a->id) }}">
+                                                Delete
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
