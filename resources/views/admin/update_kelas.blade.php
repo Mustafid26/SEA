@@ -70,6 +70,10 @@
                             <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="detail_kelas" placeholder="Masukkan Detail" required value="{{$kelas->detail_kelas}}">
                         </div>
                         <div class="mb-3">
+                            <label for="rombel" class="form-label">Detail Kelas</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="rombel" placeholder="Masukkan Rombel Kelas" required value="{{$kelas->rombel}}">
+                        </div>
+                        <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
                             <input id="body" type="hidden" name="deskripsi" value="{{$kelas->deskripsi}}">
                             <trix-editor input="body"></trix-editor>

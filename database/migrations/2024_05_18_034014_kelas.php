@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kelas');
             $table->string('detail_kelas');
+            $table->string('rombel')->nullable();
             $table->string('deskripsi');
             $table->string('image')->nullable();
             $table->timestamps();

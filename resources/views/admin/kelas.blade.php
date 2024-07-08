@@ -71,6 +71,10 @@
                             <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="detail_kelas" name="detail_kelas" placeholder="Masukkan Detail Kelas " required value="">
                         </div>
                         <div class="mb-3">
+                            <label for="rombel" class="form-label">Rombel Kelas</label>
+                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="rombel" name="rombel" placeholder="Masukkan Rombel Kelas " required value="">
+                        </div>
+                        <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
                             <input id="body" type="hidden" name="deskripsi" value="">
                             <trix-editor input="body"></trix-editor>

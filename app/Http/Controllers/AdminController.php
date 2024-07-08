@@ -453,6 +453,7 @@ class AdminController extends Controller
         $kelas= new Kelas;
         $kelas-> nama_kelas=$request->nama_kelas;
         $kelas-> detail_kelas=$request->detail_kelas;
+        $kelas-> rombel=$request->rombel;
         $kelas-> deskripsi=$request->deskripsi;
 
         $validated = $request->validate([
@@ -499,6 +500,7 @@ class AdminController extends Controller
         $kelas=Kelas::find($id);
         $kelas->nama_kelas=$request->nama_kelas;
         $kelas->detail_kelas=$request->detail_kelas;
+        $kelas-> rombel=$request->rombel;
         if ($request->file('image')) {
             // Delete the old image file from storage
             if ($kelas->image) {
