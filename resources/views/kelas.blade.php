@@ -40,6 +40,9 @@
     </a>
     @endforeach
 </div>
+<div class="container d-flex justify-content-end">
+  {{ $kelas->links() }}
+</div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
   let observer = new IntersectionObserver(entries => {

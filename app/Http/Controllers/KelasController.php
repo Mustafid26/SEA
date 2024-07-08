@@ -14,7 +14,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Kelas::paginate(3);
         return view('kelas', [
             'active' => "kelas",
             'kelas' => $kelas
