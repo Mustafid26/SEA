@@ -60,6 +60,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama Kelas</th>
                                 <th scope="col">Detail Kelas</th>
+                                <th scope="col">Rombel</th>
                                 <th scope="col">Deskripsi Kelas</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Aksi</th>
@@ -71,7 +72,8 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $k->nama_kelas }}</td>
                                     <td>{{ $k->detail_kelas }}</td>
-                                    <td>{{ $k->deskripsi }}</td>
+                                    <td>{{ $k->rombel}}</td>
+                                    <td>{!! $k->deskripsi !!}</td>
                                     <td>
                                         <img style="max-width: 100%;" src="{{ asset('storage/' . $k->image) }}"
                                             alt="gambar kelas" loading="lazy">
