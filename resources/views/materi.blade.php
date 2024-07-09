@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h3 class="card-title mb-4">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
                     <h5>Deskripsi Singkat</h5>
-                    <p class="card-text">{{$kelas->deskripsi}}</p>
+                    <p class="card-text">{!! $kelas->deskripsi !!}</p>
                     <div class="list-group mt-4">   
                         <div class="drop">
                             <button class="drop-btn btn-primary" onclick="toggledrop()">

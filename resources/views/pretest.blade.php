@@ -101,6 +101,7 @@
                 <input type="hidden" name="questions[]" value="{{ $question->id }}">
                 @endforeach
                 @if ($totalQuestions > 1)
+                <button class="btn btn-custom mt-4" type="button" id="prevBtn">Kembali</button>
                 <button class="btn btn-custom mt-4" type="button" id="nextBtn">Lanjut</button>
                 <button class="btn btn-custom hidden mt-4" type="submit" id="submitBtn">Submit</button>
                 @else
@@ -136,6 +137,21 @@
                     }
                 }
             });
+            $('#prevBtn').click(function(e) {
+                e.preventDefault();
+                if (currentQuestion > 0) {
+                    hideQuestion(currentQuestion);
+                    currentQuestion--;
+                    showQuestion(currentQuestion);
+                    updateProgress(currentQuestion + 1, totalQuestions);
+                    $('#submitBtn').addClass('hidden');
+                    $('#nextBtn').removeClass('hidden');
+                    if (currentQuestion === 0) {
+                        $('#prevBtn').addClass('hidden');
+                    }
+                }
+            });
+
             function showQuestion(index) {
                 $(questions[index]).removeClass('hidden');
             }
