@@ -8,7 +8,7 @@
     <style>
     .content-wrapper {
         overflow-x: auto !important;
-        background-color: rgb(0,0,0);
+        background-color: rgb(89, 89, 89);
     }
     .div_center {
         text-align: center;
@@ -64,11 +64,18 @@
                         <h1 class="h1coy">Add Materi</h1>
                         <div class="mb-3">
                             <label for="nama_kelas" nameclass="form-label">Pilih Kelas</label>
-                            <select name="kelas_id" id="kelas_id" class="form-control" style="background-color: white !important; color: black !important;">
+                            <select name="kelas_id" id="kelas_id" class="form-control" style="background-color: white !important; color: black !important;" onchange="updateRombel()">
+                                <option value="" disabled selected>Pilih Kelas</option>
                                 @foreach($kelas as $k)
-                                <option value="{{$k->id}}">{{$k->nama_kelas}}</option>
+                                <option value="{{$k->id}}" data-rombel="{{$k->rombel}}">{{$k->nama_kelas}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama_kelas" class="form-label">Rombel</label>
+                            <input style="background-color: white !important; color: black !important;" type="text"
+                                class="form-control" id="rombel" name="rombel" placeholder="Rombel Kelas"
+                                readonly>
                         </div>
                         <div class="mb-3">
                             <label for="judul_materi" class="form-label">Judul Materi</label>
@@ -81,6 +88,16 @@
         </div>
     </div>
     @include('admin.js')
+    <script>
+        function updateRombel() {
+            var select = document.getElementById('kelas_id');
+            var rombelInput = document.getElementById('rombel');
+            var selectedOption = select.options[select.selectedIndex];
+            var rombel = selectedOption.getAttribute('data-rombel');
+            
+            rombelInput.value = rombel;
+        }
+    </script>
     <script>
         document.addEventListener('trix-file-accept', function (event) {
             event.preventDefault();

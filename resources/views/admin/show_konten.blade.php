@@ -60,6 +60,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Materi</th>
+                                <th scope="col">Rombel</th>
                                 <th scope="col">Konten</th>
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Aksi</th>
@@ -71,8 +72,9 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $k->kelas->nama_kelas }}</td>
                                     <td>{{ $k->materi->judul_materi }}</td>
+                                    <td>{{ $k->kelas->rombel }}</td>
                                     <td>{{ $k->konten }}</td>
-                                    <td>{{ $k->desc }}</td>
+                                    <td>{!! $k->desc !!}</td>
                                     <td>
                                         <a class="btn btn-warning" href="{{ url('update_konten', $k->id) }}"
                                             role="button">Edit Konten</a>

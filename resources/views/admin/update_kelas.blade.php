@@ -58,9 +58,7 @@
             <div class="main-panel">
                 <div class="content-wrapper">
                     <form action="{{url('update_kelas_2',$kelas->id)}}" method="post" enctype="multipart/form-data" class="mb-5">
-                        
                         @csrf
-                        
                         <div class="mb-3">
                             <label for="nama_kelas" nameclass="form-label">Nama Kelas</label>
                             <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="nama_kelas" placeholder="Masukkan Nama Kelas" required value="{{$kelas->nama_kelas}}">
@@ -87,8 +85,6 @@
                             <label for="image" class="form-label">Update Gambar</label>
                             <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image">
                         </div>
-                        
-
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
@@ -114,17 +110,9 @@
             })
             .then((willCancel) => {
                 if (willCancel) {
-
-
-
                     window.location.href = urlToRedirect;
-
                 }
-
-
             });
-
-
     }
     </script>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>

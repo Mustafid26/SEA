@@ -17,14 +17,14 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-A" aria-expanded="false" aria-controls="ui-basic-A">
                 <span class="menu-icon">
                     <i class="mdi mdi-laptop"></i>
                 </span>
                 <span class="menu-title">Artikel</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui-basic-A">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/view_artikel') }}">Add Artikel</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/show_artikel') }}">Show Artikel</a></li>
@@ -32,15 +32,15 @@
             </div>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false"
-                aria-controls="ui-basic2">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-B" aria-expanded="false"
+                aria-controls="ui-basic-B">
                 <span class="menu-icon">
                     <i class="mdi mdi-account"></i>
                 </span>
                 <span class="menu-title">User</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic2">
+            <div class="collapse" id="ui-basic-B">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/view_user') }}">Add User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/show_user') }}">Show User</a></li>
@@ -54,15 +54,15 @@
             </div>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic3" aria-expanded="false"
-                aria-controls="ui-basic3">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-C" aria-expanded="false"
+                aria-controls="ui-basic-C">
                 <span class="menu-icon">
                     <i class="mdi mdi-book-open-page-variant"></i>
                 </span>
                 <span class="menu-title">Kelas</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic3">
+            <div class="collapse" id="ui-basic-C">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('view_kelas') }}">Add Kelas</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('show_kelas') }}">Show Kelas</a></li>
@@ -70,21 +70,33 @@
             </div>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic4" aria-expanded="false"
-                aria-controls="ui-basic4">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-D" aria-expanded="false"
+                aria-controls="ui-basic-D">
                 <span class="menu-icon">
                     <i class="mdi mdi-file-document-box"></i>
                 </span>
                 <span class="menu-title">Materi</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic4">
+            <div class="collapse" id="ui-basic-D">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('view_materi') }}">Add Materi</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('show_materi') }}">Show Materi</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('show_konten') }}">Show Konten</a></li>
                 </ul>
             </div>
+        </li>
+        <li class="nav-item menu-items">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a class="nav-link" data-toggle="collapse" href="/logout" aria-expanded="false" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                aria-controls="ui-basic-D">
+                <span class="menu-icon">
+                    <i class="mdi mdi-logout text-danger"></i>
+                </span>
+                <span class="menu-title">Logout</span>
+            </a>
         </li>
     </ul>
 </nav>

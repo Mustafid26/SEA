@@ -75,7 +75,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Upload Gambar</label>
-                            <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image"
+                            <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image">
                         </div>
                         <div class="mb-3">
                             <label for="category" class="form-label">Body</label>

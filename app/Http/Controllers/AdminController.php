@@ -139,18 +139,24 @@ class AdminController extends Controller
     {
         $data= new User;
         $data-> name=$request->name;
-        $data-> nik=$request->nik;
+        $data-> ID_Sekari=$request->ID_Sekari;
+        $data-> nama_lengkap=$request->nama_lengkap;
+        $data-> nik=$request->nik;  
+        $data-> rombel=$request->rombel;  
         $data-> password=bcrypt($request->password);
         $data-> role=$request->role;
         if($request->role=='admin')
         {
             $data -> usertype = $request-> usertype = 1;
         }
+        else if($request->role == 'sekari'){
+            $data -> usertype = $request-> usertype = 2;
+        }
         else
         {
             $data -> usertype = $request-> usertype = 0;
         }
-       
+        
         $data->save();
         Alert::success('Success', 'User added successfully');
         return redirect()->back();
@@ -563,7 +569,6 @@ class AdminController extends Controller
                 $m->total_pretest = Question::where('kelas_id', $m->kelas_id)->count();
                 $m->total_postest = QuestionPostest::where('kelas_id', $m->kelas_id)->count();
             }
-            
             return view('admin.show_materi', compact('materi','kelas'));
         }
         else{
@@ -712,7 +717,7 @@ class AdminController extends Controller
         $konten=KontenMateri::find($id);
         $konten->desc = $request->desc;
         $validated = $request->validate([
-            'konten' => 'required|mimes:ppt,pptx,pdf|max:10000' // Validate PowerPoint file
+            'konten' => 'nullable|mimes:ppt,pptx,pdf|max:10000'
         ]);
         
         if ($request->file('konten')) {

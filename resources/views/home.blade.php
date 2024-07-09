@@ -7,7 +7,7 @@
 		<img src="{{asset('img/fullteam.webp')}}" class="d-block w-100" alt="...">
 		<div class="carousel-caption d-none d-md-block">
 		  <h5 style="color:white;">Tim PPK Ormawa HMTI</h5>
-		  <p>Some representative placeholder content for the first slide.</p>
+		  <p>Sekari dari hati membangun negeri.</p>
 		</div>
 	  </div>
 	</div>

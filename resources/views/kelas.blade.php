@@ -53,7 +53,7 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("fadeinUp");
-        observer.unobserve(entry.target); // Remove observer after animation
+        observer.unobserve(entry.target);
       }
     });
   });

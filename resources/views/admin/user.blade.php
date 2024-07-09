@@ -55,8 +55,21 @@
                             @csrf
 
                             <div class="mb-3">
+                                <label for="ID_Sekari" nameclass="form-label">ID Sekari</label>
+                                <input style="background-color: white !important; color: black!important;" type="text" class="form-control" id="ID_Sekari" name="ID_Sekari" placeholder="Masukan ID Sekari" required value="">
+                            </div>
+                            
+                            <div class="mb-3">
                                 <label for="name" nameclass="form-label">Nama User</label>
-                                <input style="background-color: white !important; color: black!important;" type="text" class="form-control" id="name" name="name" placeholder="Masukan Judul" required value="">
+                                <input style="background-color: white !important; color: black!important;" type="text" class="form-control" id="name" name="name" placeholder="Masukan Username" required value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama_lengkap" nameclass="form-label">Nama Lengkap</label>
+                                <input style="background-color: white !important; color: black!important;" type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Masukan Nama Lengkap" required value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="rombel" nameclass="form-label">Rombel</label>
+                                <input style="background-color: white !important; color: black!important;" type="text" class="form-control" id="rombel" name="rombel" placeholder="Masukan Rombel" required value="">
                             </div>
                             <div class="mb-3">
                                 <label for="nik" class="form-label">NIK</label>

@@ -83,7 +83,7 @@
                             @if ($pretestCompleted)
                                     <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Pretest</strong></span>
                             @else
-                                    <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}"><strong>Pretest</strong></a>
+                                    <a class="dropdown-item" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
                             @endif
                             <!-- Daftar materi -->
                             @if ($materi->isEmpty())

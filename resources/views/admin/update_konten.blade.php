@@ -76,7 +76,7 @@
                         <div class="mb-3">
                             <label for="konten" class="form-label">Update PPT</label>
                             <input style="background-color: white !important; color: black !important;" type="file"
-                                class="form-control" name="konten" accept=".ppt,.pptx,.pdf">
+                                class="form-control" name="konten" accept=".ppt,.pptx,.pdf" value="{{ asset('storage/powerpoint_files/' . $konten->konten) }}">
                         </div>
                         <div class="mb-3">
                             <label for="desc" class="form-label">Masukkan Deskripsi</label>
