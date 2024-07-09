@@ -101,7 +101,7 @@
                 <input type="hidden" name="questions[]" value="{{ $question->id }}">
                 @endforeach
                 @if ($totalQuestions > 1)
-                <button class="btn btn-custom mt-4" type="button" id="nextBtn">Next</button>
+                <button class="btn btn-custom mt-4" type="button" id="nextBtn">Lanjut</button>
                 <button class="btn btn-custom hidden mt-4" type="submit" id="submitBtn">Submit</button>
                 @else
                 <button class="btn btn-custom mt-4" type="submit">Submit</button>
@@ -136,7 +136,6 @@
                     }
                 }
             });
-
             function showQuestion(index) {
                 $(questions[index]).removeClass('hidden');
             }
