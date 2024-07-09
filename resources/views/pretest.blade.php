@@ -101,6 +101,7 @@
                 <input type="hidden" name="questions[]" value="{{ $question->id }}">
                 @endforeach
                 @if ($totalQuestions > 1)
+                {{-- <button class="btn btn-custom mt-4 hidden" type="button" id="prevBtn">Previous</button> --}}
                 <button class="btn btn-custom mt-4" type="button" id="nextBtn">Lanjut</button>
                 <button class="btn btn-custom hidden mt-4" type="submit" id="submitBtn">Submit</button>
                 @else
@@ -136,6 +137,22 @@
                     }
                 }
             });
+            // $('#prevBtn').click(function(e) {
+            //     e.preventDefault();
+            //     if (currentQuestion > 0) {
+            //         hideQuestion(currentQuestion);
+            //         currentQuestion--;
+            //         showQuestion(currentQuestion);
+            //         updateProgress(currentQuestion + 1, totalQuestions);
+            //         if (currentQuestion === 0) {
+            //             $('#prevBtn').addClass('hidden');
+            //         }
+            //         if (currentQuestion < totalQuestions - 1) {
+            //             $('#submitBtn').addClass('hidden');
+            //             $('#nextBtn').removeClass('hidden');
+            //         }
+            //     }
+            // });
             function showQuestion(index) {
                 $(questions[index]).removeClass('hidden');
             }
@@ -148,7 +165,6 @@
                 var progress = Math.round((current / total) * 100);
                 progressBar.css('width', progress + '%').attr('aria-valuenow', progress);
             }
-
             function startTimer(duration) {
                 var timer = duration, minutes, seconds;
                 timerInterval = setInterval(function () {

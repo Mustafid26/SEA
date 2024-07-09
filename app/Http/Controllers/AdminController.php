@@ -740,11 +740,11 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function show_pretest($id)
+    public function show_pretest($kelas_id)
     {
         if (auth::id()) {
-            $pretest=Question::all();
-            $materi=Materi::find($id);
+            $pretest = Question::where('kelas_id', $kelas_id)->get();
+            $materi=Materi::find($kelas_id);
             $kelas=Kelas::all();
             
             return view('admin.show_pretest', compact('pretest','materi','kelas')); 

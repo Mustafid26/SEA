@@ -103,11 +103,7 @@
                 })
                 .then((willCancel) => {
                     if (willCancel) {
-
-
-
                         window.location.href = urlToRedirect;
-
                     }
 
 
