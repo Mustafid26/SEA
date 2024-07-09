@@ -635,17 +635,11 @@ class AdminController extends Controller
             ]);
             
             if ($request->file('konten')) {
-                // Dapatkan nama asli file
-                $originalName = $request->file('konten')->getClientOriginalName();
-                
-                // Menyimpan file dengan nama asli ke folder 'powerpoint_files' di storage 'public'
+                $originalName = $request->file('konten')->getClientOriginalName();              
                 $filePath = $originalName;
-                $request->file('konten')->storeAs('powerpoint_files', $originalName, 'public');
-                
-                // Menyimpan path file ke dalam atribut 'konten'
+                $request->file('konten')->storeAs('powerpoint_files', $originalName, 'public');              
                 $konten->konten = $filePath;
             }
-            // Menyimpan deskripsi dari request
         } elseif ($request->selection == 'add_pretest') {
             $pretest = new Question;
             $pretest->kelas_id = $request->kelas_id;          

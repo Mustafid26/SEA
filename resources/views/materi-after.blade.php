@@ -19,7 +19,7 @@
                         @if (strtolower(pathinfo($konten->konten, PATHINFO_EXTENSION)) === 'pdf')
                             <a href="{{ url('/view', $konten->id) }}" class="button" target="_blank">Lihat Materi</a>
                         @endif
-                    @endif      
+                    @endif  
                 </section>
             </div>
         </div>

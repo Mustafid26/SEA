@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('materi_id');
             $table->unsignedBigInteger('kelas_id');
-            $table->text('konten');
+            $table->string('konten');
             $table->text('desc')->nullable();
             $table->timestamps();
 

@@ -122,7 +122,7 @@
             if (selection === 'add_konten') {
                 formContainer.innerHTML = `
                     <div class="mb-3">
-                        <label materi" class="form-label">Upload Konten (PowerPoint)</label>
+                        <label materi" class="form-label">Upload Konten (PowerPoint, PDF) Max 10 Mb</label>
                         <input type="file" style="background-color: white !important; color:black !important;" name="konten" id="konten" class="form-control" accept=".ppt,.pptx,.pdf">
                     </div>
                     <div class="mb-3">
