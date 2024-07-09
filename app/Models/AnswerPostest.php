@@ -19,4 +19,8 @@ class AnswerPostest extends Model
     {
         return $this->belongsTo(QuestionPostest::class);
     }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

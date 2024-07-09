@@ -74,7 +74,7 @@
                                     <td>{{ $p->user->nama_lengkap }}</td>
                                     <td>{{ $p->user->name }}</td>
                                     <td>{{ $p->user->rombel }}</td>
-                                    <td>{{ $p->kelas->kelas->nama_kelas}}</td>
+                                    <td>{{ $p->kelas->nama_kelas}}</td>
                                     <td>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
                                             href="{{ url('delete_postest_user', $p->id) }}">Delete Postest</a>

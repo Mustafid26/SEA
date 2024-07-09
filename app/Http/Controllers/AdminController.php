@@ -226,7 +226,7 @@ class AdminController extends Controller
     public function nilai_user()
     {
        if (auth::id()){
-            $nilai = PretestUser::with(['postestUser','kelas', 'user'])->get();
+            $nilai = PretestUser::with(['kelas', 'user'])->get();
             return view('admin.show_nilai', compact('nilai'));
         }
         else{

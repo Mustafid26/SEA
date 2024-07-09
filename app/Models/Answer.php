@@ -19,4 +19,8 @@ class Answer extends Model
     {
         return $this->belongsTo(Question::class);
     }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

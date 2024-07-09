@@ -75,7 +75,7 @@
                                     <td>{{ $n->user->nama_lengkap }}</td>
                                     <td>{{ $n->user->name }}</td>
                                     <td>{{ $n->user->rombel }}</td>
-                                    <td>{{ $n->kelas->kelas->nama_kelas}}</td>
+                                    <td>{{ $n->kelas->nama_kelas}}</td>
                                     <td>{{ $n->score ?? 'Nilai belum ada' }}</td>
                                     <td>
                                         <a class="btn btn-warning" href="{{ url('update_nilai_pretest', $n->id) }}"

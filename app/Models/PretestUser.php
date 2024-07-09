@@ -17,7 +17,7 @@ class PretestUser extends Model
     }
     public function kelas()
     {
-        return $this->belongsTo(Materi::class, 'kelas_id');
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
     public function postestUser() {
         return $this->hasOne(PostestUser::class, 'user_id', 'user_id');
