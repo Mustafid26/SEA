@@ -163,13 +163,12 @@
             }).then((value) => {
                 switch (value) {
                     case "show_pretest":
-                        window.location.href = `{{ url('show_pretest', $m->id) }}`;
+                        window.location.href = `{{ url('show_pretest') }}/${id}`;
                         break;
                     case "show_postest":
-                        window.location.href = `{{ url('show_postest', $m->id) }}`;
+                        window.location.href = `{{ url('show_postest') }}/${id}`;
                         break;
                     case "cancel":
-                        // Do nothing
                         break;
                 }
             });

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('materi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kelas_id');
-            $table->string('judul_materi');
+            $table->string('judul_materi')->nullable();
             $table->timestamps();
             // Foreign key constraint
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');

@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('Kelas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kelas');
-            $table->string('detail_kelas');
+            $table->text('detail_kelas');
             $table->string('rombel')->nullable();
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->string('image')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

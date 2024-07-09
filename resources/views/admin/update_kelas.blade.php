@@ -70,7 +70,7 @@
                             <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="detail_kelas" placeholder="Masukkan Detail" required value="{{$kelas->detail_kelas}}">
                         </div>
                         <div class="mb-3">
-                            <label for="rombel" class="form-label">Detail Kelas</label>
+                            <label for="rombel" class="form-label">Rombel Kelas</label>
                             <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="rombel" placeholder="Masukkan Rombel Kelas" required value="{{$kelas->rombel}}">
                         </div>
                         <div class="mb-3">

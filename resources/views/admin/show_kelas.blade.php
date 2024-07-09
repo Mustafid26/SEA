@@ -105,7 +105,7 @@
                 var urlToRedirect = ev.currentTarget.getAttribute('href');
                 console.log(urlToRedirect);
                 swal({
-                        title: "Are you sure to delete this user?",
+                        title: "Yakin Mau Delete Kelas?",
                         text: "You will not be able to revert this!",
                         icon: "warning",
                         buttons: true,
@@ -113,17 +113,11 @@
                     })
                     .then((willCancel) => {
                         if (willCancel) {
-
-
-
                             window.location.href = urlToRedirect;
-
                         }
 
 
                     });
-
-
             }
         </script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
