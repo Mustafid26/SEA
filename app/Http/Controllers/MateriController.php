@@ -11,12 +11,12 @@ class MateriController extends Controller
 {
     public function after($id, $kelas_id)
     {
-        $konten = KontenMateri::find($id); 
+        $konten = KontenMateri::where('materi_id', $id)->first();
         $materi = Materi::find($id);
         if ($materi) {
-            $kelas = $materi->kelas; // Ambil kelas dari relasi materi
+            $kelas = $materi->kelas;
         } elseif ($konten) {
-            $kelas = $konten->kelas; // Ambil kelas dari relasi konten materi
+            $kelas = $konten->kelas;
         } else {
             abort(404, 'Materi atau KontenMateri tidak ditemukan');
         }
@@ -30,7 +30,7 @@ class MateriController extends Controller
     }
     public function downloadFile($id)
     {
-        $konten = KontenMateri::find($id); 
+        $konten = KontenMateri::find($id);
         $filename = $konten->konten;
         // Misalnya file disimpan di dalam direktori storage/app/public
         $filePath = "public/powerpoint_files/{$filename}";
