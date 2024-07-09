@@ -620,7 +620,7 @@ class AdminController extends Controller
         }
         
     }
-    public function add_konten (Request $request)
+    public function add_konten(Request $request)
     {
         
         $konten = new KontenMateri;
@@ -648,8 +648,7 @@ class AdminController extends Controller
             // Menyimpan deskripsi dari request
         } elseif ($request->selection == 'add_pretest') {
             $pretest = new Question;
-            $pretest->kelas_id = $request->kelas_id;
-            
+            $pretest->kelas_id = $request->kelas_id;          
             $pretest->question = $request->question;
             $pretest->option1 = $request->option1;
             $pretest->option2 = $request->option2;
