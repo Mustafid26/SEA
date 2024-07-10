@@ -737,7 +737,7 @@ class AdminController extends Controller
     {
         if (auth::id()) {
             $pretest = Question::where('kelas_id', $kelas_id)->get();
-            $materi=Materi::find($kelas_id);
+            $materi = Materi::where('kelas_id', $kelas_id)->get();;
             $kelas=Kelas::all();
             
             return view('admin.show_pretest', compact('pretest','materi','kelas')); 
@@ -783,11 +783,11 @@ class AdminController extends Controller
         $pretest = Question::where('question', 'LIKE', "%$search_text%")->GET();
         return view('admin.show_pretest', compact('pretest'));
     }
-    public function show_postest($id)
+    public function show_postest($kelas_id)
     {
         if (auth::id()) {
-            $postest=QuestionPostest::all();
-            $materi=Materi::find($id);
+            $postest=QuestionPostest::where('kelas_id', $kelas_id)->get();
+            $materi=Materi::where('kelas_id', $kelas_id)->get();
             $kelas=Kelas::all();
             
             return view('admin.show_postest', compact('postest','materi','kelas')); 

@@ -88,7 +88,7 @@
                                         <a class="btn btn-success" href="{{ url('view_konten', $m->id) }}"
                                             role="button">Add Konten</a>
                                         <a class="btn btn-primary" href="#"
-                                            onclick="soalConfirmation(event, '{{ $m->id }}')"
+                                            onclick="soalConfirmation(event, '{{ $m->kelas_id }}')"
                                             role="button">Lihat Soal</a>
                                         <a class="btn btn-warning" href="{{ url('update_materi', $m->id) }}"
                                             role="button">Edit Materi</a>
@@ -123,14 +123,8 @@
                 })
                 .then((willCancel) => {
                     if (willCancel) {
-
-
-
                         window.location.href = urlToRedirect;
-
                     }
-
-
                 });
 
 
