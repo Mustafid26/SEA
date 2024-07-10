@@ -8,7 +8,7 @@
       rel="stylesheet"
     />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/SEA-Login.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 
     <title>Login</title>
     <style>

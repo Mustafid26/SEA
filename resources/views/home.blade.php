@@ -38,7 +38,7 @@
 	</div>
 </div>
 <section id="slider" class="pt-5 mt-5" style="background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(41,255,235,1) 35%, rgba(0,248,251,1) 100%);">
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(98,237,236,1) 33%, rgba(126,223,224,1) 100%);">
 	<div class="container">
 		<h1 class="text-center"><b>Dokumentasi</b></h1>
 		<div class="slider">	
