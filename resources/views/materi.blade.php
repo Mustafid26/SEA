@@ -99,10 +99,14 @@
                                     <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
                                     <button type="submit" class="dropdown-item">{{ $m->judul_materi }}</button>
                                 </form>
-                                    <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                 @else
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
+                                @endif
+                                @if($postestCompleted)
+                                        <span style="margin-left: 15px;"><strong><i class="fa fa-solid fa-check"></i> Postest</strong></span>
+                                @else
+                                        <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                 @endif
                             @endforeach
                             @endif
