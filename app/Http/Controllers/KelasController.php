@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Materi;
+use App\Models\PostestUser;
 use App\Models\PretestUser;
 use Illuminate\Http\Request;
 
@@ -50,11 +51,15 @@ class KelasController extends Controller
         $pretestCompleted = PretestUser::where('user_id', $userId)
                                        ->where('kelas_id', $kelas->id)
                                        ->exists();
+        $postestCompleted = PostestUser::where('user_id', $userId)
+                                       ->where('kelas_id', $kelas->id)
+                                       ->exists();
         return view('materi', [
             'materi' => $materi,
             'kelas' => $kelas,
             'active' => "kelas",
             'pretestCompleted' => $pretestCompleted,
+            'postestCompleted' => $postestCompleted,
             'questions' => $questions,
             'questions_postest' => $questions_postest
         ]);

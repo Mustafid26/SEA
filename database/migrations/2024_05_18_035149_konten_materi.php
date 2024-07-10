@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('materi_id');
             $table->unsignedBigInteger('kelas_id');
-            $table->string('konten');
+            $table->string('konten')->nullable();
             $table->text('desc')->nullable();
             $table->timestamps();
 
@@ -32,4 +32,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('konten_materi');
     }
+  
+
 };

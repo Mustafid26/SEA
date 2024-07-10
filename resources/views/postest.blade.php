@@ -116,7 +116,7 @@
             var questions = $('.question');
             var totalQuestions = questions.length;
             var progressBar = $('.progress-bar');
-            var timerDuration = 10; // Timer in seconds (2.5 minutes)
+            var timerDuration = 150; // Timer in seconds (2.5 minutes)
             var timerInterval;
 
             showQuestion(currentQuestion);
