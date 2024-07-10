@@ -76,7 +76,6 @@
               <div class="card" style="border-radius: 1rem;">
                   <div class="d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-                        <x-validation-errors class="mb-4" />
                        <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="d-flex align-items-center mb-3 pb-1">
@@ -84,6 +83,7 @@
                           <span class="h1 fw-bold mb-0"><img class="img-fluid" src="{{ asset('img/SEA-Login.png')}}" alt="" srcset="" /></span>
                         </div>     
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Daftarkan Akun Untuk Lanjut</h5>     
+                        <x-validation-errors class="mb-4" />
                         <div data-mdb-input-init class="form-outline mb-4">
                           <label class="form-label" for="name" value="{{ __('name') }}" >Nama Pengguna</label>
                           <input type="username" id="name" class="form-control form-control-lg" name="name" :value="old('name')" required autofocus autocomplete="username" />
