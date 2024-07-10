@@ -611,7 +611,7 @@
 .video-container {
     width: 100%;
     height: 350px;
-    background: #f7eacc;
+    background: #e2dfdf;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -621,7 +621,7 @@
     .video-container {
         width: 100%;
         height: 180px;
-        background: #f7eacc;
+        background: #e2dfdf;
         display: flex;
         justify-content: center;
         align-items: center;
