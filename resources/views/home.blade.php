@@ -1,17 +1,23 @@
 @extends('layouts.main')
 
 @section('konten')
-<div id="carouselExampleCaptions" class="carousel slide carousel-desktop">
-	<div class="carousel-inner">
-	  <div class="carousel-item active">
-		<img src="{{asset('img/fullteam.webp')}}" class="d-block w-100" alt="...">
-		<div class="carousel-caption d-none d-md-block">
-		  <h5 style="color:white;">Tim PPK Ormawa HMTI</h5>
-		  <p>Sekari dari hati membangun negeri.</p>
+
+<div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
+		<div class="content">
+		<h1 class="text-white">
+			Mulai Perjalanan <br />
+			<span>#PerempuanMandiri</span> <br />
+			Bersama Sekari
+		</h1>
+		<p style="color: black; font-weight:bold;">
+			"Tiada cuaca di langit yang tetap selamanya. Tiada mungkin akan terus terus menerus terang cuaca. Sehabis malam gelap gulita , lahir pagi membawa kehidupan. " <br> -RA. Kartini
+		</p>
 		</div>
-	  </div>
-	</div>
+		<div class="hero-image">
+		<img src="{{asset("img/SEKARI.png")}}" alt="Hero Image" class="img-fluid" />
+		</div>
 </div>
+
 
 <div class="container-sea text-center mt-5 fadeinUp">
 	<div class="content-wrapper">
@@ -31,10 +37,11 @@
 	  </div>
 	</div>
 </div>
-<section id="slider" class="pt-5 mt-5" style="background-color: rgb(212, 212, 212);">
+<section id="slider" class="pt-5 mt-5" style="background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(41,255,235,1) 35%, rgba(0,248,251,1) 100%);">
 	<div class="container">
 		<h1 class="text-center"><b>Dokumentasi</b></h1>
-		<div class="slider">
+		<div class="slider">	
 			<div class="owl-carousel">
 				@foreach ($photos as $p)
 					<div class="slider-card">
@@ -49,7 +56,6 @@
 		</div>
 	</div>
 </section>
-
 <script>
 	$(document).ready(function() {
 		$(".owl-carousel").owlCarousel({
