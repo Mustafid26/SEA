@@ -88,7 +88,6 @@
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
                         <x-validation-errors class="mb-4" />
-
                         @if (session('status'))
                             <div class="mb-4 font-medium text-sm text-green-600">
                                 {{ session('status') }}
@@ -140,6 +139,7 @@
       <div class="d-flex justify-content-center mt-4 h-100">
         <div class="card">
           <div class="card-body">
+            <x-validation-errors class="mb-4" />
             <form method="POST" action="{{ route('login') }}">
               @csrf
               <div data-mdb-input-init class="form-outline mb-4">

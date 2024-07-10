@@ -14,9 +14,7 @@
     <style>
         body {
           height: 75vh;
-          background-color: #219c9088;
-         
-          
+          background-color: #219c9088;                  
         }
         .mobile-img {
           margin-top: 50px;
@@ -72,38 +70,28 @@
   <body>
     <div class="desktop">
       <section class="vh-100">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-xl-10">
+        <div class="container py-5 vh-100">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col col-xl-10 mb-5">
               <div class="card" style="border-radius: 1rem;">
-                <div class="row g-0">
-                  <div class="col-md-6 col-lg-5 d-none d-md-block">
-                    <img src="{{ asset('img/img1.webp')}}"
-                      alt="login form" class="img-fluid h-100" style="border-radius: 1rem 0 0 1rem;" />
-                  </div>
-                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                  <div class="d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
                         <x-validation-errors class="mb-4" />
-
                        <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="d-flex align-items-center mb-3 pb-1">
                           <i class="fas fa-cubes fa-2x me-3" style="color: #219c9088;"></i>
                           <span class="h1 fw-bold mb-0"><img class="img-fluid" src="{{ asset('img/SEA-Login.png')}}" alt="" srcset="" /></span>
-                        </div>
-      
-                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Daftarkan Akun Untuk Lanjut</h5>
-      
+                        </div>     
+                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Daftarkan Akun Untuk Lanjut</h5>     
                         <div data-mdb-input-init class="form-outline mb-4">
                           <label class="form-label" for="name" value="{{ __('name') }}" >Nama Pengguna</label>
                           <input type="username" id="name" class="form-control form-control-lg" name="name" :value="old('name')" required autofocus autocomplete="username" />
                         </div>
-      
                         <div data-mdb-input-init class="form-outline mb-4">
                           <label class="form-label" for="name" value="{{ __('nama_lengkap') }}" >Nama Lengkap</label>
                           <input type="username" id="name" class="form-control form-control-lg" name="nama_lengkap" :value="old('nama_lengkap')" required autofocus autocomplete="username" />
                         </div>
-      
 			                  <div data-mdb-input-init class="form-outline mb-4">
                           <label class="form-label" for="nik" value="{{ __('nik') }}">NIK</label>
                           <input type="number" id="nik" class="form-control form-control-lg" name="nik" required autocomplete="current-nik" />
@@ -119,16 +107,14 @@
                           <input type="password" id="password_confirmation" class="form-control form-control-lg" name="password_confirmation" required  />
                         </div>
                         
-                        <div class="pt-1 mb-4">
+                        <div class="pt-1 mb-4  text-center">
                            <button class="btn btn-login">{{ __('Register') }}</button>
-                        </div>
-                       
-                        <p class="mb-5 pb-lg-2" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
+                        </div>                   
+                        <p class="mb-5 pb-lg-2  text-center" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"
                             style="color: black; font-weight: normal;">Klik Di sini</a></p>
                       </form>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
@@ -146,6 +132,7 @@
       <div class="d-flex justify-content-center mt-4 h-100">
         <div class="card">
           <div class="card-body">
+            <x-validation-errors class="mb-4" />
             <form method="POST" action="{{ route('register') }}">
               @csrf
               <div data-mdb-input-init class="form-outline mb-4">
@@ -171,9 +158,7 @@
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" for="password_confirmation" value="{{ __('Password') }}"> Konfirmasi Kata Sandi</label>
                 <input type="password" id="password_confirmation" class="form-control form-control-lg" name="password_confirmation" required  />
-              </div>
-
-             
+              </div>             
               <div class="pt-1 mb-4 text-center">
                 <button class="btn btn-login">{{ __('Register') }}</button>
              </div>
