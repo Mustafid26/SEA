@@ -60,6 +60,11 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Pertanyaan</th>
+                                <th scope="col">Opsi 1</th>
+                                <th scope="col">Opsi 2</th>
+                                <th scope="col">Opsi 3</th>
+                                <th scope="col">Opsi 4</th>                     
+                                <th scope="col">Jawaban Benar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -69,6 +74,11 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $p->kelas->nama_kelas }}</td>
                                     <td>{{ $p->question }}</td>
+                                    <td>{{ $p->option1 }}</td>
+                                    <td>{{ $p->option2 }}</td>
+                                    <td>{{ $p->option3 }}</td> 
+                                    <td>{{ $p->option4 }}</td> 
+                                    <td>{{ $p->correct_answer }}</td>
                                     <td>
                                         <a class="btn btn-warning" href="{{ url('update_pretest', $p->id) }}"
                                             role="button">Edit Soal</a>
