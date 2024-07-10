@@ -2,7 +2,8 @@
 
 @section('konten')
 
-<div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
+<div class="hero-section text-center text-white d-flex align-items-center justify-content-center" style=" background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(98,237,236,1) 33%, rgba(126,223,224,1) 100%);">
 		<div class="content">
 		<h1 class="text-white">
 			Mulai Perjalanan <br />
