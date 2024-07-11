@@ -18,9 +18,9 @@
             <div class="card card-class me-3" style="flex: 1;">
                 <img src="{{asset("/img/SEKARI.png")}}" class="card-img-top img-class p-5">
                 <div class="card-body">
-                    <h3 class="card-title mb-4">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
-                    <h5>Deskripsi Singkat</h5>
-                    <p class="card-text">{!! $kelas->deskripsi !!}</p>
+                    <h3 class="card-title mb-4 text-wrap text-break">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
+                    <h5 class="text-left">Deskripsi Singkat</h5>
+                    <p class="card-text text-wrap text-break">{!! $kelas->deskripsi !!}</p>
                     <div class="list-group mt-4">   
                         <div class="drop">
                             <button class="drop-btn btn-primary" onclick="toggledrop()">
@@ -33,8 +33,6 @@
                                 @else
                                     <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}" onclick="checkQuestions(event)"><strong>Pretest</strong></a>
                                 @endif
-                      
-                            
                                 <!-- Daftar materi -->
                                 @if ($materi->isEmpty())
                                     <span class="dropdown-item text-white">Belum ada materi</span>

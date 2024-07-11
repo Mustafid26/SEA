@@ -531,6 +531,7 @@
     }
     .card-mobile{
         display: flex !important;
+        max-width: 100%;
     }
     .card-desktop{
         display: none !important;
