@@ -42,7 +42,7 @@
                                         <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                            <button type="submit" class="dropdown-item text-white">{{ $m->judul_materi }}</button>
+                                            <button type="submit" class="dropdown-item text-white" style="overflow: hidden; text-wrap: pretty">{{ $m->judul_materi }}</button>
                                         </form>
                                     
                                         @if($postestCompleted)
@@ -89,14 +89,14 @@
                             @endif
                             <!-- Daftar materi -->
                             @if ($materi->isEmpty())
-                            <span class="dropdown-item">Belum ada materi</span>
+                                <span class="dropdown-item">Belum ada materi</span>
                             @else
                             @foreach($materi as $m)
                                 @if ($pretestCompleted)
                                     <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                        <button type="submit" class="dropdown-item">{{ $m->judul_materi }}</button>
+                                        <button type="submit" class="dropdown-item" style="overflow: hidden; text-wrap: pretty">{{ $m->judul_materi }}</button>
                                     </form>
                                 
                                     @if($postestCompleted)
