@@ -71,11 +71,8 @@
     </style>
   </head>
   <body>
-    
-
-    
     <div class="desktop">
-      <section class="vh-100">
+      <section class="vh-100 d-flex justify-content-center align-items-center">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">

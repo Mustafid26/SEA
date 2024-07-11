@@ -69,7 +69,7 @@
   </head>
   <body>
     <div class="desktop">
-      <section class="vh-100">
+      <section class="vh-100 d-flex justify-content-center align-items-center">
         <div class="container py-5 vh-100">
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col col-xl-10 mb-5">
@@ -107,7 +107,7 @@
                           <input type="password" id="password_confirmation" class="form-control form-control-lg" name="password_confirmation" required  />
                         </div>
                         
-                        <div class="pt-1 mb-4  text-center">
+                        <div class="pt-1 mb-4 text-center">
                            <button class="btn btn-login">{{ __('Register') }}</button>
                         </div>                   
                         <p class="mb-5 pb-lg-2  text-center" style="color: #219c9088; font-weight: bold;">Sudah Punya Akun? <a href="{{route('login')}}"

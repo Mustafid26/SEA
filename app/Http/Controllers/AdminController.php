@@ -808,6 +808,7 @@ class AdminController extends Controller
     {
         $postest=QuestionPostest::find($id);
         $postest->delete();
+        
         Alert::success('Success', 'Soal deleted successfully');
         return redirect()->back();
     }
