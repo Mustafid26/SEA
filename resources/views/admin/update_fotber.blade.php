@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>Admin SEA</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 <head>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     @include('admin.css')

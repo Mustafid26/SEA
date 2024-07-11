@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Admin FDA</title>
-
+<title>Admin SEA</title>
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 <head>
     @include('admin.css')
     <style>

@@ -526,7 +526,7 @@ class AdminController extends Controller
         }
             
         $kelas->save();
-        Alert::success('Success', 'Artikel Updated successfully');
+        Alert::success('Success', 'Kelas Updated successfully');
         return redirect()->back();
     }
 
@@ -702,7 +702,7 @@ class AdminController extends Controller
     {
         $konten=KontenMateri::find($id);
         $konten->delete();
-        Alert::success('Success', 'Materi deleted successfully');
+        Alert::success('Success', 'Konten deleted successfully');
         return redirect()->back();
     }
     
@@ -730,7 +730,7 @@ class AdminController extends Controller
         }
         
         $konten->save();
-        Alert::success('Success', 'Materi Updated successfully');
+        Alert::success('Success', 'Konten Updated successfully');
         return redirect()->back();
     }
 
