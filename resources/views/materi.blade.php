@@ -42,7 +42,7 @@
                                         <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                            <button type="submit" class="dropdown-item text-white" style="overflow: hidden; text-wrap: pretty">{{ $m->judul_materi }}</button>
+                                            <button type="submit" class="dropdown-item text-white" style="overflow: hidden; text-wrap: pretty !important">{{ $m->judul_materi }}</button>
                                         </form>
                                     
                                         @if($postestCompleted)
@@ -96,7 +96,7 @@
                                     <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                        <button type="submit" class="dropdown-item" style="overflow: hidden; text-wrap: pretty">{{ $m->judul_materi }}</button>
+                                        <button type="submit" class="dropdown-item" style="overflow: hidden; text-wrap: pretty !important">{{ $m->judul_materi }}</button>
                                     </form>
                                 
                                     @if($postestCompleted)

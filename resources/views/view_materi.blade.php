@@ -6,13 +6,12 @@
     <style>
         .pdf-viewer {
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
+            height: 100vh;
+            width: 100vw;
             overflow: hidden;
-            max-width: 100%;
             background: #f0f0f0;
         }
-        .pdf-viewer embed {
+        .pdf-viewer iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -24,7 +23,7 @@
 </head>
 <body style="height: 100%; width: 100%; overflow: hidden; margin:0px; background-color: rgb(82, 86, 89);">
     <div class="pdf-viewer">
-        <embed src="{{ asset('storage/powerpoint_files/' . $konten->konten) }}" type="application/pdf">
+        <iframe src="{{ asset('storage/powerpoint_files/' . $konten->konten) }}" type="application/pdf"></iframe>
     </div>            
 </body>
 </html>
