@@ -16,9 +16,9 @@
                 <section class="mt-5"> 
                     @if ($konten && $konten->konten)
                         <a href="{{ url('/download/' . $konten->id) }}" class="button" target="_blank">Download Materi</a>
-                        @if (strtolower(pathinfo($konten->konten, PATHINFO_EXTENSION)) === 'pdf')
+                        {{-- @if (strtolower(pathinfo($konten->konten, PATHINFO_EXTENSION)) === 'pdf')
                             <a href="{{ url('/view', $konten->id) }}" class="button" target="_blank">Lihat Materi</a>
-                        @endif
+                        @endif --}}
                     @endif
                 </section>
             </div>

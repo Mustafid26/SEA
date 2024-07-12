@@ -42,7 +42,7 @@
                                         <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                            <button type="submit" class="dropdown-item text-white" style="overflow: hidden; text-wrap: pretty !important">{{ $m->judul_materi }}</button>
+                                            <button type="submit" class="dropdown-item text-white text-wrap">{{ $m->judul_materi }}</button>
                                         </form>
                                     
                                         @if($postestCompleted)
@@ -51,7 +51,7 @@
                                             <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                         @endif
                                     @else
-                                        <a class="dropdown-item lock text-white" style="overflow: hidden; text-wrap: pretty !important" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                        <a class="dropdown-item lock text-white text-wrap" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                         <a class="dropdown-item lock text-white" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                     @endif
                                 @endforeach
@@ -96,7 +96,7 @@
                                     <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                        <button type="submit" class="dropdown-item" style="overflow: hidden; text-wrap: pretty !important">{{ $m->judul_materi }}</button>
+                                        <button type="submit" class="dropdown-item text-wrap">{{ $m->judul_materi }}</button>
                                     </form>
                                 
                                     @if($postestCompleted)
@@ -105,7 +105,7 @@
                                         <a class="dropdown-item" onclick="checkQuestionsPost(event)" href="{{ route('postest.show', $kelas->id) }}"><strong>Postest</strong></a>
                                     @endif
                                 @else
-                                    <a class="dropdown-item lock" style="overflow: hidden; text-wrap: pretty !important" href="#"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
+                                    <a class="dropdown-item lock text-wrap"><i class="fa fa-solid fa-lock"></i> {{ $m->judul_materi }}</a>
                                     <a class="dropdown-item lock" href="#"><i class="fa fa-solid fa-lock"></i> Postest</a>
                                 @endif
                             @endforeach
