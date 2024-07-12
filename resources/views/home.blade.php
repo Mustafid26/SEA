@@ -2,23 +2,19 @@
 
 @section('konten')
 
-<div class="hero-section text-center text-white d-flex align-items-center justify-content-center" style="background: rgb(255,255,255);
-background: -moz-linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(151,233,233,1) 33%, rgba(127,228,230,1) 100%);
-background: -webkit-linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(151,233,233,1) 33%, rgba(127,228,230,1) 100%);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(151,233,233,1) 33%, rgba(127,228,230,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#7fe4e6",GradientType=1);">
+<div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
 		<div class="content">
-		<h1 class="text-white">
-			Mulai Perjalanan <br />
-			<span>#PerempuanMandiri</span> <br />
-			Bersama Sekari
-		</h1>
-		<p style="color: black; font-weight:bold;">
-			"Tiada cuaca di langit yang tetap selamanya. Tiada mungkin akan terus terus menerus terang cuaca. Sehabis malam gelap gulita , lahir pagi membawa kehidupan. " <br> -RA. Kartini
-		</p>
+			<h1 class="text-white">
+				Mulai Perjalanan <br />
+				<span>#PerempuanMandiri</span> <br />
+				Bersama Sekari
+			</h1>
+			<p style="color: black; font-weight:bold;">
+				"Tiada cuaca di langit yang tetap selamanya. Tiada mungkin akan terus terus menerus terang cuaca. Sehabis malam gelap gulita , lahir pagi membawa kehidupan. " <br> -RA. Kartini
+			</p>
 		</div>
 		<div class="hero-image">
-		<img src="{{asset("img/SEKARI.png")}}" alt="Hero Image" class="img-fluid" />
+			<img src="{{asset("img/SEKARI.png")}}" alt="Hero Image" class="img-fluid" />
 		</div>
 </div>
 
@@ -41,11 +37,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endCo
 	  </div>
 	</div>
 </div>
-<section id="slider" class="pt-5 mt-5" style="background: rgb(255,255,255);
-background: -moz-linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(151,233,233,1) 33%, rgba(127,228,230,1) 100%);
-background: -webkit-linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(151,233,233,1) 33%, rgba(127,228,230,1) 100%);
-background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(151,233,233,1) 33%, rgba(127,228,230,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#7fe4e6",GradientType=1);">
+<section id="slider" class="pt-5 mt-5 slider-bawah">
 	<div class="container">
 		<h1 class="text-center"><b>Dokumentasi</b></h1>
 		<div class="slider">	
