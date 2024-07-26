@@ -32,16 +32,16 @@
       $userRombel = auth()->user()->rombel;
     @endphp
 
-    @foreach($kelas->where('rombel', $userRombel) as $k)
-        <a href="{{ url('/kelas/' . $k->id . '/materi') }}">
-            <div class="card-custom shadow-lg">
-                <img src="{{ asset('storage/' . $k->image) }}" class="logo_kelas">
-                <div>
-                    <h6>{{ $k->nama_kelas }}</h6>
-                    <p>{{ $k->detail_kelas }}</p>
-                </div>
+    @foreach($kelas as $k)
+    <a href="{{ url('/kelas/' . $k->id . '/materi') }}">
+        <div class="card-custom shadow-lg">
+            <img src="{{ asset('storage/' . $k->image) }}" class="logo_kelas">
+            <div>
+                <h6>{{ $k->nama_kelas }}</h6>
+                <p>{{ $k->detail_kelas }}</p>
             </div>
-        </a>
+        </div>
+    </a>
     @endforeach
 </div>
 <div class="container d-flex justify-content-end">

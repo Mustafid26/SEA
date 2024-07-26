@@ -15,7 +15,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::paginate(10);
+        $userRombel = auth()->user()->rombel;
+        $kelas = Kelas::where('rombel', $userRombel)->paginate(10);
         return view('kelas', [
             'active' => "kelas",
             'kelas' => $kelas
