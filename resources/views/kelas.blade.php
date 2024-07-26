@@ -10,7 +10,7 @@
     });
 </script>
 @endif
-<div class="container mt-5 fadeinUp" style="margin-bottom: 10rem;"> 
+<div class="container mt-5 fadeinUp" style="margin-bottom: 20rem;"> 
     <div class="header">
       <div class="profile">
         @if (Auth::user()->profile_photo_path)

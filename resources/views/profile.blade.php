@@ -378,7 +378,7 @@
     </script>
     <script>
        document.addEventListener('DOMContentLoaded', function () {
-            const targetDate = new Date('September 30, 2024 00:00:00').getTime();
+            const targetDate = new Date('August 30, 2024 00:00:00').getTime();
 
             function updateCountdown() {
                 const now = new Date().getTime();

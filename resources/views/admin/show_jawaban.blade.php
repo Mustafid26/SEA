@@ -58,8 +58,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Kelas</th>
                                 <th scope="col">Nama Lengkap</th>
-                                <th scope="col">Nama Pengguna</th>
+                                <th scope="col">Nama Pengguna</th>          
                                 <th scope="col">Soal</th>
                                 <th scope="col">Jawaban Peserta</th>
                                 <th scope="col">Jawaban Benar</th>
@@ -69,8 +70,9 @@
                             @foreach ($answers as $a)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $a->kelas->nama_kelas }}</td>
                                     <td>{{ $a->user->nama_lengkap }}</td>
-                                    <td>{{ $a->user->name }}</td>
+                                    <td>{{ $a->user->name }}</td>              
                                     <td>{{ $a->question->question}}</td>
                                     <td>{{ $a->answer }}</td>
                                     <td>{{ $a->question->correct_answer }}</td>

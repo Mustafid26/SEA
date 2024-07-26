@@ -186,7 +186,7 @@
                 formContainer.innerHTML = `
                     <table class="table">
                         <tr>
-                            <td><label for="kelas" class="form-label">Menambah Pos0test Pada Kelas</label></td>
+                            <td><label for="kelas" class="form-label">Menambah Postest Pada Kelas</label></td>
                             <td>
                                 <input type="text" style="background-color: white !important; color:black !important;" class="form-control" placeholder="{{ $materi->kelas->nama_kelas }}" disabled>
                             </td>

@@ -46,6 +46,7 @@
     <style>
         body {
             font-family: 'Maven Pro';
+            margin-bottom : 150px;
         }
         #preloader {
             position: fixed;
