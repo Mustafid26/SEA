@@ -93,6 +93,15 @@ Route::post('/update_kelas_2/{id}', [AdminController::class,'update_kelas_2']);
 Route::get('/delete_kelas/{id}', [AdminController::class,'delete_kelas']);
 Route::get('/search_kelas', [AdminController::class,'search_kelas']);
 
+Route::post('/add_form', [AdminController::class,'add_formpenilaian']);
+Route::get('/view_formpenilaian', [AdminController::class,'view_form']);
+Route::get('/show_formpenilaian', [AdminController::class,'show_formpenilaian']);
+Route::get('/show_penilaian', [AdminController::class,'show_penilaian']);
+Route::get('/delete_penilaian/{id}', [AdminController::class,'delete_penilaian']);
+Route::get('/delete_form/{id}', [AdminController::class,'delete_form']);
+Route::get('/update_formpenilaian/{id}', [AdminController::class,'update_formpenilaian']);
+Route::post('/update_formpenilaian_2/{id}', [AdminController::class,'update_formpenilaian_2']);
+
 Route::post('/add_materi', [AdminController::class,'add_materi']);
 Route::get('/view_materi', [AdminController::class,'view_materi']);
 Route::get('/show_materi', [AdminController::class,'show_materi']);
@@ -125,11 +134,14 @@ Route::get('/search_postest', [AdminController::class,'search_postest']);
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth','verified');
 Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth','verified');
+Route::get('/kelas/{id}/penilaian', [KelasController::class, 'showFormPenilaian'])->name('form.show')->middleware('auth','verified');
+Route::post('/submit_penilaian', [KelasController::class, 'submitFormPenilaian'])->name('submit.penilaian');
 Route::get('/artikel', [ArtikelController::class, 'index']);
 Route::get('/artikel/{artikel:slug}', [ArtikelController::class, 'show'])->name('artikel.show');
 
 
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('index')->middleware('auth','verified');
+Route::get('/profile/submit', [ProfileController::class, 'submitUAS'])->name('submit')->middleware('auth','verified');
 Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('profile.upload')->middleware('auth','verified');
 Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete')->middleware('auth','verified');
 

@@ -2,6 +2,7 @@
 
 @section('konten')
 
+
 <div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
 		<div class="content">
 			<h1 class="text-white">
@@ -17,7 +18,6 @@
 			<img src="{{asset("img/SEKARI.png")}}" alt="Hero Image" class="img-fluid" />
 		</div>
 </div>
-
 
 <div class="container-sea text-center mt-5 fadeinUp">
 	<div class="content-wrapper">

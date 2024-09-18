@@ -65,7 +65,10 @@
             <div class="collapse" id="ui-basic-C">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('view_kelas') }}">Add Kelas</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('view_formpenilaian') }}">Add Penilaian</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('show_kelas') }}">Show Kelas</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('show_formpenilaian') }}">Show Form Penilaian</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('show_penilaian') }}">Show Penilaian</a></li>
                 </ul>
             </div>
         </li>

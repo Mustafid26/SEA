@@ -124,7 +124,7 @@
             <i class="fa fa-newspaper"></i>
             ARTIKEL
         </a>
- 
+
         @auth
         <a href="/profile/{{ Auth::user()->id }}" class="{{ ($active === 'login') ? 'active' : '' }}"> 
             <i class="fa fa-solid fa-user "></i>

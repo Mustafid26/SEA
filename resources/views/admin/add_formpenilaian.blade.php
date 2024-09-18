@@ -57,27 +57,26 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('add_artikel')}}" method="post" class="mb-5" enctype="multipart/form-data">
+                    <form action="{{url('add_form')}}" method="post" class="mb-5" enctype="multipart/form-data">
                         
                         @csrf
-                        <h1 class="h1coy">Add Artikel</h1>
+                        <h1 class="h1coy">Add Penilaian</h1>
                         <div class="mb-3">
-                            <label for="title" nameclass="form-label">Judul Artikel</label>
-                            <input style="background-color: white !important; color: black !important;" type="text" class="form-control" id="title" name="title" placeholder="Masukan Judul" required value="">
+                            <label for="title" nameclass="form-label">Judul Penilaian</label>
+                            <input style="background-color: white !important; color: black !important;" type="text" class="form-control" id="judul" name="judul" placeholder="Masukan Judul" required value="">
                         </div>
                         <div class="mb-3">
-                            <label for="slug" class="form-label">Slug</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="slug" name="slug" placeholder="masukkan-slug" required value="">
+                            <label for="detail" class="form-label">Detail</label>
+                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="detail" name="detail" placeholder="Masukkan Detail" required value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rombel" class="form-label">Rombel</label>
+                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="rombel" name="rombel" placeholder="Masukkan Rombel" required value="">
                         </div>
                         <div class="mb-3">
                             <label for="image" nameclass="form-label">Upload Gambar</label>
                             <img src="" class="img-fluid img-preview mb-3 col-sm-5" alt="">
                             <input type="file" style="background-color: white !important;" name="image" id="image" class="form-control" id="inputGroupFile02" onchange="previewImage()">
-                        </div>
-                        <div class="mb-3">
-                            <label for="body" class="form-label">Body</label>
-                            <input id="body" type="hidden" name="body" value="">
-                            <trix-editor input="body"></trix-editor>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

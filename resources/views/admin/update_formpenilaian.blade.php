@@ -40,7 +40,7 @@
     }
     trix-toolbar [data-trix-button-group="file-tools"] 
     {
-        display: none;
+    display: none;
     }
     </style>
 </head>
@@ -57,29 +57,30 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('add_artikel')}}" method="post" class="mb-5" enctype="multipart/form-data">
-                        
+                    <form action="{{url('update_formpenilaian_2',$penilaian->id)}}" method="post" enctype="multipart/form-data" class="mb-5">
                         @csrf
-                        <h1 class="h1coy">Add Artikel</h1>
                         <div class="mb-3">
-                            <label for="title" nameclass="form-label">Judul Artikel</label>
-                            <input style="background-color: white !important; color: black !important;" type="text" class="form-control" id="title" name="title" placeholder="Masukan Judul" required value="">
+                            <label for="judul" nameclass="form-label">Judul Penilaian</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="judul" placeholder="Masukkan Judul" required value="{{$penilaian->judul}}">
                         </div>
                         <div class="mb-3">
-                            <label for="slug" class="form-label">Slug</label>
-                            <input type="text" style="background-color: white !important; color: black !important;" class="form-control" id="slug" name="slug" placeholder="masukkan-slug" required value="">
+                            <label for="detail" class="form-label">Detail</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="detail" placeholder="Masukkan Detail" required value="{{$penilaian->detail}}">
                         </div>
                         <div class="mb-3">
-                            <label for="image" nameclass="form-label">Upload Gambar</label>
-                            <img src="" class="img-fluid img-preview mb-3 col-sm-5" alt="">
-                            <input type="file" style="background-color: white !important;" name="image" id="image" class="form-control" id="inputGroupFile02" onchange="previewImage()">
+                            <label for="rombel" class="form-label">Rombel Kelas</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="rombel" placeholder="Masukkan Rombel Kelas" required value="{{$penilaian->rombel}}">
                         </div>
                         <div class="mb-3">
-                            <label for="body" class="form-label">Body</label>
-                            <input id="body" type="hidden" name="body" value="">
-                            <trix-editor input="body"></trix-editor>
+                            <label for="" class="form-label">Foto Terkini</label><br>
+                            <img style="margin: auto;" width="30%" src="{{asset('storage/' . $penilaian->image)}}"
+                            alt="foto terkini">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Update Gambar</label>
+                            <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
             </div>
@@ -90,30 +91,6 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
-    <script>
-        document.addEventListener('trix-file-accept', function (event) {
-            event.preventDefault();
-            alert('File attachment not supported!');
-        });
-    </script>
-    <script>
-
-        function previewImage(){
-          const image = document.querySelector('#image');
-          const imgpre = document.querySelector('.img-preview');
-      
-          imgpre.style.display = 'block';
-      
-          const oFReader = new FileReader();
-          oFReader.readAsDataURL(image.files[0]);
-      
-          oFReader.onload = function(oFREvent){
-            imgpre.src = oFREvent.target.result;
-          }
-        }
-      
-      
-    </script>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>

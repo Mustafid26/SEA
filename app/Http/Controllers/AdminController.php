@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Answer;
 use App\Models\Materi;
+use App\Models\Submit;
 use App\Models\Artikel;
 use App\Models\Question;
+use App\Models\Penilaian;
 use App\Models\PostestUser;
 use App\Models\PretestUser;
 use App\Models\KontenMateri;
@@ -834,5 +836,106 @@ class AdminController extends Controller
         $search_text = $request->search_soal;
         $postest = QuestionPostest::where('question', 'LIKE', "%$search_text%")->GET();
         return view('admin.show_postest', compact('postest'));
+    }
+    public function view_form()
+    {
+        if (auth::id()) {
+            $penilaian=Penilaian::all();
+            return view('admin.add_formpenilaian', compact('penilaian')); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
+    public function add_formpenilaian(Request $request)
+    {
+        $penilaian = new Penilaian;
+        $penilaian->judul = $request->judul;
+        $penilaian->detail = $request->detail;
+        $penilaian->rombel = $request->rombel;
+        $validated = $request->validate([
+            'image' => 'image|file|max:1024'
+        ]);
+       
+        $image=$request->image;
+        if($request->file('image'))
+        {
+            $imagePath = $validated['image'] = $request->file('image')->store('photo_kelas', 'public');
+            $penilaian->image = $imagePath;
+        }
+        $penilaian->save();
+        Alert::success('Success', 'Penilaian added successfully');
+        return redirect()->back();
+    }
+    public function show_formpenilaian()
+    {
+       if (auth::id()){
+            $penilaian=Penilaian::all();   
+            return view('admin.show_formpenilaian', compact('penilaian'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+    public function update_formpenilaian($id)
+    {
+        $penilaian=Penilaian::find($id);
+        return view('admin.update_formpenilaian', compact('penilaian'));
+        
+    }
+    public function update_formpenilaian_2(Request $request,$id)
+    {
+        $penilaian=Penilaian::find($id);
+        $penilaian->judul=$request->judul;
+        $penilaian->detail=$request->detail;
+        $penilaian-> rombel=$request->rombel;
+        if ($request->file('image')) {
+            // Delete the old image file from storage
+            if ($penilaian->image) {
+                Storage::disk('public')->delete($penilaian->image);
+            }
+
+            $originalName = $request->image->getClientOriginalName();
+            
+            $imagePath = $originalName;
+            
+            // Store the new image file
+            $imagePath = $validated['image'] = $request->file('image')->storeAs('photo_kelas', $originalName, 'public');
+
+            // Update the image path in the database
+            $penilaian->image = $imagePath;
+        }
+            
+        $penilaian->save();
+        Alert::success('Success', 'Kelas Updated successfully');
+        return redirect()->back();
+    }
+    public function delete_form($id)
+    {
+        $penilaian=Penilaian::find($id);
+        $penilaian->delete();
+        
+        Alert::success('Success', 'Form Penilaian deleted successfully');
+        return redirect()->back();
+    }
+    public function show_penilaian()
+    {
+        if (auth::id()) {
+            $penilaian=Submit::all();
+            return view('admin.show_penilaian', compact('penilaian')); 
+        } 
+        else {
+            return redirect('login');
+        }
+        
+    }
+    public function delete_penilaian($id)
+    {
+        $penilaian=Submit::find($id);
+        $penilaian->delete();
+        
+        Alert::success('Success', 'Penilaian deleted successfully');
+        return redirect()->back();
     }
 }

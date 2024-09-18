@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('konten')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if(session('sweetalert'))
 <script>
     Swal.fire({
@@ -26,8 +27,26 @@
         </div>
       </div>
     </div>
-  
-    <h5>Pilih Pelatihan</h5>
+
+    @php
+      $userRombel = auth()->user()->rombel;
+    @endphp
+    @if($penilaian->count() > 0) 
+      <h5>Penilaian Akhir</h5>
+
+      @foreach($penilaian as $p)
+      <a href="{{ route('form.show', ['id' => $p->id]) }}">
+          <div class="card-custom shadow-lg">
+              <img src="{{ asset('storage/' . $p->image) }}" class="logo_kelas">
+              <div>
+                  <h6>{{$p->judul}}</h6>
+                  <p>{{$p->detail}}</p>
+              </div>
+          </div>
+      </a>
+      @endforeach
+    @endif
+    <h5 class="mt-5">Pilih Pelatihan</h5>
     @php
       $userRombel = auth()->user()->rombel;
     @endphp

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
     <style>
         body {
@@ -164,6 +165,10 @@
         .countdown .label {
             font-size: 1rem;
             margin-top: 5px;
+        }
+        trix-toolbar [data-trix-button-group="file-tools"] 
+        {
+            display: none;
         }
     </style>
 </head>
@@ -338,6 +343,33 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pengumpulan Tugas</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    @csrf
+                                    <div class="textarea mb-2">
+                                        <label for="category" class="form-label">Silahkan Masukkan Link Di Bawah Ini</label>
+                                        <input id="body" type="hidden" name="body" value="">
+                                        <trix-editor input="body"></trix-editor>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-profile btn-coin btn btn-outline-secondary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                    <div class="d-flex justify-content-between">
+                        <span class="text-profile"><i class="fa fa-solid fa-upload fa-2xl icon-profile"
+                                style="color: #219c90;"></i>Penugasan</span>
+                    </div>
+                </button> --}}
                 <a href="/user/profile" style="text-decoration: none;">
                     <button class="btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                         <span class="text-profile"><i class="fa fa-solid fa-gear fa-2xl icon-profile"
@@ -404,6 +436,7 @@
             updateCountdown();
         });
     </script>
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 </body>
 
 </html>

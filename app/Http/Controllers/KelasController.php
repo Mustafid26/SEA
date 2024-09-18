@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Materi;
+use App\Models\Submit;
+use App\Models\Penilaian;
 use App\Models\PostestUser;
 use App\Models\PretestUser;
 use Illuminate\Http\Request;
@@ -17,8 +19,14 @@ class KelasController extends Controller
     {
         $userRombel = auth()->user()->rombel;
         $kelas = Kelas::where('rombel', $userRombel)->paginate(10);
+        if ($userRombel === 'Sekari 03') {
+            $penilaian = Penilaian::where('rombel', $userRombel)->paginate(10);
+        } else {
+            $penilaian = collect();
+        }
         return view('kelas', [
             'active' => "kelas",
+            'penilaian' => $penilaian,
             'kelas' => $kelas
         ]);
     }
@@ -66,6 +74,29 @@ class KelasController extends Controller
         ]);
     }
     
+    public function showFormPenilaian($id)
+    {
+        $penilaian = Penilaian::findOrFail($id);
+        return view('formPenilaian', [
+            'penilaian' => $penilaian,
+            'active' => 'kelas',
+        ]);
+    }
+    public function submitFormPenilaian(Request $request)
+    {
+        $existingSubmit = Submit::where('user_id', auth()->user()->id)->first();
+
+        if ($existingSubmit) {
+            // Jika sudah pernah mengirimkan, arahkan kembali dengan pesan
+            return redirect()->back()->with('error', 'Anda sudah mengirimkan penilaian.');
+        }
+
+        $data = new Submit;
+        $data->user_id = auth()->user()->id;
+        $data->body = $request->body;   
+        $data->save();
+        return redirect()->route('kelas')->with(['sweetalert' =>'Penilaian Anda Berhasil Disimpan!']);
+    }
     /**
      * Show the form for editing the specified resource.
      */
