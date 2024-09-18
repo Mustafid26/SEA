@@ -77,7 +77,7 @@ class KelasController extends Controller
     public function showFormPenilaian($id)
     {
         $penilaian = Penilaian::findOrFail($id);
-        return view('formPenilaian', [
+        return view('formpenilaian', [
             'penilaian' => $penilaian,
             'active' => 'kelas',
         ]);
