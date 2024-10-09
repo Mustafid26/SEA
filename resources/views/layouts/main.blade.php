@@ -213,7 +213,7 @@
         </a>
         <!-- Download Button -->
         <a href="https://drive.usercontent.google.com/u/0/uc?id=13fX6Uma3EEN3c2HRHwNSQAAyLh1dxYP1&export=download" class="download" download>
-            <i class="bi bi-download"></i>`
+            <i class="bi bi-download"></i>
         </a>
     </div>
     @yield('konten')
