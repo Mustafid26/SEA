@@ -14,6 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
         rel="stylesheet">
@@ -40,7 +41,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script src="{{asset('lib/wow/wow.min.js')}}"></script>
     <script src="{{asset('lib/easing/easing.min.js')}}"></script>
@@ -211,14 +212,14 @@
             <img src="{{asset('img/cp.png')}}" alt="WhatsApp" width="" class="whatsapp-icon" />
         </a>
         <!-- Download Button -->
-        <a href="https://drive.usercontent.google.com/u/0/uc?id=13fX6Uma3EEN3c2HRHwNSQAAyLh1dxYP1&export=download" class="download" download style="width: 50px;">
-            <i class="bi bi-download"></i>  
+        <a href="https://drive.usercontent.google.com/u/0/uc?id=13fX6Uma3EEN3c2HRHwNSQAAyLh1dxYP1&export=download" style="border-radius: 0%;" class="download" download >
+            <img src="{{asset('img/panduan.svg')}}" alt="download" width="" class="download-icon" />
         </a>
     </div>
     @yield('konten')
 
     {{-- end content --}}
-    <footer class="bg-dark text-white py-4">
+    <footer class="bg-dark text-white py-4" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <!-- Left Section (DP3AP2KB, Udinus, HMTI, Contact Info) -->
@@ -272,7 +273,9 @@
 
     <!-- JavaScript -->
     <!-- Template Javascript -->
-
+    <script>
+        AOS.init();
+    </script>
     <script>
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.display = 'none';

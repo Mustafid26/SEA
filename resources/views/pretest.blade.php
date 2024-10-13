@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pretest</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoserat.png') }}">
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <style>
         body {
-            background-color: #11595C;
+            background-color: #FEE5FD;
             color: white;
             height: 100vh;
             display: flex;
@@ -16,7 +17,7 @@
             margin: 0;
         }
         .card {
-            background-color: #124C4F;
+            background-color: #d73696;
             border-radius: 15px;
             padding: 20px;
             color: white;
@@ -37,14 +38,14 @@
             background-color: #FFBF00;
         }
         .btn-custom {
-            background-color: #265D65;
+            background-color: #ba4b8e;
             border: none;
             border-radius: 10px;
             color: white;
             width: 100%;
         }
         .btn-custom:hover {
-            background-color: #1B4349;
+            background-color: #f33ca9;
         }
         .form-check-label {
             color: white;

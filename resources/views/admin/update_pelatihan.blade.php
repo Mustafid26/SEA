@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>Admin SEA</title>
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoserat.png') }}">
 <head>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     @include('admin.css')
@@ -57,31 +57,31 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <form action="{{url('update_kelas_2',$kelas->id)}}" method="post" enctype="multipart/form-data" class="mb-5">
+                    <form action="{{url('update_pelatihan_2',$pelatihan->id)}}" method="post" class="mb-5" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="nama_kelas" nameclass="form-label">Nama Kelas</label>
-                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="nama_kelas" placeholder="Masukkan Nama Kelas" required value="{{$kelas->nama_kelas}}">
+                            <label for="title" nameclass="form-label">Judul Pelatihan</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control " id="title" name="title" placeholder="Masukkan Judul" required value="{{$pelatihan->title}}">
                         </div>
                         <div class="mb-3">
-                            <label for="detail_kelas" class="form-label">Detail Kelas</label>
-                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="" name="detail_kelas" placeholder="Masukkan Detail" required value="{{$kelas->detail_kelas}}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <input id="body" type="hidden" name="deskripsi" value="{{$kelas->deskripsi}}">
-                            <trix-editor input="body"></trix-editor>
+                            <label for="slug" class="form-label">Slug</label>
+                            <input style="background-color: white !important ; color: black !important;" type="text" class="form-control" id="slug" name="slug" placeholder="Masukkan Slug" required value="{{$pelatihan->slug}}">
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Foto Terkini</label><br>
-                            <img style="margin: auto;" width="30%" src="{{asset('storage/' . $kelas->image)}}"
+                            <img style="margin: auto;" width="30%" src="{{asset('storage/' . $pelatihan->image)}}"
                             alt="foto terkini">
                         </div>
                         <div class="mb-3">
-                            <label for="image" class="form-label">Update Gambar</label>
+                            <label for="name" class="form-label">Upload Gambar</label>
                             <input style="background-color: white !important ; color: black !important;" type="file" class="form-control" name="image">
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Body</label>
+                            <input id="body" type="hidden" name="body" value="{{$pelatihan->body}}">
+                            <trix-editor input="body"></trix-editor>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -106,9 +106,17 @@
             })
             .then((willCancel) => {
                 if (willCancel) {
+
+
+
                     window.location.href = urlToRedirect;
+
                 }
+
+
             });
+
+
     }
     </script>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>

@@ -46,6 +46,10 @@ Route::get('/comingsoon', [HomeController::class, 'comingsoon'])->middleware('au
 Route::get('/konseling', [HomeController::class, 'konseling']);
 
 
+Route::post('/add_presensi', [AdminController::class,'add_presensi']);
+Route::get('/popupmateri', [HomeController::class, 'popupmateri']);
+
+
 Route::post('/add_foto', [AdminController::class,'add_foto']);
 Route::get('/view_foto', [AdminController::class,'view_foto']);
 Route::get('/show_foto', [AdminController::class,'show_foto']);

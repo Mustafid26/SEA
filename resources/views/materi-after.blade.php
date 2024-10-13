@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('konten')
-    <div class="container-parent fadeinUp vh-100" style="margin-bottom: 10rem;">
+    <div class="container-parent fadeinUp vh" style="margin-bottom: 10rem;">
         <div class="container-child">
             <div class="video-container">
-                <img src="{{asset('img/SEKARI.png')}}" alt="" class="img-fluid" style="max-width: 60%;">
+                <img src="{{ asset('img/logoserat.png') }}" alt="" class="img-fluid" style="height: auto; display: block; margin: 0 auto;">
             </div>
             <div class="content-materi-after">
                 <h2>{{ $materi->judul_materi }}</h2>

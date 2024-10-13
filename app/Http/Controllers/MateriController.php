@@ -53,6 +53,7 @@ class MateriController extends Controller
         $filePath = storage_path('app/public/storage/powerpoint_files' . $konten->konten);
         $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
     
-        return view('view_materi', compact('konten', 'extension'));
+        return view('popupmateri', compact('konten', 'extension'));
     }
+    
 }

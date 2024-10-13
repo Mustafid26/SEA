@@ -21,9 +21,9 @@
         @endif
         <div>
           <h5>Halo, {{Auth::user()->nama_lengkap}}</h5>
-          @if (Auth::user()->usertype != 0)
+          {{-- @if (Auth::user()->usertype != 0)
           <span><img src="{{ asset('img/coin.png')}} " alt="" srcset="">{{ Auth::user()->points }} Poin</span>
-          @endif
+          @endif --}}
         </div>
       </div>
     </div>

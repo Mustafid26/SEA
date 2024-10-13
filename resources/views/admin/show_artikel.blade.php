@@ -108,7 +108,7 @@
                     dangerMode: true,
                 })
                 .then((willCancel) => {
-                    if (willCancel) 
+                    if (willCancel) {
                         window.location.href = urlToRedirect;
                     }
                 });

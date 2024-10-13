@@ -26,6 +26,7 @@
     });
 </script>
 @endif
+
 <div class="container fadeinUp" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:10rem;">
     <div class="d-flex mt-5">
         <!-- Card Mobile -->
@@ -36,23 +37,24 @@
                     <h3 class="card-title mb-4 text-wrap text-break">Pelatihan {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
                     <h5 class="text-left">Deskripsi Singkat</h5>
                     <p class="card-text text-wrap text-break">{!! $kelas->deskripsi !!}</p>
-                    <div class="list-group mt-4">   
+                    <div class="list-group mt-4" style="max-width: 500px;">   
                         <div class="drop"> 
                             <button class="drop-btn btn-primary" onclick="toggledrop()">
                                 <i class="fa fa-solid fa-book"></i> Materi Belajar
                             </button>
+                            <!-- Button trigger modal -->
                             <div id="drop-content" class="drop-content">   
-                                <a class="dropdown-item text-white" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-calendar"></i> Presensi</a>  
-                                <div class="dropdown-menu w-100 p-3 border">
+                                <a class="dropdown-item text-white" data-bs-toggle="dropdown"><i class="fa-solid fa-calendar"></i> Presensi</a>   
+                                <div class="dropdown-menu p-3 border" style="max-width: 30em; width: 100%;">
                                     <form action="" method="POST">
                                         @csrf
                                         <div class="form-group mb-3">
                                             <label><strong>Materi: {{$kelas->nama_kelas}} </strong></label>
                                         </div>
-                                        <div class="form-group mb-3">
+                                        {{-- <div class="form-group mb-3">
                                             <label><strong>Tanggal: </strong></label>
-                                            <input type="date" name="tanggal" class="form-control" required>
-                                        </div>
+                                            <input type="date" name="tanggal" class="form-control" id="tanggal" required>
+                                        </div> --}}
                                         <div class="form-group mb-3">
                                             <label><strong>Kehadiran: </strong></label><br>
                                             <!-- Opsi Kehadiran -->
@@ -84,7 +86,7 @@
                                         <form action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
-                                            <button type="submit" class="dropdown-item text-white text-wrap"><i class="fa-solid fa-book-bookmark"></i> {{ $m->judul_materi }}</button>
+                                            <button type="submit" class="dropdown-item text-white"><i class="fa-solid fa-book-bookmark"></i> {{ $m->judul_materi }}</button>
                                         </form>
                                     
                                         @if($postestCompleted)
@@ -98,6 +100,43 @@
                                     @endif
                                 @endforeach
                                 @endif
+                                <a class="dropdown-item text-white" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-star"></i> Survey
+                                </a>
+                                <div class="dropdown-menu p-3 border" style="max-width: 30em; width: 100%;">
+                                    <form action="" method="POST" id="surveyForm">
+                                        @csrf
+                                        
+                                        <!-- Form Rating -->
+                                        <div class="form-group mb-3">
+                                            <label><strong>Rating: </strong></label><br>
+                                            <!-- Rating dengan gambar ikon wajah dari Font Awesome -->
+                                            <div class="d-flex justify-content-between w-75" id="ratingIcons">
+                                                <span class="rating-option" data-value="1">
+                                                    <i class="fas fa-smile face-icon text-success" style="font-size: 30px;"></i> <!-- Ikon Sangat Puas -->
+                                                </span>
+                                                <span class="rating-option" data-value="2">
+                                                    <i class="fas fa-meh face-icon text-warning" style="font-size: 30px;"></i> <!-- Ikon Puas -->
+                                                </span>
+                                                <span class="rating-option" data-value="3">
+                                                    <i class="fas fa-frown face-icon text-danger" style="font-size: 30px;"></i> <!-- Ikon Tidak Puas -->
+                                                </span>
+                                            </div>
+                                            <input type="hidden" name="rating" id="ratingValue" required>
+                                        </div>
+                                        
+                                        <!-- Form Saran dan Masukan -->
+                                        <div class="form-group mb-3">
+                                            <label><strong>Saran dan Masukan: </strong></label>
+                                            <textarea name="saran" rows="3" class="form-control" placeholder="Masukkan saran dan masukan..." required></textarea>
+                                        </div>
+                                        
+                                        <!-- Tombol Simpan -->
+                                        <div class="form-group text-center">
+                                            <button type="submit" class="btn btn-primary w-50">Simpan</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>                                                  
                         </div>     
                     </div>
@@ -107,7 +146,7 @@
     </div>
     <!-- Card Desktop -->
     <div class="mt-5 card-desktop">
-        <div class="card card-class me-3" style="flex: 1;">
+        <div class="card card-class me-3 p-3" style="flex: 1;">
             <img src="{{ asset('img/logoserat.png') }}" alt="Logo"  class="img-fluid ">
             <div class="card-body">
                 <h3 class="card-title">Pelatihan serat kartini  {{$kelas->nama_kelas}} - {{$kelas->detail_kelas}}</h3>
@@ -123,19 +162,15 @@
                     <div class="dropdown w-100">
                         <!-- Tombol Dropdown -->
                         <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <strong>Presensi</strong>
+                            <i class="fa-solid fa-calendar"></i> Presensi
                         </button>
                         
                         <!-- Isi Dropdown -->
                         <div class="dropdown-menu w-100 p-3 border">
-                            <form action="" method="POST">
+                            <form action="{{url('add_presensi')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label><strong>Materi: {{$kelas->nama_kelas}} </strong></label>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label><strong>Tanggal: </strong></label>
-                                    <input type="date" name="tanggal" class="form-control" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label><strong>Kehadiran: </strong></label><br>
@@ -199,7 +234,7 @@
                     <div class="dropdown w-100">
                         <!-- Tombol Dropdown -->
                         <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <strong>Survey</strong>
+                            <i class="fa fa-solid fa-star"></i> Survey
                         </button>
                         
                         <!-- Isi Dropdown -->
@@ -243,6 +278,10 @@
         </div>
     </div>
 </div>
+<script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('tanggal').value = today;
+</script>
 <script>
     function toggledrop() {
         var content = document.getElementById("drop-content");

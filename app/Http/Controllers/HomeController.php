@@ -46,4 +46,9 @@ class HomeController extends Controller
             'active' => 'konseling'
         ]);
     }
+
+    public function popupmateri()
+    {
+        return view('popupmateri');
+    }
 }

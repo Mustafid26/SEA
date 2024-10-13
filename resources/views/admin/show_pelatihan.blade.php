@@ -76,10 +76,10 @@
                                             src="{{ asset('storage/' . $p->image) }}" alt="gambar artikel">
                                     </td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{ url('update_artikel', $p->id) }}"
+                                        <a class="btn btn-warning" href="{{ url('update_pelatihan', $p->id) }}"
                                             role="button">Edit</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_artikel', $p->id) }}">
+                                            href="{{ url('delete_pelatihan', $p->id) }}">
                                             Delete
                                         </a>
                                     </td>
@@ -109,7 +109,7 @@
                     dangerMode: true,
                 })
                 .then((willCancel) => {
-                        if (willCancel)
+                        if (willCancel){
                             window.location.href = urlToRedirect;
                     }
                 });
