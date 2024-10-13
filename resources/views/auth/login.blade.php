@@ -102,7 +102,7 @@
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #219c9088;"></i>
                                             <span class="h1 fw-bold mb-0"><img class="img-fluid"
-                                                    src="{{ asset('img/logoserat1.webp') }}" alt=""
+                                                    src="{{asset('img/herologo.png')}}" alt=""
                                                     srcset="" /></span>
                                         </div>
 
@@ -143,7 +143,7 @@
     </div>
     <div class="mobile vh-100">
         <div class="container d-flex justify-content-center">
-            <img class="img-fluid mobile-img" src="{{ asset('img/logoserat1.webp') }}" alt="logoSEA" srcset="" />
+            <img class="img-fluid mobile-img" src="{{asset('img/herologo.png')}}" alt="logoSEA" srcset="" />
         </div>
         <div class="container text mt-4">
             <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>

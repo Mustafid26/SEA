@@ -680,11 +680,10 @@
 }
 /* home */
 .hero-section {
-    background: rgb(215,54,150);
-    background: -moz-linear-gradient(180deg, rgba(215,54,150,1) 0%, rgba(215,54,150,1) 35%, rgba(255,255,255,1) 100%);
-    background: -webkit-linear-gradient(180deg, rgba(215,54,150,1) 0%, rgba(215,54,150,1) 35%, rgba(255,255,255,1) 100%);
-    background: linear-gradient(180deg, rgba(215,54,150,1) 0%, rgba(215,54,150,1) 35%, rgba(255,255,255,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d73696",endColorstr="#ffffff",GradientType=1);
+    background-image: url('../img/bglow.svg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -695,7 +694,27 @@
     padding: 20px;
     transition: all 0.3s ease-in-out;
   }
-  
+/* .hero-section {
+    background: rgb(215,54,150);
+    background: -moz-linear-gradient(180deg, rgba(215,54,150,0.9) 0%, rgba(215,54,150,0.9) 50%, rgba(255,255,255,0.7) 100%), url('../img/bglow.svg');
+    background: -webkit-linear-gradient(180deg, rgba(215,54,150,0.9) 0%, rgba(215,54,150,0.9) 50%, rgba(255,255,255,0.7) 100%), url('../img/bglow.svg');
+    background: linear-gradient(180deg, rgba(215,54,150,0.9) 0%, rgba(215,54,150,0.9) 50%, rgba(255,255,255,0.7) 100%), url('../img/bglow.svg');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d73696", endColorstr="#ffffff", GradientType=1);
+    background-size: cover;
+    background-blend-mode: multiply;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 56px);
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+  } */
+  .hero-img{
+    transform: translateY(-5em);
+  }
   .hero-section .content {
     max-width: 600px;
   }
@@ -709,11 +728,9 @@
     background-color: #FFAF00;
     padding: 0 10px;
   }
-  
   .hero-section p {
     font-size: 1.2rem;
   }
-  
   .hero-image {
     position: absolute;
     bottom: 10px;
@@ -721,30 +738,25 @@
     width: 200px;
     transition: all 0.3s ease-in-out;
   }
-  
   @media (min-width: 768px) {
     .hero-section {
       flex-direction: row;
       padding: 40px;
-    }
-    
+    } 
     .hero-section .content {
       max-width: 50%;
       text-align: left;
     }
-  
     .hero-section .hero-image {
       position: static;
       width: auto;
       max-width: 50%;
     }
   }
-  
   @media (max-width: 767px) {
     .hero-section h1 {
       font-size: 2.5rem;
     }
-  
     .hero-section p {
       font-size: 1rem;
     }
@@ -945,10 +957,6 @@
     max-width: 50px !important;
 }
 @media (max-width: 1024px){
-    /* .footer-logo{
-        justify-content: center !important;
-        display: flex !important;
-    } */
     .social-media{
         margin-top: 3rem;
         justify-content: center !important;
@@ -1041,6 +1049,14 @@ iframe {
     background-color: #ffffff;
     margin: 0 auto;
 }
+@media (max-width: 480px) {
+    .text-hero{
+        transform: translateY(2em) !important;
+    }
+    .text-hero2{
+        transform: translateY(4em) !important;   
+    }
+}
 @media (max-width: 1024px) {
     .footer-logo.serat-logo {
         margin-top: 20px;
@@ -1063,7 +1079,66 @@ iframe {
     .vertical-separator {
         display: none;
     }
+    .floating-buttons {
+        transform: translateY(-4em);
+    }
+    .img-h{
+        position: absolute;
+        top: 0; 
+        left: 50%;
+        transform: translateX(-50%); 
+        z-index: 9999;
+    }
+    .img-h {
+        position: absolute;
+        top: 0; 
+        display: flex !important;
+        justify-content: center !important;
+        z-index: 9999;
+    }
+    .img-h, .hero-img {
+        width: 100%; /* Scale down for smaller screens */
+    }
+    .whatsapp-icon {
+        content: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg') !important; 
+        width: 30px !important;
+        height: auto !important;
+    }
+    .floating-buttons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        background-color: green;
+        border-radius: 50% !important;
+        height: 50px;
+        color: white;
+        font-size: 24px;
+        text-decoration: none;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+    }
+    .whatsapp-icon{
+        width: 30px !important;
+    }
+    .floating-buttons{
+        flex-direction: column !important;
+    }
 }
+@media (min-width: 1024px) {
+    .img-h {
+        width: 80%; /* Adjust for larger screens */
+    }
+    .hero-img {
+        width: 50%; /* Adjust hero image size on larger screens */
+    }
+}
+/* .text-hero{
+    transform: translateY(-3em);
+}
+.text-hero2{
+    transform: translateY(-8em);   
+} */
 .btn-whatsapp:hover{
     border-radius: 20px;
 }
@@ -1081,34 +1156,55 @@ iframe {
     bottom: 20px;
     right: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    z-index: 9999;
+    z-index: 2;
 }
-
 .floating-buttons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
-    background-color: #25d366; /* WhatsApp Green */
+    height: 50px;
     color: white;
     font-size: 24px;
     text-decoration: none;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s;
 }
-
+.whatsapp-icon{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.img-h {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    width: 15em; 
+    animation: moveDown 2s ease-in-out forwards;
+}
+@keyframes moveDown {
+    0% {
+        top: -100em; 
+    }
+    100% {
+        top: 0; 
+    }
+}
+.navbar-top {
+    position: relative;
+}
 .floating-buttons a.download {
-    background-color: #007bff; /* Download Button Blue */
+    background-color: #007bff;
 }
 
 .floating-buttons a:hover {
-    background-color: #128c7e; /* Darker WhatsApp Green */
+    background-color: #128c7e;
 }
 
 .floating-buttons a.download:hover {
-    background-color: #0056b3; /* Darker Download Button Blue */
+    background-color: #0056b3; 
+}
+.wrap{
+    word-wrap: break-word !important;
 }

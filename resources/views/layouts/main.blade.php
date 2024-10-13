@@ -42,9 +42,9 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 
 
-    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{asset('lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
     <style>
         body {
             font-family: 'Maven Pro';
@@ -100,7 +100,6 @@
         </div>
     </div>
     {{-- preload --}}
-
     <!-- Navbar Start -->
     <nav class="navbar-top">
         <img src="{{ asset('img/logoseratcut.png') }}" alt="Logo" class="logo">
@@ -116,7 +115,7 @@
 
                 <a class="dropdown-toggle {{ $active === 'informasi' ? 'active' : '' }}" href="#"
                     id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    PUSAT INFORMASI
+                    INFORMASI
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
@@ -150,7 +149,7 @@
     <nav class="bottom-bar">
         {{-- Kondisi untuk menampilkan menu jika pengguna tidak login --}}
         @guest
-            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
+            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}" >
                 <i class="fa fa-home"></i>
                 BERANDA
             </a>
@@ -161,7 +160,7 @@
             <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}" id="pusatInformasiDropdown"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-info-circle"></i>
-                PUSAT INFORMASI
+                INFORMASI
             </a>
             <ul class="dropdown-menu" aria-labelledby="pusatInformasiDropdown">
                 <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
@@ -187,7 +186,7 @@
             <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}" id="pusatInformasiDropdown"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-info-circle"></i>
-                PUSAT INFORMASI
+                INFORMASI
             </a>
             <ul class="dropdown-menu" aria-labelledby="pusatInformasiDropdown">
                 <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
@@ -208,12 +207,12 @@
     {{-- content --}}
     <div class="floating-buttons">
         <!-- WhatsApp Button -->
-        <a href="https://wa.me/6281234567890" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30px" />
+        <a href="https://wa.me/62811274463" target="_blank" style="border-radius: 0%;">
+            <img src="{{asset('img/cp.png')}}" alt="WhatsApp" width="" class="whatsapp-icon" />
         </a>
         <!-- Download Button -->
-        <a href="https://drive.usercontent.google.com/u/0/uc?id=13fX6Uma3EEN3c2HRHwNSQAAyLh1dxYP1&export=download" class="download" download>
-            <i class="bi bi-download"></i>
+        <a href="https://drive.usercontent.google.com/u/0/uc?id=13fX6Uma3EEN3c2HRHwNSQAAyLh1dxYP1&export=download" class="download" download style="width: 50px;">
+            <i class="bi bi-download"></i>  
         </a>
     </div>
     @yield('konten')

@@ -156,7 +156,6 @@ class AdminController extends Controller
         {
             $data -> usertype = $request-> usertype = 0;
         }
-        
         $data->save();
         Alert::success('Success', 'User added successfully');
         return redirect()->back();

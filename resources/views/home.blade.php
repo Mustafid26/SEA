@@ -1,22 +1,25 @@
 @extends('layouts.main')
 
 @section('konten')
+    @guest
+    @include('popup')
+    @endguest
     <div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div class="content">
-            <img src="{{asset('img/logoserat.png')}}" alt="" class="img-fluid w-50 mb-3" />
-            <h1 class="text-white">
+            <img src="{{asset('img/herologo.png')}}" alt="" class="img-fluid mb-3 img-h" />
+            <h1 class="text-white text-hero animate-text">
                 Mulai Perjalanan <br />
-                <span>#PerempuanMandiri</span> <br />
-                Bersama Serat Kartini
+                <span >#PerempuanPembelajar</span> <br />
+                Bersama Serat Kartini Menjadi Perempuan Mandiri
             </h1>
-            <p style="color: black; font-weight:bold;">
+            <p style="font-weight:bold;" class="text-hero2">
                 "Tiada cuaca di langit yang tetap selamanya. Tiada mungkin akan terus terus menerus terang cuaca. Sehabis
                 malam gelap gulita , lahir pagi membawa kehidupan. " <br> -RA. Kartini
             </p>
         </div>
         <div class="hero-image">
-            <img src="{{ asset('img/lp.png') }}" alt="Hero Image" class="img-fluid" />
-        </div>
+            <img src="{{ asset('img/herologo5.png') }}" alt="Hero Image" class="img-fluid hero-img" style="width: 75%;"/>
+        </div>  
     </div>
 
     <div class="container-sea text-center mt-5 fadeinUp">
@@ -26,10 +29,7 @@
                 <h3 class="title">Apa Itu Serat Kartini?</h3>
                 <p class="intro">Hai!</p>
                 <p>
-                    SERAT KARTINI adalah sebuah platform aplikasi berbasis website pendukung
-                    SEKARI, yang digunakan untuk mengunduh materi, mengerjakan pretest
-                    dan postest. Serta bisa mendapatkan sekari points untuk ditukarkan
-                    berbagai hadiah khusus siswa SEKARI.
+                    Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput yang bertujuan mengembangkan kapasitas perempuan melalui peningkatan kesadaran dan pemikiran kritis, kecakapan hidup, solidaritas dan pembelajaran sepanjang hayat, yang telah dilaunching secara resmi oleh Gubernur Jawa Tengah pada bulan November tahun 2020
                 </p>
                 <div class="button-group">
                     <a href="/kelas" class="btn btn-primary">Yukk Cobain Sekarang!</a>
