@@ -64,8 +64,8 @@ class PostestController extends Controller
         } else {
             $score = 0;
         }
-        $points = $this->calculatePoints($score);
-        $user->points += $points;
+        // $points = $this->calculatePoints($score);
+        // $user->points += $points;
         $user->save();
         PostestUser::create([
             'user_id' => $user->id,
@@ -76,23 +76,23 @@ class PostestController extends Controller
         return redirect()->route('materi.show', $kelas->id)->with([
             'sweetalert' => 'Postest Anda Terkirim. Nilai Anda : ' . $score,
             'score' => $score,
-            'points' => $points
+            // 'points' => $points
         ]);
     }
-    private function calculatePoints($score)
-    {
-        if ($score >= 95) {
-            return 100;
-        } elseif ($score >= 85) {
-            return 90;
-        } elseif ($score >= 75) {
-            return 80;
-        } elseif ($score >= 65) {
-            return 70;
-        } elseif ($score >= 55) {
-            return 60;
-        } else {
-            return 50;
-        }
-    }
+    // private function calculatePoints($score)
+    // {
+    //     if ($score >= 95) {
+    //         return 100;
+    //     } elseif ($score >= 85) {
+    //         return 90;
+    //     } elseif ($score >= 75) {
+    //         return 80;
+    //     } elseif ($score >= 65) {
+    //         return 70;
+    //     } elseif ($score >= 55) {
+    //         return 60;
+    //     } else {
+    //         return 50;
+    //     }
+    // }
 }

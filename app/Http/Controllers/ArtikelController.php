@@ -13,14 +13,14 @@ class ArtikelController extends Controller
         $jumlahartikel = Artikel::count();
         return view('artikel', [
             'artikel' => $artikel,
-            'active' => 'artikel',
+            'active' => 'pusat_informasi',
             'jumlahartikel' => $jumlahartikel
         ]);
     }
     public function show(Artikel $artikel)
     {
         return view('artikel-show', [
-            'active' => 'artikel',
+            'active' => 'pusat_informasi',
             'artikel' => $artikel
         ]);
     }

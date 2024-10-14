@@ -46,7 +46,15 @@ Route::get('/comingsoon', [HomeController::class, 'comingsoon'])->middleware('au
 Route::get('/konseling', [HomeController::class, 'konseling']);
 
 
+Route::get('/presensi_user', [AdminController::class,'presensi_user']);
 Route::post('/add_presensi', [AdminController::class,'add_presensi']);
+Route::get('/delete_presensi/{id}', [AdminController::class,'delete_presensi']);
+Route::get('/search_presensi', [AdminController::class,'search_presensi']);
+
+Route::get('/survey_user', [AdminController::class,'survey_user']);
+Route::post('/add_survey', [AdminController::class,'add_survey']);
+Route::get('/delete_survey/{id}', [AdminController::class,'delete_survey']);
+
 Route::get('/popupmateri', [HomeController::class, 'popupmateri']);
 
 

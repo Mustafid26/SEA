@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Materi;
+use App\Models\Presensi;
 use App\Models\KontenMateri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,7 @@ class MateriController extends Controller
             'active' => "kelas",
             'materi' => $materi,
             'konten' => $konten,
-            'kelas' => $kelas
+            'kelas' => $kelas,
         ]);
     }
     public function downloadFile($id)

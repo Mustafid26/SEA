@@ -11,6 +11,8 @@ use App\Models\Artikel;
 use App\Models\Pelatihan;
 use App\Models\Question;
 use App\Models\Penilaian;
+use App\Models\Presensi;
+use App\Models\Survey;
 use App\Models\PostestUser;
 use App\Models\PretestUser;
 use App\Models\KontenMateri;
@@ -276,6 +278,85 @@ class AdminController extends Controller
     }
 
 
+    //presensi
+    public function presensi_user()
+    {
+       if (auth::id()){
+            $presensi = Presensi::with(['presensi','kelas', 'user'])->get();
+            return view('admin.show_presensi', compact('presensi'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function add_presensi(Request $request)
+    {
+        $presensi = new Presensi;
+        $presensi->kehadiran = $request->kehadiran;
+        // Tambahkan user_id (misalnya dengan user yang sedang login)
+        $presensi->user_id = auth()->user()->id; // Menggunakan user yang sedang login
+        $presensi->kelas_id = $request->kelas_id;
+        $presensi->save();
+        Alert::success('Success', 'Presensi Telah Berhasil');
+        return redirect()->back();
+    }
+
+
+    public function delete_presensi($id)
+    {
+        $presensi=Presensi::find($id);
+        $presensi->delete();
+        Alert::success('Success', 'Presensi deleted successfully');
+        return redirect()->back();
+    }
+
+    public function search_presensi(Request $request)
+{
+    $search_text = $request->search_presensi;
+    $presensi = Presensi::whereHas('user', function($query) use ($search_text) {
+        $query->where('nama_lengkap', 'LIKE', "%$search_text%")
+              ->orWhere('name', 'LIKE', "%$search_text%");
+    })->get();
+
+    return view('admin.show_presensi', compact('presensi'));
+}
+
+    
+    //survey
+    public function survey_user()
+    {
+       if (auth::id()){
+            $survey = Survey::with(['survey','kelas', 'user'])->get();
+            return view('admin.show_survey', compact('survey'));
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function add_survey(Request $request)
+    {
+    $survey = new Survey;
+    $survey->survey = $request->rating;
+    $survey->saran = $request->saran;
+
+    // Tambahkan user_id (misalnya dengan user yang sedang login)
+    $survey->user_id = auth()->user()->id; // Menggunakan user yang sedang login
+    $survey->kelas_id = $request->kelas_id;
+    $survey->save();
+    Alert::success('Success', 'Survey Telah Berhasil Disimpan');
+    return redirect()->back();
+    }
+
+    public function delete_survey($id)
+    {
+        $survey=Survey::find($id);
+        $survey->delete();
+        Alert::success('Success', 'Survey deleted successfully');
+        return redirect()->back();
+    }
+    
     //pretest_user
     public function pretest_user()
     {

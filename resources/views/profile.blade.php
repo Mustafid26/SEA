@@ -324,9 +324,9 @@
                         </div>
                     </div>
                 </div>
-                <h4><strong>{{ $user->ID_Sekari }}</strong></h4>
+                {{-- <h4><strong>{{ $user->ID_Sekari }}</strong></h4> --}}
                 <h4><strong>{{ $user->nama_lengkap }}</strong></h4>
-                <h4><strong>{{ $user->rombel }}</strong></h4>
+                {{-- <h4><strong>{{ $user->rombel }}</strong></h4> --}}
                 @if (Auth::user()->profile_photo_path)
                     <form action="{{ route('profile.delete') }}" method="POST" style="margin-top: 20px;">
                         @csrf
@@ -336,88 +336,7 @@
                 @endif
             </div>
             <div class="profile-options">
-                {{-- <a href="{{url('/comingsoon')}}" style="text-decoration: none;">
-                    <button class="btn-profile btn-coin btn btn-outline-secondary btn-block">
-                        <div class="d-flex justify-content-between">
-                            <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
-                                    style="color: #219c90;"></i>Sekari Point</span>
-                            <span class="badge-pill"><img src="{{ asset('img/coin.png') }} " alt=""
-                                    srcset=""> 1000 Poin</span>
-                        </div>
-                    </button>
-                </a> --}}
-                @if (Auth::user()->usertype != 0)
-                    <button class="btn-profile btn-coin btn btn-outline-secondary btn-block" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal2">
-                        <div class="d-flex justify-content-between">
-                            <span class="text-profile"><i class="fa fa-solid fa-ticket fa-2xl icon-profile"
-                                    style="color: #d73696;"></i>Sekari Point</span>
-                            <span class="badge-pill" style="color: black;"><img src="{{ asset('img/coin.png') }} "
-                                    alt="" srcset=""> {{ Auth::user()->points }} Poin</span>
-                        </div>
-                    </button>
-                @endif
-
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">COMING SOON</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="countdown" class="countdown">
-                                    <div>
-                                        <div class="time" id="days">00</div>
-                                        <div class="label">HARI</div>
-                                    </div>
-                                    <div>
-                                        <div class="time" id="hours">00</div>
-                                        <div class="label">JAM</div>
-                                    </div>
-                                    <div>
-                                        <div class="time" id="minutes">00</div>
-                                        <div class="label">MENIT</div>
-                                    </div>
-                                    <div>
-                                        <div class="time" id="seconds">00</div>
-                                        <div class="label">DETIK</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pengumpulan Tugas</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    @csrf
-                                    <div class="textarea mb-2">
-                                        <label for="category" class="form-label">Silahkan Masukkan Link Di Bawah Ini</label>
-                                        <input id="body" type="hidden" name="body" value="">
-                                        <trix-editor input="body"></trix-editor>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button> 
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-profile btn-coin btn btn-outline-secondary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                    <div class="d-flex justify-content-between">
-                        <span class="text-profile"><i class="fa fa-solid fa-upload fa-2xl icon-profile"
-                                style="color: #219c90;"></i>Penugasan</span>
-                    </div>
-                </button> --}}
                 <a href="/user/profile" style="text-decoration: none;">
                     <button class="btn-profile btn btn-outline-secondary btn-block" style="text-align: left;">
                         <span class="text-profile"><i class="fa fa-solid fa-gear fa-2xl icon-profile"

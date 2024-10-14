@@ -2,6 +2,7 @@
 <html lang="en">
 <title>Admin SEA</title>
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
+
 <head>
     @include('admin.css')
     <style>
@@ -60,7 +61,6 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama Kelas</th>
                                 <th scope="col">Judul Materi</th>
-                                <th scope="col">Rombel</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Jumlah Soal Pretest</th>
                                 <th scope="col">Jumlah Soal Postest</th>
@@ -73,7 +73,6 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $m->kelas->nama_kelas }}</td>
                                     <td>{{ $m->judul_materi }}</td>
-                                    <td>{{ $m->kelas->rombel }}</td>
                                     <td>
                                         <img style="max-width: 100%;" src="{{ asset('storage/' . $m->kelas->image) }}"
                                             alt="gambar kelas" loading="lazy">

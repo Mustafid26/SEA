@@ -52,6 +52,8 @@
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/nilai_postest_user') }}">Nilai Postest
                             User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/presensi_user') }}">Presensi User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/survey_user') }}">Rating User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/pretest_user') }}">Pretest User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/postest_user') }}">Postest User</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/view_foto') }}">Add Foto Beranda</a></li>
@@ -71,7 +73,8 @@
             <div class="collapse" id="ui-basic-C">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('view_kelas') }}">Add Kelas</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('view_formpenilaian') }}">Add Penilaian</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('view_formpenilaian') }}">Add
+                            Penilaian</a>
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('show_kelas') }}">Show Kelas</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('show_formpenilaian') }}">Show Form

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>Admin SEA</title>
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoserat.png') }}">
 
 <head>
     @include('admin.css')
@@ -58,27 +58,27 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Lengkap</th>
+                                <th scope="col">Nama Pengguna</th>
                                 <th scope="col">Kelas</th>
-                                <th scope="col">Materi</th>
-                                <th scope="col">Konten</th>
-                                <th scope="col">Deskripsi</th>
+                                <th scope="col">Kehadiran</th>
+                                <th scope="col">Tanggal</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($konten as $k)
+                            @foreach ($presensi as $p)
                                 <tr class="content">
                                     <th>{{ $loop->iteration }}</th>
-                                    <td>{{ $k->kelas->nama_kelas }}</td>
-                                    <td>{{ $k->materi->judul_materi }}</td>
-                                    <td>{{ $k->konten }}</td>
-                                    <td>{!! $k->desc !!}</td>
+                                    <td>{{ $p->user->nama_lengkap }}</td>
+                                    <td>{{ $p->user->name }}</td>
+                                    <td>{{ $p->kelas->nama_kelas }}</td>
+                                    <td>{{ $p->kehadiran }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($p->created_at)->translatedFormat('d F Y') }}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{ url('update_konten', $k->id) }}"
-                                            role="button">Edit Konten</a>
                                         <a onclick="confirmation(event)" class="btn btn-danger"
-                                            href="{{ url('delete_konten', $k->id) }}">Delete</a>
+                                            href="{{ url('delete_presensi', $p->id) }}">Delete Presensi</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -94,14 +94,13 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.js')
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function confirmation(ev) {
             ev.preventDefault();
             var urlToRedirect = ev.currentTarget.getAttribute('href');
             console.log(urlToRedirect);
             swal({
-                    title: "Are you sure to delete this Konten?",
+                    title: "Are you sure to delete this Riwayat?",
                     text: "You will not be able to revert this!",
                     icon: "warning",
                     buttons: true,
@@ -109,7 +108,11 @@
                 })
                 .then((willCancel) => {
                     if (willCancel) {
+
+
+
                         window.location.href = urlToRedirect;
+
                     }
 
 

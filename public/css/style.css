@@ -1223,3 +1223,6 @@ iframe {
 .wrap{
     word-wrap: break-word !important;
 }
+.icon-rating{
+    margin: 1em;
+}

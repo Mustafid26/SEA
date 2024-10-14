@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Submit;
+use App\Models\Presensi;
 use App\Models\Penilaian;
 use App\Models\PostestUser;
 use App\Models\PretestUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KelasController extends Controller
 {
@@ -58,11 +61,14 @@ class KelasController extends Controller
         $questions = $kelas->questions; 
         $questions_postest = $kelas->questions_postest;
         $pretestCompleted = PretestUser::where('user_id', $userId)
-                                       ->where('kelas_id', $kelas->id)
-                                       ->exists();
+                                        ->where('kelas_id', $kelas->id)
+                                        ->exists();
         $postestCompleted = PostestUser::where('user_id', $userId)
-                                       ->where('kelas_id', $kelas->id)
-                                       ->exists();
+                                        ->where('kelas_id', $kelas->id)
+                                        ->exists();
+        $sudahPresensi = Presensi::where('user_id', $userId)
+                                        ->where('kelas_id', $kelas->id)
+                                        ->exists();
         return view('materi', [
             'materi' => $materi,
             'kelas' => $kelas,
@@ -70,7 +76,8 @@ class KelasController extends Controller
             'pretestCompleted' => $pretestCompleted,
             'postestCompleted' => $postestCompleted,
             'questions' => $questions,
-            'questions_postest' => $questions_postest
+            'questions_postest' => $questions_postest,
+            'sudahPresensi' => $sudahPresensi
         ]);
     }
     

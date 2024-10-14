@@ -19,14 +19,14 @@ class PelatihanController extends Controller
         $jumlahpelatihan= Pelatihan::count();
         return view('pelatihan', [
             'pelatihan' => $pelatihan,
-            'active' => 'pelatihan',
+            'active' => 'pusat_informasi',
             'jumlahpelatihan' => $jumlahpelatihan
         ]);
     }
     public function show(Pelatihan $pelatihan)
     {
         return view('pelatihan-show', [
-            'active' => 'pelatihan',
+            'active' => 'pusat_informasi',
             'pelatihan' => $pelatihan
         ]);
     }

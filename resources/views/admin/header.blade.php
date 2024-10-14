@@ -52,7 +52,7 @@
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" action="{{ 'search_materi' }}"
                         method="GET">
                         @csrf
-                        <input style="color:white;" type="text" name="search_kelas" class="form-control"
+                        <input style="color:white;" type="text" name="search_materi" class="form-control"
                             placeholder="Search Materi">
                         <input type="submit" value="Search" class="btn btn-danger">
                     </form>
@@ -94,6 +94,16 @@
                         @csrf
                         <input style="color:white;" type="text" name="search_pelatihan" class="form-control"
                             placeholder="Search pelatihan">
+                        <input type="submit" value="Search" class="btn btn-danger">
+                    </form>
+                </li>
+            @elseif(Request::is('presensi_user'))
+                <li class="nav-item w-100">
+                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" action="{{ 'search_presensi' }}"
+                        method="GET">
+                        @csrf
+                        <input style="color:white;" type="text" name="search_presensi" class="form-control"
+                            placeholder="Search presensi">
                         <input type="submit" value="Search" class="btn btn-danger">
                     </form>
                 </li>
