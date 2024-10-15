@@ -351,7 +351,7 @@
             </div>
         </div> --}}
     </div>
-    <script>
+    {{-- <script>
         let routeSegment = nilaiYangDiterima; // Misal ini adalah variabel yang berisi nilai yang dapat menjadi undefined
 
         if (typeof routeSegment === 'undefined' || routeSegment === null || routeSegment === '') {
@@ -361,7 +361,7 @@
         // Redirect ke URL baru
         window.location.href = `/kelas/{id}/${routeSegment}`;
 
-    </script>
+    </script> --}}
     <script>
         // Saat salah satu ikon dipilih
         document.querySelectorAll('.rating-option2').forEach(function(option2) {

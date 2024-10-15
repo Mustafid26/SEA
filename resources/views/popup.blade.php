@@ -174,7 +174,7 @@
             <button id="closeBtn">&times;</button>
             <h1 class="text-center">Buku Panduan Serat Kartini</h1>
             <div class="image-container">
-                <img src="{{asset('img/CoverPanduan.svg')}}" alt="" class="img-fluid" style="width: 50%;">
+                <img src="{{asset('img/CoverPanduan.png')}}" alt="" class="img-fluid" style="width: 50%;">
             </div>
             <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download" class="btn btn-primary mt-2">Unduh</a>
         </div>
