@@ -10,7 +10,7 @@ class Kelas extends Model
     use HasFactory;
 
     protected $table = 'kelas';
-    protected $guarded = 'id';
+    protected $guarded = ['id'];
     public function materi()
     {
         return $this->hasMany(Materi::class);

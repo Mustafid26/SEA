@@ -3,10 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <title>SERAT KARTINI EDU ACADEMY</title>
+    <title>SERAT KARTINI | Sekolah Perempuan Cerdas Masa Kini</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="pemberdayaan perempuan, sekolah perempuan, program perempuan, edukasi ibu, sekolah ibu, kesehatan anak, kesehatan ibu, 
+    ekonomi digital, perlindungan diri, industri sampah, gizi pangan, seratkartini" name="keywords">
+    <meta content="Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput
+                    yang bertujuan mengembangkan kapasitas perempuan melalui peningkatan kesadaran dan pemikiran kritis,
+                    kecakapan hidup, solidaritas dan pembelajaran sepanjang hayat, yang telah dilaunching secara resmi oleh
+                    Gubernur Jawa Tengah pada bulan November tahun 2020" 
+    name="description">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Favicon -->
@@ -14,7 +19,6 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
         rel="stylesheet">
@@ -41,7 +45,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 
     <script src="{{asset('lib/wow/wow.min.js')}}"></script>
     <script src="{{asset('lib/easing/easing.min.js')}}"></script>
@@ -212,14 +216,14 @@
             <img src="{{asset('img/cp.png')}}" alt="WhatsApp" width="" class="whatsapp-icon" />
         </a>
         <!-- Download Button -->
-        <a href="https://drive.usercontent.google.com/u/0/uc?id=13fX6Uma3EEN3c2HRHwNSQAAyLh1dxYP1&export=download" style="border-radius: 0%;" class="download" download >
+        <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download" style="border-radius: 0%;" class="download" download >
             <img src="{{asset('img/panduan.svg')}}" alt="download" width="" class="download-icon" />
         </a>
     </div>
     @yield('konten')
 
     {{-- end content --}}
-    <footer class="bg-dark text-white py-4" data-aos="fade-up">
+    <footer class="bg-dark text-white py-4" >
         <div class="container">
             <div class="row">
                 <!-- Left Section (DP3AP2KB, Udinus, HMTI, Contact Info) -->
@@ -273,9 +277,7 @@
 
     <!-- JavaScript -->
     <!-- Template Javascript -->
-    <script>
-        AOS.init();
-    </script>
+    
     <script>
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.display = 'none';

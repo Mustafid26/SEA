@@ -111,11 +111,6 @@
         #nextBtn { right: 10px; }
 
         /* Smooth animation on hover */
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
 
         /* Media query for mobile responsiveness */
         @media (max-width: 768px) {
@@ -161,6 +156,16 @@
                 height: 85%;
             }
         }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -168,23 +173,19 @@
         <div id="popupContent">
             <button id="closeBtn">&times;</button>
             <h1 class="text-center">Buku Panduan Serat Kartini</h1>
-            <div id="pdfViewer">
-                <iframe id="pdfFrame" src=""></iframe>
+            <div class="image-container">
+                <img src="{{asset('img/CoverPanduan.svg')}}" alt="" class="img-fluid" style="width: 50%;">
             </div>
+            <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download" class="btn btn-primary mt-2">Unduh</a>
         </div>
-    </div>
+    </div>    
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var pdfPopup = document.getElementById("pdfPopup");
             var closeBtn = document.getElementById("closeBtn");
             var pdfFrame = document.getElementById("pdfFrame");
-            var pageNum = 1; // Start on the first page
-            var totalPages = 22; // Total number of pages in the PDF (adjust accordingly)
-    
-            // Show the popup with smooth animation
             pdfPopup.classList.add('show');
-            loadPdfPage(pageNum);
     
             // Close popup smoothly
             closeBtn.addEventListener("click", function() {
@@ -193,12 +194,6 @@
                     pdfPopup.style.display = "none";
                 }, 500); // Allow time for transition to finish
             });
-    
-            // Function to load PDF per page
-            function loadPdfPage(page) {
-                var pdfUrl = "{{ asset('pdf/panduan.pdf') }}#page=" + page + "&toolbar=0";
-                document.getElementById('pdfFrame').src = pdfUrl;
-            }
         });
     </script>
 </body>

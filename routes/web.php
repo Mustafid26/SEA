@@ -177,7 +177,7 @@ Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('pr
 Route::get('/comingsoon', [HomeController::class, 'comingsoon']);
 
 Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
-    Route::get('/kelas/{kelas}', [PretestController::class, 'show'])->name('pretest.show');
+    Route::get('/kelas/{kelas}/pretest', [PretestController::class, 'show'])->name('pretest.show');
     Route::post('/kelas/{kelas}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });
 

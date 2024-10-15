@@ -531,9 +531,6 @@
         display: flex !important;
         max-width: 100%;
     }
-    .card-desktop{
-        display: none !important;
-    }
     .logo_kelas{
         max-width: 100% !important;
     }
@@ -543,12 +540,6 @@
 }
 .card-class {
     width: 350px;
-}
-.card-desktop{
-    display:flex;
-}
-.card-mobile{
-    display: none;
 }
 /* materi */
 .drop {

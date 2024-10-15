@@ -10,7 +10,7 @@ class EnsurePretestNotTaken
 {
     public function handle($request, Closure $next)
     {
-        $kelasId = $request->route('kelas')->id;
+        $kelasId = $request->route('kelas');
         $userId = Auth::id();
     
         $pretestTaken = PretestUser::where('kelas_id', $kelasId)

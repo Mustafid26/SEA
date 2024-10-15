@@ -98,7 +98,7 @@
                                                     class="fa-regular fa-pen-to-square"></i> Pretest <i
                                                     class="fa fa-solid fa-check"></i></strong></span>
                                     @else
-                                        <a class="dropdown-item text-white" href="{{ route('pretest.show', $kelas->id) }}"
+                                        <a class="dropdown-item text-white" href="{{ route('pretest.show', ['kelas' => $kelas, 'routeSegment' => $routeSegment ?? 'pretest']) }}"
                                             onclick="checkQuestions(event)"><i
                                             class="fa-regular fa-pen-to-square"></i> <strong>Pretest</strong></a>
                                     @endif
@@ -188,7 +188,7 @@
 
 
         <!-- Card Desktop -->
-        <div class="mt-5 card-desktop">
+        {{-- <div class="mt-5 card-desktop">
             <div class="card card-class me-3 p-3" style="flex: 1;">
                 <img src="{{ asset('img/logoserat.png') }}" alt="Logo" class="img-fluid ">
                 <div class="card-body">
@@ -349,8 +349,19 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
+    <script>
+        let routeSegment = nilaiYangDiterima; // Misal ini adalah variabel yang berisi nilai yang dapat menjadi undefined
+
+        if (typeof routeSegment === 'undefined' || routeSegment === null || routeSegment === '') {
+            routeSegment = 'pretest'; // Set nilai default ke 'pretest'
+        }
+
+        // Redirect ke URL baru
+        window.location.href = `/kelas/{id}/${routeSegment}`;
+
+    </script>
     <script>
         // Saat salah satu ikon dipilih
         document.querySelectorAll('.rating-option2').forEach(function(option2) {
