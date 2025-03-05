@@ -7,12 +7,12 @@
     <div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div class="content">
             <img src="{{ asset('img/herologo.png') }}" alt="" class="img-fluid mb-3 img-h" />
-            <h1 class="text-white text-hero">
+            <h1 class="text-white text-hero text-wrap">
                 Mulai Perjalanan <br />
-                <span>#PerempuanPembelajar</span> <br />
+                <span class="text-wrap">#PerempuanPembelajar</span> <br />
                 Bersama Serat Kartini Menjadi Perempuan Cerdas dan Mandiri
             </h1>
-            <p style="font-weight:bold;" class="text-hero2">
+            <p style="font-weight:bold;" class="text-hero2 text-wrap">
                 "Tiada cuaca di langit yang tetap selamanya. Tiada mungkin akan terus terus menerus terang cuaca. Sehabis
                 malam gelap gulita , lahir pagi membawa kehidupan. " <br> -RA. Kartini
             </p>

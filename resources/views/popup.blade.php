@@ -153,14 +153,14 @@
             #popupContent {
                 width: 70%;
                 max-width: 1000px;
-                height: 85%;
+                height: 100%;
             }
         }
         .image-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            height: 100+%;
         }
         .image-container img {
             max-width: 100%;

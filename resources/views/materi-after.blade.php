@@ -4,7 +4,7 @@
     <div class="container-parent fadeinUp vh" style="margin-bottom: 10rem;">
         <div class="container-child">
             <div class="video-container">
-                <img src="{{ asset('img/logoserat.png') }}" alt="" class="img-fluid" style="height: auto; display: block; margin: 0 auto;">
+                <img src="{{ asset('img/modulserat.jpg') }}" alt="" class="img-fluid" style="height: auto; display: block; margin: 0 auto; object-fit:contain;">
             </div>
             <div class="content-materi-after">
                 <h2>{{ $materi->judul_materi }}</h2>
