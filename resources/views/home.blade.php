@@ -6,7 +6,7 @@
     @endguest
     <div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div class="content">
-            <img src="{{ asset('img/herologo.png') }}" alt="" class="img-fluid mb-3 img-h" />
+            <img src="{{ asset('img/herologo.webp') }}" alt="" class="img-fluid mb-3 img-h" />
             <h1 class="text-white text-hero text-wrap">
                 Mulai Perjalanan <br />
                 <span class="text-wrap">#PerempuanPembelajar</span> <br />
@@ -18,7 +18,7 @@
             </p>
         </div>
         <div class="hero-image">
-            <img src="{{ asset('img/herologo5.png') }}" alt="Hero Image" class="img-fluid hero-img" style="width: 75%;" />
+            <img src="{{ asset('img/herologo5.webp') }}" alt="Hero Image" class="img-fluid hero-img" style="width: 75%;" />
         </div>
     </div>
 

@@ -5,13 +5,16 @@
     <meta charset="utf-8">
     <title>SERAT KARTINI | Sekolah Perempuan Cerdas Masa Kini</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="pemberdayaan perempuan, sekolah perempuan, program perempuan, edukasi ibu, sekolah ibu, kesehatan anak, kesehatan ibu, 
-    ekonomi digital, perlindungan diri, industri sampah, gizi pangan, seratkartini" name="keywords">
-    <meta content="Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput
+    <meta
+        content="pemberdayaan perempuan, sekolah perempuan, program perempuan, edukasi ibu, sekolah ibu, kesehatan anak, kesehatan ibu, 
+    ekonomi digital, perlindungan diri, industri sampah, gizi pangan, seratkartini"
+        name="keywords">
+    <meta
+        content="Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput
                     yang bertujuan mengembangkan kapasitas perempuan melalui peningkatan kesadaran dan pemikiran kritis,
                     kecakapan hidup, solidaritas dan pembelajaran sepanjang hayat, yang telah dilaunching secara resmi oleh
-                    Gubernur Jawa Tengah pada bulan November tahun 2020" 
-    name="description">
+                    Gubernur Jawa Tengah pada bulan November tahun 2020"
+        name="description">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Favicon -->
@@ -47,9 +50,11 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 
 
-    <script src="{{asset('lib/wow/wow.min.js')}}"></script>
-    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
-    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+
+    <link rel="preload" as="image" href="{{ asset('img/CoverPanduan.webp') }}" type="image/webp">
     <style>
         body {
             font-family: 'Maven Pro';
@@ -67,8 +72,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #fff;
-            z-index: 9999;
+            color: #fff;
+            z-index: 99999;
+            background-color: rgb(255, 255, 255);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,13 +107,13 @@
             <div class="spinner-border" role="status" style="color: #d73696 !important">
                 <span class="sr-only">Loading...</span>
             </div>
-            <img src="{{ asset('img/logoserat.png') }}" alt="Loading" class="spinner-image">
+            <img src="{{ asset('img/logoseratcut.webp') }}" alt="Loading" class="spinner-image">
         </div>
     </div>
     {{-- preload --}}
     <!-- Navbar Start -->
     <nav class="navbar-top">
-        <img src="{{ asset('img/logoseratcut.png') }}" alt="Logo" class="logo">
+        <img src="{{ asset('img/logoseratcut.webp') }}" alt="Logo" class="logo">
         <div class="nav-container">
             <div class="nav-links">
                 <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">BERANDA</a>
@@ -154,7 +160,7 @@
     <nav class="bottom-bar">
         {{-- Kondisi untuk menampilkan menu jika pengguna tidak login --}}
         @guest
-            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}" >
+            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
                 <i class="fa fa-home"></i>
                 BERANDA
             </a>
@@ -162,8 +168,8 @@
                 <i class="fa fa-comments"></i>
                 KONSELING
             </a>
-            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}" id="pusatInformasiDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}"
+                id="pusatInformasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-info-circle"></i>
                 INFORMASI
             </a>
@@ -177,7 +183,7 @@
                 LOGIN
             </a>
         @endguest
-    
+
         {{-- Kondisi untuk menampilkan menu jika pengguna sudah login --}}
         @auth
             <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
@@ -188,8 +194,8 @@
                 <i class="fa fa-chalkboard-user"></i>
                 KELAS
             </a>
-            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}" id="pusatInformasiDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}"
+                id="pusatInformasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-info-circle"></i>
                 INFORMASI
             </a>
@@ -205,31 +211,33 @@
             </a>
         @endauth
     </nav>
-    
-    
+
+
     <!-- Navbar End -->
 
     {{-- content --}}
     <div class="floating-buttons">
         <!-- WhatsApp Button -->
         <a href="https://wa.me/62811274463" target="_blank" style="border-radius: 0%;">
-            <img src="{{asset('img/cp.png')}}" alt="WhatsApp" width="" class="whatsapp-icon" />
+            <img src="{{ asset('img/cp.webp') }}" alt="WhatsApp" width="" class="whatsapp-icon" />
         </a>
         <!-- Download Button -->
-        <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download" style="border-radius: 0%;" class="download" download >
-            <img src="{{asset('img/panduan.svg')}}" alt="download" width="" class="download-icon" />
+        <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download"
+            style="border-radius: 0%;" class="download" download>
+            <img src="{{ asset('img/panduan.svg') }}" alt="download" width="" class="download-icon" />
         </a>
     </div>
     @yield('konten')
 
     {{-- end content --}}
-    <footer class="bg-dark text-white py-4" >
+    <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
                 <!-- Left Section (DP3AP2KB, Udinus, HMTI, Contact Info) -->
                 <div class="col-md-3 mb-2">
                     <div class="footer-logo mb-3">
-                        <img src="{{ asset('img/dp3ap2kb.png') }}" alt="DP3AP2KB Logo" class="dp3ap2kb-logo" style="width: 150px;">
+                        <img src="{{ asset('img/dp3ap2kb.webp') }}" alt="DP3AP2KB Logo" class="dp3ap2kb-logo"
+                            style="width: 150px;">
                     </div>
                     <!-- Contact Information -->
                     <p class="mb-1"><strong>Serat Kartini</strong></p>
@@ -243,13 +251,17 @@
                 </div>
                 <div class="col-md-3 mb-2">
                     <div class="footer-logo serat-logo mb-3">
-                        <img src="{{ asset('img/LogoUdinus.png') }}" alt="Udinus Logo" class="udinushmti-logo" style="width: 80px; margin-right: 10px;">
-                        <img src="{{ asset('img/Logo_HMTI.png') }}" alt="HMTI Logo" class="udinushmti-logo" style="width: 80px;">
+                        <img src="{{ asset('img/LogoUdinus.png') }}" alt="Udinus Logo" class="udinushmti-logo"
+                            style="width: 80px; margin-right: 10px;">
+                        <img src="{{ asset('img/Logo_HMTI.png') }}" alt="HMTI Logo" class="udinushmti-logo"
+                            style="width: 80px;">
                     </div>
                     <!-- Contact Information -->
                     <p class="mb-1"><strong>HMTI UDINUS</strong></p>
-                    <p><i class="bi bi-instagram"></i> <a href="https://www.instagram.com/hmtiudinus/">@hmtiudinus</a></p>
-                    <p><i class="bi bi-geo-alt"></i> Gedung D Lantai 1 Universitas Dian Nuswantoro. Jl. Nakula 1 No. 5-11 Semarang, Semarang, Indonesia 50131</p>
+                    <p><i class="bi bi-instagram"></i> <a href="https://www.instagram.com/hmtiudinus/">@hmtiudinus</a>
+                    </p>
+                    <p><i class="bi bi-geo-alt"></i> Gedung D Lantai 1 Universitas Dian Nuswantoro. Jl. Nakula 1 No.
+                        5-11 Semarang, Semarang, Indonesia 50131</p>
                     <a href="https://hmtiudinus.org" class="btn btn-outline-light btn-sm">GET IN TOUCH</a>
                 </div>
                 <div class="col-md-1 d-none d-md-block">
@@ -263,7 +275,7 @@
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-    
+
             <div class="row mt-4">
                 <div class="col-md-12 text-center">
                     <p class="mb-0">Copyright © Dinas Perempuan dan Anak Provinsi Jawa Tengah</p>
@@ -277,7 +289,7 @@
 
     <!-- JavaScript -->
     <!-- Template Javascript -->
-    
+
     <script>
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.display = 'none';

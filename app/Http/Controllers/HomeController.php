@@ -8,16 +8,20 @@ use App\Models\Artikel;
 use App\Models\Kelas;
 use App\Models\Foto;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     
     public function index()
     {
-        $photos = Foto::all();
-        return view('home' , compact('photos'), [
+        $photos = Cache::remember('photos', 600, function () {
+            return Foto::all();
+        });
+    
+        return view('home', compact('photos'), [
             'active' => 'beranda'
-        ]) ;
+        ]);
     }
     
     public function redirect()
