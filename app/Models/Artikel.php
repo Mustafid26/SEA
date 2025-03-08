@@ -2,14 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Artikel extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $guarded = ['id'];
     protected $table = 'artikel';
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'image',
+        'admin_id', // Tambahkan ini
+    ];
 
     public function getRouteKeyName()
     {
@@ -17,6 +26,6 @@ class Artikel extends Model
     }
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Admin::class, 'admin_id');
     }
 }

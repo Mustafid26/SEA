@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Foto extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $table = 'foto';
+
+    protected $fillable = [
+        'title',
+        'desc',
+        'image',
+    ];
 
     public static function boot()
     {

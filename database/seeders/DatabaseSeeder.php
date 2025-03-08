@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Admin;
 use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Question;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -54,18 +57,30 @@ class DatabaseSeeder extends Seeder
             'deskripsi' => 'Pelatihan Bu Edi adalah sebuah pelatihan bagi perempuan tentang teknik-teknik yang efektif untuk meningkatkan UMKM di e-commerce',
             'image' => 'photo_kelas/Bu Edi.png'
         ]);
-        Materi::create([
-            'kelas_id' => 1,
-            'judul_materi' => 'Materi 1'
+        // Materi::create([
+        //     'kelas_id' => 1,
+        //     'judul_materi' => 'Materi 1'
+        // ]);
+        // Question::create([
+        //     'kelas_id' => 1,
+        //     'question' => 'Apa yang harus dilakukan ketika terjadi ancaman Cyber Bullying?',
+        //     'option1' => 'Lapor ke polisi',
+        //     'option2' => 'Ajak berkelahi',
+        //     'option3' => 'Lacak akun pelaku',
+        //     'option4' => 'Report di aplikasi',
+        //     'correct_answer' => 'Lapor ke polisi'
+        // ]);
+
+        Admin::create([
+            'name' => 'minprim',
+            'email' => 'minprim@gmail.com',
+            'password' => Hash::make('123456789')
         ]);
-        Question::create([
-            'kelas_id' => 1,
-            'question' => 'Apa yang harus dilakukan ketika terjadi ancaman Cyber Bullying?',
-            'option1' => 'Lapor ke polisi',
-            'option2' => 'Ajak berkelahi',
-            'option3' => 'Lacak akun pelaku',
-            'option4' => 'Report di aplikasi',
-            'correct_answer' => 'Lapor ke polisi'
+
+        User::create([
+            'name' => 'agus',
+            'nama_lengkap' => 'Agus Setiawan',
+            'password' => Hash::make('123456789')
         ]);
     }
 }

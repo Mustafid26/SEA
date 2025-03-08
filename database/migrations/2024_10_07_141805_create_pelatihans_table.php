@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pelatihans', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
+            $table->uuid('id')->primary();
+            $table->uuid('admin_id')->constrained('admin')->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->nullable();

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('answers_user', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('question_id');
-            $table->unsignedBigInteger('kelas_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id')->constrained('users')->onDelete('cascade');
+            $table->uuid('question_id');
+            $table->uuid('kelas_id');
             $table->string('answer')->nullable();
             $table->boolean('is_correct');
             $table->timestamps();
