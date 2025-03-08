@@ -57,6 +57,14 @@ class UserResource extends Resource
                     ->label('Nama Lengkap')
                     ->required()
                     ->maxLength(255),
+
+                Select::make('rombel_id')
+                    ->label('Rombel')
+                    ->relationship('rombel', 'name') // Mengambil nama rombel dari relasi
+                    ->searchable() // Bisa dicari jika banyak data
+                    ->preload() // Memuat opsi lebih cepat
+                    ->required(),
+                    
                 Select::make('usertype')
                     ->label('User Type')
                     ->options([
@@ -70,9 +78,9 @@ class UserResource extends Resource
                     ->afterStateUpdated(
                         fn($state, callable $set) =>
                         $set('role', match ($state) {
+                            '0' => 'user',
                             '1' => 'admin',
                             '2' => 'sekari',
-                            default => 'user',
                         })
                     ),
                 Select::make('role')
@@ -100,7 +108,8 @@ class UserResource extends Resource
                     ->image()
                     ->directory('profile-photos')
                     ->preserveFilenames()
-                    ->nullable(),
+                    ->columnSpanFull()
+                    ->nullable()
 
             ]);
 
@@ -112,6 +121,9 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('name')->label('Username')->sortable()->searchable(),
                 TextColumn::make('nama_lengkap')->label('Nama Lengkap')->sortable()->searchable(),
+                TextColumn::make('rombel.name')
+                    ->label('Rombel')
+                    ->searchable(),
                 TextColumn::make('usertype')->label('User Type')->sortable(),
                 TextColumn::make('role')->label('Role')->sortable(),
                 ImageColumn::make('profile_photo_path')->label('Foto Profil'),

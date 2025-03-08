@@ -124,16 +124,17 @@
                     <a href="/konseling" class="{{ $active === 'konseling' ? 'active' : '' }}">KONSELING</a>
                 @endauth
 
-                <a class="dropdown-toggle {{ $active === 'informasi' ? 'active' : '' }}" href="#"
+                <a class="{{ $active === 'informasi' ? 'active' : '' }}" href="#"
                     id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     INFORMASI
+                    <i id="dropdownIcon" class="bi bi-chevron-down"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
+                    <li><a class="link dropdown-item" href="/artikel">Artikel</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="/pelatihan">Pelatihan</a></li>
+                    <li><a class="link dropdown-item" href="/pelatihan">Pelatihan</a></li>
                     @auth
                         <li>
                             <hr class="dropdown-divider">
@@ -286,10 +287,21 @@
             </div>
         </div>
     </footer>
-
     <!-- JavaScript -->
-    <!-- Template Javascript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let dropdown = document.getElementById("navbarDropdown");
+            let icon = document.getElementById("dropdownIcon");
 
+            dropdown.addEventListener("click", function () {
+                let isExpanded = dropdown.getAttribute("aria-expanded") === "false";
+                icon.classList.toggle("bi-chevron-down", !isExpanded);
+                icon.classList.toggle("bi-chevron-up", isExpanded);
+            });
+        });
+
+    </script>
+    <!-- Template Javascript -->
     <script>
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.display = 'none';

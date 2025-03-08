@@ -22,7 +22,7 @@ class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -44,9 +44,9 @@ class AdminResource extends Resource
                         ->password()
                         ->maxLength(255)
                         ->revealable()
-                        ->dehydrateStateUsing(fn ($state) => bcrypt($state)) // Hash password
-                        ->required(fn ($record) => $record === null)  // Hanya required saat membuat user baru atau mengganti password
-                        ->dehydrated(fn ($state) => filled($state)), // Sembunyikan password saat edit
+                        ->dehydrateStateUsing(fn($state) => bcrypt($state)) // Hash password
+                        ->required(fn($record) => $record === null)  // Hanya required saat membuat user baru atau mengganti password
+                        ->dehydrated(fn($state) => filled($state)), // Sembunyikan password saat edit
                 ])
             ]);
     }
@@ -58,8 +58,8 @@ class AdminResource extends Resource
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('created_at')
-                ->dateTime('d/m/Y H:i')
-                ->sortable(),
+                    ->dateTime('d/m/Y H:i')
+                    ->sortable(),
 
             ])
             ->filters([
@@ -72,14 +72,14 @@ class AdminResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -87,5 +87,5 @@ class AdminResource extends Resource
             'create' => Pages\CreateAdmin::route('/create'),
             'edit' => Pages\EditAdmin::route('/{record}/edit'),
         ];
-    }    
+    }
 }

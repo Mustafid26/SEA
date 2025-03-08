@@ -10,4 +10,10 @@ class Penilaian extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'penilaian';
+
+    protected $fillable = [
+        'judul',
+        'detail',
+        'image',
+    ];
 }

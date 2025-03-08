@@ -1223,3 +1223,16 @@ iframe {
 .text-wrap {
     z-index: -9999;
 }
+.dropdown-item {
+    opacity: 0.7; /* Set transparan awal */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+    opacity: 1; /* Fade-in */
+    transform: scale(1.05); /* Sedikit membesar */
+}
+
+.link:hover{
+    color: white !important;
+}

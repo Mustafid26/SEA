@@ -68,6 +68,80 @@
                         data-aos="fade-up">
                 </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="card shadow-lg border-0 rounded-4 m-2" style="width: 20rem;">
+                    <!-- Product Image -->
+                    <div class="text-center mt-4">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-green-select-202011?wid=470&hei=556&fmt=png-alpha&.v=1604022365000" 
+                            class="card-img-top w-75" alt="AirPods Max">
+                    </div>
+            
+                    <!-- Card Body -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">AirPods Max</h5>
+                        <p class="card-text text-muted">
+                            A perfect balance of exhilarating high-fidelity audio and the effortless magic of AirPods.
+                        </p>
+            
+                        <!-- Dropdowns -->
+                        <div class="d-flex justify-content-between">
+                            <select class="form-select form-select-sm w-50">
+                                <option selected>Green</option>
+                                <option>Silver</option>
+                                <option>Space Gray</option>
+                            </select>
+                            <select class="form-select form-select-sm w-50 ms-2">
+                                <option selected>Just the device</option>
+                                <option>With AppleCare+</option>
+                            </select>
+                        </div>
+            
+                        <!-- Price & Button -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fw-bold fs-5">$549</span>
+                            <button class="btn btn-success rounded-pill px-4">
+                                <i class="bi bi-cart-plus"></i> Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-lg border-0 rounded-4 m-2" style="width: 20rem;">
+                    <!-- Product Image -->
+                    <div class="text-center mt-4">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-green-select-202011?wid=470&hei=556&fmt=png-alpha&.v=1604022365000" 
+                            class="card-img-top w-75" alt="AirPods Max">
+                    </div>
+            
+                    <!-- Card Body -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">AirPods Max</h5>
+                        <p class="card-text text-muted">
+                            A perfect balance of exhilarating high-fidelity audio and the effortless magic of AirPods.
+                        </p>
+            
+                        <!-- Dropdowns -->
+                        <div class="d-flex justify-content-between">
+                            <select class="form-select form-select-sm w-50">
+                                <option selected>Green</option>
+                                <option>Silver</option>
+                                <option>Space Gray</option>
+                            </select>
+                            <select class="form-select form-select-sm w-50 ms-2">
+                                <option selected>Just the device</option>
+                                <option>With AppleCare+</option>
+                            </select>
+                        </div>
+            
+                        <!-- Price & Button -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fw-bold fs-5">$549</span>
+                            <button class="btn btn-success rounded-pill px-4">
+                                <i class="bi bi-cart-plus"></i> Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script>

@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('Kelas', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('rombel_id');
             $table->string('nama_kelas');
             $table->text('detail_kelas');
-            $table->string('rombel')->nullable();
             $table->text('deskripsi');
             $table->string('image')->nullable();
             $table->timestamps();
+
+            $table->foreign('rombel_id')->references('id')->on('rombels')->onDelete('cascade');
         });
     }
     /**

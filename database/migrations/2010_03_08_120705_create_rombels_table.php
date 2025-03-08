@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('survey', function (Blueprint $table) {
+        Schema::create('rombels', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id')->constrained('users')->onDelete('cascade');
-            $table->uuid('kelas_id')->constrained('kelas')->onDelete('cascade');
-            $table->string('survey');
-            $table->string('saran');
+            $table->string('name')->unique();
+            $table->string('city');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey');
+        Schema::dropIfExists('rombels');
     }
 };

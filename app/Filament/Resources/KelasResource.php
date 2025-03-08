@@ -33,21 +33,26 @@ class KelasResource extends Resource
 
                 Forms\Components\TextInput::make('detail_kelas')
                     ->label('Detail Kelas')
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->required(),
 
-                Forms\Components\TextInput::make('rombel')
+                Forms\Components\Select::make('rombel_id')
                     ->label('Rombel')
-                    ->required()
-                    ->maxLength(50),
+                    ->relationship('rombel', 'name') // Mengambil nama rombel dari relasi
+                    ->searchable() // Bisa dicari jika banyak data
+                    ->preload() // Memuat opsi lebih cepat
+                    ->required(),
 
                 Forms\Components\Textarea::make('deskripsi')
                     ->label('Deskripsi')
-                    ->maxLength(500),
+                    ->maxLength(500)
+                    ->required(),
 
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar Kelas')
                     ->image()
                     ->columnSpanFull()
+                    ->preserveFilenames()
                     ->hint('Maksimal Berukuran 2 Mb')
                     ->directory('kelas-images') // Menyimpan ke storage
                     ->maxSize(2048), // Batas ukuran file 2MB
@@ -66,7 +71,7 @@ class KelasResource extends Resource
                     ->label('Detail Kelas')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('rombel')
+                Tables\Columns\TextColumn::make('rombel.name')
                     ->label('Rombel')
                     ->searchable(),
 

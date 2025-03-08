@@ -21,7 +21,7 @@ class KelasController extends Controller
     public function index()
     {
         $userRombel = auth()->user()->rombel;
-        $kelas = Kelas::where('rombel', $userRombel)->paginate(10);
+        $kelas = Kelas::where('rombel_id', $userRombel)->paginate(10);
         if ($userRombel === 'Sekari 03') {
             $penilaian = Penilaian::where('rombel', $userRombel)->paginate(10);
         } else {

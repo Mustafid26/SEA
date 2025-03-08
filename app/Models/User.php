@@ -25,13 +25,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'nama_lengkap',
-        'password',
-        'profile_photo_path'
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'nama_lengkap',
+    //     'usertype',
+    //     'role',
+    //     'password',
+    //     'profile_photo_path'
+    // ];
 
+    protected $guarded = ['id'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -65,5 +68,10 @@ class User extends Authenticatable
     public function pretestUsers()
     {
         return $this->hasMany(PretestUser::class);
+    }
+
+    public function rombel(): mixed
+    {
+        return $this->belongsTo(Rombel::class);
     }
 }

@@ -37,7 +37,7 @@ Route::get('/', [HomeController::class, 'index'],function () {
     return view('home', [
         'active' => 'beranda'
     ]);
-});
+})->name('home');
 
 
 

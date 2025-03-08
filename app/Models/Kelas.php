@@ -36,4 +36,9 @@ class Kelas extends Model
     {
         return $this->hasMany(QuestionPostest::class);
     }
+    public function rombel()
+    {
+        return $this->belongsTo(Rombel::class)->select('id', 'name');
+    }
+
 }

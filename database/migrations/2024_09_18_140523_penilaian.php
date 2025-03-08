@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('penilaian', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('rombel_id');
             $table->string('judul');
             $table->text('detail');
-            $table->string('rombel')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
+
+            $table->foreign('rombel_id')->references('id')->on('rombels')->onDelete('cascade');
         });
     }
 
