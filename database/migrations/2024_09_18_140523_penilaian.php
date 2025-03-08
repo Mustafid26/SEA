@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('penilaian', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('judul');
             $table->text('detail');
             $table->string('rombel')->nullable();

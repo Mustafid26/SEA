@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AnswerPostest extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'answers_postest';
     protected $guarded = ['id'];

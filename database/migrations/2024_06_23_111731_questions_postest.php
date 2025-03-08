@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('questions_postest', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('kelas_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->uuid('kelas_id')->nullable();
             $table->string('question');
             $table->string('option1');
             $table->string('option2');

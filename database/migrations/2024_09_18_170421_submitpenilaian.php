@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('submitpenilaian', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id')->constrained('users')->onDelete('cascade');
             $table->text('body');
             $table->timestamps();
         });

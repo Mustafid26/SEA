@@ -11,15 +11,29 @@ class PretestUser extends Model
     protected $table = 'pretest_users';
 
     protected $guarded = ['id'];
+
+    // public function getRecordTitleAttribute()
+    // {
+    //     return $this->user?->name ?? 'Pretest User';
+    // }
+
+    
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id');
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
-    public function postestUser() {
+
+    public function postestUser()
+    {
         return $this->hasOne(PostestUser::class, 'user_id', 'user_id');
     }
+
+    // public function getRecordTitleAttribute()
+    // {
+    //     return $this->user?->name ?? 'Pretest User';
+    // }
 }
