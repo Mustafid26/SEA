@@ -19,7 +19,7 @@ class KelasResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
-    protected static ?string $navigationGroup = 'Assessments';
+    protected static ?string $navigationGroup = 'Kelas';
 
 
     public static function form(Form $form): Form

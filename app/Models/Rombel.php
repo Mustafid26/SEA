@@ -12,10 +12,12 @@ class Rombel extends Model
 
     protected $table = 'rombels';
 
-    protected $fillable = [
-        'name',
-        'city'
-    ];
+    protected $guarded = ['id'];
+
+    // protected $fillable = [
+    //     'name',
+    //     'city'
+    // ];
 
     public function kelas(): mixed
     {

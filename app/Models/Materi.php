@@ -12,16 +12,23 @@ class Materi extends Model
 
     protected $table = 'materi';
 
+    protected $guarded = ['id'];
+
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'kelas_id')->select('id', 'nama_kelas');
     }
+
     public function kontenMateri()
     {
-        return $this->hasMany(KontenMateri::class);
+        return $this->hasOne(KontenMateri::class);
     }
-    public function questions()
+    public function questions_pretest()
     {
         return $this->hasMany(Question::class);
+    }
+    public function questions_postest()
+    {
+        return $this->hasMany(QuestionPostest::class);
     }
 }

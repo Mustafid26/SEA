@@ -10,6 +10,8 @@ class QuestionPostest extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'questions_postest';
+
+    protected $guarded = ['id'];
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);

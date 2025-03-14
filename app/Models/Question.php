@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory, HasUuids;
+
+    protected $guarded = ['id'];
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);

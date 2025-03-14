@@ -11,12 +11,13 @@ class KontenMateri extends Model
     use HasFactory, HasUuids;
     protected $table = 'konten_materi';
 
+    protected $guarded = ['id'];
     public function materi()
     {
-        return $this->belongsTo(Materi::class);
+        return $this->belongsTo(Materi::class, 'materi_id')->select('id');
     }
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'kelas_id')->select('id');
     }
 }

@@ -12,13 +12,15 @@ class Pelatihan extends Model
 
     protected $table = 'pelatihans';
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'body',
-        'image',
-        'admin_id', // Tambahkan ini
-    ];
+    protected $guarded = ['id'];
+
+    // protected $fillable = [
+    //     'title',
+    //     'slug',
+    //     'body',
+    //     'image',
+    //     'admin_id', // Tambahkan ini
+    // ];
     
     public function author()
     {

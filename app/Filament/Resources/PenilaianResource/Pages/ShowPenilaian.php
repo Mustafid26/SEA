@@ -11,7 +11,7 @@ use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PenilaianResource;
 
-class Icikiwir extends ListRecords
+class ShowPenilaian extends ListRecords
 {
     protected static string $resource = PenilaianResource::class;
 

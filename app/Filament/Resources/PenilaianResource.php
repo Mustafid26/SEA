@@ -8,6 +8,7 @@ use App\Models\Penilaian;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -35,18 +36,21 @@ class PenilaianResource extends Resource
                     ->required()
                     ->maxLength(255),
 
-                Textarea::make('detail')
+                TextInput::make('detail')
                     ->label('Detail')
                     ->required(),
 
-                // TextInput::make('rombel')
-                //     ->label('Rombel')
-                //     ->maxLength(255),
+                Select::make('rombel_id')
+                    ->label('Rombel')
+                    ->relationship('rombel', 'name') // Mengambil nama rombel dari relasi
+                    ->searchable() // Bisa dicari jika banyak data
+                    ->preload() // Memuat opsi lebih cepat
+                    ->required(),
 
                 FileUpload::make('image')
-                    ->label('Gambar Kelas')
+                    ->label('Thumbnail')
                     ->image()
-                    ->columnSpanFull()
+                    ->required()
                     ->preserveFilenames()
                     ->hint('Maksimal Berukuran 2 Mb')
                     ->directory('kelas-images') // Menyimpan ke storage
@@ -67,10 +71,9 @@ class PenilaianResource extends Resource
                     ->label('Detail')
                     ->limit(50),
 
-                // TextColumn::make('rombel')
-                //     ->label('Rombel')
-                //     ->sortable()
-                //     ->searchable(),
+                TextColumn::make('rombel.name')
+                    ->label('Rombel')
+                    ->searchable(),
 
                 ImageColumn::make('image')
                     ->label('Gambar')
@@ -85,7 +88,7 @@ class PenilaianResource extends Resource
                     ->icon('heroicon-o-eye') // Ikon mata
                     ->color('primary') // Warna tombol
                     ->action(fn($record) => redirect()->to(
-                        PenilaianResource::getUrl('icikiwir', ['record' => $record->id])
+                        PenilaianResource::getUrl('show-penilaian', ['record' => $record->id])
                     )),
             ])
             ->bulkActions([
@@ -106,7 +109,7 @@ class PenilaianResource extends Resource
             'index' => Pages\ListPenilaians::route('/'),
             'create' => Pages\CreatePenilaian::route('/create'),
             'edit' => Pages\EditPenilaian::route('/{record}/edit'),
-            'icikiwir' => Pages\Icikiwir::route('/{record}/icikiwir'),
+            'show-penilaian' => Pages\ShowPenilaian::route('/{record}/show-penilaian'),
         ];
     }
 }

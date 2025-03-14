@@ -12,11 +12,13 @@ class Foto extends Model
     use HasFactory, HasUuids;
     protected $table = 'foto';
 
-    protected $fillable = [
-        'title',
-        'desc',
-        'image',
-    ];
+    protected $guarded = ['id'];
+
+    // protected $fillable = [
+    //     'title',
+    //     'desc',
+    //     'image',
+    // ];
 
     public static function boot()
     {

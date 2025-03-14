@@ -12,13 +12,13 @@ class Artikel extends Model
     protected $guarded = ['id'];
     protected $table = 'artikel';
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'body',
-        'image',
-        'admin_id', // Tambahkan ini
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'slug',
+    //     'body',
+    //     'image',
+    //     'admin_id', // Tambahkan ini
+    // ];
 
     public function getRouteKeyName()
     {
