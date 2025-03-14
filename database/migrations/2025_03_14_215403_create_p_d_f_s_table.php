@@ -8,26 +8,27 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('konten_materi', function (Blueprint $table) {
+        Schema::create('pdfs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('materi_id')->constrained('materi')->onDelete('cascade');
-            $table->uuid('pdf_id')->constrained('pdfs')->onDelete('cascade');
-            
+            $table->string('name');
+            $table->text('desc');
+            $table->string('konten')->comment('pdf');
             $table->timestamps();
-
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('konten_materi');
+        Schema::dropIfExists('p_d_f_s');
     }
-  
-
 };

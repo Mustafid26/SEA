@@ -12,8 +12,8 @@ class QuestionPostest extends Model
     protected $table = 'questions_postest';
 
     protected $guarded = ['id'];
-    public function kelas()
+    public function kontenMateri()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(KontenMateri::class, 'konten_materi_id', 'id');
     }
 }

@@ -16,8 +16,17 @@ class KontenMateri extends Model
     {
         return $this->belongsTo(Materi::class, 'materi_id')->select('id');
     }
-    public function kelas()
+    public function questions()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id')->select('id');
+        return $this->hasMany(Question::class, 'q_pretest_id')->select('id');
     }
+    public function questions_postest()
+    {
+        return $this->hasMany(QuestionPostest::class,'q_postest_id')->select('id');
+    }
+    public function pdf()   
+    {
+        return $this->belongsTo(Pdf::class, 'id');
+    }
+
 }

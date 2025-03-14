@@ -68,7 +68,7 @@
                         data-aos="fade-up">
                 </div>
             </div>
-            <div class="row justify-content-center">
+            {{-- <div class="row justify-content-center">
                 <div class="card shadow-lg border-0 rounded-4 m-2" style="width: 20rem;">
                     <!-- Product Image -->
                     <div class="text-center mt-4">
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <script>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('kelas_id')->nullable();
+            $table->uuid('konten_materi_id')->nullable();
             $table->string('question');
             $table->string('option1');
             $table->string('option2');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('correct_answer');
             $table->timestamps();
 
-            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('konten_materi_id')->references('id')->on('konten_materi')->onDelete('cascade');
         });
     }
 

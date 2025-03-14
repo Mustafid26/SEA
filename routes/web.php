@@ -109,8 +109,6 @@ Route::post('/update_pelatihan_2/{id}', [AdminController::class,'update_pelatiha
 Route::get('/delete_pelatihan/{id}', [AdminController::class,'delete_pelatihan']);
 Route::get('/search_pelatihan', [AdminController::class,'search_pelatihan']);
 
-
-
 Route::post('/add_kelas', [AdminController::class,'add_kelas']);
 Route::get('/view_kelas', [AdminController::class,'view_kelas']);
 Route::get('/show_kelas', [AdminController::class,'show_kelas']);

@@ -31,9 +31,7 @@
             });
         </script>
     @endif
-
     <div class="container fadeinUp" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:10rem;">
-      
         <!-- Card Mobile -->
         <div class="card-mobile">
             <div class="card me-3" style="flex: 1;">
@@ -45,13 +43,14 @@
                         {{ $kelas->detail_kelas }}</h3>
                     <h5 class="text-left">Deskripsi Singkat</h5>
                     <p class="card-text text-wrap text-break">{!! $kelas->deskripsi !!}</p>
+                    @foreach($materi as $m)
                     <div class="list-group mt-4">
                         <div class="drop">
-                            <button class="drop-btn btn-primary" onclick="toggledrop()">
-                                <i class="fa fa-solid fa-book"></i> Materi Belajar
+                            <button class="drop-btn btn-primary" onclick="toggledrop({{ $loop->index }})">
+                                <i class="fa fa-solid fa-book"></i> {{ $m->judul_materi }}
                             </button>
                             <!-- Button trigger modal -->
-                            <div id="drop-content" class="drop-content">
+                            <div id="drop-content-{{ $loop->index }}" class="drop-content">
                                 @if($sudahPresensi)
                                 <span class="dropdown-item text-white"><i
                                     class="fa-solid fa-calendar"></i> Presensi <i
@@ -100,7 +99,7 @@
                                                 class="fa-regular fa-pen-to-square"></i> Pretest <i
                                                 class="fa fa-solid fa-check"></i></strong></span>
                                 @else
-                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', ['kelas' => $kelas, 'routeSegment' => $routeSegment ?? 'pretest']) }}"
+                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', ['kelas' => $kelas]) }}"
                                         onclick="checkQuestions(event)"><i
                                         class="fa-regular fa-pen-to-square"></i> <strong>Pretest</strong></a>
                                 @endif
@@ -108,16 +107,16 @@
                                 @if ($materi->isEmpty())
                                     <span class="dropdown-item text-white">Belum ada materi</span>
                                 @else
-                                    @foreach ($materi as $m)
+                                    @foreach ($pdf as $p)
                                         @if ($pretestCompleted)
                                             <form
-                                                action="{{ route('materi.after', ['id' => $m->id, 'kelas_id' => $m->kelas_id]) }}"
+                                                action="{{ route('materi.after', ['id' => $p->id]) }}"
                                                 method="POST" style="margin: 0;">
                                                 @csrf
-                                                <input type="hidden" name="kelas_id" value="{{ $m->kelas_id }}">
+                                                <input type="hidden" name="materi_id" value="{{ $p->materi_id }}">
                                                 <button type="submit" class="dropdown-item text-white text-wrap"><i
                                                         class="fa-solid fa-book-bookmark"></i>
-                                                    {{ $m->judul_materi }}</button>
+                                                    {{ $p->pdf->name}}</button>
                                             </form>
 
                                             @if ($postestCompleted)
@@ -131,7 +130,7 @@
                                             @endif
                                         @else
                                             <a class="dropdown-item lock text-white text-wrap" href="#"><i
-                                                    class="fa-solid fa-book-bookmark"></i> {{ $m->judul_materi }} <i
+                                                    class="fa-solid fa-book-bookmark"></i> {{ $p->pdf->name}} <i
                                                     class="fa fa-solid fa-lock"></i></a>
                                             <a class="dropdown-item lock text-white" href="#"><i
                                                     class="fa-regular fa-pen-to-square"></i> Postest <i
@@ -183,6 +182,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -243,9 +243,10 @@
         document.getElementById('tanggal').value = today;
     </script> --}}
     <script>
-        function toggledrop() {
-            var content = document.getElementById("drop-content");
-            var button = document.querySelector(".drop-btn");
+        function toggledrop(index) {
+            var content = document.getElementById("drop-content-" + index);
+            var button = document.querySelector(`.drop-btn[onclick="toggledrop(${index})"]`);
+
             if (content.classList.contains("show")) {
                 content.classList.remove("show");
                 button.classList.remove("active");
@@ -273,7 +274,7 @@
             });
         });
     </script>
-    <script>
+    {{-- <script>
         function checkQuestions(event) {
             event.preventDefault();
 
@@ -287,8 +288,8 @@
                 window.location.href = event.target.href;
             @endif
         }
-    </script>
-    <script>
+    </script> --}}
+    {{-- <script>
         function checkQuestionsPost(event) {
             event.preventDefault();
 
@@ -302,6 +303,6 @@
                 window.location.href = event.target.href;
             @endif
         }
-    </script>
+    </script> --}}
 
 @endsection

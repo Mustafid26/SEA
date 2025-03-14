@@ -9,6 +9,7 @@ use App\Models\Presensi;
 use App\Models\Penilaian;
 use App\Models\PostestUser;
 use App\Models\PretestUser;
+use App\Models\KontenMateri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,7 +21,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $userRombel = auth()->user()->rombel;
+        $userRombel = auth()->user()->rombel_id;
         $kelas = Kelas::where('rombel_id', $userRombel)->paginate(10);
         if ($userRombel === 'Sekari 03') {
             $penilaian = Penilaian::where('rombel', $userRombel)->paginate(10);
@@ -57,20 +58,27 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $materi = $kelas->materi;
+        // dd($materi);
         $userId = auth()->id();
-        $questions = $kelas->questions; 
+        $questions = $kelas->questions;
         $questions_postest = $kelas->questions_postest;
+        if ($materi) {
+            $pdf = KontenMateri::where('materi_id', $id)->get();
+        } else {
+            $pdf = null;
+        }
         $pretestCompleted = PretestUser::where('user_id', $userId)
-                                        ->where('kelas_id', $kelas->id)
-                                        ->exists();
+            ->where('kelas_id', $kelas->id)
+            ->exists();
         $postestCompleted = PostestUser::where('user_id', $userId)
-                                        ->where('kelas_id', $kelas->id)
-                                        ->exists();
+            ->where('kelas_id', $kelas->id)
+            ->exists();
         $sudahPresensi = Presensi::where('user_id', $userId)
-                                        ->where('kelas_id', $kelas->id)
-                                        ->exists();
+            ->where('kelas_id', $kelas->id)
+            ->exists();
         return view('materi', [
             'materi' => $materi,
+            'pdf' => $pdf,
             'kelas' => $kelas,
             'active' => "kelas",
             'pretestCompleted' => $pretestCompleted,
@@ -80,7 +88,7 @@ class KelasController extends Controller
             'sudahPresensi' => $sudahPresensi
         ]);
     }
-    
+
     public function showFormPenilaian($id)
     {
         $penilaian = Penilaian::findOrFail($id);
@@ -100,9 +108,9 @@ class KelasController extends Controller
 
         $data = new Submit;
         $data->user_id = auth()->user()->id;
-        $data->body = $request->body;   
+        $data->body = $request->body;
         $data->save();
-        return redirect()->route('kelas')->with(['sweetalert' =>'Penilaian Anda Berhasil Disimpan!']);
+        return redirect()->route('kelas')->with(['sweetalert' => 'Penilaian Anda Berhasil Disimpan!']);
     }
     /**
      * Show the form for editing the specified resource.

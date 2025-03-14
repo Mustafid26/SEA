@@ -23,12 +23,4 @@ class Materi extends Model
     {
         return $this->hasOne(KontenMateri::class);
     }
-    public function questions_pretest()
-    {
-        return $this->hasMany(Question::class);
-    }
-    public function questions_postest()
-    {
-        return $this->hasMany(QuestionPostest::class);
-    }
 }

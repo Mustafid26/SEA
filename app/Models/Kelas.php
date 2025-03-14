@@ -16,10 +16,6 @@ class Kelas extends Model
     {
         return $this->hasMany(Materi::class);
     }
-    public function kontenMateri()
-    {
-        return $this->hasMany(KontenMateri::class);
-    }
     public function pretestUsers()
     {
         return $this->hasMany(PretestUser::class);
@@ -27,14 +23,6 @@ class Kelas extends Model
     public function pretestTakenByUser($userId)
     {
         return $this->pretestUsers()->where('user_id', $userId)->exists();
-    }
-    public function questions()
-    {
-        return $this->hasMany(Question::class);
-    }
-    public function questions_postest()
-    {
-        return $this->hasMany(QuestionPostest::class);
     }
     public function rombel()
     {

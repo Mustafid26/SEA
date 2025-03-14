@@ -38,7 +38,9 @@
         <h1 class="display-1 fw-bold text-danger bounce">404</h1>
         <h2 class="fw-semibold">Oops! Page Not Found</h2>
         <p class="text-muted">The page you are looking for might have been removed or is temporarily unavailable.</p>
-        <a href="/" class="btn btn-primary rounded-pill px-4 btn-hover">
+        <a onclick="history.back()"
+        role="button"
+        class="btn btn-primary rounded-pill px-4 btn-hover">
             <i class="bi bi-house-door"></i> Back to Home
         </a>
     </div>

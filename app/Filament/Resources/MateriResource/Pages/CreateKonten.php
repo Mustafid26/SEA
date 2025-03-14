@@ -11,6 +11,7 @@ use App\Models\KontenMateri;
 use App\Models\Question;
 use App\Models\QuestionPostest;
 use App\Models\Materi;
+use App\Models\PDF;
 
 class CreateKonten extends CreateRecord
 {
@@ -41,6 +42,19 @@ class CreateKonten extends CreateRecord
                 ->required()
                 ->reactive(),
 
+            Forms\Components\TextInput::make('name')
+                ->label('Nama')
+                ->required()
+                ->maxLength(255)
+                ->hidden(fn($get) => $get('jenis_konten') !== 'pdf'),
+
+            Forms\Components\TextInput::make('desc')
+                ->label('Deskripsi')
+                ->nullable()
+                ->maxLength(255)
+                ->hidden(fn($get) => $get('jenis_konten') !== 'pdf'),
+
+
             Forms\Components\FileUpload::make('konten')
                 ->label('Upload PDF')
                 ->disk('public')
@@ -50,11 +64,6 @@ class CreateKonten extends CreateRecord
                 ->hidden(fn($get) => $get('jenis_konten') !== 'pdf')
                 ->required(fn($get) => $get('jenis_konten') === 'pdf'),
 
-            Forms\Components\TextInput::make('desc')
-                ->label('Deskripsi')
-                ->nullable()
-                ->maxLength(255)
-                ->hidden(fn($get) => $get('jenis_konten') !== 'pdf'),
 
             Forms\Components\TextInput::make('question')
                 ->label('Pertanyaan')
@@ -97,9 +106,9 @@ class CreateKonten extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        $materi = Materi::with('kelas')->find(request()->route('record')); 
+        $materi = Materi::with('kelas')->find(request()->route('record'));
         $kelasId = optional($materi?->kelas)->id;
-        
+
 
         $correctAnswer = match ($data['correct_answer']) {
             'option1' => $data['option1'],
@@ -110,9 +119,8 @@ class CreateKonten extends CreateRecord
         };
 
         if ($data['jenis_konten'] === 'pdf') {
-            return KontenMateri::create([
-                'materi_id' => $materi->id,
-                'kelas_id' => $kelasId,
+            return PDF::create([
+                'name' => $data['name'],
                 'konten' => $data['konten'],
                 'desc' => $data['desc'],
             ]);
@@ -138,5 +146,4 @@ class CreateKonten extends CreateRecord
             ]);
         }
     }
-
 }
