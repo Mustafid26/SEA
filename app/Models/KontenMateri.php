@@ -14,19 +14,15 @@ class KontenMateri extends Model
     protected $guarded = ['id'];
     public function materi()
     {
-        return $this->belongsTo(Materi::class, 'materi_id')->select('id');
+        return $this->belongsTo(Materi::class)->select('id', 'judul_materi', 'kelas_id');
     }
     public function questions()
     {
-        return $this->hasMany(Question::class, 'q_pretest_id')->select('id');
+        return $this->hasMany(Question::class)->select('id', 'question', 'option1', 'option2', 'option3', 'option4', 'correct_answer');
     }
     public function questions_postest()
     {
-        return $this->hasMany(QuestionPostest::class,'q_postest_id')->select('id');
-    }
-    public function pdf()   
-    {
-        return $this->belongsTo(Pdf::class, 'id');
+        return $this->hasMany(QuestionPostest::class)->select('id', 'question', 'option1', 'option2', 'option3', 'option4', 'correct_answer');
     }
 
 }

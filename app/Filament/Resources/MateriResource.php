@@ -69,18 +69,6 @@ class MateriResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-
-                Tables\Actions\Action::make('add_konten')
-                    ->label('Add Konten')
-                    ->icon('heroicon-o-plus-circle') // Ikon tambah
-                    ->color('success')
-                    ->action(fn($record) => redirect()->to(MateriResource::getUrl('create-konten', ['record' => $record->id]))),
-
-                Tables\Actions\Action::make('show_konten')
-                    ->label('Show Konten')
-                    ->icon('heroicon-o-eye') // Ikon mata
-                    ->color('info')
-                    ->action(fn($record) => redirect()->to(MateriResource::getUrl('show-konten', ['record' => $record->id]))),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -101,8 +89,6 @@ class MateriResource extends Resource
             'index' => Pages\ListMateris::route('/'),
             'create' => Pages\CreateMateri::route('/create'),
             'edit' => Pages\EditMateri::route('/{record}/edit'),
-            'create-konten' => Pages\CreateKonten::route('/{record}/create-konten'),
-            'show-konten' => Pages\ShowKonten::route('/{record}/show-konten'),
         ];
     }
 }

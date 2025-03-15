@@ -14,6 +14,10 @@ class Materi extends Model
 
     protected $guarded = ['id'];
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id')->select('id', 'nama_kelas');

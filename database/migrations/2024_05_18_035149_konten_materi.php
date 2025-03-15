@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,8 +13,7 @@ return new class extends Migration
         Schema::create('konten_materi', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('materi_id')->constrained('materi')->onDelete('cascade');
-            $table->uuid('pdf_id')->constrained('pdfs')->onDelete('cascade');
-            
+            $table->string('pdf_path');
             $table->timestamps();
 
         });
@@ -28,6 +26,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('konten_materi');
     }
-  
+
 
 };
