@@ -663,6 +663,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed; /* Efek parallax */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -673,6 +674,7 @@
     padding: 20px;
     transition: all 0.3s ease-in-out;
 }
+
 /* .hero-section {
     background: rgb(215,54,150);
     background: -moz-linear-gradient(180deg, rgba(215,54,150,0.9) 0%, rgba(215,54,150,0.9) 50%, rgba(255,255,255,0.7) 100%), url('../img/bglow.svg');
@@ -1233,6 +1235,6 @@ iframe {
     transform: scale(1.05); /* Sedikit membesar */
 }
 
-.link:hover{
+.link:hover {
     color: white !important;
 }
