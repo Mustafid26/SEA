@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Elegant Popup</title>
+   
     <style>
         /* General reset and font */
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
@@ -22,7 +25,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Dark semi-transparent background */
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -54,6 +58,7 @@
             visibility: visible;
             opacity: 1;
         }
+
         #pdfPopup.show #popupContent {
             transform: scale(1);
         }
@@ -90,7 +95,8 @@
         }
 
         /* Navigation buttons */
-        #prevBtn, #nextBtn {
+        #prevBtn,
+        #nextBtn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -103,12 +109,18 @@
             transition: background-color 0.3s ease;
         }
 
-        #prevBtn:hover, #nextBtn:hover {
+        #prevBtn:hover,
+        #nextBtn:hover {
             background-color: #ddd;
         }
 
-        #prevBtn { left: 10px; }
-        #nextBtn { right: 10px; }
+        #prevBtn {
+            left: 10px;
+        }
+
+        #nextBtn {
+            right: 10px;
+        }
 
         /* Smooth animation on hover */
 
@@ -120,7 +132,8 @@
                 padding: 30px;
             }
 
-            #prevBtn, #nextBtn {
+            #prevBtn,
+            #nextBtn {
                 padding: 8px 15px;
                 font-size: 16px;
             }
@@ -138,7 +151,8 @@
                 padding: 30px;
             }
 
-            #prevBtn, #nextBtn {
+            #prevBtn,
+            #nextBtn {
                 padding: 6px 10px;
                 font-size: 14px;
             }
@@ -156,29 +170,34 @@
                 height: 100%;
             }
         }
+
         .image-container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100+%;
         }
+
         .image-container img {
             max-width: 100%;
             height: auto;
         }
     </style>
 </head>
+
 <body>
     <div id="pdfPopup">
         <div id="popupContent">
             <button id="closeBtn">&times;</button>
             <h1 class="text-center">Buku Panduan Serat Kartini</h1>
             <div class="image-container">
-                <img src="{{asset('img/CoverPanduan.webp')}}" alt="cover-panduan" class="img-fluid" style="width: 50%;">
+                <img src="{{ asset('img/CoverPanduan_11zon.webp') }}" alt="cover-panduan" class="img-fluid"
+                    style="width: 50%;">
             </div>
-            <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download" class="btn btn-primary mt-2">Unduh</a>
+            <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download"
+                class="btn btn-primary mt-2">Unduh</a>
         </div>
-    </div>    
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -186,7 +205,7 @@
             var closeBtn = document.getElementById("closeBtn");
             var pdfFrame = document.getElementById("pdfFrame");
             pdfPopup.classList.add('show');
-    
+
             // Close popup smoothly
             closeBtn.addEventListener("click", function() {
                 pdfPopup.classList.remove('show');
@@ -197,4 +216,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoserat.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoseratcut.webp') }}">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,17 +44,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 
 
-    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
+    {{-- <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script> --}}
 
-    <link rel="preload" as="image" href="{{ asset('img/CoverPanduan.webp') }}" type="image/webp">
     <style>
         body {
             font-family: 'Maven Pro';
@@ -98,6 +97,7 @@
             height: 3rem;
         }
     </style>
+
 </head>
 
 <body>
@@ -124,8 +124,8 @@
                     <a href="/konseling" class="{{ $active === 'konseling' ? 'active' : '' }}">KONSELING</a>
                 @endauth
 
-                <a class="{{ $active === 'informasi' ? 'active' : '' }}" href="#"
-                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="{{ $active === 'informasi' ? 'active' : '' }}" href="#" id="navbarDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     INFORMASI
                     <i id="dropdownIcon" class="bi bi-chevron-down"></i>
                 </a>
@@ -252,10 +252,10 @@
                 </div>
                 <div class="col-md-3 mb-2">
                     <div class="footer-logo serat-logo mb-3">
-                        <img src="{{ asset('img/LogoUdinus.png') }}" alt="Udinus Logo" class="udinushmti-logo"
-                            style="width: 80px; margin-right: 10px;">
-                        <img src="{{ asset('img/Logo_HMTI.png') }}" alt="HMTI Logo" class="udinushmti-logo"
-                            style="width: 80px;">
+                        <img src="{{ asset('img/LogoUdinus.webp') }}" alt="Udinus Logo" class="udinushmti-logo"
+                            loading="lazy" style="width: 80px; margin-right: 10px;">
+                        <img src="{{ asset('img/Logo_HMTI.webp') }}" alt="HMTI Logo" class="udinushmti-logo"
+                            style="width: 80px;" loading="lazy">
                     </div>
                     <!-- Contact Information -->
                     <p class="mb-1"><strong>HMTI UDINUS</strong></p>
@@ -289,17 +289,16 @@
     </footer>
     <!-- JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let dropdown = document.getElementById("navbarDropdown");
             let icon = document.getElementById("dropdownIcon");
 
-            dropdown.addEventListener("click", function () {
+            dropdown.addEventListener("click", function() {
                 let isExpanded = dropdown.getAttribute("aria-expanded") === "false";
                 icon.classList.toggle("bi-chevron-down", !isExpanded);
                 icon.classList.toggle("bi-chevron-up", isExpanded);
             });
         });
-
     </script>
     <!-- Template Javascript -->
     <script>
@@ -307,7 +306,4 @@
             document.getElementById('preloader').style.display = 'none';
         });
     </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-
 </body>

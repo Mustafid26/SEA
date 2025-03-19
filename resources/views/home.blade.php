@@ -1,4 +1,7 @@
 @extends('layouts.main')
+<link rel="preload" as="image" href="{{ asset('img/herologo.webp') }}" type="image/webp">
+<link rel="preload" as="image" href="{{ asset('img/logoserat_11zon.webp') }}" type="image/webp">
+<link rel="preload" as="image" href="{{ asset('img/logomitra1.webp') }}" type="image/webp">
 
 @section('konten')
     @guest
@@ -6,7 +9,7 @@
     @endguest
     <div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div class="content">
-            <img src="{{ asset('img/herologo.webp') }}" alt="" class="img-fluid mb-3 img-h" />
+            <img src="{{ asset('img/herologo.webp') }}" alt="" class="img-fluid mb-3 img-h" loading="lazy" />
             <h1 class="text-white text-hero text-wrap">
                 Mulai Perjalanan <br />
                 <span class="text-wrap">#PerempuanPembelajar</span> <br />
@@ -24,7 +27,8 @@
 
     <div class="container-sea text-center mt-5">
         <div class="content-wrapper">
-            <img src="{{ asset('img/logoserat1.webp') }}" alt="SEA Logo" class="logo-home mb-5" data-aos="fade-right" />
+            <img src="{{ asset('img/logoserat_11zon.webp') }}" alt="SEA Logo" class="logo-home mb-5"
+                data-aos="fade-right" loading="lazy"/>
             <div class="text-content">
                 <h3 class="title" data-aos="fade-left">Apa Itu Serat Kartini?</h3>
                 <p class="intro" data-aos="fade-left">Hai!</p>
@@ -64,8 +68,8 @@
             <p class="mb-5 text-center">Mitra Yang Turut Serta Dalam Pelaksanaan Serat Kartini</p>
             <div class="row justify-content-center mitra-img">
                 <div class="col-6 col-md-2 d-flex justify-content-center">
-                    <img src="{{ asset('img/logomitra1.png') }}" alt="mitra1" class="img-fluid partner-logo"
-                        data-aos="fade-up">
+                    <img src="{{ asset('img/logomitra1.webp') }}" alt="mitra1" class="img-fluid partner-logo"
+                        data-aos="fade-up" loading="lazy">
                 </div>
             </div>
             {{-- <div class="row justify-content-center">
