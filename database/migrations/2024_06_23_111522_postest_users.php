@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('postest_users', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id')->constrained('users')->onDelete('cascade');
-            $table->uuid('kelas_id')->constrained('kelas')->onDelete('cascade');
+            $table->uuid('materi_id')->constrained('materi')->onDelete('cascade');
             $table->integer('score')->nullable();
             $table->timestamps();
         });

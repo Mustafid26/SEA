@@ -99,7 +99,7 @@
                                                 class="fa-regular fa-pen-to-square"></i> Pretest <i
                                                 class="fa fa-solid fa-check"></i></strong></span>
                                 @else
-                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', ['kelas' => $kelas]) }}"
+                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', ['materi_id' => $materi_id]) }}"
                                         onclick="checkQuestions(event)"><i
                                         class="fa-regular fa-pen-to-square"></i> <strong>Pretest</strong></a>
                                 @endif
@@ -130,7 +130,7 @@
                                             @endif
                                         @else
                                             <a class="dropdown-item lock text-white text-wrap" href="#"><i
-                                                    class="fa-solid fa-book-bookmark"></i> {{ $p->pdf->name}} <i
+                                                    class="fa-solid fa-book-bookmark"></i> {{ $p->name}} <i
                                                     class="fa fa-solid fa-lock"></i></a>
                                             <a class="dropdown-item lock text-white" href="#"><i
                                                     class="fa-regular fa-pen-to-square"></i> Postest <i
@@ -274,7 +274,7 @@
             });
         });
     </script>
-    {{-- <script>
+    <script>
         function checkQuestions(event) {
             event.preventDefault();
 
@@ -288,8 +288,8 @@
                 window.location.href = event.target.href;
             @endif
         }
-    </script> --}}
-    {{-- <script>
+    </script> 
+    <script>
         function checkQuestionsPost(event) {
             event.preventDefault();
 
@@ -303,6 +303,6 @@
                 window.location.href = event.target.href;
             @endif
         }
-    </script> --}}
+    </script>
 
 @endsection
