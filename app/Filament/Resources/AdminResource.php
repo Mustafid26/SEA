@@ -2,21 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AdminResource\Pages;
-use App\Filament\Resources\AdminResource\RelationManagers;
-use App\Models\Admin;
-use App\Models\User;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Card;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use App\Models\User;
 use Filament\Tables;
+use App\Models\Admin;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use GuzzleHttp\Promise\Create;
+use Filament\Resources\Resource;
+use Illuminate\Support\Collection;
+use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Phpsa\FilamentPasswordReveal\Password;
+use App\Filament\Resources\AdminResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\AdminResource\RelationManagers;
 
 class AdminResource extends Resource
 {
@@ -69,7 +72,28 @@ class AdminResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make()
+                    ->hidden(fn (User $record) => $record->id === auth()->id())
+                    ->before(function (Tables\Actions\BulkAction $action, Collection $records) {
+                        // Check if records contain the current user
+                        if ($records->contains(function ($record) {
+                            return $record->id === auth()->id();
+                        })) {
+                            // Create and dispatch notification
+                            Notification::make()
+                                ->warning()
+                                ->title('Cannot delete yourself')
+                                ->body('You are not allowed to delete your own account.')
+                                ->persistent()
+                                ->send();
+                            
+                            // Cancel the action
+                            $action->cancel();
+                            
+                            // Return false to ensure action stops
+                            return false;
+                        }
+                    }),
             ]);
     }
 
