@@ -6,11 +6,13 @@ use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Submit;
 use App\Models\Presensi;
+use App\Models\Question;
 use App\Models\Penilaian;
 use App\Models\PostestUser;
 use App\Models\PretestUser;
 use App\Models\KontenMateri;
 use Illuminate\Http\Request;
+use App\Models\QuestionPostest;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -57,27 +59,37 @@ class KelasController extends Controller
     public function show($id)
     {
         $kelas = Kelas::findOrFail($id);
+        // $materi = $kelas->materi;
         $materi = $kelas->materi;
+        $materi_id = Materi::where('kelas_id', $id)->value('id');
+        $konten = KontenMateri::where('materi_id', $materi_id)->value('id');
+        // dd($konten);
+        $takequestion = Question::where('konten_materi_id', $konten)->get();
+        // dd($takequestion);
+        $takequestion_p = QuestionPostest::where('konten_materi_id', $konten)->get();
         // dd($materi);
         $userId = auth()->id();
-        $questions = $kelas->questions;
-        $questions_postest = $kelas->questions_postest;
+        $questions = $takequestion;
+        $questions_postest = $takequestion_p;
+        // dd($questions);
         if ($materi) {
-            $pdf = KontenMateri::where('materi_id', $id)->get();
+            $pdf = KontenMateri::where('materi_id', $materi_id)->get();
+            // dd($pdf);
         } else {
             $pdf = null;
         }
         $pretestCompleted = PretestUser::where('user_id', $userId)
-            ->where('kelas_id', $kelas->id)
+            ->where('materi_id', $materi_id)
             ->exists();
         $postestCompleted = PostestUser::where('user_id', $userId)
-            ->where('kelas_id', $kelas->id)
+            ->where('materi_id',  $materi_id)
             ->exists();
         $sudahPresensi = Presensi::where('user_id', $userId)
-            ->where('kelas_id', $kelas->id)
+            ->where('kelas_id', $materi_id)
             ->exists();
         return view('materi', [
             'materi' => $materi,
+            'materi_id' => $materi_id,
             'pdf' => $pdf,
             'kelas' => $kelas,
             'active' => "kelas",

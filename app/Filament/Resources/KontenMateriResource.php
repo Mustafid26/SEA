@@ -55,6 +55,17 @@ class KontenMateriResource extends Resource
                     ->hint('Maksimal 5 Mb')
                     ->required()
                     ->maxSize(5120),
+                
+                TextInput::make('name')
+                    ->label('Nama PDF')
+                    ->required()
+                    ->maxLength(255),
+
+                TextInput::make('desc')
+                        ->label('Deskripsi PDF')
+                        ->hint("Maksimal 500 karakter")
+                        ->required()
+                        ->maxLength(500),
 
                 Repeater::make('questions')
                     ->relationship('questions')

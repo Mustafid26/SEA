@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->uuid('materi_id')->constrained('materi')->onDelete('cascade');
             $table->string('pdf_path');
+            $table->string('name');
+            $table->text('desc');
             $table->timestamps();
 
         });

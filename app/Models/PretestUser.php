@@ -22,9 +22,9 @@ class PretestUser extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function kelas()
+    public function materi()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
+        return $this->belongsTo(Materi::class, 'materi_id', 'id');
     }
 
     public function postestUser()
