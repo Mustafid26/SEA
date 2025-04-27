@@ -18,7 +18,6 @@
 </style>
 
 @section('konten')
-
     @include('sweetalert::alert')
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -43,150 +42,148 @@
                         {{ $kelas->detail_kelas }}</h3>
                     <h5 class="text-left">Deskripsi Singkat</h5>
                     <p class="card-text text-wrap text-break">{!! $kelas->deskripsi !!}</p>
-                    @foreach($materi as $m)
-                    <div class="list-group mt-4">
-                        <div class="drop">
-                            <button class="drop-btn btn-primary" onclick="toggledrop({{ $loop->index }})">
-                                <i class="fa fa-solid fa-book"></i> {{ $m->judul_materi }}
-                            </button>
-                            <!-- Button trigger modal -->
-                            <div id="drop-content-{{ $loop->index }}" class="drop-content">
-                                @if($sudahPresensi)
-                                <span class="dropdown-item text-white"><i
-                                    class="fa-solid fa-calendar"></i> Presensi <i
-                                    class="fa fa-solid fa-check"></i>
-                                </span>
-                                @else
-                                <a class="dropdown-item text-white" data-bs-toggle="dropdown"><i
-                                        class="fa-solid fa-calendar"></i> Presensi
-                                </a>
-                                @endif
-                                <div class="dropdown-menu p-3 border" style="max-width: 30em; width: 100%;">
-                                    <form action="{{ url('/add_presensi') }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" name="kelas_id" id="kelas_id"
-                                            value="{{ $kelas->id }}">
-                                        <div class="form-group mb-3">
-                                            <label><strong>Materi: {{ $kelas->nama_kelas }} </strong></label>
-                                        </div>
-                                        {{-- <div class="form-group mb-3">
-                                        <label><strong>Tanggal: </strong></label>
-                                        <input type="date" name="tanggal" class="form-control" id="tanggal" required>
-                                    </div> --}}
-                                        <div class="form-group mb-3">
-                                            <label><strong>Kehadiran: </strong></label><br>
-                                            <!-- Opsi Kehadiran -->
-                                            <input type="radio" id="hadir" name="kehadiran" value="hadir"
-                                                required>
-                                            <label for="hadir">Hadir</label>
-                                            <input type="radio" id="izin" name="kehadiran" value="izin"
-                                                class="ms-3" required>
-                                            <label for="izin">Izin</label>
-                                            <input type="radio" id="tidak_hadir" name="kehadiran" value="tidak_hadir"
-                                                class="ms-3" required>
-                                            <label for="tidak_hadir">Tidak Hadir</label>
-                                        </div>
-                                        <!-- Tombol Simpan -->
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-primary w-50">Simpan</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- Pengecekan dan tampilan status pretest -->
-                                @if ($pretestCompleted)
-                                    <span class="dropdown-item text-white"><strong><i
-                                                class="fa-regular fa-pen-to-square"></i> Pretest <i
-                                                class="fa fa-solid fa-check"></i></strong></span>
-                                @else
-                                    <a class="dropdown-item text-white" href="{{ route('pretest.show', ['materi_id' => $materi_id]) }}"
-                                        onclick="checkQuestions(event)"><i
-                                        class="fa-regular fa-pen-to-square"></i> <strong>Pretest</strong></a>
-                                @endif
-                                <!-- Daftar materi -->
-                                @if ($materi->isEmpty())
-                                    <span class="dropdown-item text-white">Belum ada materi</span>
-                                @else
-                                    @foreach ($pdf as $p)
-                                        @if ($pretestCompleted)
-                                            <form
-                                                action="{{ route('materi.after', ['id' => $p->id]) }}"
-                                                method="POST" style="margin: 0;">
-                                                @csrf
-                                                <input type="hidden" name="materi_id" value="{{ $p->materi_id }}">
-                                                <button type="submit" class="dropdown-item text-white text-wrap"><i
-                                                        class="fa-solid fa-book-bookmark"></i>
-                                                    {{ $p->pdf->name}}</button>
-                                            </form>
-
-                                            @if ($postestCompleted)
-                                                <span style="color:white" class="dropdown-item "><strong><i
-                                                    class="fa-regular fa-pen-to-square"></i><strong> Postest </strong><i class="fa fa-solid fa-check"></i></span>
-                                            @else
-                                                <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)"
-                                                    href="{{ route('postest.show', $kelas->id) }}"><i
-                                                        class="fa-regular fa-pen-to-square"></i>
-                                                    <strong>Postest</strong></a>
-                                            @endif
-                                        @else
-                                            <a class="dropdown-item lock text-white text-wrap" href="#"><i
-                                                    class="fa-solid fa-book-bookmark"></i> {{ $p->name}} <i
-                                                    class="fa fa-solid fa-lock"></i></a>
-                                            <a class="dropdown-item lock text-white" href="#"><i
-                                                    class="fa-regular fa-pen-to-square"></i> Postest <i
-                                                    class="fa fa-solid fa-lock"></i></a>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <a class="dropdown-item text-white" data-bs-toggle="dropdown">
-                                    <i class="fa-solid fa-star"></i> Survey
-                                </a>
-                                <div class="dropdown-menu p-3 border" style="max-width: 30em; width: 100%;">
-                                    <form action="{{ url('/add_survey') }}" method="POST" id="surveyForm">
-                                        @csrf
-                                        <!-- Form Rating -->
-                                        <input type="hidden" name="kelas_id" id="kelas_id"
-                                            value="{{ $kelas->id }}">
-                                        <div class="form-group mb-3 d-flex">
-                                            <label><strong>Rating: </strong></label><br>
-                                            <!-- Rating dengan gambar ikon wajah dari Font Awesome -->
-                                            <div class="justify-content-center" id="ratingIcons">
-                                                <span class="rating-option icon-rating" data-value="Puas">
-                                                    <i class="fas fa-smile face-icon text-success"
-                                                        style="font-size: 30px;"></i> <!-- Ikon Sangat Puas -->
-                                                </span>
-                                                <span class="rating-option icon-rating" data-value="Cukup Puas">
-                                                    <i class="fas fa-meh face-icon text-warning"
-                                                        style="font-size: 30px;"></i> <!-- Ikon Puas -->
-                                                </span>
-                                                <span class="rating-option icon-rating" data-value="Kecewa">
-                                                    <i class="fas fa-frown face-icon text-danger"
-                                                        style="font-size: 30px;"></i> <!-- Ikon Tidak Puas -->
-                                                </span>
+                    @foreach ($materi as $m)
+                        <div class="list-group mt-4">
+                            <div class="drop">
+                                <button class="drop-btn btn-primary" onclick="toggledrop({{ $loop->index }})">
+                                    <i class="fa fa-solid fa-book"></i> {{ $m->judul_materi }}
+                                </button>
+                                <!-- Button trigger modal -->
+                                <div id="drop-content-{{ $loop->index }}" class="drop-content">
+                                    @if ($sudahPresensi)
+                                        <span class="dropdown-item text-white"><i class="fa-solid fa-calendar"></i> Presensi
+                                            <i class="fa fa-solid fa-check"></i>
+                                        </span>
+                                    @else
+                                        <a class="dropdown-item text-white" data-bs-toggle="dropdown"><i
+                                                class="fa-solid fa-calendar"></i> Presensi
+                                        </a>
+                                    @endif
+                                    <div class="dropdown-menu p-3 border" style="max-width: 30em; width: 100%;">
+                                        <form action="{{ url('/add_presensi') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="kelas_id" id="kelas_id"
+                                                value="{{ $kelas->id }}">
+                                            <div class="form-group mb-3">
+                                                <label><strong>Materi: {{ $kelas->nama_kelas }} </strong></label>
                                             </div>
-                                            <input type="hidden" name="rating" id="ratingValue" required>
-                                        </div>
+                                        
+                                            <div class="form-group mb-3">
+                                                <label><strong>Kehadiran: </strong></label><br>
+                                                <!-- Opsi Kehadiran -->
+                                                <input type="radio" id="hadir" name="kehadiran" value="hadir"
+                                                    required>
+                                                <label for="hadir">Hadir</label>
+                                                <input type="radio" id="izin" name="kehadiran" value="izin"
+                                                    class="ms-3" required>
+                                                <label for="izin">Izin</label>
+                                                <input type="radio" id="tidak_hadir" name="kehadiran" value="tidak_hadir"
+                                                    class="ms-3" required>
+                                                <label for="tidak_hadir">Tidak Hadir</label>
+                                            </div>
+                                            <!-- Tombol Simpan -->
+                                            <div class="form-group text-center">
+                                                <button type="submit" class="btn btn-primary w-50">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- Pengecekan dan tampilan status pretest -->
+                                    @if ($pretestCompleted)
+                                        <span class="dropdown-item text-white"><strong><i
+                                                    class="fa-regular fa-pen-to-square"></i> Pretest <i
+                                                    class="fa fa-solid fa-check"></i></strong></span>
+                                    @else
+                                        <a class="dropdown-item text-white"
+                                            href="{{ route('pretest.show', ['kelas_id' => $kelas_id, 'materi_id' => $materi_id]) }}"
+                                            onclick="checkQuestions(event)">
+                                            <i class="fa-regular fa-pen-to-square"></i> <strong>Pretest</strong>
+                                        </a>
+                                    @endif
+                                    <!-- Daftar materi -->
+                                    @if ($pdf->isEmpty())
+                                        <span class="dropdown-item text-white">Belum ada materi</span>
+                                    @else
+                                        @foreach ($pdf as $p)
+                                            @if ($pretestCompleted)
+                                                <form action="{{ route('materi.after', ['kelas_id' => $kelas_id, 'materi_id' => $materi_id]) }}"
+                                                    method="POST" style="margin: 0;">
+                                                    @csrf
+                                                    <input type="hidden" name="materi_id" value="{{ $p->materi_id }}">
+                                                    <button type="submit" class="dropdown-item text-white text-wrap"><i
+                                                            class="fa-solid fa-book-bookmark"></i>
+                                                        {{ $p->name }}</button>
+                                                </form>
 
-                                        <!-- Form Saran dan Masukan -->
-                                        <div class="form-group mb-3">
-                                            <label><strong>Saran dan Masukan: </strong></label>
-                                            <textarea name="saran" rows="3" class="form-control" placeholder="Masukkan saran dan masukan..." required></textarea>
-                                        </div>
+                                                @if ($postestCompleted)
+                                                    <span style="color:white" class="dropdown-item "><strong><i
+                                                                class="fa-regular fa-pen-to-square"></i><strong> Postest
+                                                            </strong><i class="fa fa-solid fa-check"></i></span>
+                                                @else
+                                                    <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)"
+                                                        href="{{ route('postest.show', $kelas->id) }}"><i
+                                                            class="fa-regular fa-pen-to-square"></i>
+                                                        <strong>Postest</strong></a>
+                                                @endif
+                                            @else
+                                                <a class="dropdown-item lock text-white text-wrap" href="#"><i
+                                                        class="fa-solid fa-book-bookmark"></i> {{ $p->name }} <i
+                                                        class="fa fa-solid fa-lock"></i></a>
+                                                <a class="dropdown-item lock text-white" href="#"><i
+                                                        class="fa-regular fa-pen-to-square"></i> Postest <i
+                                                        class="fa fa-solid fa-lock"></i></a>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    <a class="dropdown-item text-white" data-bs-toggle="dropdown">
+                                        <i class="fa-solid fa-star"></i> Survey
+                                    </a>
+                                    <div class="dropdown-menu p-3 border" style="max-width: 30em; width: 100%;">
+                                        <form action="{{ url('/add_survey') }}" method="POST" id="surveyForm">
+                                            @csrf
+                                            <!-- Form Rating -->
+                                            <input type="hidden" name="kelas_id" id="kelas_id"
+                                                value="{{ $kelas->id }}">
+                                            <div class="form-group mb-3 d-flex">
+                                                <label><strong>Rating: </strong></label><br>
+                                                <!-- Rating dengan gambar ikon wajah dari Font Awesome -->
+                                                <div class="justify-content-center" id="ratingIcons">
+                                                    <span class="rating-option icon-rating" data-value="Puas">
+                                                        <i class="fas fa-smile face-icon text-success"
+                                                            style="font-size: 30px;"></i> <!-- Ikon Sangat Puas -->
+                                                    </span>
+                                                    <span class="rating-option icon-rating" data-value="Cukup Puas">
+                                                        <i class="fas fa-meh face-icon text-warning"
+                                                            style="font-size: 30px;"></i> <!-- Ikon Puas -->
+                                                    </span>
+                                                    <span class="rating-option icon-rating" data-value="Kecewa">
+                                                        <i class="fas fa-frown face-icon text-danger"
+                                                            style="font-size: 30px;"></i> <!-- Ikon Tidak Puas -->
+                                                    </span>
+                                                </div>
+                                                <input type="hidden" name="rating" id="ratingValue" required>
+                                            </div>
 
-                                        <!-- Tombol Simpan -->
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-primary w-50">Simpan</button>
-                                        </div>
-                                    </form>
+                                            <!-- Form Saran dan Masukan -->
+                                            <div class="form-group mb-3">
+                                                <label><strong>Saran dan Masukan: </strong></label>
+                                                <textarea name="saran" rows="3" class="form-control" placeholder="Masukkan saran dan masukan..." required></textarea>
+                                            </div>
+
+                                            <!-- Tombol Simpan -->
+                                            <div class="form-group text-center">
+                                                <button type="submit" class="btn btn-primary w-50">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
-    
+
     </div>
     {{-- <script>
         let routeSegment = nilaiYangDiterima; // Misal ini adalah variabel yang berisi nilai yang dapat menjadi undefined
@@ -236,8 +233,8 @@
                     'selected'); // Tambahkan tanda terpilih di ikon yang diklik
             });
         });
-    </script>   
-  
+    </script>
+
     {{-- <script>
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('tanggal').value = today;
@@ -288,7 +285,7 @@
                 window.location.href = event.target.href;
             @endif
         }
-    </script> 
+    </script>
     <script>
         function checkQuestionsPost(event) {
             event.preventDefault();
@@ -304,5 +301,4 @@
             @endif
         }
     </script>
-
 @endsection

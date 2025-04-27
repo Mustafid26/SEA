@@ -14,15 +14,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PretestController extends Controller
 {
-    public function show(KontenMateri $konten)
+    public function show($kelas_id, $materi_id)
     {
         $user = Auth::user();
-        $materi_id = Materi::pluck('id')->first(); 
-        $konten = KontenMateri::where('materi_id', $materi_id)->value('id');
 
-        // dd($materi_id);
-        $correctAnswers = 0;
-        $pretestTaken = PretestUser::where('materi_id',  $konten)
+        $konten = KontenMateri::where('materi_id', $materi_id)->firstOrFail();
+
+        $pretestTaken = PretestUser::where('materi_id', $materi_id)
             ->where('user_id', $user->id)
             ->exists();
 
@@ -30,30 +28,32 @@ class PretestController extends Controller
             session()->flash('sweetalert', 'Kamu Sebelumnya Sudah Menyelesaikan Pretest.');
         }
 
-        $questions = Question::where('konten_materi_id',  $konten)->get();
-        // dd($questions);
-        return view('pretest', compact('questions', 'materi_id'));
+        $questions = Question::where('konten_materi_id', $konten->id)->get();
+
+        return view('pretest', compact('questions', 'materi_id', 'kelas_id'));
     }
 
-    public function submit(Request $request, Materi $materi)
+
+    public function submit(Request $request, $kelas_id, $materi_id)
     {
         $user = Auth::user();
-        $correctAnswers = 0;
-        $materi_id = Materi::pluck('id')->first(); // Ambil satu id pertama
 
+        $konten = KontenMateri::where('materi_id', $materi_id)->firstOrFail();
 
         $questionIds = $request->input('questions', []);
         $totalQuestions = count($questionIds);
 
         $answers = Arr::wrap($request->input('answers', []));
+        $correctAnswers = 0;
 
         foreach ($answers as $questionId => $answer) {
             $question = Question::find($questionId);
             if ($question) {
                 Answer::create([
                     'user_id' => $user->id,
-                    'question_id' => $questionId,
+                    'kelas_id' => $kelas_id,
                     'materi_id' => $materi_id,
+                    'question_id' => $questionId,
                     'answer' => $answer,
                     'is_correct' => $question->correct_answer == $answer,
                 ]);
@@ -64,20 +64,19 @@ class PretestController extends Controller
             }
         }
 
-        if ($totalQuestions > 0) {
-            $score = ($correctAnswers / $totalQuestions) * 100;
-        } else {
-            $score = 0;
-        }
+        $score = $totalQuestions > 0 ? ($correctAnswers / $totalQuestions) * 100 : 0;
+
         PretestUser::create([
             'user_id' => $user->id,
             'materi_id' => $materi_id,
             'score' => $score
         ]);
 
-        return redirect()->route('materi.show', $materi->id)->with([
+        return redirect()->route('materi.show', $kelas_id)->with([
             'sweetalert' => 'Pretest Anda Terkirim. Nilai Anda : ' . $score,
             'score' => $score
         ]);
     }
+
+
 }

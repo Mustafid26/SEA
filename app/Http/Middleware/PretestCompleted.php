@@ -19,9 +19,9 @@ class PretestCompleted
     public function handle(Request $request, Closure $next)
     {
         $userId = Auth::id();
-        $kelasId = $request->route('kelas_id');
+        $materi_id = $request->route('materi_id');
         $pretestUserExists = PretestUser::where('user_id', $userId)
-            ->where('kelas_id', $kelasId)
+            ->where('materi_id', $materi_id)
             ->exists();
         if (!$pretestUserExists) {
             return redirect()->route('kelas');

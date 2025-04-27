@@ -158,8 +158,8 @@ Route::get('/search_postest', [AdminController::class, 'search_postest']);
 
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth', 'verified');
-Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth', 'verified');
-Route::get('/kelas/{id}/penilaian', [KelasController::class, 'showFormPenilaian'])->name('form.show')->middleware('auth', 'verified');
+Route::get('/kelas/{kelas_id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth', 'verified');
+Route::get('/kelas/{kelas_id}/penilaian', [KelasController::class, 'showFormPenilaian'])->name('form.show')->middleware('auth', 'verified');
 Route::post('/submit_penilaian', [KelasController::class, 'submitFormPenilaian'])->name('submit.penilaian');
 Route::get('/artikel', [ArtikelController::class, 'index']);
 Route::get('/artikel/{artikel:slug}', [ArtikelController::class, 'show'])->name('artikel.show');
@@ -176,8 +176,8 @@ Route::delete('/profile/delete', [ProfileController::class, 'delete'])->name('pr
 Route::get('/comingsoon', [HomeController::class, 'comingsoon']);
 
 Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
-    Route::get('/kelas/{materi_id}/materi/pretest', [PretestController::class, 'show'])->name('pretest.show');
-    Route::post('/kelas/{materi_id}/materi/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
+    Route::get('/kelas/{kelas_id}/materi/{materi_id}/pretest', [PretestController::class, 'show'])->name('pretest.show');
+    Route::post('/kelas/{kelas_id}/materi/{materi_id}/pretest', [PretestController::class, 'submit'])->name('pretest.submit');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -185,7 +185,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/kelas/{kelas}/postest', [PostestController::class, 'submit'])->name('postest.submit');
 });
 Route::middleware(['auth', 'pretest.completed'])->group(function () {
-    Route::post('/materi/{id}/after/{kelas_id}', [MateriController::class, 'after'])->name('materi.after');
+    Route::post('/materi/{materi_id}/after/{kelas_id}', [MateriController::class, 'after'])->name('materi.after');
 });
 
 Route::get('/download/{id}', [MateriController::class, 'downloadFile'])->name('download.file');

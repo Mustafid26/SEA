@@ -67,7 +67,7 @@
             <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="card-body">
-            <form id="quizForm" action="{{ route('pretest.submit', ['materi_id' => $materi_id]) }}" method="POST">
+            <form id="quizForm" action="{{ route('pretest.submit', ['materi_id' => $materi_id, 'kelas_id' => $kelas_id]) }}" method="POST">
                 @csrf
                 <input type="hidden" name="materi_id" value="{{ $materi_id }}">
                 @php $totalQuestions = count($questions); @endphp

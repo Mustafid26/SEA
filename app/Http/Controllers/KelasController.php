@@ -59,7 +59,6 @@ class KelasController extends Controller
     public function show($id)
     {
         $kelas = Kelas::findOrFail($id);
-        // $materi = $kelas->materi;
         $materi = $kelas->materi;
         $materi_id = Materi::where('kelas_id', $id)->value('id');
         $konten = KontenMateri::where('materi_id', $materi_id)->value('id');
@@ -73,25 +72,32 @@ class KelasController extends Controller
         $questions_postest = $takequestion_p;
         // dd($questions);
         if ($materi) {
-            $pdf = KontenMateri::where('materi_id', $materi_id)->get();
-            // dd($pdf);
+            $konten_materi = KontenMateri::where('materi_id', $materi_id)->get();
+            $pdf = KontenMateri::where('materi_id', $materi_id)
+                ->whereNotNull('pdf_path')
+                ->where('pdf_path', '!=', '')
+                ->where('pdf_path', '!=', '-')
+                ->get();
         } else {
-            $pdf = null;
+            $pdf = collect(); // kosongin biar gak error di blade
         }
+
         $pretestCompleted = PretestUser::where('user_id', $userId)
             ->where('materi_id', $materi_id)
             ->exists();
         $postestCompleted = PostestUser::where('user_id', $userId)
-            ->where('materi_id',  $materi_id)
+            ->where('materi_id', $materi_id)
             ->exists();
         $sudahPresensi = Presensi::where('user_id', $userId)
-            ->where('kelas_id', $materi_id)
+            ->where('kelas_id', $kelas)
             ->exists();
         return view('materi', [
             'materi' => $materi,
             'materi_id' => $materi_id,
+            'konten_materi' => $konten_materi,
             'pdf' => $pdf,
             'kelas' => $kelas,
+            'kelas_id' => $kelas->id,
             'active' => "kelas",
             'pretestCompleted' => $pretestCompleted,
             'postestCompleted' => $postestCompleted,

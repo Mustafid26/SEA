@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pretest_users', function (Blueprint $table) {
-           $table->uuid('id')->primary();
+            $table->uuid('id')->primary();
             $table->uuid('user_id')->constrained('users')->onDelete('cascade');
             $table->uuid('materi_id')->constrained('materi')->onDelete('cascade');
             $table->integer('score')->nullable();
