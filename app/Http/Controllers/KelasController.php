@@ -60,41 +60,49 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $materi = $kelas->materi;
-        $materi_id = Materi::where('kelas_id', $id)->value('id');
-        $konten = KontenMateri::where('materi_id', $materi_id)->value('id');
+        $materi_id = Materi::where('kelas_id', $id)->get()->pluck('id');
+        // dd($materi_id);
+        $kontenId = KontenMateri::whereIn('materi_id', $materi_id)->pluck('id');
+        $konten = KontenMateri::all();
+        $kontenByMateri = $konten->groupBy('materi_id');
         // dd($konten);
-        $takequestion = Question::where('konten_materi_id', $konten)->get();
+        $takequestion = Question::whereIn('konten_materi_id', $kontenId)->get();
         // dd($takequestion);
-        $takequestion_p = QuestionPostest::where('konten_materi_id', $konten)->get();
+        $takequestion_p = QuestionPostest::whereIn('konten_materi_id', $kontenId)->get();
         // dd($materi);
         $userId = auth()->id();
         $questions = $takequestion;
         $questions_postest = $takequestion_p;
         // dd($questions);
         if ($materi) {
-            $konten_materi = KontenMateri::where('materi_id', $materi_id)->get();
-            $pdf = KontenMateri::where('materi_id', $materi_id)
+            // $konten_materi = KontenMateri::where('materi_id', $materi_id)->get();
+            $pdf = KontenMateri::whereIn('materi_id', $materi_id)
                 ->whereNotNull('pdf_path')
                 ->where('pdf_path', '!=', '')
                 ->where('pdf_path', '!=', '-')
                 ->get();
         } else {
-            $pdf = collect(); // kosongin biar gak error di blade
+            $pdf = collect(); 
         }
 
         $pretestCompleted = PretestUser::where('user_id', $userId)
-            ->where('materi_id', $materi_id)
-            ->exists();
+            ->whereIn('materi_id', $materi_id)
+            ->get()
+            ->pluck('materi_id')
+            ->toArray();
         $postestCompleted = PostestUser::where('user_id', $userId)
-            ->where('materi_id', $materi_id)
-            ->exists();
+            ->whereIn('materi_id', $materi_id)
+            ->get()
+            ->pluck('materi_id')
+            ->toArray();
         $sudahPresensi = Presensi::where('user_id', $userId)
             ->where('kelas_id', $kelas)
             ->exists();
         return view('materi', [
             'materi' => $materi,
             'materi_id' => $materi_id,
-            'konten_materi' => $konten_materi,
+            'konten' => $konten,
+            'kontenByMateri' => $kontenByMateri,
             'pdf' => $pdf,
             'kelas' => $kelas,
             'kelas_id' => $kelas->id,

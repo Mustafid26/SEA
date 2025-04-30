@@ -158,7 +158,7 @@ Route::get('/search_postest', [AdminController::class, 'search_postest']);
 
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas')->middleware('auth', 'verified');
-Route::get('/kelas/{kelas_id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth', 'verified');
+Route::get('/kelas/{id}/materi', [KelasController::class, 'show'])->name('materi.show')->middleware('auth', 'verified');
 Route::get('/kelas/{kelas_id}/penilaian', [KelasController::class, 'showFormPenilaian'])->name('form.show')->middleware('auth', 'verified');
 Route::post('/submit_penilaian', [KelasController::class, 'submitFormPenilaian'])->name('submit.penilaian');
 Route::get('/artikel', [ArtikelController::class, 'index']);

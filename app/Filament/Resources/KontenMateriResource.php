@@ -78,10 +78,10 @@ class KontenMateriResource extends Resource
                         Select::make('correct_answer')
                             ->label('Jawaban Benar')
                             ->options([
-                                'option1' => 'Opsi 1',
-                                'option2' => 'Opsi 2',
-                                'option3' => 'Opsi 3',
-                                'option4' => 'Opsi 4',
+                                'a' => 'option1',
+                                'b' => 'option2',
+                                'c' => 'option3',
+                                'd' => 'option4',
                             ])
                             ->required(),
                     ])
@@ -99,10 +99,10 @@ class KontenMateriResource extends Resource
                         Select::make('correct_answer')
                             ->label('Jawaban Benar')
                             ->options([
-                                'option1' => 'Opsi 1',
-                                'option2' => 'Opsi 2',
-                                'option3' => 'Opsi 3',
-                                'option4' => 'Opsi 4',
+                                'option1' => 'a',
+                                'option2' => 'b',
+                                'option3' => 'c',
+                                'option4' => 'd',
                             ])
                             ->required(),
                     ])

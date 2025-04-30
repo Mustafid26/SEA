@@ -42,14 +42,16 @@
                         {{ $kelas->detail_kelas }}</h3>
                     <h5 class="text-left">Deskripsi Singkat</h5>
                     <p class="card-text text-wrap text-break">{!! $kelas->deskripsi !!}</p>
-                    @foreach ($materi as $m)
+                    @foreach ($kontenByMateri as $materi_id => $items)
                         <div class="list-group mt-4">
                             <div class="drop">
+                                @php $firstItem = $items->first(); @endphp
                                 <button class="drop-btn btn-primary" onclick="toggledrop({{ $loop->index }})">
-                                    <i class="fa fa-solid fa-book"></i> {{ $m->judul_materi }}
+                                    <i class="fa fa-solid fa-book"></i> {{ $firstItem->materi->judul_materi }}
                                 </button>
                                 <!-- Button trigger modal -->
                                 <div id="drop-content-{{ $loop->index }}" class="drop-content">
+                                    @foreach ($items as $item) 
                                     @if ($sudahPresensi)
                                         <span class="dropdown-item text-white"><i class="fa-solid fa-calendar"></i> Presensi
                                             <i class="fa fa-solid fa-check"></i>
@@ -89,7 +91,7 @@
                                         </form>
                                     </div>
                                     <!-- Pengecekan dan tampilan status pretest -->
-                                    @if ($pretestCompleted)
+                                    @if (in_array($materi_id, $pretestCompleted))
                                         <span class="dropdown-item text-white"><strong><i
                                                     class="fa-regular fa-pen-to-square"></i> Pretest <i
                                                     class="fa fa-solid fa-check"></i></strong></span>
@@ -104,37 +106,35 @@
                                     @if ($pdf->isEmpty())
                                         <span class="dropdown-item text-white">Belum ada materi</span>
                                     @else
-                                        @foreach ($pdf as $p)
-                                            @if ($pretestCompleted)
-                                                <form action="{{ route('materi.after', ['kelas_id' => $kelas_id, 'materi_id' => $materi_id]) }}"
-                                                    method="POST" style="margin: 0;">
-                                                    @csrf
-                                                    <input type="hidden" name="materi_id" value="{{ $p->materi_id }}">
-                                                    <button type="submit" class="dropdown-item text-white text-wrap"><i
-                                                            class="fa-solid fa-book-bookmark"></i>
-                                                        {{ $p->name }}</button>
-                                                </form>
-
-                                                @if ($postestCompleted)
-                                                    <span style="color:white" class="dropdown-item "><strong><i
-                                                                class="fa-regular fa-pen-to-square"></i><strong> Postest
-                                                            </strong><i class="fa fa-solid fa-check"></i></span>
-                                                @else
-                                                    <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)"
-                                                        href="{{ route('postest.show', $kelas->id) }}"><i
-                                                            class="fa-regular fa-pen-to-square"></i>
-                                                        <strong>Postest</strong></a>
-                                                @endif
+                                        @if (in_array($materi_id, $pretestCompleted))
+                                            <form action="{{ route('materi.after', ['kelas_id' => $kelas_id, 'materi_id' => $materi_id]) }}"
+                                                method="POST" style="margin: 0;">
+                                                @csrf
+                                                <input type="hidden" name="materi_id" value="{{ $item }}">
+                                                <button type="submit" class="dropdown-item text-white text-wrap"><i
+                                                        class="fa-solid fa-book-bookmark"></i>
+                                                    {{ $item->name }}</button>
+                                            </form>
+                                            @if ($postestCompleted)
+                                                <span style="color:white" class="dropdown-item "><strong><i
+                                                            class="fa-regular fa-pen-to-square"></i><strong> Postest
+                                                        </strong><i class="fa fa-solid fa-check"></i></span>
                                             @else
-                                                <a class="dropdown-item lock text-white text-wrap" href="#"><i
-                                                        class="fa-solid fa-book-bookmark"></i> {{ $p->name }} <i
-                                                        class="fa fa-solid fa-lock"></i></a>
-                                                <a class="dropdown-item lock text-white" href="#"><i
-                                                        class="fa-regular fa-pen-to-square"></i> Postest <i
-                                                        class="fa fa-solid fa-lock"></i></a>
+                                                <a class="dropdown-item text-white" onclick="checkQuestionsPost(event)"
+                                                    href="{{ route('postest.show', $kelas->id) }}"><i
+                                                        class="fa-regular fa-pen-to-square"></i>
+                                                    <strong>Postest</strong></a>
                                             @endif
-                                        @endforeach
+                                        @else
+                                            <a class="dropdown-item lock text-white text-wrap" href="#"><i
+                                                    class="fa-solid fa-book-bookmark"></i> {{ $item->name }} <i
+                                                    class="fa fa-solid fa-lock"></i></a>
+                                            <a class="dropdown-item lock text-white" href="#"><i
+                                                    class="fa-regular fa-pen-to-square"></i> Postest <i
+                                                    class="fa fa-solid fa-lock"></i></a>
+                                        @endif
                                     @endif
+                        
                                     <a class="dropdown-item text-white" data-bs-toggle="dropdown">
                                         <i class="fa-solid fa-star"></i> Survey
                                     </a>
@@ -176,7 +176,9 @@
                                             </div>
                                         </form>
                                     </div>
+                                    @endforeach
                                 </div>
+                               
                             </div>
                         </div>
                     @endforeach

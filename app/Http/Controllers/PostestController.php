@@ -66,7 +66,7 @@ class PostestController extends Controller
         }
         // $points = $this->calculatePoints($score);
         // $user->points += $points;
-        $user->save();
+        // $user->save();
         PostestUser::create([
             'user_id' => $user->id,
             'kelas_id' => $kelasId,
