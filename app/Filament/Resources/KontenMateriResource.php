@@ -23,6 +23,8 @@ use App\Filament\Resources\KontenMateriResource\RelationManagers;
 use App\Filament\Resources\KontenMateriResource\Pages\EditKontenMateri;
 use App\Filament\Resources\KontenMateriResource\Pages\ListKontenMateris;
 use App\Filament\Resources\KontenMateriResource\Pages\CreateKontenMateri;
+use Illuminate\Validation\Rule;
+use Filament\Notifications\Notification;
 
 class KontenMateriResource extends Resource
 {
@@ -45,8 +47,28 @@ class KontenMateriResource extends Resource
         return $form
             ->schema([
                 Select::make('materi_id')
+                    ->label('Judul Materi')
                     ->relationship('materi', 'judul_materi')
-                    ->required(),
+                    ->required()
+                    ->rule(function ($get, $component) {
+                        $record = $component->getContainer()->getRecord();
+                        return Rule::unique('konten_materi', 'materi_id')
+                            ->ignore($record?->id); // Abaikan id saat update
+                    })
+                    ->hint(function ($state, $get, $component) {
+                        $record = $component->getContainer()->getRecord();
+
+                        $exists = KontenMateri::where('materi_id', $state)
+                            ->when($record?->id, fn($q) => $q->where('id', '!=', $record->id))
+                            ->exists();
+
+                        if ($exists) {
+                            return '⚠️ Materi ini sudah memiliki konten. Menginput ulang dapat menimbulkan duplikasi.';
+                        }
+
+                        return null;
+                    })
+                    ->hintColor('danger'),
 
                 FileUpload::make('pdf_path')
                     ->label('Upload PDF')
@@ -55,35 +77,46 @@ class KontenMateriResource extends Resource
                     ->hint('Maksimal 5 Mb')
                     ->required()
                     ->maxSize(5120),
-                
+
                 TextInput::make('name')
                     ->label('Nama PDF')
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('desc')
-                        ->label('Deskripsi PDF')
-                        ->hint("Maksimal 500 karakter")
-                        ->required()
-                        ->maxLength(500),
+                    ->label('Deskripsi PDF')
+                    ->hint("Maksimal 500 karakter")
+                    ->required()
+                    ->maxLength(500),
 
                 Repeater::make('questions')
                     ->relationship('questions')
                     ->schema([
                         TextInput::make('question')->label('Pertanyaan')->required(),
-                        TextInput::make('option1')->label('Opsi 1')->required(),
-                        TextInput::make('option2')->label('Opsi 2')->required(),
-                        TextInput::make('option3')->label('Opsi 3')->required(),
-                        TextInput::make('option4')->label('Opsi 4')->required(),
+                        TextInput::make('option1')->label('Opsi 1')->required()->reactive(),
+                        TextInput::make('option2')->label('Opsi 2')->required()->reactive(),
+                        TextInput::make('option3')->label('Opsi 3')->required()->reactive(),
+                        TextInput::make('option4')->label('Opsi 4')->required()->reactive(),                        
                         Select::make('correct_answer')
-                            ->label('Jawaban Benar')
-                            ->options([
-                                'a' => 'option1',
-                                'b' => 'option2',
-                                'c' => 'option3',
-                                'd' => 'option4',
-                            ])
-                            ->required(),
+                        ->label('Jawaban Benar')
+                        ->required()
+                        ->options(function ($get) {
+                            $options = [];
+                            if ($get('option1')) {
+                                $options[$get('option1')] = 'Opsi 1';
+                            }
+                            if ($get('option2')) {
+                                $options[$get('option2')] = 'Opsi 2';
+                            }
+                            if ($get('option3')) {
+                                $options[$get('option3')] = 'Opsi 3';
+                            }
+                            if ($get('option4')) {
+                                $options[$get('option4')] = 'Opsi 4';
+                            }
+                            return $options;
+                        })
+                        ->reactive(),
                     ])
                     ->columns(2)
                     ->label('Pretest'),
@@ -98,17 +131,21 @@ class KontenMateriResource extends Resource
                         TextInput::make('option4')->label('Opsi 4')->required(),
                         Select::make('correct_answer')
                             ->label('Jawaban Benar')
-                            ->options([
-                                'option1' => 'a',
-                                'option2' => 'b',
-                                'option3' => 'c',
-                                'option4' => 'd',
-                            ])
-                            ->required(),
+                            ->required()
+                            ->options(function ($get) {
+                                return [
+                                    'option1' => $get('option1') ?: 'Opsi 1',
+                                    'option2' => $get('option2') ?: 'Opsi 2',
+                                    'option3' => $get('option3') ?: 'Opsi 3',
+                                    'option4' => $get('option4') ?: 'Opsi 4',
+                                ];
+                            }),
                     ])
                     ->columns(2)
                     ->label('Postest'),
             ]);
+
+
 
     }
 

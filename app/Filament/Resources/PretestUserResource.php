@@ -72,8 +72,8 @@ class PretestUserResource extends Resource
                     ->label('User')
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('kelas.nama_kelas')
-                    ->label('Kelas')
+                Tables\Columns\TextColumn::make('materi.judul_materi')
+                    ->label('Materi')
                     ->searchable()
                     ->sortable(),
 
