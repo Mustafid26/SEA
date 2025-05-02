@@ -41,7 +41,7 @@ class PresensiResource extends Resource
                     ->label('User')
                     ->sortable(),
 
-                TextColumn::make('kelas.nama_kelas')
+                TextColumn::make('materi.judul_materi')
                     ->label('Kelas')
                     ->searchable()
                     ->sortable(),

@@ -40,7 +40,4 @@ class Materi extends Model
         return $this->pretestUsers()->where('user_id', $userId)->exists();
     }
 
-    public function survey() {
-        return $this->hasOne(Presensi::class, 'user_id', 'user_id');
-    }
 }

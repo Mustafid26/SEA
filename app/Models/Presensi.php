@@ -17,10 +17,10 @@ class Presensi extends Model
     }
     public function materi()
     {
-        return $this->belongsTo(Kelas::class, 'materi_id')->value('id');
+        return $this->belongsTo(Materi::class, 'materi_id')->select('id', 'judul_materi');
     }
 
-    public function presensi() {
-        return $this->hasOne(Presensi::class, 'user_id', 'user_id');
-    }
+    // public function presensi() {
+    //     return $this->hasOne(Presensi::class, 'user_id', 'user_id');
+    // }
 }

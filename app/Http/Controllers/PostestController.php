@@ -48,7 +48,7 @@ class PostestController extends Controller
         $correctAnswers = 0;
 
         foreach ($answers as $questionId => $answer) {
-            $question = Question::find($questionId);
+            $question = QuestionPostest::find($questionId);
             if ($question) {
                 AnswerPostest::create([
                     'user_id' => $user->id,

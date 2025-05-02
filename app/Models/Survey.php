@@ -20,7 +20,7 @@ class Survey extends Model
     }
     public function materi()
     {
-        return $this->belongsTo(Materi::class, 'materi_id');
+        return $this->belongsTo(Materi::class, 'materi_id')->select('id', 'judul_materi');
     }
 
 }

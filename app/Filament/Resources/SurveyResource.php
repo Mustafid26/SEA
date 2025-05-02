@@ -32,6 +32,13 @@ class SurveyResource extends Resource
         return false;
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('materi', 'user');
+    }
+
+
+
     public static function table(Table $table): Table
     {
         return $table
@@ -40,9 +47,10 @@ class SurveyResource extends Resource
                     ->label('User')
                     ->searchable(),
 
-                TextColumn::make('kelas.nama_kelas')
+                TextColumn::make('materi.judul_materi')
                     ->label('Kelas')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
 
                 TextColumn::make('survey')
                     ->label('Hasil Survey'),

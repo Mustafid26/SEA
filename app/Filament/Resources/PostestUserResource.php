@@ -62,7 +62,7 @@ class PostestUserResource extends Resource
                     ->label('User')
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('kelas.nama_kelas')
+                Tables\Columns\TextColumn::make('materi.judul_materi')
                     ->label('Kelas')
                     ->searchable()
                     ->sortable(),
@@ -79,6 +79,8 @@ class PostestUserResource extends Resource
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
