@@ -274,17 +274,6 @@ class AdminController extends Controller
         }
     }
 
-    public function add_presensi(Request $request)
-    {
-        $presensi = new Presensi;
-        $presensi->kehadiran = $request->kehadiran;
-        // Tambahkan user_id (misalnya dengan user yang sedang login)
-        $presensi->user_id = auth()->user()->id; // Menggunakan user yang sedang login
-        $presensi->kelas_id = $request->kelas_id;
-        $presensi->save();
-        Alert::success('Success', 'Presensi Telah Berhasil');
-        return redirect()->back();
-    }
 
 
     public function delete_presensi($id)
@@ -318,19 +307,7 @@ class AdminController extends Controller
         }
     }
 
-    public function add_survey(Request $request)
-    {
-        $survey = new Survey;
-        $survey->survey = $request->rating;
-        $survey->saran = $request->saran;
-
-        // Tambahkan user_id (misalnya dengan user yang sedang login)
-        $survey->user_id = auth()->user()->id; // Menggunakan user yang sedang login
-        $survey->kelas_id = $request->kelas_id;
-        $survey->save();
-        Alert::success('Success', 'Survey Telah Berhasil Disimpan');
-        return redirect()->back();
-    }
+    
 
     public function delete_survey($id)
     {

@@ -15,9 +15,9 @@ class Presensi extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function kelas()
+    public function materi()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id');
+        return $this->belongsTo(Kelas::class, 'materi_id')->value('id');
     }
 
     public function presensi() {

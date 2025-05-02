@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('answers_postest', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id')->constrained('users')->onDelete('cascade');
+            $table->uuid('user_id');
             $table->uuid('question_id');
             $table->uuid('kelas_id');
+            $table->uuid('materi_id');
             $table->string('answer')->nullable();
             $table->boolean('is_correct');
             $table->timestamps();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions_postest')->onDelete('cascade');
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('materi_id')->references('id')->on('materi')->onDelete('cascade');
         });
     }
 

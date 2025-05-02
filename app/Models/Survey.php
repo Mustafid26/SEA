@@ -11,16 +11,16 @@ class Survey extends Model
     use HasFactory, HasUuids;
     protected $table = 'survey';
     protected $guarded = ['id'];
+
+    protected $fillable = ['survey', 'saran', 'user_id', 'materi_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function kelas()
+    public function materi()
     {
-        return $this->belongsTo(Kelas::class, 'kelas_id');
+        return $this->belongsTo(Materi::class, 'materi_id');
     }
 
-    public function survey() {
-        return $this->hasOne(Presensi::class, 'user_id', 'user_id');
-    }
 }

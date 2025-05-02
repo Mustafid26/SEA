@@ -14,14 +14,18 @@ class AnswerPostest extends Model
     protected $guarded = ['id'];
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,  'user_id')->select('id');
     }
     public function question()
     {
-        return $this->belongsTo(QuestionPostest::class);
+        return $this->belongsTo(Question::class,  'question_id')->select('id');
     }
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class,  'kelas_id')->select('id');
+    }
+    public function materi()
+    {
+        return $this->belongsTo(Materi::class, 'materi_id')->select('id');
     }
 }

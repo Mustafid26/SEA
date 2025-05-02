@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Submit;
+use App\Models\Survey;
 use App\Models\Presensi;
 use App\Models\Question;
 use App\Models\Penilaian;
@@ -53,67 +54,112 @@ class KelasController extends Controller
         //
     }
 
+
+    public function add_presensi(Request $request)
+    {
+        $presensi = new Presensi;
+        $presensi->kehadiran = $request->kehadiran;
+        $presensi->user_id = auth()->user()->id;
+        $presensi->materi_id = $request->materi_id;
+        $presensi->save();
+        Alert::success('Success', 'Presensi Telah Berhasil');
+        return redirect()->back();
+    }
+
+    public function add_survey(Request $request)
+    {
+        // dd($request->all());
+        $survey = new Survey;
+        $survey->survey = $request->rating;
+        $survey->saran = $request->saran;
+        $survey->user_id = auth()->user()->id;
+        $survey->materi_id = $request->materi_id;
+        $survey->save();
+        Alert::success('Success', 'Survey Telah Berhasil Disimpan');
+        return redirect()->back();
+    }
+
+
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($kelas_id)
     {
-        $kelas = Kelas::findOrFail($id);
-        $materi = $kelas->materi;
-        $materi_id = Materi::where('kelas_id', $id)->get()->pluck('id');
-        // dd($materi_id);
-        $kontenId = KontenMateri::whereIn('materi_id', $materi_id)->pluck('id');
-        $konten = KontenMateri::all();
-        $kontenByMateri = $konten->groupBy('materi_id');
-        // dd($konten);
-        $takequestion = Question::whereIn('konten_materi_id', $kontenId)->get();
-        // dd($takequestion);
-        $takequestion_p = QuestionPostest::whereIn('konten_materi_id', $kontenId)->get();
-        // dd($materi);
+        $kelas = Kelas::findOrFail($kelas_id);
         $userId = auth()->id();
-        $questions = $takequestion;
-        $questions_postest = $takequestion_p;
-        // dd($questions);
-        if ($materi) {
-            // $konten_materi = KontenMateri::where('materi_id', $materi_id)->get();
-            $pdf = KontenMateri::whereIn('materi_id', $materi_id)
-                ->whereNotNull('pdf_path')
-                ->where('pdf_path', '!=', '')
-                ->where('pdf_path', '!=', '-')
-                ->get();
-        } else {
-            $pdf = collect(); 
-        }
 
+        // Ambil semua materi terkait kelas
+        $materi = $kelas->materi;
+        $materiIds = $materi->pluck('id');
+
+        // Ambil semua konten materi dari materi terkait
+        $kontenMateri = KontenMateri::whereIn('materi_id', $materiIds)->get();
+        $kontenByMateri = $kontenMateri->groupBy('materi_id');
+        $kontenIds = $kontenMateri->pluck('id');
+
+
+        $kontenWithQuestions = Question::whereIn('konten_materi_id', $kontenIds)
+            ->pluck('konten_materi_id')
+            ->toArray();
+        $kontenMateriMap = KontenMateri::whereIn('id', $kontenWithQuestions)->get()
+            ->pluck('materi_id')
+            ->unique()
+            ->toArray();
+
+        $kontenWithQuestionsPos = Question::whereIn('konten_materi_id', $kontenIds)
+            ->pluck('konten_materi_id')
+            ->toArray();
+        $kontenMateriPosMap = KontenMateri::whereIn('id', $kontenWithQuestionsPos)->get()
+            ->pluck('materi_id')
+            ->unique()
+            ->toArray();
+
+        // Ambil PDF valid jika ada
+        $pdfs = KontenMateri::whereIn('materi_id', $materiIds)
+            ->whereNotNull('pdf_path')
+            ->whereNotIn('pdf_path', ['', '-'])
+            ->get();
+
+        // Cek user sudah menyelesaikan pretest/postest
         $pretestCompleted = PretestUser::where('user_id', $userId)
-            ->whereIn('materi_id', $materi_id)
-            ->get()
+            ->whereIn('materi_id', $materiIds)
             ->pluck('materi_id')
             ->toArray();
+
         $postestCompleted = PostestUser::where('user_id', $userId)
-            ->whereIn('materi_id', $materi_id)
-            ->get()
+            ->whereIn('materi_id', $materiIds)
             ->pluck('materi_id')
             ->toArray();
-        $sudahPresensi = Presensi::where('user_id', $userId)
-            ->where('kelas_id', $kelas)
-            ->exists();
+
+        $presensiByMateri = Presensi::where('user_id', $userId)
+            ->whereIn('materi_id', $materiIds)
+            ->pluck('materi_id')
+            ->toArray();
+
+        $surveyCompleted = Survey::where('user_id', $userId)
+            ->whereIn('materi_id', $materiIds)
+            ->pluck('materi_id')
+            ->toArray();
+
+
         return view('materi', [
-            'materi' => $materi,
-            'materi_id' => $materi_id,
-            'konten' => $konten,
-            'kontenByMateri' => $kontenByMateri,
-            'pdf' => $pdf,
             'kelas' => $kelas,
             'kelas_id' => $kelas->id,
-            'active' => "kelas",
+            'materi' => $materi,
+            'materi_id' => $materiIds,
+            'konten' => $kontenMateri,
+            'kontenByMateri' => $kontenByMateri,
+            'pdf' => $pdfs,
+            'kontenMateriWithQuestions' => $kontenMateriMap,
+            'kontenMateriWithQuestionsPos' => $kontenMateriPosMap,
             'pretestCompleted' => $pretestCompleted,
             'postestCompleted' => $postestCompleted,
-            'questions' => $questions,
-            'questions_postest' => $questions_postest,
-            'sudahPresensi' => $sudahPresensi
+            'surveyCompleted' => $surveyCompleted,
+            'presensiByMateri' => $presensiByMateri,
+            'active' => 'kelas',
         ]);
     }
+
 
     public function showFormPenilaian($id)
     {

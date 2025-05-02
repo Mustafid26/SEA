@@ -67,9 +67,9 @@
             <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="card-body">
-            <form id="quizForm" action="{{ route('postest.submit', ['kelas' => $kelas->id]) }}" method="POST">
+            <form id="quizForm" action="{{ route('postest.submit', ['materi_id' => $materi_id, 'kelas_id' => $kelas_id]) }}" method="POST">
                 @csrf
-                <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+                <input type="hidden" name="materi_id" value="{{ $materi_id }}">
                 @php $totalQuestions = count($questions_postest); @endphp
                 @foreach ($questions_postest as $key => $question)
                 <div class="question @if($key > 0) hidden @endif">

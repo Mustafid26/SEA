@@ -21,7 +21,7 @@ class MateriController extends Controller
         } else {
             abort(404, 'Materi atau KontenMateri tidak ditemukan');
         }
-    
+
         return view('materi-after', [
             'active' => "kelas",
             'materi' => $materi,
@@ -32,9 +32,9 @@ class MateriController extends Controller
     public function downloadFile($id)
     {
         $konten = KontenMateri::find($id);
-        $filename = $konten->konten;
+        $filename = $konten->pdf_path;
         // Misalnya file disimpan di dalam direktori storage/app/public
-        $filePath = "public/powerpoint_files/{$filename}";
+        $filePath = "public/{$filename}";
         // Memeriksa apakah file ada
         if (!Storage::exists($filePath)) {
             abort(404, 'File not found');
@@ -45,16 +45,16 @@ class MateriController extends Controller
     }
     public function view($id)
     {
-        $konten = KontenMateri::find($id); 
+        $konten = KontenMateri::find($id);
         // dd($konten);
         if (!$konten || !$konten->konten) {
             return abort(404, 'File not found');
         }
-    
+
         $filePath = storage_path('app/public/storage/powerpoint_files' . $konten->konten);
         $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
-    
+
         return view('popupmateri', compact('konten', 'extension'));
     }
-    
+
 }

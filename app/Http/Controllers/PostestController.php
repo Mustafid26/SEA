@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Materi;
+use App\Models\Question;
 use App\Models\PostestUser;
+use App\Models\PretestUser;
 use Illuminate\Support\Arr;
+use App\Models\KontenMateri;
 use Illuminate\Http\Request;
 use App\Models\AnswerPostest;
 use App\Models\QuestionPostest;
@@ -12,73 +16,70 @@ use Illuminate\Support\Facades\Auth;
 
 class PostestController extends Controller
 {
-    public function show(Kelas $kelas)
+    public function show($kelas_id, $materi_id)
     {
         $user = Auth::user();
         $correctAnswers = 0;
-        $postestTaken = PostestUser::where('kelas_id', $kelas->id)
-                                    ->where('user_id', $user->id)
-                                    ->exists();
+        $konten = KontenMateri::where('materi_id', $materi_id)->firstOrFail();
 
-        // if ($pretestTaken) {
-        //     session()->flash('sweetalert', 'Kamu Sebelumnya Sudah Menyelesaikan Postest.');
-        // }
+        $postestTaken = PostestUser::where('materi_id', $materi_id)
+            ->where('user_id', $user->id)
+            ->exists();
 
-        $questions_postest = QuestionPostest::where('kelas_id', $kelas->id)->get();
-        return view('postest', compact('questions_postest', 'kelas'));
-    }   
+        if ($postestTaken) {
+            session()->flash('sweetalert', 'Kamu Sebelumnya Sudah Menyelesaikan Posttest.');
+        }
 
-    public function submit(Request $request, Kelas $kelas)
+        $questions_postest = QuestionPostest::where('konten_materi_id', $konten->id)->get();
+
+        return view('postest', compact('questions_postest', 'materi_id', 'kelas_id'));
+    }
+
+    public function submit(Request $request, $kelas_id, $materi_id)
     {
         $user = Auth::user();
-        $correctAnswers = 0;
-        $kelasId = $kelas->id;
+
+        $konten = KontenMateri::where('materi_id', $materi_id)->firstOrFail();
 
         $questionIds = $request->input('questions', []);
         $totalQuestions = count($questionIds);
 
-
         $answers = Arr::wrap($request->input('answers', []));
+        $correctAnswers = 0;
 
-
-        foreach ($request->input('answers') as $questionId => $answer) {
-            $questions_postest = QuestionPostest::find($questionId);
-            if ($questions_postest) {
-                $isCorrect = $questions_postest->correct_answer == $answer;
-                if ($isCorrect) {
-                    $correctAnswers++;
-                }
-    
-                // Simpan jawaban ke dalam tabel answers_postest
+        foreach ($answers as $questionId => $answer) {
+            $question = Question::find($questionId);
+            if ($question) {
                 AnswerPostest::create([
                     'user_id' => $user->id,
+                    'kelas_id' => $kelas_id,
+                    'materi_id' => $materi_id,
                     'question_id' => $questionId,
-                    'kelas_id' => $kelasId,
                     'answer' => $answer,
-                    'is_correct' => $isCorrect,
+                    'is_correct' => $question->correct_answer == $answer,
                 ]);
+
+                if ($question->correct_answer == $answer) {
+                    $correctAnswers++;
+                }
             }
         }
-        if ($totalQuestions > 0) {
-            $score = ($correctAnswers / $totalQuestions) * 100;
-        } else {
-            $score = 0;
-        }
-        // $points = $this->calculatePoints($score);
-        // $user->points += $points;
-        // $user->save();
+
+        $score = $totalQuestions > 0 ? ($correctAnswers / $totalQuestions) * 100 : 0;
+
         PostestUser::create([
             'user_id' => $user->id,
-            'kelas_id' => $kelasId,
+            'materi_id' => $materi_id,
             'score' => $score
         ]);
 
-        return redirect()->route('materi.show', $kelas->id)->with([
-            'sweetalert' => 'Postest Anda Terkirim. Nilai Anda : ' . $score,
-            'score' => $score,
-            // 'points' => $points
+        return redirect()->route('materi.show', $kelas_id)->with([
+            'sweetalert' => 'Pretest Anda Terkirim. Nilai Anda : ' . $score,
+            'score' => $score
         ]);
     }
+
+
     // private function calculatePoints($score)
     // {
     //     if ($score >= 95) {

@@ -133,13 +133,22 @@ class KontenMateriResource extends Resource
                             ->label('Jawaban Benar')
                             ->required()
                             ->options(function ($get) {
-                                return [
-                                    'option1' => $get('option1') ?: 'Opsi 1',
-                                    'option2' => $get('option2') ?: 'Opsi 2',
-                                    'option3' => $get('option3') ?: 'Opsi 3',
-                                    'option4' => $get('option4') ?: 'Opsi 4',
-                                ];
-                            }),
+                                $options = [];
+                                if ($get('option1')) {
+                                    $options[$get('option1')] = 'Opsi 1';
+                                }
+                                if ($get('option2')) {
+                                    $options[$get('option2')] = 'Opsi 2';
+                                }
+                                if ($get('option3')) {
+                                    $options[$get('option3')] = 'Opsi 3';
+                                }
+                                if ($get('option4')) {
+                                    $options[$get('option4')] = 'Opsi 4';
+                                }
+                                return $options;
+                            })
+                            ->reactive(),
                     ])
                     ->columns(2)
                     ->label('Postest'),

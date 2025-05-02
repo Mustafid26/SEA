@@ -46,14 +46,14 @@ Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth',
 Route::get('/comingsoon', [HomeController::class, 'comingsoon'])->middleware('auth', 'verified');
 Route::get('/konseling', [HomeController::class, 'konseling']);
 
+Route::post('/add_presensi', [KelasController::class, 'add_presensi']);
+Route::post('/add_survey', [KelasController::class, 'add_survey'])->name('survey.store');
 
 Route::get('/presensi_user', [AdminController::class, 'presensi_user']);
-Route::post('/add_presensi', [AdminController::class, 'add_presensi']);
 Route::get('/delete_presensi/{id}', [AdminController::class, 'delete_presensi']);
 Route::get('/search_presensi', [AdminController::class, 'search_presensi']);
 
 Route::get('/survey_user', [AdminController::class, 'survey_user']);
-Route::post('/add_survey', [AdminController::class, 'add_survey']);
 Route::get('/delete_survey/{id}', [AdminController::class, 'delete_survey']);
 
 Route::get('/popupmateri', [HomeController::class, 'popupmateri']);
@@ -181,8 +181,8 @@ Route::middleware(['auth', 'pretest.not.taken'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/kelas/{kelas}/postest', [PostestController::class, 'show'])->name('postest.show');
-    Route::post('/kelas/{kelas}/postest', [PostestController::class, 'submit'])->name('postest.submit');
+    Route::get('/kelas/{kelas_id}/materi/{materi_id}/postest', [PostestController::class, 'show'])->name('postest.show');
+    Route::post('/kelas/{kelas_id}/materi/{materi_id}/postest', [PostestController::class, 'submit'])->name('postest.submit');
 });
 Route::middleware(['auth', 'pretest.completed'])->group(function () {
     Route::post('/materi/{materi_id}/after/{kelas_id}', [MateriController::class, 'after'])->name('materi.after');

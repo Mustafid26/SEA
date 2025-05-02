@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PostestUser extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $table = 'postest_users';
     protected $guarded = ['id'];
     public function user()
