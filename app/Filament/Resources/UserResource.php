@@ -37,7 +37,7 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $recordTitleAttribute = 'name';
-    
+
     protected static ?string $navigationGroup = 'Users';
 
     protected static ?string $navigationLabel = 'Siswa';
@@ -64,7 +64,7 @@ class UserResource extends Resource
                     ->searchable() // Bisa dicari jika banyak data
                     ->preload() // Memuat opsi lebih cepat
                     ->required(),
-                    
+
                 Select::make('usertype')
                     ->label('User Type')
                     ->options([
@@ -87,7 +87,6 @@ class UserResource extends Resource
                     ->label('Role')
                     ->options([
                         'user' => 'User',
-                        'admin' => 'Admin',
                         'sekari' => 'Sekari',
                     ])
                     ->default('user')
@@ -124,7 +123,6 @@ class UserResource extends Resource
                 TextColumn::make('rombel.name')
                     ->label('Rombel')
                     ->searchable(),
-                TextColumn::make('usertype')->label('User Type')->sortable(),
                 TextColumn::make('role')->label('Role')->sortable(),
                 ImageColumn::make('profile_photo_path')->label('Foto Profil'),
             ])

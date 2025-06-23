@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void
-    {
+{
         Schema::create('artikel', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('admin_id')->constrained('admin')->onDelete('cascade');

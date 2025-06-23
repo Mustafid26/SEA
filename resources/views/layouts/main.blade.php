@@ -139,7 +139,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/konseling">Konseling</a></li>
+                        <li><a class="link dropdown-item" href="/konseling">Konseling</a></li>
                     @endauth
                 </ul>
             </div>

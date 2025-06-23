@@ -4,11 +4,12 @@ namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Models\Answer;
 use App\Models\AnswerPostest;
-use Filament\Resources\Pages\ListRecords; // Changed from Page to ListRecords
+use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\View\View;
+use Filament\Tables\Table;
 
 class ShowJawabanPostest extends ListRecords
 {
@@ -21,11 +22,10 @@ class ShowJawabanPostest extends ListRecords
 
     protected function getTableQuery(): Builder
     {
-        // Ambil User ID dari URL (parameter 'record')
-        $userId = request()->route('record'); // Dapatkan User ID dari route
+        $userId = request()->route('record');
 
         return AnswerPostest::query()->with(['user', 'question'])
-            ->where('user_id', $userId); // Filter berdasarkan user_id
+            ->where('user_id', $userId);
     }
 
     protected function getTableColumns(): array
@@ -39,6 +39,25 @@ class ShowJawabanPostest extends ListRecords
 
     protected function getTitle(): string
     {
-        return 'Jawaban Postest'; // Judul Halaman
+        return 'Jawaban Postest';
+    }
+
+    protected function getTableActions(): array
+    {
+        return [];
+    }
+
+    protected function getTableBulkActions(): array
+    {
+        return [];
+    }
+
+    /**
+     * Membuat baris tabel tidak bisa diklik dengan mengembalikan closure yang selalu null.
+     */
+    protected function getTableRecordUrlUsing(): ?\Closure
+    {
+        // Mengembalikan closure yang selalu null, agar baris tidak dapat diklik.
+        return fn (): ?string => null;
     }
 }

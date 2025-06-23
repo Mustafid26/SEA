@@ -79,7 +79,7 @@ class AdminResource extends Resource
                         if ($records->contains(function ($record) {
                             return $record->id === auth()->id();
                         })) {
-                            // Create and dispatch notification
+                
                             Notification::make()
                                 ->warning()
                                 ->title('Cannot delete yourself')

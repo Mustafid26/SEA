@@ -4,7 +4,6 @@ namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Models\Answer;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -21,7 +20,8 @@ class ShowJawabanPretest extends ListRecords
     {
         $userId = request()->route('record');
 
-        return Answer::query()->with(['user', 'question', 'kelas']) // Pastikan 'kelas' di-load
+        return Answer::query()
+            ->with(['user', 'question', 'kelas'])
             ->where('user_id', $userId);
     }
 
@@ -42,11 +42,17 @@ class ShowJawabanPretest extends ListRecords
 
     protected function getTableActions(): array
     {
-        return []; // Hilangkan actions default
+        return [];
     }
 
     protected function getTableBulkActions(): array
     {
-        return []; // Hilangkan bulk actions default
+        return [];
+    }
+
+    protected function getTableRecordUrlUsing(): ?\Closure
+    {
+        // Mengembalikan closure yang selalu null, agar baris tidak dapat diklik.
+        return fn(): ?string => null;
     }
 }

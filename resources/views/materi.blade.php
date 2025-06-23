@@ -155,31 +155,35 @@
                                                     value="{{ $materi_id }}">
                                                 <div class="form-group mb-3 d-flex">
                                                     <label><strong>Rating: </strong></label><br>
-                                                    <!-- Rating dengan gambar ikon wajah dari Font Awesome -->
-                                                    <div class="justify-content-center" id="ratingIcons">
-                                                        <span class="rating-option icon-rating" data-value="Puas">
+                                                    <div class="justify-content-center"
+                                                        id="ratingIcons-{{ $materi_id }}">
+                                                        <span class="rating-option icon-rating" data-value="Puas"
+                                                            data-materi-id="{{ $materi_id }}">
                                                             <i class="fas fa-smile face-icon text-success"
-                                                                style="font-size: 30px;"></i> <!-- Ikon Sangat Puas -->
+                                                                style="font-size: 30px;"></i>
                                                         </span>
-                                                        <span class="rating-option icon-rating" data-value="Cukup Puas">
+                                                        <span class="rating-option icon-rating" data-value="Cukup Puas"
+                                                            data-materi-id="{{ $materi_id }}">
                                                             <i class="fas fa-meh face-icon text-warning"
-                                                                style="font-size: 30px;"></i> <!-- Ikon Puas -->
+                                                                style="font-size: 30px;"></i>
                                                         </span>
-                                                        <span class="rating-option icon-rating" data-value="Kecewa">
+                                                        <span class="rating-option icon-rating" data-value="Kecewa"
+                                                            data-materi-id="{{ $materi_id }}">
                                                             <i class="fas fa-frown face-icon text-danger"
-                                                                style="font-size: 30px;"></i> <!-- Ikon Tidak Puas -->
+                                                                style="font-size: 30px;"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="hidden" name="rating" id="ratingValue" required>
+                                                    {{-- Change 'name="rating"' to 'name="survey"' here --}}
+                                                    <input type="hidden" name="survey"
+                                                        id="ratingValue-{{ $materi_id }}" required>
+
                                                 </div>
 
-                                                <!-- Form Saran dan Masukan -->
                                                 <div class="form-group mb-3">
                                                     <label><strong>Saran dan Masukan: </strong></label>
                                                     <textarea name="saran" rows="3" class="form-control" placeholder="Masukkan saran dan masukan..." required></textarea>
                                                 </div>
 
-                                                <!-- Tombol Simpan -->
                                                 <div class="form-group text-center">
                                                     <button type="submit" class="btn btn-primary w-50">Simpan</button>
                                                 </div>
@@ -208,40 +212,27 @@
 
     </script> --}}
     <script>
-        // Saat salah satu ikon dipilih
-        document.querySelectorAll('.rating-option2').forEach(function(option2) {
-            option2.addEventListener('click', function() {
-                // Ambil nilai data-value dari ikon yang dipilih
-                var rating = this.getAttribute('data-value');
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.rating-option').forEach(function(option) {
+                option.addEventListener('click', function() {
+                    var rating = this.getAttribute('data-value');
+                    var materiId = this.getAttribute('data-materi-id');
 
-                // Set nilai tersebut ke input hidden
-                document.getElementById('ratingValue2').value = rating;
+                    // Set nilai input hidden berdasarkan materi_id
+                    const ratingInput = document.getElementById(`ratingValue-${materiId}`);
+                    if (ratingInput) {
+                        ratingInput.value = rating;
+                    }
 
-                // Ganti warna ikon saat dipilih
-                document.querySelectorAll('.face-icon').forEach(function(icon) {
-                    icon.classList.remove('selected'); // Hilangkan tanda terpilih di semua ikon
+                    // Reset icon terpilih hanya dalam konteks materi itu
+                    const ratingContainer = this.closest('#ratingIcons-' + materiId);
+                    if (ratingContainer) {
+                        ratingContainer.querySelectorAll('.face-icon').forEach(function(icon) {
+                            icon.classList.remove('selected');
+                        });
+                        this.querySelector('.face-icon').classList.add('selected');
+                    }
                 });
-                this.querySelector('.face-icon').classList.add(
-                    'selected'); // Tambahkan tanda terpilih di ikon yang diklik
-            });
-        });
-    </script>
-    <script>
-        // Saat salah satu ikon dipilih
-        document.querySelectorAll('.rating-option').forEach(function(option) {
-            option.addEventListener('click', function() {
-                // Ambil nilai data-value dari ikon yang dipilih
-                var rating = this.getAttribute('data-value');
-
-                // Set nilai tersebut ke input hidden
-                document.getElementById('ratingValue').value = rating;
-
-                // Ganti warna ikon saat dipilih
-                document.querySelectorAll('.face-icon').forEach(function(icon) {
-                    icon.classList.remove('selected'); // Hilangkan tanda terpilih di semua ikon
-                });
-                this.querySelector('.face-icon').classList.add(
-                    'selected'); // Tambahkan tanda terpilih di ikon yang diklik
             });
         });
     </script>

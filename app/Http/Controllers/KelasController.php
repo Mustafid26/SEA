@@ -13,6 +13,7 @@ use App\Models\PostestUser;
 use App\Models\PretestUser;
 use App\Models\KontenMateri;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\QuestionPostest;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -24,16 +25,25 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $userRombel = auth()->user()->rombel_id;
-        $kelas = Kelas::where('rombel_id', $userRombel)->paginate(10);
-        if ($userRombel === 'Sekari 03') {
-            $penilaian = Penilaian::where('rombel', $userRombel)->paginate(10);
-        } else {
-            $penilaian = collect();
+
+        if (!Auth::check()) {
+            return redirect('/login');
         }
+
+        $user = Auth::user();
+
+        // Jika role pengguna BUKAN 'sekari', kembalikan unauthorized
+        if ($user->role !== 'sekari') {
+            abort(Response::HTTP_UNAUTHORIZED, 'Anda tidak memiliki akses untuk melihat halaman ini.');
+        }
+
+        // Jika role adalah 'sekari', lanjutkan dengan pengambilan data rombel
+        $userRombelId = $user->rombel_id;
+
+        $kelas = Kelas::where('rombel_id', $userRombelId)->paginate(10);
+
         return view('kelas', [
             'active' => "kelas",
-            'penilaian' => $penilaian,
             'kelas' => $kelas
         ]);
     }
@@ -70,7 +80,7 @@ class KelasController extends Controller
     {
         // dd($request->all());
         $survey = new Survey;
-        $survey->survey = $request->rating;
+        $survey->survey = $request->survey;
         $survey->saran = $request->saran;
         $survey->user_id = auth()->user()->id;
         $survey->materi_id = $request->materi_id;
@@ -161,29 +171,29 @@ class KelasController extends Controller
     }
 
 
-    public function showFormPenilaian($id)
-    {
-        $penilaian = Penilaian::findOrFail($id);
-        return view('formpenilaian', [
-            'penilaian' => $penilaian,
-            'active' => 'kelas',
-        ]);
-    }
-    public function submitFormPenilaian(Request $request)
-    {
-        $existingSubmit = Submit::where('user_id', auth()->user()->id)->first();
+    // public function showFormPenilaian($id)
+    // {
+    //     $penilaian = Penilaian::findOrFail($id);
+    //     return view('formpenilaian', [
+    //         'penilaian' => $penilaian,
+    //         'active' => 'kelas',
+    //     ]);
+    // }
+    // public function submitFormPenilaian(Request $request)
+    // {
+    //     $existingSubmit = Submit::where('user_id', auth()->user()->id)->first();
 
-        if ($existingSubmit) {
-            // Jika sudah pernah mengirimkan, arahkan kembali dengan pesan
-            return redirect()->back()->with('error', 'Anda sudah mengirimkan penilaian.');
-        }
+    //     if ($existingSubmit) {
+    //         // Jika sudah pernah mengirimkan, arahkan kembali dengan pesan
+    //         return redirect()->back()->with('error', 'Anda sudah mengirimkan penilaian.');
+    //     }
 
-        $data = new Submit;
-        $data->user_id = auth()->user()->id;
-        $data->body = $request->body;
-        $data->save();
-        return redirect()->route('kelas')->with(['sweetalert' => 'Penilaian Anda Berhasil Disimpan!']);
-    }
+    //     $data = new Submit;
+    //     $data->user_id = auth()->user()->id;
+    //     $data->body = $request->body;
+    //     $data->save();
+    //     return redirect()->route('kelas')->with(['sweetalert' => 'Penilaian Anda Berhasil Disimpan!']);
+    // }
     /**
      * Show the form for editing the specified resource.
      */

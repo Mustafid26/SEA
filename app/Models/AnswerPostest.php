@@ -14,15 +14,15 @@ class AnswerPostest extends Model
     protected $guarded = ['id'];
     public function user()
     {
-        return $this->belongsTo(User::class,  'user_id')->select('id');
+        return $this->belongsTo(User::class, 'user_id')->select('id', 'name');
     }
     public function question()
     {
-        return $this->belongsTo(Question::class,  'question_id')->select('id');
+        return $this->belongsTo(QuestionPostest::class, 'question_id')->select('id', 'question');
     }
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class,  'kelas_id')->select('id');
+        return $this->belongsTo(Kelas::class, 'kelas_id')->select('id', 'nama_kelas');
     }
     public function materi()
     {
