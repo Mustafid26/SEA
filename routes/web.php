@@ -3,17 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController; // Pastikan ini digunakan jika Anda punya rute admin
 use App\Http\Controllers\KelasController;
-use App\Http\Controllers\LoginController; // Pastikan ini digunakan jika Anda punya rute login kustom
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PostestController;
 use App\Http\Controllers\PretestController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\NonSekariController; // Pastikan ini digunakan jika Anda punya rute NonSekari
 use App\Http\Controllers\PelatihanController;
-use App\Http\Controllers\PenilaianController; // Tambahkan jika Anda membuat controller Penilaian
+
 
 /*
 |--------------------------------------------------------------------------
