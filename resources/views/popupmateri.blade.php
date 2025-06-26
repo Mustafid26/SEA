@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,8 @@
     <title>View Materi</title>
     <style>
         /* General reset and font */
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
@@ -23,7 +25,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Dark semi-transparent background */
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -55,6 +58,7 @@
             visibility: visible;
             opacity: 1;
         }
+
         #pdfPopup.show #popupContent {
             transform: scale(1);
         }
@@ -91,7 +95,8 @@
         }
 
         /* Navigation buttons */
-        #prevBtn, #nextBtn {
+        #prevBtn,
+        #nextBtn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -104,12 +109,18 @@
             transition: background-color 0.3s ease;
         }
 
-        #prevBtn:hover, #nextBtn:hover {
+        #prevBtn:hover,
+        #nextBtn:hover {
             background-color: #ddd;
         }
 
-        #prevBtn { left: 10px; }
-        #nextBtn { right: 10px; }
+        #prevBtn {
+            left: 10px;
+        }
+
+        #nextBtn {
+            right: 10px;
+        }
 
         /* Smooth animation on hover */
         iframe {
@@ -126,7 +137,8 @@
                 padding: 30px;
             }
 
-            #prevBtn, #nextBtn {
+            #prevBtn,
+            #nextBtn {
                 padding: 8px 15px;
                 font-size: 16px;
             }
@@ -144,7 +156,8 @@
                 padding: 30px;
             }
 
-            #prevBtn, #nextBtn {
+            #prevBtn,
+            #nextBtn {
                 padding: 6px 10px;
                 font-size: 14px;
             }
@@ -164,6 +177,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="pdfPopup">
         <div id="popupContent">
@@ -181,26 +195,28 @@
             var closeBtn = document.getElementById("closeBtn");
             var pdfFrame = document.getElementById("pdfFrame");
             var pageNum = 1; // Start on the first page
-       
-    
+
+
             // Show the popup with smooth animation
             pdfPopup.classList.add('show');
             loadPdfPage(pageNum);
-    
+
             // Close popup smoothly
             closeBtn.addEventListener("click", function() {
                 pdfPopup.classList.remove('show');
                 setTimeout(function() {
                     pdfPopup.style.display = "none";
-                }, 500); 
+                }, 500);
             });
-    
+
             // Function to load PDF per page
             function loadPdfPage(page) {
-                var pdfUrl = "{{ asset('storage/powerpoint_files/' . $konten->konten) }}#page=" + page + "&toolbar=0";
+                var pdfUrl = "{{ asset('storage/powerpoint_files/' . $konten->konten) }}#page=" + page +
+                    "&toolbar=0";
                 document.getElementById('pdfFrame').src = pdfUrl;
             }
         });
     </script>
 </body>
+
 </html>

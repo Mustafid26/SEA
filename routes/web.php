@@ -54,7 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Grup untuk Rute Profile
     Route::prefix('profile')->group(function () {
-        Route::get('/{id}', [ProfileController::class, 'index'])->name('index'); // Mengganti 'index' menjadi 'profile.index' untuk menghindari konflik nama
+        Route::get('/{id}', [ProfileController::class, 'index'])->name('index');
         Route::get('/submit', [ProfileController::class, 'submitUAS'])->name('profile.submit');
         Route::post('/upload', [ProfileController::class, 'upload'])->name('profile.upload');
         Route::delete('/delete', [ProfileController::class, 'delete'])->name('profile.delete');

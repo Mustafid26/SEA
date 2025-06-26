@@ -30,12 +30,12 @@
             });
         </script>
     @endif
-    <div class="container fadeinUp" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:10rem;">
+    <div class="container fadeinUp" style="margin-bottom: 10rem; padding-right: 0px !important; margin-top:2rem;">
         <!-- Card Mobile -->
         <div class="card-mobile">
             <div class="card me-3" style="flex: 1;">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('img/modulserat.jpg') }}" alt="Logo" class="img-fluid p-5" style="width:30em;">
+                    <img src="{{ asset('img/modulserat.jpg') }}" alt="Modul" class="img-fluid p-5 w-[10rem]">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title mb-4 text-wrap text-break">Pelatihan {{ $kelas->nama_kelas }} -

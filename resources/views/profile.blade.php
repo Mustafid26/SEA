@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoserat.png') }}">
+@section('konten')
     <style>
         body {
             font-family: 'Maven Pro';
-            padding-bottom: 100px;
         }
 
         .profile-container {
@@ -86,6 +74,18 @@
             background-color: #d73696;
             border-radius: 15px 15px 15px 15px;
             padding: 15px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-button:hover {
+            transform: scale(0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .logout-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .btn-profile {
@@ -115,164 +115,11 @@
             color: white;
         }
 
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #fff;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .spinner-container {
-            position: relative;
-        }
-
-        .spinner-border {
-            width: 5rem;
-            height: 5rem;
-        }
-
-        .spinner-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4rem;
-            height: 4rem;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .countdown div {
-            color: black;
-        }
-
-        .countdown .time {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .countdown .label {
-            font-size: 1rem;
-            margin-top: 5px;
-        }
-
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }
     </style>
-</head>
 
-<body>
-    {{-- preload --}}
-    <div id="preloader">
-        <div class="spinner-container">
-            <div class="spinner-border" role="status" style="color: #d73696 !important">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <img src="{{ asset('img/logoserat.png') }}" alt="Loading" class="spinner-image">
-        </div>
-    </div>
-    {{-- preload --}}
-
-    <nav class="navbar-top">
-        <img src="{{ asset('img/logoserat.png') }}" alt="Logo" class="logo">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">BERANDA</a>
-                <a href="/kelas" class="{{ $active === 'kelas' ? 'active' : '' }}">KELAS</a>
-                <a class="dropdown-toggle {{ $active === 'informasi' ? 'active' : '' }}" href="#"
-                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    PUSAT INFORMASI
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="/pelatihan">Pelatihan</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="/comingsoon">Konseling</a></li>
-                </ul>
-            </div>
-            @auth
-                <a href="/profile/{{ Auth::user()->id }}" class="{{ $active === 'profile' ? 'active' : '' }} login-button">
-                    PROFILE
-                </a>
-            @else
-                <a href="/login" class="login-button"> Login <i class="fa fa-arrow-right"></i></a>
-            @endauth
-        </div>
-    </nav>
-
-    <nav class="bottom-bar">
-        {{-- Kondisi untuk menampilkan menu jika pengguna tidak login --}}
-        @guest
-            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
-                <i class="fa fa-home"></i>
-                BERANDA
-            </a>
-            <a href="/konseling" class="{{ $active === 'konseling' ? 'active' : '' }}">
-                <i class="fa fa-comments"></i>
-                KONSELING
-            </a>
-            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}" id="pusatInformasiDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-info-circle"></i>
-                PUSAT INFORMASI
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="pusatInformasiDropdown">
-                <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
-                <li><a class="dropdown-item" href="/pelatihan">Pelatihan</a></li>
-            </ul>
-            {{-- Tombol login saat tidak login --}}
-            <a href="/login" class="{{ $active === 'login' ? 'active' : '' }}">
-                <i class="fa fa-right-to-bracket"></i>
-                LOGIN
-            </a>
-        @endguest
-    
-        {{-- Kondisi untuk menampilkan menu jika pengguna sudah login --}}
-        @auth
-            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
-                <i class="fa fa-home"></i>
-                BERANDA
-            </a>
-            <a href="/kelas" class="{{ $active === 'kelas' ? 'active' : '' }}">
-                <i class="fa fa-chalkboard-user"></i>
-                KELAS
-            </a>
-            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}" id="pusatInformasiDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-info-circle"></i>
-                PUSAT INFORMASI
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="pusatInformasiDropdown">
-                <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
-                <li><a class="dropdown-item" href="/pelatihan">Pelatihan</a></li>
-                <li><a class="dropdown-item" href="/konseling">Konseling</a></li>
-            </ul>
-            {{-- Tombol profile saat sudah login --}}
-            <a href="/profile/{{ Auth::user()->id }}" class="{{ $active === 'profile' ? 'active' : '' }}">
-                <i class="fa fa-solid fa-user"></i>
-                PROFILE
-            </a>
-        @endauth
-    </nav>
-    
     <div class="container">
         <div class="profile-container">
             <div class="profile-header align-items-center">
@@ -315,8 +162,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                                 </form>
@@ -356,56 +202,11 @@
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
               this.closest('form').submit();" class="btn-logout">
-                    <div class="logout-button text-center">
-                        <button class="btn" style="color:white; background:">Keluar</button>
+                    <div class="logout-button text-center mb-5">
+                        <button class="btn btn-primary text-white">Keluar</button>
                     </div>
                 </a>
             </form>
         </div>
     </div>
-
-
-    <script>
-        window.addEventListener('load', function() {
-            document.getElementById('preloader').style.display = 'none';
-        });
-    </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const targetDate = new Date('August 30, 2024 00:00:00').getTime();
-
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
-                document.getElementById('seconds').textContent = seconds;
-
-                if (distance < 0) {
-                    clearInterval(interval);
-                    document.getElementById('countdown').innerHTML = 'The date has passed!';
-                }
-            }
-
-            const interval = setInterval(updateCountdown, 1000);
-            updateCountdown();
-        });
-    </script>
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
-</body>
-
-</html>
+@endsection

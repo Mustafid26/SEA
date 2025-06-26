@@ -27,8 +27,8 @@
 
     <div class="container-sea text-center mt-5">
         <div class="content-wrapper">
-            <img src="{{ asset('img/logoserat_11zon.webp') }}" alt="SEA Logo" class="logo-home mb-5"
-                data-aos="fade-right" loading="lazy"/>
+            <img src="{{ asset('img/logoserat_11zon.webp') }}" alt="SEA Logo" class="logo-home mb-5" data-aos="fade-right"
+                loading="lazy" />
             <div class="text-content">
                 <h3 class="title" data-aos="fade-left">Apa Itu Serat Kartini?</h3>
                 <p class="intro" data-aos="fade-left">Hai!</p>
