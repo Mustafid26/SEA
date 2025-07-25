@@ -17,6 +17,7 @@ use Illuminate\Http\Response;
 use App\Models\QuestionPostest;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Cache;
 
 class KelasController extends Controller
 {
@@ -25,28 +26,39 @@ class KelasController extends Controller
      */
     public function index()
     {
-
         if (!Auth::check()) {
             return redirect('/login');
         }
 
         $user = Auth::user();
 
-        // Jika role pengguna BUKAN 'sekari', kembalikan unauthorized
         if ($user->role !== 'sekari') {
             abort(Response::HTTP_UNAUTHORIZED, 'Anda tidak memiliki akses untuk melihat halaman ini.');
         }
 
-        // Jika role adalah 'sekari', lanjutkan dengan pengambilan data rombel
         $userRombelId = $user->rombel_id;
 
-        $kelas = Kelas::where('rombel_id', $userRombelId)->paginate(10);
+        // 1. Definisikan KUNCI VERSI dan dapatkan versi terbaru dari cache
+        $versionKey = 'kelas_version_rombel_' . $userRombelId;
+        $version = Cache::get($versionKey, 1); // Ambil versi saat ini, jika tidak ada, default ke 1
+
+        // 2. Buat KUNCI DATA yang unik dengan menyertakan nomor versi
+        $currentPage = request()->get('page', 1);
+        $dataKey = "kelas_rombel_{$userRombelId}_v{$version}_page_{$currentPage}";
+
+        // 3. Gunakan kunci data yang sudah bervesi untuk menyimpan atau mengambil data
+        $kelas = Cache::remember($dataKey, now()->addMinutes(60), function () use ($userRombelId) {
+            return Kelas::where('rombel_id', $userRombelId)
+                ->select('id','nama_kelas', 'detail_kelas', 'image')
+                ->paginate(10);
+        });
 
         return view('kelas', [
             'active' => "kelas",
             'kelas' => $kelas
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

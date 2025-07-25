@@ -1,187 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guest-layout>
+    {{-- Latar belakang utama diubah menjadi pink lembut --}}
+    <div class="min-h-screen bg-pink-50 text-gray-900 flex justify-center items-center p-4">
+        {{-- Container diperkecil dari max-w-screen-xl menjadi max-w-screen-lg --}}
+        <div class="max-w-screen-lg m-0 sm:m-10 bg-white shadow-xl sm:rounded-2xl flex justify-center flex-1">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoserat.png') }}">
+            <!-- Kolom Form Login -->
+            <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+                <div>
+                    {{-- Ganti dengan logo Anda --}}
+                    <a href="/">
+                        <img src="{{ asset('img/herologo.png') }}" class="w-1/2 mx-auto" alt="Logo">
+                    </a>
+                </div>
+                <div class="mt-8 flex flex-col items-center">
+                    <h1 class="text-2xl xl:text-3xl font-extrabold text-center">
+                        Selamat Datang!
+                    </h1>
+                    <p class="text-center text-gray-600 mt-2">Silakan login untuk melanjutkan.</p>
 
-    <title>Serat Kartini Edu Academy</title>
-    <style>
-        body {
-            background-color: #FEE5FD;
-        }
+                    <div class="w-full flex-1 mt-8">
 
-        .mobile-img {
-            margin-top: 100px;
-            width: 300px;
-        }
+                        <!-- Menampilkan Error Validasi -->
+                        <x-validation-errors
+                            class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg" />
 
-        .card {
-            border-radius: 26px 25px 0px 0px;
-            -webkit-border-radius: 26px 25px 0px 0px;
-            -moz-border-radius: 26px 25px 0px 0px;
-            margin: 0;
-            width: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card input {
-            width: 100%;
-        }
-
-        @media (min-width: 1024px) {
-            .mobile-text {
-                margin-left: 200px;
-            }
-
-            .mobile {
-                display: none;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .card {
-                width: 100%;
-                margin: 0;
-                height: 100%;
-                box-sizing: border-box;
-            }
-
-            .btn-login {
-                margin-top: 7vh;
-            }
-
-            .desktop {
-                display: none;
-            }
-
-            .container-mobile {
-                margin-top: 10vh;
-            }
-
-            .form-outline {
-                margin-top: 50px;
-            }
-        }
-
-        .btn-login {
-            background-color: #d73696;
-            color: white;
-            width: 50%;
-        }
-
-        .btn-login:hover {
-            color: white;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="desktop">
-        <section class="vh-100 d-flex justify-content-center align-items-center">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-
-                    <div class="card" style="border-radius: 1rem;">
-                        <div class="row g-0">
-                            <div class="align-items-center">
-                                <div class="card-body p-4 p-lg-5 text-black">
-                                    <x-validation-errors class="mb-4" />
-                                    @if (session('status'))
-                                        <div class="mb-4 font-medium text-sm text-green-600">
-                                            {{ session('status') }}
-                                        </div>
-                                    @endif
-                                    <form method="POST" action="{{ route('login') }}">
-                                        @csrf
-                                        <div class="d-flex align-items-center mb-3 pb-1">
-                                            <i class="fas fa-cubes fa-2x me-3" style="color: #219c9088;"></i>
-                                            <span class="h1 fw-bold mb-0"><img class="img-fluid"
-                                                    src="{{asset('img/herologo.png')}}" alt=""
-                                                    srcset="" /></span>
-                                        </div>
-
-                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Silahkan Login
-                                            Untuk Lanjut</h5>
-
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="name" value="{{ __('name') }}">Nama
-                                                Pengguna</label>
-                                            <input type="username" id="name" class="form-control form-control-lg"
-                                                name="name" :value="old('name')" required autofocus
-                                                autocomplete="username" />
-                                        </div>
-
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="password" value="{{ __('password') }}">Kata
-                                                Sandi</label>
-                                            <input type="password" id="password" class="form-control form-control-lg"
-                                                name="password" required autocomplete="current-password" />
-                                        </div>
-
-                                        <div class="pt-1 mb-4 text-center">
-                                            <button class="btn btn-login">{{ __('Log in') }}</button>
-                                        </div>
-
-                                        <p class="mb-5 pb-lg-2 text-center" style="color: #d73696; font-weight: bold;">
-                                            Belum Punya Akun? <a href="{{ route('register') }}"
-                                                style="color: black; font-weight: normal;">Daftar disini</a></p>
-                                    </form>
-                                </div>
+                        @if (session('status'))
+                            <div class="mb-4 font-medium text-sm text-green-600">
+                                {{ session('status') }}
                             </div>
-                        </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+
+                            <div class="mx-auto max-w-xs">
+                                <!-- Input Nama Pengguna -->
+                                <x-input id="name"
+                                    class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                    type="text" name="name" :value="old('name')" required autofocus
+                                    autocomplete="name" placeholder="Nama Pengguna" />
+
+                                <!-- Input Password dengan Tombol Toggle -->
+                                <div class="relative mt-5">
+                                    <x-input id="password"
+                                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                        type="password" name="password" required autocomplete="current-password"
+                                        placeholder="Password" />
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                                        <i class="bi bi-eye-slash-fill text-gray-500 cursor-pointer"
+                                            id="togglePassword"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Tombol Login -->
+                                <x-button
+                                    class="mt-5 tracking-wide font-semibold bg-pink-500 text-gray-100 w-full py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                    <i class="bi bi-box-arrow-in-right text-xl mr-2"></i>
+                                    <span class="ml-3">
+                                        {{ __('Log in') }}
+                                    </span>
+                                </x-button>
+
+                                <p class="mt-6 text-xs text-gray-600 text-center">
+                                    Belum punya akun?
+                                    <a href="{{ route('register') }}"
+                                        class="border-b border-gray-500 font-semibold text-pink-600 hover:text-pink-800">
+                                        Daftar di sini
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
                     </div>
-
                 </div>
             </div>
-        </section>
-    </div>
-    <div class="mobile vh-100">
-        <div class="container d-flex justify-content-center">
-            <img class="img-fluid mobile-img" src="{{asset('img/herologo.png')}}" alt="logoSEA" srcset="" />
-        </div>
-        <div class="container text mt-4">
-            <h5 class="mobile-text"><strong>Selamat Datang</strong></h5>
-            <h5 class="mobile-text">Silahkan Login Untuk Lanjut</h5>
-        </div>
-        <div class="d-flex justify-content-center mt-4 h-100">
-            <div class="card">
-                <div class="card-body">
-                    <x-validation-errors class="mb-4" />
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div data-mdb-input-init class="form-outline mb-4">
-                            <label class="form-label" for="name" value="{{ __('name') }}">Nama Pengguna</label>
-                            <input type="username" id="name" class="form-control form-control-lg" name="name"
-                                :value="old('name')" required autofocus autocomplete="username" />
-                        </div>
 
-                        <div data-mdb-input-init class="form-outline">
-                            <label class="form-label" for="password" value="{{ __('password') }}">Kata Sandi</label>
-                            <input type="password" id="password" class="form-control form-control-lg" name="password"
-                                required autocomplete="current-password" />
-                        </div>
-                        <div class="pt-1 mb-4 text-center">
-                            <button class="btn btn-login">{{ __('Log in') }}</button>
-                        </div>
-                        <p class="mb-5 pb-lg-2 text-center" style="color: #d73696; font-weight: bold;">Belum Punya
-                            Akun?
-                            <a href="{{ route('register') }}"style="color: black; font-weight: normal;">Daftar
-                                disini</a>
-                        </p>
-                    </form>
+            <!-- Kolom Ilustrasi (Hanya tampil di layar besar) -->
+            <div class="flex-1 bg-pink-100 text-center hidden lg:flex">
+                <div class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+                    style="background-image: url('https://placehold.co/500x500/d73696/white?text=Ilustrasi\nLogin');">
                 </div>
             </div>
+
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+</x-guest-layout>
 
-</html>
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function(e) {
+                    // Toggle tipe atribut input
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+
+                    // Ganti ikon mata
+                    this.classList.toggle('bi-eye-slash-fill');
+                    this.classList.toggle('bi-eye-fill');
+                });
+            }
+        });
+    </script>
+@endpush

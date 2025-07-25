@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
@@ -20,5 +21,27 @@ class Kelas extends Model
     {
         return $this->belongsTo(Rombel::class)->select('id', 'name');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Closure ini akan menaikkan nomor versi cache untuk rombel terkait
+        $incrementCacheVersion = function (Kelas $model) {
+            if ($model->rombel_id) {
+                // 1. Definisikan kunci untuk menyimpan versi cache rombel
+                $versionKey = 'kelas_version_rombel_' . $model->rombel_id;
+
+                // 2. Naikkan nomor versi setiap ada perubahan
+                Cache::increment($versionKey);
+            }
+        };
+
+        // Panggil closure pada setiap event perubahan data
+        static::created($incrementCacheVersion);
+        static::updated($incrementCacheVersion);
+        static::deleted($incrementCacheVersion);
+    }
+
 
 }

@@ -1,58 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <title>SERAT KARTINI | Sekolah Perempuan Cerdas Masa Kini</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta
-        content="pemberdayaan perempuan, sekolah perempuan, program perempuan, edukasi ibu, sekolah ibu, kesehatan anak, kesehatan ibu, 
-    ekonomi digital, perlindungan diri, industri sampah, gizi pangan, seratkartini"
-        name="keywords">
-    <meta
-        content="Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput
-                    yang bertujuan mengembangkan kapasitas perempuan melalui peningkatan kesadaran dan pemikiran kritis,
-                    kecakapan hidup, solidaritas dan pembelajaran sepanjang hayat, yang telah dilaunching secara resmi oleh
-                    Gubernur Jawa Tengah pada bulan November tahun 2020"
-        name="description">
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- Favicon -->
+    <meta name="keywords"
+        content="pemberdayaan perempuan, sekolah perempuan, program perempuan, edukasi ibu, sekolah ibu, kesehatan anak, kesehatan ibu, ekonomi digital, perlindungan diri, industri sampah, gizi pangan, seratkartini">
+    <meta name="description"
+        content="Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput yang bertujuan mengembangkan kapasitas perempuan melalui peningkatan kesadaran dan pemikiran kritis, kecakapan hidup, solidaritas dan pembelajaran sepanjang hayat.">
+
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logoseratcut.webp') }}">
-    <!-- Google Web Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
         rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet'>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
-
-    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-
-
-    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-
-
-    {{-- <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <style>
         body {
@@ -98,212 +75,60 @@
         }
     </style>
 
+    @livewireStyles
 </head>
 
 <body>
-    {{-- preload --}}
     <div id="preloader">
         <div class="spinner-container">
             <div class="spinner-border" role="status" style="color: #d73696 !important">
-                <span class="sr-only">Loading...</span>
+                <span class="visually-hidden">Loading...</span>
             </div>
             <img src="{{ asset('img/logoseratcut.webp') }}" alt="Loading" class="spinner-image">
         </div>
     </div>
-    {{-- preload --}}
-    <!-- Navbar Start -->
-    <nav class="navbar-top">
-        <img src="{{ asset('img/logoseratcut.webp') }}" alt="Logo" class="logo">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">BERANDA</a>
 
-                @auth
-                    <a href="/kelas" class="{{ $active === 'kelas' ? 'active' : '' }}">KELAS</a>
-                @else
-                    <a href="/konseling" class="{{ $active === 'konseling' ? 'active' : '' }}">KONSELING</a>
-                @endauth
+    @include('layouts.partials.navbar-top')
 
-                <a class="{{ $active === 'informasi' ? 'active' : '' }}" href="#" id="navbarDropdown"
-                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    INFORMASI
-                    <i id="dropdownIcon" class="bi bi-chevron-down"></i>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="link dropdown-item" href="/artikel">Artikel</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="link dropdown-item" href="/pelatihan">Pelatihan</a></li>
-                    @auth
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="link dropdown-item" href="/konseling">Konseling</a></li>
-                    @endauth
-                </ul>
-            </div>
+    @include('layouts.partials.bottom-bar')
 
-            @auth
-                <a href="/profile/{{ Auth::user()->id }}"
-                    class="{{ $active === 'profile' ? 'active' : '' }} login-button">
-                    PROFILE
-                </a>
-            @else
-                <a href="/login" class="{{ $active === 'login' ? 'active' : '' }} login-button">
-                    <i class="fa fa-arrow-right"></i>
-                    LOGIN
-                </a>
-            @endauth
-        </div>
-    </nav>
+    @include('layouts.partials.float-button')
 
-    <nav class="bottom-bar">
-        {{-- Kondisi untuk menampilkan menu jika pengguna tidak login --}}
-        @guest
-            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
-                <i class="fa fa-home"></i>
-                BERANDA
-            </a>
-            <a href="/konseling" class="{{ $active === 'konseling' ? 'active' : '' }}">
-                <i class="fa fa-comments"></i>
-                KONSELING
-            </a>
-            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}"
-                id="pusatInformasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-info-circle"></i>
-                INFORMASI
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="pusatInformasiDropdown">
-                <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
-                <li><a class="dropdown-item" href="/pelatihan">Pelatihan</a></li>
-            </ul>
-            {{-- Tombol login saat tidak login --}}
-            <a href="/login" class="{{ $active === 'login' ? 'active' : '' }}">
-                <i class="fa fa-right-to-bracket"></i>
-                LOGIN
-            </a>
-        @endguest
+    <main>
+        @yield('konten')
+    </main>
 
-        {{-- Kondisi untuk menampilkan menu jika pengguna sudah login --}}
-        @auth
-            <a href="/" class="{{ $active === 'beranda' ? 'active' : '' }}">
-                <i class="fa fa-home"></i>
-                BERANDA
-            </a>
-            <a href="/kelas" class="{{ $active === 'kelas' ? 'active' : '' }}">
-                <i class="fa fa-chalkboard-user"></i>
-                KELAS
-            </a>
-            <a href="#" class="dropdown-toggle {{ $active === 'pusat_informasi' ? 'active' : '' }}"
-                id="pusatInformasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-info-circle"></i>
-                INFORMASI
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="pusatInformasiDropdown">
-                <li><a class="dropdown-item" href="/artikel">Artikel</a></li>
-                <li><a class="dropdown-item" href="/pelatihan">Pelatihan</a></li>
-                <li><a class="dropdown-item" href="/konseling">Konseling</a></li>
-            </ul>
-            {{-- Tombol profile saat sudah login --}}
-            <a href="/profile/{{ Auth::user()->id }}" class="{{ $active === 'profile' ? 'active' : '' }}">
-                <i class="fa fa-solid fa-user"></i>
-                PROFILE
-            </a>
-        @endauth
-    </nav>
+    @include('layouts.partials.footer')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
 
-    <!-- Navbar End -->
-
-    {{-- content --}}
-    <div class="floating-buttons">
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/62811274463" target="_blank" style="border-radius: 0%;">
-            <img src="{{ asset('img/cp.webp') }}" alt="WhatsApp" width="" class="whatsapp-icon" />
-        </a>
-        <!-- Download Button -->
-        <a href="https://drive.usercontent.google.com/u/1/uc?id=1K-_49kOZbN38jwsJobQ8catLNadA_Did&export=download"
-            style="border-radius: 0%;" class="download" download>
-            <img src="{{ asset('img/panduan.svg') }}" alt="download" width="" class="download-icon" />
-        </a>
-    </div>
-    @yield('konten')
-
-    {{-- end content --}}
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <!-- Left Section (DP3AP2KB, Udinus, HMTI, Contact Info) -->
-                <div class="col-md-3 mb-2">
-                    <div class="footer-logo mb-3">
-                        <img src="{{ asset('img/dp3ap2kb.webp') }}" alt="DP3AP2KB Logo" class="dp3ap2kb-logo"
-                            style="width: 150px;">
-                    </div>
-                    <!-- Contact Information -->
-                    <p class="mb-1"><strong>Serat Kartini</strong></p>
-                    <p><i class="bi bi-telephone"></i> 024-7602952</p>
-                    <p><i class="bi bi-geo-alt"></i> Jl. Pamularsih No. 28 Semarang 50148</p>
-                    <p><i class="bi bi-fax"></i> Fax: 024-7622536</p>
-                    <a href="https://dp3akb.jatengprov.go.id/" class="btn btn-outline-light btn-sm">GET IN TOUCH</a>
-                </div>
-                <div class="col-md-1 d-none d-md-block">
-                    <div class="vertical-separator"></div>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <div class="footer-logo serat-logo mb-3">
-                        <img src="{{ asset('img/LogoUdinus.webp') }}" alt="Udinus Logo" class="udinushmti-logo"
-                            loading="lazy" style="width: 80px; margin-right: 10px;">
-                        <img src="{{ asset('img/Logo_HMTI.webp') }}" alt="HMTI Logo" class="udinushmti-logo"
-                            style="width: 80px;" loading="lazy">
-                    </div>
-                    <!-- Contact Information -->
-                    <p class="mb-1"><strong>HMTI UDINUS</strong></p>
-                    <p><i class="bi bi-instagram"></i> <a href="https://www.instagram.com/hmtiudinus/">@hmtiudinus</a>
-                    </p>
-                    <p><i class="bi bi-geo-alt"></i> Gedung D Lantai 1 Universitas Dian Nuswantoro. Jl. Nakula 1 No.
-                        5-11 Semarang, Semarang, Indonesia 50131</p>
-                    <a href="https://hmtiudinus.org" class="btn btn-outline-light btn-sm">GET IN TOUCH</a>
-                </div>
-                <div class="col-md-1 d-none d-md-block">
-                    <div class="vertical-separator"></div>
-                </div>
-                <!-- Map Section -->
-                <div class="col-md-4">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126724.97405814877!2d110.2453852972656!3d-6.990965699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b3a56c22001%3A0x9cd061e4d8c6997d!2sDinas%20Pemberdayaan%20Perempuan%20Perlindungan%20Anak%20Pengendalian%20Penduduk%20Dan%20Keluarga%20Berencana%20(DP3AKB)!5e0!3m2!1sid!2sid!4v1728136666906!5m2!1sid!2sid"
-                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-md-12 text-center">
-                    <p class="mb-0">Copyright © Dinas Perempuan dan Anak Provinsi Jawa Tengah</p>
-                    <a href="https://www.instagram.com/hmtiudinus/" style="text-decoration: none; color: white">
-                        <p class="mb-0">© 2024 Supported by <span style="color: #219c90;">HMTI UDINUS</span></p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let dropdown = document.getElementById("navbarDropdown");
-            let icon = document.getElementById("dropdownIcon");
-
-            dropdown.addEventListener("click", function() {
-                let isExpanded = dropdown.getAttribute("aria-expanded") === "false";
-                icon.classList.toggle("bi-chevron-down", !isExpanded);
-                icon.classList.toggle("bi-chevron-up", isExpanded);
-            });
-        });
-    </script>
-    <!-- Template Javascript -->
-    <script>
+        // Preloader script
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.display = 'none';
         });
+
+        // Navbar dropdown icon toggle script
+        document.addEventListener("DOMContentLoaded", function() {
+            // Script untuk navbar atas
+            let dropdownTop = document.getElementById("navbarDropdown");
+            if (dropdownTop) {
+                let iconTop = document.getElementById("dropdownIcon");
+                dropdownTop.addEventListener("click", function() {
+                    let isExpanded = dropdownTop.getAttribute("aria-expanded") === "true";
+                    iconTop.classList.toggle("bi-chevron-down", isExpanded);
+                    iconTop.classList.toggle("bi-chevron-up", !isExpanded);
+                });
+            }
+        });
     </script>
+
+    @stack('scripts')
+
+    @livewireScripts
 </body>
+
+</html>

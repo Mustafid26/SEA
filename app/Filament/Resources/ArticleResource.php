@@ -90,13 +90,9 @@ class ArticleResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label('Judul')
+                    ->words(10)
                     ->searchable()
                     ->sortable(),
-
-                TextColumn::make('slug')
-                    ->label('Slug')
-                    ->sortable(),
-
                 ImageColumn::make('image')
                     ->label('Gambar'),
 

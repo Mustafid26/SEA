@@ -10,12 +10,9 @@ class ArtikelController extends Controller
 {
     public function index()
     {
-        $artikel = Artikel::orderBy('created_at', 'desc')->paginate(5);
-        $jumlahartikel = Artikel::count();
         return view('artikel', [
-            'artikel' => $artikel,
-            'active' => 'pusat_informasi',
-            'jumlahartikel' => $jumlahartikel
+            'title' => 'Artikel',
+            'active' => 'artikel',
         ]);
     }
     public function show(Artikel $artikel)
@@ -27,7 +24,7 @@ class ArtikelController extends Controller
     }
     public function authors(User $user)
     {
-        return view('artikel',[
+        return view('artikel', [
             'title' => 'User Posts',
             'active' => "post",
             'posts' => $user->artikel,

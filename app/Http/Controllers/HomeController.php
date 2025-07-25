@@ -12,40 +12,30 @@ use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
-    
+
     public function index()
     {
         $photos = Cache::remember('photos', 600, function () {
-            return Foto::all();
+            return Foto::select('title', 'image')
+                ->orderBy('created_at', 'desc')
+                ->take(6)
+                ->get();
         });
-    
-        return view('home', compact('photos'), [
+
+        // Gabungkan semua variabel ke dalam satu array
+        return view('home', [
+            'photos' => $photos,
             'active' => 'beranda'
         ]);
-    }
-    
-    public function redirect()
-    {
-        $usertype = Auth::user() -> usertype;
-        if ($usertype == '1'){
-            $total_artikel=artikel::all()->count();
-            $total_kelas=kelas::all()->count();
-            $total_user=user::all()->count();
-            return view('admin.home', compact('total_artikel', 'total_kelas', 'total_user'));
-        } else {
-            $photos = Foto::all();
-            return view('home' , compact('photos'), [
-                'active' => 'beranda'
-            ]) ;
-        }
     }
 
     public function comingsoon()
     {
         return view('comingsoon2');
     }
-    
-    public function konseling(){
+
+    public function konseling()
+    {
         return view('konseling', [
             'active' => 'konseling'
         ]);

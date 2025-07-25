@@ -69,11 +69,13 @@ class FotoResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label('Judul')
+                    ->words(5)
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('desc')
                     ->label('Deskripsi')
+                    ->words(10)
                     ->limit(50)
                     ->searchable(),
 

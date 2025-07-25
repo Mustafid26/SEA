@@ -24,11 +24,6 @@ class Rombel extends Model
         return $this->hasMany(Kelas::class);
     }
 
-    public function penilaian(): mixed
-    {
-        return $this->hasOne(Penilaian::class);
-    }
-
     public function user(): mixed
     {
         return $this->hasMany(User::class);

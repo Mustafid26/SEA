@@ -10,6 +10,7 @@ use App\Http\Controllers\PostestController;
 use App\Http\Controllers\PretestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PelatihanController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 /*
@@ -38,10 +39,13 @@ Route::get('/pelatihan/{pelatihan:slug}', [PelatihanController::class, 'show'])-
 Route::get('/konseling', [HomeController::class, 'konseling']);
 Route::get('/popupmateri', [HomeController::class, 'popupmateri']); // Ini mungkin juga perlu auth, tergantung fungsinya
 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // --- Rute yang Membutuhkan Autentikasi dan Verifikasi Email ---
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/redirect', [HomeController::class, 'redirect']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/redirect', [HomeController::class, 'index'])->name('redirect');
     Route::get('/comingsoon', [HomeController::class, 'comingsoon']);
 
     // Grup untuk Rute Kelas

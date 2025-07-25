@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <img width="300" src="{{ asset('img/SEA-Login.png')}}" />   
+            <x-authentication-card-logo />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="flex justify-end mt-4">
-                <x-button class="ms-4">
+                <x-button class="ml-4">
                     {{ __('Confirm') }}
                 </x-button>
             </div>

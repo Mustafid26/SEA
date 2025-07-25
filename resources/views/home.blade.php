@@ -2,8 +2,98 @@
 <link rel="preload" as="image" href="{{ asset('img/herologo.webp') }}" type="image/webp">
 <link rel="preload" as="image" href="{{ asset('img/logoserat_11zon.webp') }}" type="image/webp">
 <link rel="preload" as="image" href="{{ asset('img/logomitra1.webp') }}" type="image/webp">
-
 @section('konten')
+    <style>
+        /* 1. Container Utama Slider */
+        .native-slider-container {
+            display: flex;
+            /* Membuat item berjajar horizontal */
+            overflow-x: auto;
+            /* Memungkinkan scroll horizontal */
+            gap: 1.5rem;
+            /* Jarak antar kartu */
+            padding: 1rem 0.5rem;
+            /* Sedikit padding atas-bawah */
+
+            /* Efek 'snap' saat scrolling, seperti carousel */
+            scroll-snap-type: x mandatory;
+
+            /* Style untuk scrollbar agar lebih minimalis */
+            scrollbar-width: thin;
+            scrollbar-color: #d73696 #FEE5FD;
+        }
+
+        /* Style scrollbar untuk browser Webkit (Chrome, Safari) */
+        .native-slider-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .native-slider-container::-webkit-scrollbar-track {
+            background-color: #FEE5FD;
+            border-radius: 4px;
+        }
+
+        .native-slider-container::-webkit-scrollbar-thumb {
+            background-color: #d73696;
+            border-radius: 4px;
+        }
+
+        /* 2. Kartu Individual di dalam Slider */
+        .docs-card {
+            /* Mencegah kartu 'penyok' atau meregang */
+            flex: 0 0 auto;
+            width: 80%;
+            /* Lebar kartu pada layar mobile */
+            scroll-snap-align: start;
+            /* Titik 'snap' ada di awal kartu */
+            background-color: #a72a7b;
+            /* Warna latar kartu */
+            border-radius: 12px;
+            overflow: hidden;
+            /* Memastikan sudut gambar juga melengkung */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .docs-card-img-container {
+            width: 100%;
+            height: 250px;
+            /* Tinggi gambar dibuat konsisten */
+            background-color: #c4c4c4;
+            /* Warna placeholder jika gambar gagal dimuat */
+        }
+
+        .docs-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Memastikan gambar memenuhi area tanpa distorsi */
+        }
+
+        .docs-card-content {
+            padding: 1rem 1.5rem;
+            color: white;
+        }
+
+        .docs-card-content h5 {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 3. Responsif untuk layar lebih besar (desktop) */
+        @media (min-width: 768px) {
+            .docs-card {
+                width: 40%;
+                /* Menampilkan sekitar 2.5 kartu */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .docs-card {
+                width: 30%;
+                /* Menampilkan sekitar 3 kartu */
+            }
+        }
+    </style>
     @guest
         @include('popup')
     @endguest
@@ -31,7 +121,7 @@
                 loading="lazy" />
             <div class="text-content">
                 <h3 class="title" data-aos="fade-left">Apa Itu Serat Kartini?</h3>
-                <p class="intro" data-aos="fade-left">Hai!</p>
+                <p class="intro" data-aos="fade-left">Hai Kartinian!</p>
                 <p data-aos="fade-left">
                     Sekolah Perempuan Cerdas Masa Kini (SERAT KARTINI) merupakan model pemberdayaan perempuan akar rumput
                     yang bertujuan mengembangkan kapasitas perempuan melalui peningkatan kesadaran dan pemikiran kritis,
@@ -44,22 +134,28 @@
             </div>
         </div>
     </div>
-    <div id="slider" class="pt-5 mt-5" style="background-color: #FEE5FD">
+    <div id="slider-docs" class="py-5 mt-5" style="background-color: #FEE5FD">
         <div class="container">
             <h1 class="text-center"><b>Dokumentasi</b></h1>
-            <div class="slider">
-                <div class="owl-carousel">
-                    @foreach ($photos as $p)
-                        <div class="slider-card">
-                            <div class="d-flex justify-content-center align-items-center mb-4">
-                                <img style="max-height: 350px;" src="{{ asset('storage/' . $p->image) }}" loading="lazy" />
-                            </div>
-                            <h5 class="mb-0 text-center text-white">{{ $p->title }}</b></h5>
-                            <p class="text-center p-4">{{ $p->desc }}</p>
+
+            {{-- Ganti div slider & owl-carousel dengan container baru --}}
+            <div class="native-slider-container">
+                @forelse ($photos as $p)
+                    {{-- Gunakan struktur kartu baru --}}
+                    <div class="docs-card">
+                        <div class="docs-card-img-container">
+                            <img src="{{ asset('storage/' . $p->image) }}" loading="lazy" alt="{{ $p->title }}" />
                         </div>
-                    @endforeach
-                </div>
+                        <div class="docs-card-content">
+                            <h5 class="text-center text-white">{{ $p->title }}</h5>
+                        </div>
+                    </div>
+                @empty
+                    {{-- Tampilkan pesan jika tidak ada foto --}}
+                    <p class="text-center w-100">Belum ada dokumentasi untuk ditampilkan.</p>
+                @endforelse
             </div>
+
         </div>
     </div>
     <div class="mitra">
@@ -148,33 +244,4 @@
             </div> --}}
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $(".owl-carousel").owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                autoplay: true,
-                dots: false,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true,
-                center: true,
-                navText: [
-                    "<i class='fa fa-angle-left text-white'></i>",
-                    "<i class='fa fa-angle-right text-white'></i>"
-                ],
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 1
-                    },
-                    1000: {
-                        items: 3
-                    }
-                }
-            });
-        });
-    </script>
 @endsection
